@@ -1,0 +1,177 @@
+{
+  "data_description": "A deterministic ML residual-correction fixture with confirmed columns, backend, hyperparameters, and split; training is reproducible from the provided random state.",
+  "data_files": [
+    "train_table.csv",
+    "hyperparameters.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "ml-train/corrected_series.csv": [
+          "time",
+          "Q_total",
+          "Q_obs",
+          "residual",
+          "predicted_residual",
+          "corrected",
+          "P",
+          "Qt"
+        ],
+        "ml-train/model_card.json": [
+          "skill",
+          "backend",
+          "hyperparameters",
+          "random_state",
+          "split",
+          "test_size",
+          "base_column",
+          "observed_column",
+          "output_column",
+          "feature_columns",
+          "lag_spec",
+          "residual_definition",
+          "train_rows",
+          "test_rows",
+          "train_r2",
+          "train_rmse",
+          "test_r2",
+          "test_rmse",
+          "backend_version"
+        ],
+        "ml-train/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "ml-train/corrected_series.csv",
+        "ml-train/model_card.json",
+        "ml-train/model.joblib",
+        "ml-train/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-06,
+      "name": "train_corrected_series",
+      "reference": "expected/golden_workspace/ml-train/corrected_series.csv",
+      "rtol": 1e-06,
+      "target": "ml-train/corrected_series.csv",
+      "type": "table_match",
+      "weight": 0.2
+    },
+    {
+      "field": "backend",
+      "name": "model_card_backend",
+      "reference": "expected/golden_workspace/ml-train/model_card.json",
+      "target": "ml-train/model_card.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "random_state",
+      "name": "model_card_random_state",
+      "reference": "expected/golden_workspace/ml-train/model_card.json",
+      "target": "ml-train/model_card.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "split",
+      "name": "model_card_split",
+      "reference": "expected/golden_workspace/ml-train/model_card.json",
+      "target": "ml-train/model_card.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "feature_columns",
+      "name": "model_card_features",
+      "reference": "expected/golden_workspace/ml-train/model_card.json",
+      "target": "ml-train/model_card.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "residual_definition",
+      "name": "model_card_residual_definition",
+      "reference": "expected/golden_workspace/ml-train/model_card.json",
+      "target": "ml-train/model_card.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "test_r2",
+      "name": "model_card_test_r2",
+      "reference": "expected/golden_workspace/ml-train/model_card.json",
+      "target": "ml-train/model_card.json",
+      "tolerance": 0.05,
+      "type": "range_check",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "train_status",
+      "reference": "expected/golden_workspace/ml-train/result.json",
+      "target": "ml-train/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "train_artifact_references",
+      "required_keys": [
+        "corrected_table",
+        "model_card",
+        "model"
+      ],
+      "target": "ml-train/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.1
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/ml-train/result.json",
+      "target": "ml-train/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/ml-train/result.json",
+      "target": "ml-train/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    }
+  ],
+  "id": "hydroanalysis-ml-correct-002",
+  "primary_skill": "post-processing/correct-residual-with-ml",
+  "prompt": "Use train_table.csv and hyperparameters.json exactly as supplied to run post-processing/correct-residual-with-ml in train mode with --base-column Q_total, --observed-column Q_obs, --feature-columns P,Qt, --lag-spec Qt:1 (drop policy), backend ridge, the confirmed hyperparameters, random-state 20260928, split chronological, and test-size 0.25. The lag configuration necessarily discards the first rows; keep the native lag_rows_dropped warning in result.json. Write the native outputs (corrected_series.csv, model_card.json, model.joblib, result.json) under ml-train/. Do not switch to a fill policy, trim the series yourself, or suppress the warning.",
+  "required_outputs": [
+    "ml-train/corrected_series.csv",
+    "ml-train/model_card.json",
+    "ml-train/model.joblib",
+    "ml-train/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "scikit-learn is pre-installed in the evaluation environment.",
+    "The backend, hyperparameters, random state, split, and columns are confirmed and must not be altered.",
+    "The residual is observed minus base and the correction is base plus the predicted residual."
+  ],
+  "timeout_seconds": 300,
+  "title": "Preserve the native lag-row warning when training with lagged features"
+}

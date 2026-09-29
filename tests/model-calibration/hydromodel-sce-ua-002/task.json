@@ -1,0 +1,214 @@
+{
+  "data_description": "A deterministic continuous two-split calibration problem with an explicit hashed Python evaluator and versioned optimizer configuration.",
+  "data_files": [
+    "calibration-problem.json",
+    "optimizer-config.json",
+    "fixture.json",
+    "synthetic_adapter.py"
+  ],
+  "difficulty": "advanced",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "calibration-sce/best_parameters.json": [
+          "schema_version",
+          "algorithm",
+          "parameters"
+        ],
+        "calibration-sce/calibration_metrics.json": [
+          "schema_version",
+          "split",
+          "objective",
+          "metrics"
+        ],
+        "calibration-sce/calibration_series.csv": [
+          "time",
+          "observed",
+          "simulated",
+          "scored"
+        ],
+        "calibration-sce/calibration_trace.csv": [
+          "evaluation",
+          "stage",
+          "objective",
+          "loss",
+          "status",
+          "message",
+          "best_so_far"
+        ],
+        "calibration-sce/result.json": [
+          "skill",
+          "status",
+          "algorithm",
+          "artifacts",
+          "checks",
+          "warnings",
+          "termination_reason",
+          "evaluation_count"
+        ],
+        "calibration-sce/validation_metrics.json": [
+          "schema_version",
+          "split",
+          "objective",
+          "metrics"
+        ],
+        "calibration-sce/validation_series.csv": [
+          "time",
+          "observed",
+          "simulated",
+          "scored"
+        ]
+      },
+      "targets": [
+        "calibration-sce/best_parameters.json",
+        "calibration-sce/calibration_trace.csv",
+        "calibration-sce/calibration_metrics.json",
+        "calibration-sce/validation_metrics.json",
+        "calibration-sce/calibration_series.csv",
+        "calibration-sce/validation_series.csv",
+        "calibration-sce/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "field": "parameters",
+      "name": "best_parameters",
+      "reference": "expected/golden_workspace/calibration-sce/best_parameters.json",
+      "target": "calibration-sce/best_parameters.json",
+      "type": "exact_match",
+      "weight": 0.15
+    },
+    {
+      "atol": 1e-10,
+      "name": "search_trace",
+      "reference": "expected/golden_workspace/calibration-sce/calibration_trace.csv",
+      "rtol": 1e-10,
+      "target": "calibration-sce/calibration_trace.csv",
+      "type": "table_match",
+      "weight": 0.15
+    },
+    {
+      "name": "calibration_metrics",
+      "reference": "expected/golden_workspace/calibration-sce/calibration_metrics.json",
+      "target": "calibration-sce/calibration_metrics.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "validation_metrics",
+      "reference": "expected/golden_workspace/calibration-sce/validation_metrics.json",
+      "target": "calibration-sce/validation_metrics.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "atol": 1e-10,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "calibration_series",
+      "reference": "expected/golden_workspace/calibration-sce/calibration_series.csv",
+      "rtol": 1e-10,
+      "target": "calibration-sce/calibration_series.csv",
+      "type": "table_match",
+      "weight": 0.075
+    },
+    {
+      "atol": 1e-10,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "validation_series",
+      "reference": "expected/golden_workspace/calibration-sce/validation_series.csv",
+      "rtol": 1e-10,
+      "target": "calibration-sce/validation_series.csv",
+      "type": "table_match",
+      "weight": 0.075
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "termination_reason",
+      "name": "termination_reason",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "evaluation_count",
+      "name": "evaluation_count",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.03
+    },
+    {
+      "field": "failed_evaluation_count",
+      "name": "failed_evaluation_count",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.02
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.02
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "best_parameters",
+        "calibration_trace",
+        "calibration_metrics",
+        "validation_metrics",
+        "calibration_series",
+        "validation_series"
+      ],
+      "target": "calibration-sce/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydromodel-sce-ua-002",
+  "primary_skill": "model-calibration/calibrate-model-sce-ua",
+  "prompt": "Use calibration-problem.json and optimizer-config.json exactly as supplied to run model-calibration/calibrate-model-sce-ua. All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. Use calibration only for search and evaluate validation only after parameters are locked. Do not repair the optimizer config, alter its seed or budget, switch optimizers, or use validation for selection. Write the native outputs under calibration-sce/. Preserve the best feasible solution and report the native warning without changing algorithms or budgets.",
+  "required_outputs": [
+    "calibration-sce/best_parameters.json",
+    "calibration-sce/calibration_trace.csv",
+    "calibration-sce/calibration_metrics.json",
+    "calibration-sce/validation_metrics.json",
+    "calibration-sce/calibration_series.csv",
+    "calibration-sce/validation_series.csv",
+    "calibration-sce/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The evaluator contract implements create_evaluator(), evaluate(), and materialize(); no upstream skill is required.",
+    "The first two rows of each materialized split are confirmed warm-up rows with scored=false.",
+    "Do not install software or substitute another optimization algorithm."
+  ],
+  "timeout_seconds": 300,
+  "title": "Return the best SCE-UA solution at the hard budget"
+}

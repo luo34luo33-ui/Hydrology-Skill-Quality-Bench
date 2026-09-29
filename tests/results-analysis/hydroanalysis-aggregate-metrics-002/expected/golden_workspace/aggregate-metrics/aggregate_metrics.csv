@@ -1,0 +1,2 @@
+﻿group,events,nse_mean,nse_median,nse_p10,nse_p90,nse_min,nse_max,nse_count,volume_error_relative_mean,volume_error_relative_median,volume_error_relative_p10,volume_error_relative_p90,volume_error_relative_min,volume_error_relative_max,volume_error_relative_count
+all,0,unavailable,unavailable,unavailable,unavailable,unavailable,unavailable,0,unavailable,unavailable,unavailable,unavailable,unavailable,unavailable,0

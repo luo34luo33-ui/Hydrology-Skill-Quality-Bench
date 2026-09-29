@@ -1,0 +1,125 @@
+{
+  "data_description": "A deterministic continuous lumped-model problem with a complete confirmed parameter set and an hourly forcing table.",
+  "data_files": [
+    "forcing.csv",
+    "parameters.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "hbv-run/lumped_hbv_runoff.csv": [
+          "time",
+          "is_warmup",
+          "P",
+          "PET",
+          "EA",
+          "SM",
+          "RECHARGE",
+          "SUZ",
+          "SLZ",
+          "Q0",
+          "Q1",
+          "Q2",
+          "Q"
+        ],
+        "hbv-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "hbv-run/lumped_hbv_runoff.csv",
+        "hbv-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "simulation_table",
+      "reference": "expected/golden_workspace/hbv-run/lumped_hbv_runoff.csv",
+      "rtol": 1e-09,
+      "target": "hbv-run/lumped_hbv_runoff.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "simulation_table"
+      ],
+      "target": "hbv-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-hbv-001",
+  "primary_skill": "hydrological-modeling/run-lumped-hbv-model",
+  "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-hbv-model. The forcing table is hourly; P and E0 are instantaneous rates in mm/h on a gap-free axis. The 9-parameter set is confirmed; area is 640 km2, timestep is 1 h, mode is continuous, warm-up is 12 steps, and the user confirms a water-balance tolerance of 6.5 because the source HBV structurally loses water (Q0 is not deducted from SM and the effective-rainfall to recharge step discards a fraction). Write the native outputs (lumped_hbv_runoff.csv, result.json) under hbv-run/. Do not modify parameters, fill missing values, change the warm-up, or substitute another model implementation.",
+  "required_outputs": [
+    "hbv-run/lumped_hbv_runoff.csv",
+    "hbv-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The parameter set, area, timestep, mode, and warm-up are confirmed by the user and must not be altered.",
+    "P and the evaporation column are instantaneous rates in mm/h; discharge outputs are in m3/s.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Run a continuous lumped HBV simulation"
+}

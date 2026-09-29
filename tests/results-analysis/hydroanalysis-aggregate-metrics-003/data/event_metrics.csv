@@ -1,0 +1,7 @@
+event_id,catchment,nse,volume_error_relative,peak_error_relative,qualified_volume,qualified_peak
+event_01,upstream,0.85,0.05,0.03,是,是
+event_02,upstream,0.62,0.12,0.18,是,是
+event_03,upstream,0.41,0.35,0.1,否,是
+event_04,downstream,0.78,0.08,0.22,是,否
+event_05,downstream,0.55,0.25,0.06,否,是
+event_06,downstream,0.66,0.11,0.15,是,是

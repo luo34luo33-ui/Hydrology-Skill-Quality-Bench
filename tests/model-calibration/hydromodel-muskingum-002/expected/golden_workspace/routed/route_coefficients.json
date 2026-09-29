@@ -1,0 +1,18 @@
+{
+  "unstable_cascade": {
+    "c0": 0.6666666666666666,
+    "c1": -0.3333333333333333,
+    "c2": 0.6666666666666667,
+    "coefficients_clipped": false,
+    "column": "channel_q",
+    "k": 1.0,
+    "layout": "cascade",
+    "negative_before_clip": 0,
+    "output_level": "final",
+    "q0": 100.772181654,
+    "q0_source": "first-inflow",
+    "reaches": 4,
+    "x": 0.0,
+    "x_used": -1.5
+  }
+}

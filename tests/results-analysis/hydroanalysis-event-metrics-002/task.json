@@ -1,0 +1,129 @@
+{
+  "data_description": "A deterministic evaluation-diagnostics fixture with confirmed columns, units, and (where applicable) qualification thresholds.",
+  "data_files": [
+    "events/event_01.csv",
+    "events/event_02.csv",
+    "thresholds.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "event-metrics/event_metrics.csv": [
+          "event_id",
+          "rows",
+          "start",
+          "end",
+          "observed_volume",
+          "simulated_volume",
+          "volume_error_relative",
+          "observed_peak",
+          "simulated_peak",
+          "peak_error_relative",
+          "peak_time_error_hours",
+          "peak_tie_count",
+          "nse",
+          "r2",
+          "rmse",
+          "mae",
+          "qualified_volume",
+          "qualified_peak",
+          "qualified_peak_time"
+        ],
+        "event-metrics/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "event-metrics/event_metrics.csv",
+        "event-metrics/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "metrics_table",
+      "reference": "expected/golden_workspace/event-metrics/event_metrics.csv",
+      "rtol": 1e-09,
+      "target": "event-metrics/event_metrics.csv",
+      "type": "table_match",
+      "weight": 0.25
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "event_metrics"
+      ],
+      "target": "event-metrics/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydroanalysis-event-metrics-002",
+  "primary_skill": "evaluation-diagnostics/compute-event-flood-metrics",
+  "prompt": "Use the two event tables under events/ exactly as supplied to run evaluation-diagnostics/compute-event-flood-metrics. Event 01 deliberately contains tied observed and simulated peaks; run the skill verbatim with --timestep-hours 1 and the confirmed thresholds.json. Keep the native tie handling (first maximum wins) and preserve the native warnings in result.json. Write the native outputs (event_metrics.csv, result.json) under event-metrics/. Do not perturb the series to break the tie or suppress the warning.",
+  "required_outputs": [
+    "event-metrics/event_metrics.csv",
+    "event-metrics/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "All input columns and thresholds are confirmed by the user and must not be altered.",
+    "Error conventions follow the skill contract; error signs must never be flipped.",
+    "Do not install software or reimplement the metric formulas."
+  ],
+  "timeout_seconds": 300,
+  "title": "Resolve tied flood peaks at the first maximum with a native warning"
+}

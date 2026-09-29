@@ -1,0 +1,22 @@
+{
+  "algorithm": "pso",
+  "parameters": {
+    "x": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": -2.0,
+      "relative_position": 0.5589919995667897,
+      "upper": 2.0,
+      "value": 0.23596799826715875
+    },
+    "y": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": 10.0,
+      "relative_position": 0.683840380801586,
+      "upper": 30.0,
+      "value": 23.67680761603172
+    }
+  },
+  "schema_version": "1.0"
+}

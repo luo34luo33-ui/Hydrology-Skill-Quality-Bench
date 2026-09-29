@@ -1,0 +1,69 @@
+{
+  "artifacts": {
+    "aggregate_metrics": {
+      "path": "aggregate_metrics.csv",
+      "sha256": "72483ee5b1101bff241a75356a3d3e037d9f00f944a508eab9448096fd6bf9be"
+    }
+  },
+  "checks": [
+    {
+      "message": "聚合列 2 个、合格列 0 个",
+      "name": "columns_present",
+      "status": "PASS"
+    },
+    {
+      "message": "指标表行数为 0",
+      "name": "row_count",
+      "status": "WARN"
+    },
+    {
+      "message": "无法解析为数值的单元共 0 个，已排除并计数",
+      "name": "unavailable_accounted",
+      "status": "PASS"
+    },
+    {
+      "message": "合格阈值 []",
+      "name": "thresholds_provided",
+      "status": "PASS"
+    },
+    {
+      "message": "统计量 ['mean', 'median', 'p10', 'p90', 'min', 'max', 'count']",
+      "name": "statistics_recorded",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "metrics_table": {
+      "path": "event_metrics.csv",
+      "sha256": "cb3ab9c28a0e6934f733b31d3b00f6ac8a3328586fc4657238921c1b9fe5bd4a"
+    }
+  },
+  "message": "场次指标汇总完成：1 个分组，0 场",
+  "parameters": {
+    "group_by": null,
+    "pass_columns": [],
+    "pass_thresholds": {},
+    "statistics": [
+      "mean",
+      "median",
+      "p10",
+      "p90",
+      "min",
+      "max",
+      "count"
+    ],
+    "value_columns": [
+      "nse",
+      "volume_error_relative"
+    ]
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/aggregate-event-metrics",
+  "status": "warning",
+  "warnings": [
+    "指标表为空行；聚合结果将为空，请确认上游是否正确产出逐场次指标"
+  ]
+}

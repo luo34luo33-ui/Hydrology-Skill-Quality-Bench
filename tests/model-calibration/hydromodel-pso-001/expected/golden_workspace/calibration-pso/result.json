@@ -1,0 +1,93 @@
+{
+  "algorithm": "pso",
+  "artifacts": {
+    "best_parameters": {
+      "path": "best_parameters.json",
+      "sha256": "31a3d0074aa3a3b8807436e60322c4c3db0809cfaffa462bfef197561505e096"
+    },
+    "calibration_metrics": {
+      "path": "calibration_metrics.json",
+      "sha256": "224ccf087578984d697c77c4ed06edde4f03393a00e1267192e72c4811e90bab"
+    },
+    "calibration_series": {
+      "path": "calibration_series.csv",
+      "sha256": "224c49ffa4699c9fec0e361e17921be44e21cb14fa99e708975794b548594765"
+    },
+    "calibration_trace": {
+      "path": "calibration_trace.csv",
+      "sha256": "2558acf25e58fac3522e1f70eb62feefa5b0f13e5d6be72bc86a6973a0221f44"
+    },
+    "validation_metrics": {
+      "path": "validation_metrics.json",
+      "sha256": "185ae9f5393014ba7e645c22d5ae0de1a9cb2db3a6790dbd73e23be189a8ba8a"
+    },
+    "validation_series": {
+      "path": "validation_series.csv",
+      "sha256": "7d6c72d6afbe5c1dc4d83f36e0b3ecc8b73182189fd738d31e7b095ff6c3d078"
+    }
+  },
+  "checks": [
+    {
+      "check": "parameter_bounds",
+      "details": "parameters=2",
+      "status": "PASS"
+    },
+    {
+      "check": "split_isolation",
+      "details": "validation evaluated only after parameter lock",
+      "status": "PASS"
+    },
+    {
+      "check": "objective_consistency",
+      "details": "tolerance=1e-12",
+      "status": "PASS"
+    }
+  ],
+  "data_shape": "continuous",
+  "evaluation_count": 24,
+  "failed_evaluation_count": 0,
+  "inputs": {
+    "adapter": {
+      "path": "synthetic_adapter.py",
+      "sha256": "e87fc6372e5eaf63c525daa0b033c8871dc3f705ae09b16d49dbe31f7a8c32f9"
+    },
+    "optimizer_config": {
+      "path": "optimizer-config.json",
+      "sha256": "531bec958b32c97fc611b80b13aa6913d84a7d245a58dde6a4074623a9ca1f40"
+    },
+    "problem": {
+      "path": "calibration-problem.json",
+      "sha256": "142560e2f4feb2100df79818af9517a35ab18c7e4fe79c0384d42deb05a718b2"
+    }
+  },
+  "message": "pso calibration completed",
+  "objective": {
+    "direction": "minimize",
+    "metric": "objective"
+  },
+  "parameters": {
+    "max_evaluations": 100,
+    "optimizer_config": {
+      "algorithm": "pso",
+      "cognitive_coefficient": 1.5,
+      "inertia_weight": 0.7,
+      "max_evaluations": 100,
+      "max_failed_evaluations": 2,
+      "max_iterations": 3,
+      "particle_count": 6,
+      "schema_version": "1.0",
+      "seed": 42,
+      "social_coefficient": 1.5,
+      "velocity_limit_fraction": 0.2
+    },
+    "seed": 42
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-pso",
+  "status": "success",
+  "termination_reason": "optimizer_completed",
+  "warnings": []
+}

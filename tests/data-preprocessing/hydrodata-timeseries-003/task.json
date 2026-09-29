@@ -1,0 +1,142 @@
+{
+  "data_description": "Regular hourly discharge with one two-step internal gap.",
+  "data_files": [
+    "bounded_gap.csv"
+  ],
+  "difficulty": "intermediate",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "prepared/discharge_timeseries.csv": 18,
+        "prepared/result.json": 1,
+        "prepared/series_metadata.json": 1
+      },
+      "name": "artifact_schema",
+      "required_columns": {
+        "prepared/discharge_timeseries.csv": [
+          "time",
+          "discharge_m3_s",
+          "is_imputed"
+        ],
+        "prepared/result.json": [
+          "skill",
+          "status",
+          "message",
+          "artifacts",
+          "warnings"
+        ],
+        "prepared/series_metadata.json": [
+          "source_flow_unit",
+          "standard_flow_unit",
+          "timezone",
+          "timestep_seconds",
+          "row_count"
+        ]
+      },
+      "targets": [
+        "prepared/discharge_timeseries.csv",
+        "prepared/series_metadata.json",
+        "prepared/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed"
+      ],
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "prepared_table",
+      "reference": "expected/golden_workspace/prepared/discharge_timeseries.csv",
+      "rtol": 1e-09,
+      "target": "prepared/discharge_timeseries.csv",
+      "type": "table_match",
+      "weight": 0.55
+    },
+    {
+      "field": "source_flow_unit",
+      "name": "metadata_source_flow_unit",
+      "reference": "expected/golden_workspace/prepared/series_metadata.json",
+      "target": "prepared/series_metadata.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "standard_flow_unit",
+      "name": "metadata_standard_flow_unit",
+      "reference": "expected/golden_workspace/prepared/series_metadata.json",
+      "target": "prepared/series_metadata.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "timezone",
+      "name": "metadata_timezone",
+      "reference": "expected/golden_workspace/prepared/series_metadata.json",
+      "target": "prepared/series_metadata.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "timestep_seconds",
+      "name": "metadata_timestep_seconds",
+      "reference": "expected/golden_workspace/prepared/series_metadata.json",
+      "target": "prepared/series_metadata.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "row_count",
+      "name": "metadata_row_count",
+      "reference": "expected/golden_workspace/prepared/series_metadata.json",
+      "target": "prepared/series_metadata.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.03
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.07
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    }
+  ],
+  "id": "hydrodata-timeseries-003",
+  "primary_skill": "data-processing/prepare-discharge-timeseries",
+  "prompt": "Prepare discharge from bounded_gap.csv. timestamp is the confirmed instantaneous time column, discharge is confirmed in m3/s, and timezone is UTC. Explicitly interpolate internal gaps up to 2 hours; edge missing and duplicate timestamps must error. Write CSV outputs under prepared/.",
+  "required_outputs": [
+    "prepared/discharge_timeseries.csv",
+    "prepared/series_metadata.json",
+    "prepared/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, SciPy, openpyxl, and xlsxwriter are available.",
+    "Write all outputs under prepared/. Always preserve the native prepare-discharge-timeseries result.json, including for rejected inputs."
+  ],
+  "timeout_seconds": 300,
+  "title": "Interpolate an internal gap exactly at the authorized limit"
+}

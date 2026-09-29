@@ -1,0 +1,14 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "train 模式必须给出 --random-state 以保证结果可复现",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/correct-residual-with-ml",
+  "status": "error",
+  "warnings": []
+}

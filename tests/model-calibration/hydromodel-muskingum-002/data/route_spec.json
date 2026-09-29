@@ -1,0 +1,14 @@
+{
+  "routes": [
+    {
+      "column": "channel_q",
+      "id": "unstable_cascade",
+      "k": 1.0,
+      "layout": "cascade",
+      "output_level": "final",
+      "reaches": 4,
+      "x": 0.0
+    }
+  ],
+  "schema_version": "1.0"
+}

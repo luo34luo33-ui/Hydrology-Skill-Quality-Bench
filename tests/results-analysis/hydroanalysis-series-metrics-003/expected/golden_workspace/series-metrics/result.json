@@ -1,0 +1,35 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "message": "观测与模拟均为 96 行",
+      "name": "series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测或模拟列存在 1 个缺测；缺测必须由上游显式修复，不得填 0 后计算指标",
+      "name": "no_missing_values",
+      "status": "FAIL"
+    },
+    {
+      "message": "观测或模拟存在非有限值",
+      "name": "finite_values",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "科学 QC 失败，未生成指标表",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-continuous-series-metrics",
+  "status": "error",
+  "warnings": []
+}

@@ -1,0 +1,112 @@
+{
+  "data_description": "A deterministic evaluation-diagnostics fixture with confirmed columns, units, and (where applicable) qualification thresholds.",
+  "data_files": [
+    "series.csv"
+  ],
+  "difficulty": "basic",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "series-metrics/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ],
+        "series-metrics/series_metrics.csv": [
+          "metric",
+          "value",
+          "unit",
+          "status"
+        ]
+      },
+      "targets": [
+        "series-metrics/series_metrics.csv",
+        "series-metrics/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "metrics_table",
+      "reference": "expected/golden_workspace/series-metrics/series_metrics.csv",
+      "rtol": 1e-09,
+      "target": "series-metrics/series_metrics.csv",
+      "type": "table_match",
+      "weight": 0.25
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/series-metrics/result.json",
+      "target": "series-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/series-metrics/result.json",
+      "target": "series-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/series-metrics/result.json",
+      "target": "series-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/series-metrics/result.json",
+      "target": "series-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/series-metrics/result.json",
+      "target": "series-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "series_metrics"
+      ],
+      "target": "series-metrics/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydroanalysis-series-metrics-001",
+  "primary_skill": "evaluation-diagnostics/compute-continuous-series-metrics",
+  "prompt": "Use series.csv exactly as supplied to run evaluation-diagnostics/compute-continuous-series-metrics. The table has hourly time, Q_obs, and Q_total columns in m3/s; the timestep is 1 h. Compute the default metric set (nse, rmse, mae, r2, volume_bias, relative_volume_bias) and write the native outputs (series_metrics.csv, result.json) under series-metrics/. Do not change the metric set, round values, or substitute a different volume conversion.",
+  "required_outputs": [
+    "series-metrics/series_metrics.csv",
+    "series-metrics/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "All input columns and thresholds are confirmed by the user and must not be altered.",
+    "Error conventions follow the skill contract; error signs must never be flipped.",
+    "Do not install software or reimplement the metric formulas."
+  ],
+  "timeout_seconds": 300,
+  "title": "Compute the full continuous series metric set with explicit timestep"
+}

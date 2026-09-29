@@ -1,0 +1,69 @@
+{
+  "artifacts": {
+    "analysis_dem": {
+      "path": "dem_analysis_buffer.tif",
+      "sha256": "a96e65136977c164924d7e6b1ba9ebd0b61feed0049194d697b2412576eb1e22"
+    },
+    "metric_dem": {
+      "path": "dem_metric.tif",
+      "sha256": "a96e65136977c164924d7e6b1ba9ebd0b61feed0049194d697b2412576eb1e22"
+    },
+    "normalized_basin": {
+      "path": "basin_normalized.gpkg",
+      "sha256": "ee4af7bccf0e020ae98157835bfc9cbde29687f5557e5475345538a572f7872b"
+    }
+  },
+  "checks": [
+    {
+      "check": "metric_projected_crs",
+      "details": "EPSG:32650",
+      "status": "PASS"
+    },
+    {
+      "check": "vertical_unit",
+      "details": "m -> m; scale=1.0",
+      "status": "PASS"
+    },
+    {
+      "check": "true_basin_coverage",
+      "details": "DEM covers basin",
+      "status": "PASS"
+    },
+    {
+      "check": "analysis_buffer_coverage",
+      "details": "DEM 未完整覆盖分析 buffer；边界附近拓扑和出口判定可能不可靠。",
+      "status": "WARN"
+    }
+  ],
+  "inputs": {
+    "basin_boundary": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-dem-grid-004\\data\\basin.gpkg",
+      "sha256": "ee4af7bccf0e020ae98157835bfc9cbde29687f5557e5475345538a572f7872b"
+    },
+    "source_dem": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-dem-grid-004\\data\\source_dem.tif",
+      "sha256": "5fdf1b0e7d252f1c8927a401b2e4ef4c4b863db40009e8b09e4fa532444c51ed"
+    }
+  },
+  "message": "DEM analysis grid prepared with coverage warning",
+  "parameters": {
+    "analysis_buffer_km": 0.5,
+    "crs_decision": "preserved-source",
+    "mask_rule": "center",
+    "target_crs": "EPSG:32650",
+    "vertical_scale_to_m": 1.0,
+    "vertical_unit": "m"
+  },
+  "provenance": {
+    "geopandas": "1.1.1",
+    "python": "3.13.9",
+    "rasterio": "1.4.3",
+    "shapely": "2.1.1"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/prepare-dem-analysis-grid",
+  "status": "warning",
+  "warnings": [
+    "DEM 未完整覆盖分析 buffer；边界附近拓扑和出口判定可能不可靠。"
+  ]
+}

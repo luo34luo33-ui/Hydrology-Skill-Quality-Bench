@@ -1,0 +1,88 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_hbv_runoff.csv",
+      "sha256": "4d4d231a7f19d092fc1b245c235bdc06389862058c72a2dd6c7c33777bd2b08b"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 60 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "全部参数落在源工程率定范围内",
+      "name": "continuous:parameter_range",
+      "status": "PASS"
+    },
+    {
+      "message": "蒸发能力按 c=0.07 缩放，实际蒸发 AE 受 lp×fc 调蓄",
+      "name": "continuous:evaporation_coefficient",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "蓄水状态非负",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "无数值截断",
+      "name": "continuous:numerical_clipping",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差占降雨 596.815%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "params": {
+      "path": "parameters.json",
+      "sha256": "9e4b612d6cf51f8d3ced8e2f200687efa40704f92ac61a7d3fd6410a36893a05"
+    }
+  },
+  "message": "集总式 HBV 前向模拟完成：1 场（或段），72 行",
+  "parameters": {
+    "area_km2": 640.0,
+    "balance_tolerance_fraction": 6.5,
+    "carry_columns": [],
+    "mode": "continuous",
+    "parameter_set": {
+      "beta": 2.6,
+      "c": 0.07,
+      "fc": 195.0,
+      "k0": 0.163,
+      "k1": 0.029,
+      "k2": 0.049,
+      "kp": 0.05,
+      "l": 4.87,
+      "lp": 0.5
+    },
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-hbv-model",
+  "status": "success",
+  "warnings": []
+}

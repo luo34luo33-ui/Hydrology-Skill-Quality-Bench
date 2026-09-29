@@ -1,0 +1,98 @@
+{
+  "algorithm": "two-stage",
+  "artifacts": {
+    "best_parameters": {
+      "path": "best_parameters.json",
+      "sha256": "805d9cbf6b68a7ef7d04ebac82236609d87a32d0e4703796a5ed1908d28653ba"
+    },
+    "calibration_metrics": {
+      "path": "calibration_metrics.json",
+      "sha256": "87af756f699b2fa28aecdbeae5687af899030ac403945cc3207343551889fde7"
+    },
+    "calibration_series": {
+      "path": "calibration_series.csv",
+      "sha256": "8f3a02b46c9fe07af1936267b767011f4089477e28b89bc5f52acfeb0a469151"
+    },
+    "calibration_trace": {
+      "path": "calibration_trace.csv",
+      "sha256": "67a8b7e8ccbed8d5d272e37d0edbb9d5be3501a80046a06d61b703bb5891d8eb"
+    },
+    "validation_metrics": {
+      "path": "validation_metrics.json",
+      "sha256": "2b232d8dc2b4cfae568aba69b54160ba9725919fc991cef54d487ee520776c7d"
+    },
+    "validation_series": {
+      "path": "validation_series.csv",
+      "sha256": "7c269d141b0147fb6a7f6f7976161ae83583700c9eff1336c16d93cc14930d37"
+    }
+  },
+  "checks": [
+    {
+      "check": "parameter_bounds",
+      "details": "parameters=2",
+      "status": "PASS"
+    },
+    {
+      "check": "split_isolation",
+      "details": "validation evaluated only after parameter lock",
+      "status": "PASS"
+    },
+    {
+      "check": "objective_consistency",
+      "details": "tolerance=1e-12",
+      "status": "PASS"
+    }
+  ],
+  "data_shape": "continuous",
+  "evaluation_count": 13,
+  "failed_evaluation_count": 1,
+  "inputs": {
+    "adapter": {
+      "path": "synthetic_adapter.py",
+      "sha256": "e87fc6372e5eaf63c525daa0b033c8871dc3f705ae09b16d49dbe31f7a8c32f9"
+    },
+    "optimizer_config": {
+      "path": "optimizer-config.json",
+      "sha256": "881fa0455a6e5d892b8c9f90969cd5aeee77a7b3e7a0e855ec9040b50984aba3"
+    },
+    "problem": {
+      "path": "calibration-problem.json",
+      "sha256": "a05f853f6a1985739b36334af4027ba53404a74fbd17008b8076c248630678d8"
+    }
+  },
+  "message": "two-stage calibration completed",
+  "objective": {
+    "direction": "minimize",
+    "metric": "objective"
+  },
+  "parameters": {
+    "max_evaluations": 20,
+    "optimizer_config": {
+      "accept": -5.0,
+      "algorithm": "two-stage",
+      "annealing_max_evaluations": 12,
+      "annealing_max_iterations": 50,
+      "initial_temperature": 5230.0,
+      "local_ftol": 1e-09,
+      "local_max_evaluations": 1,
+      "local_max_iterations": 20,
+      "max_evaluations": 20,
+      "max_failed_evaluations": 2,
+      "restart_temperature_ratio": 0.0001,
+      "schema_version": "1.0",
+      "seed": 42,
+      "visit": 2.62
+    },
+    "seed": 42
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-two-stage",
+  "status": "warning",
+  "termination_reason": "two_stages_completed",
+  "warnings": [
+    "搜索期间有 1 次失败评估"
+  ]
+}

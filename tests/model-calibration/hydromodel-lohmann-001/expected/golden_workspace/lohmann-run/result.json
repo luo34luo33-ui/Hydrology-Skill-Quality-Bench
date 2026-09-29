@@ -1,0 +1,95 @@
+{
+  "artifacts": {
+    "routed_table": {
+      "path": "routed_lohmann.csv",
+      "sha256": "1288191b691987b1e4b87df66696392a2c132f99ac7302d98b12b3c26cb511a7"
+    },
+    "unit_hydrographs": {
+      "path": "lohmann_unit_hydrographs.json",
+      "sha256": "8d58024d2dac47bca35d7de9e5cda4b14f908ad2b7ff658a064da1447ec63613"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 24.0 小时",
+      "name": "time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "时间步长为 24 小时，与 UH 的日尺度语义一致",
+      "name": "daily_timestep",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列无缺测",
+      "name": "no_missing_inflow",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列非负",
+      "name": "negative_inflow",
+      "status": "PASS"
+    },
+    {
+      "message": "uh_river 纵坐标之和为 1（偏差 0）",
+      "name": "uh_normalization",
+      "status": "PASS"
+    },
+    {
+      "message": "uh_direct 纵坐标之和为 1（偏差 1.1e-16）",
+      "name": "uh_normalization",
+      "status": "PASS"
+    },
+    {
+      "message": "uh_base 纵坐标之和为 1（偏差 0）",
+      "name": "uh_normalization",
+      "status": "PASS"
+    },
+    {
+      "message": "出流均为有限值",
+      "name": "finite_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "direct 出入流体积相对差 0.000%（含 UH 尾部截断滞留）",
+      "name": "volume_difference:direct",
+      "status": "PASS"
+    },
+    {
+      "message": "base 出入流体积相对差 0.000%（含 UH 尾部截断滞留）",
+      "name": "volume_difference:base",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "inflow": {
+      "path": "inflow.csv",
+      "sha256": "35b371478eb45d15dbac4af922b43f8ba017e92ec0a1127dfaf1ef1e7efe1e68"
+    },
+    "route_params": {
+      "path": "route_params.json",
+      "sha256": "00eafb96bb91dfe15c1f8fea3383ec6e6dc3cb72e39e3567ddf1c613efa1461d"
+    }
+  },
+  "message": "Lohmann 汇流完成：240 步，出流总入比 1.0000",
+  "parameters": {
+    "base_column": "base",
+    "direct_column": "direct",
+    "flowlen_m": 100000.0,
+    "route_parameters": {
+      "DIFF": 800.0,
+      "K": 2.0,
+      "N": 2.0,
+      "VELO": 1.0
+    },
+    "timestep_hours": 24.0,
+    "volume_tolerance": 0.05
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/route-lohmann-channel",
+  "status": "success",
+  "warnings": []
+}

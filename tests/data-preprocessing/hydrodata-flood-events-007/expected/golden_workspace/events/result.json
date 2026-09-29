@@ -1,0 +1,92 @@
+{
+  "artifacts": {
+    "annotated_series": {
+      "path": "annotated_series.csv",
+      "sha256": "6a2a919ae41da62bc56aad9213a6ea1c55632a10b97a40302de8a4c86e907ed6"
+    },
+    "event_config": {
+      "path": "event_config.yaml",
+      "sha256": "591b77089f36fc58d26fafe56c58d36b238b3bb190d766268593142cb335c6f7"
+    },
+    "event_manifest": {
+      "path": "event_manifest.json",
+      "sha256": "e77d6b99b0c5acede21dfcd1b54d5d1394cbf158ddea61062014363242d845c4"
+    },
+    "event_process": {
+      "path": "event_process.csv",
+      "sha256": "f65484cfd6c996fc2dc882d1d2a9cb8937531ea2b90358649b0f7bf2ac94f09a"
+    },
+    "event_qc": {
+      "path": "event_qc.csv",
+      "sha256": "9b891f6fba1a2b3b12bd67d9919d3921c08f13d71bdeed63412e3515b85c00a0"
+    },
+    "event_summary": {
+      "path": "event_summary.csv",
+      "sha256": "4107ccdb408b0db6875437cb213bb0cef2e87fa5c9924bc52ab16c1d3aaee795"
+    }
+  },
+  "checks": [
+    {
+      "check": "event_identity_and_order",
+      "details": "events=0; stable chronological IDs",
+      "status": "PASS"
+    },
+    {
+      "check": "event_boundaries",
+      "details": "boundaries, times and peaks are consistent",
+      "status": "PASS"
+    },
+    {
+      "check": "configured_filters",
+      "details": "all retained events satisfy explicit filters",
+      "status": "PASS"
+    },
+    {
+      "check": "volume_balance",
+      "details": "total = baseflow + quickflow within tolerance",
+      "status": "PASS"
+    },
+    {
+      "check": "table_consistency",
+      "details": "summary=0, process=0, series=48",
+      "status": "PASS"
+    },
+    {
+      "check": "warmup_exclusion",
+      "details": "warm-up rows are flagged and excluded from event metrics",
+      "status": "PASS"
+    },
+    {
+      "check": "per_event_file_count",
+      "details": "expected=0; actual=0",
+      "status": "PASS"
+    },
+    {
+      "check": "event_count",
+      "details": "no flood events satisfied the explicit configuration",
+      "status": "WARN"
+    }
+  ],
+  "inputs": {},
+  "message": "extracted 0 flood events",
+  "parameters": {
+    "candidate_peak_count": 0,
+    "event_filename_by": "event-id",
+    "final_event_count": 0,
+    "merged_event_count": 0,
+    "output_format": "csv",
+    "per_event_format": "csv",
+    "raw_event_count": 0,
+    "refined_event_count": 0,
+    "timestep_seconds": 3600.0
+  },
+  "provenance": {
+    "generator": "HSQB deterministic oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/extract-flood-events",
+  "status": "warning",
+  "warnings": [
+    "no flood events satisfied the explicit configuration"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "时间序列不规则，规则度=89.474%",
+  "parameters": {},
+  "provenance": {
+    "generator": "HSQB deterministic oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-discharge-timeseries",
+  "status": "error",
+  "warnings": []
+}

@@ -1,0 +1,20 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "没有提取到河网；area=100.0 km2, threshold=111112 cells",
+  "parameters": {
+    "analysis_dem": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-stream-network-004\\data\\analysis_dem.tif",
+    "output_dir": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-stream-network-004\\expected\\golden_workspace\\hydrology",
+    "overwrite": false,
+    "stream_init_area_km2": 100.0,
+    "whitebox_dir": null
+  },
+  "provenance": {
+    "python": "3.13.9"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/extract-dem-stream-network",
+  "status": "error",
+  "warnings": []
+}

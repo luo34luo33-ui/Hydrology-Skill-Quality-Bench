@@ -1,0 +1,97 @@
+{
+  "artifacts": {
+    "routed_table": {
+      "path": "routed_lohmann.csv",
+      "sha256": "0d228b47e98861f5d301bbcdd47a72b1591cf8c1c5f0362b518dc8d44f51bfa3"
+    },
+    "unit_hydrographs": {
+      "path": "lohmann_unit_hydrographs.json",
+      "sha256": "d4a573cbf3a8516a1b2d8d76b2548683f0eb32d3094be0c6f90fc288aef67cfd"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 24.0 小时",
+      "name": "time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "时间步长为 24 小时，与 UH 的日尺度语义一致",
+      "name": "daily_timestep",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列无缺测",
+      "name": "no_missing_inflow",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列非负",
+      "name": "negative_inflow",
+      "status": "PASS"
+    },
+    {
+      "message": "uh_river 纵坐标之和为 1（偏差 0）",
+      "name": "uh_normalization",
+      "status": "PASS"
+    },
+    {
+      "message": "uh_direct 纵坐标之和为 1（偏差 0）",
+      "name": "uh_normalization",
+      "status": "PASS"
+    },
+    {
+      "message": "uh_base 纵坐标之和为 1（偏差 0）",
+      "name": "uh_normalization",
+      "status": "PASS"
+    },
+    {
+      "message": "出流均为有限值",
+      "name": "finite_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "direct 出入流体积相对差 5.547% 超过容差 5.000%；含 UH 尾部截断滞留（零初始历史 + 序列末端水量仍留在单位线中，属预期行为）",
+      "name": "volume_difference:direct",
+      "status": "WARN"
+    },
+    {
+      "message": "base 出入流体积相对差 1.929%（含 UH 尾部截断滞留）",
+      "name": "volume_difference:base",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "inflow": {
+      "path": "inflow.csv",
+      "sha256": "d2fcb5470fb9892302849fbe5c104b6feff532b5380e4653e0515bd46047766d"
+    },
+    "route_params": {
+      "path": "route_params.json",
+      "sha256": "2bbdbd5902f4a65ed748c14cdf75e736ac1609c6ee295c3d79e3a0984f852284"
+    }
+  },
+  "message": "Lohmann 汇流完成：60 步，出流总入比 0.9485",
+  "parameters": {
+    "base_column": "base",
+    "direct_column": "direct",
+    "flowlen_m": 100000.0,
+    "route_parameters": {
+      "DIFF": 800.0,
+      "K": 10.0,
+      "N": 2.0,
+      "VELO": 1.0
+    },
+    "timestep_hours": 24.0,
+    "volume_tolerance": 0.05
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/route-lohmann-channel",
+  "status": "warning",
+  "warnings": [
+    "direct 出入流体积相对差 5.547%，超出 5.000%；若序列长度接近或短于 UH 底长（107 步），缺口主要来自尾部滞留"
+  ]
+}

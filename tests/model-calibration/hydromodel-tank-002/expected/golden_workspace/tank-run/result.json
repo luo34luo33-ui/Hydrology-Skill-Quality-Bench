@@ -1,0 +1,92 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_tank_runoff.csv",
+      "sha256": "18b3e26811c3f471a703ebb463193ac255380568bb45a642c3d371a9bbe47627"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 60 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "全部参数落在源工程率定范围内",
+      "name": "continuous:parameter_range",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "水箱蓄水非负",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "数值截断 7 次",
+      "name": "continuous:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "水量平衡残差占降雨 3.095%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "params": {
+      "path": "parameters.json",
+      "sha256": "57101a63a18e47c29d520953fdff06039a7bf5e6968136a31e12ff75396f7bb9"
+    }
+  },
+  "message": "集总式 Tank 前向模拟完成：1 场（或段），72 行",
+  "parameters": {
+    "area_km2": 640.0,
+    "balance_tolerance_fraction": 0.05,
+    "carry_columns": [],
+    "mode": "continuous",
+    "parameter_set": {
+      "t0_boc": 0.3,
+      "t0_is": 10.0,
+      "t0_soc_lo": 0.3,
+      "t0_soc_uo": 0.4,
+      "t0_soh_lo": 30.0,
+      "t0_soh_uo": 80.0,
+      "t1_boc": 0.25,
+      "t1_is": 10.0,
+      "t1_soc": 0.25,
+      "t1_soh": 50.0,
+      "t2_boc": 0.15,
+      "t2_is": 10.0,
+      "t2_soc": 0.15,
+      "t2_soh": 35.0,
+      "t3_is": 10.0,
+      "t3_soc": 0.02
+    },
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-tank-model",
+  "status": "warning",
+  "warnings": [
+    "continuous 发生 7 次数值截断（水箱 floor 0 或负流量截断），说明 max(·,0) 兜底被触发（常因蒸发大于降雨使净雨为负），会损耗水量"
+  ]
+}

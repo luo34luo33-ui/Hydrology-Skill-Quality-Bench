@@ -1,0 +1,87 @@
+{
+  "data_description": "A deterministic daily Lohmann routing problem with two confirmed discharge components and routing parameters.",
+  "data_files": [
+    "inflow.csv",
+    "route_params.json"
+  ],
+  "difficulty": "basic",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "expected_rows": {
+        "lohmann-run/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "target": "lohmann-run/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "lohmann-run/routed_lohmann.csv",
+        "lohmann-run/lohmann_unit_hydrographs.json"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydromodel-lohmann-003",
+  "primary_skill": "hydrological-modeling/route-lohmann-channel",
+  "prompt": "Use inflow.csv and route_params.json exactly as supplied to run hydrological-modeling/route-lohmann-channel. The base component contains at least one missing value; run the routing verbatim with --direct-column direct, --base-column base, flow length 100000 m, timestep 24 h, and only the native result.json under lohmann-run/. Do not fill, interpolate, or drop the missing value; do not rerun with repaired data; the script must reject the input itself. No routed_lohmann.csv or lohmann_unit_hydrographs.json may remain in lohmann-run/.",
+  "required_outputs": [
+    "lohmann-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The routing parameters, flow length, timestep, and component columns are confirmed by the user and must not be altered.",
+    "Component values pass through the routing in their input units; no area conversion is applied.",
+    "Do not install software or implement a replacement routing routine."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject Lohmann routing when a component contains missing values"
+}

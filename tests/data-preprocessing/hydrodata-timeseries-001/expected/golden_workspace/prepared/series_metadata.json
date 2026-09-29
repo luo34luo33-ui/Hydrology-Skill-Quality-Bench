@@ -1,0 +1,19 @@
+{
+  "additional_column_semantics": "unconfirmed",
+  "additional_columns": [
+    "source_id"
+  ],
+  "end_time": "2024-01-02T07:00:00+08:00",
+  "flow_column": "flow_cfs",
+  "row_count": 24,
+  "schema_version": "1.0",
+  "source_flow_unit": "cfs",
+  "source_format": "csv",
+  "standard_flow_unit": "m3/s",
+  "start_time": "2024-01-01T08:00:00+08:00",
+  "time_column": "observed_at",
+  "time_regularity": 1.0,
+  "timestep_seconds": 3600.0,
+  "timezone": "Asia/Shanghai",
+  "unit_scale": 0.028316846592
+}

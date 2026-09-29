@@ -1,0 +1,105 @@
+{
+  "data_description": "A hash-valid component table whose total flow is inconsistent with baseflow plus quickflow.",
+  "data_files": [
+    "components/result.json",
+    "components/flow_components.csv",
+    "components/baseflow_metadata.json",
+    "event_config.yaml"
+  ],
+  "difficulty": "advanced",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "events/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "skill",
+        "status",
+        "message",
+        "artifacts",
+        "checks"
+      ],
+      "target": "events/result.json",
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_event_outputs",
+      "targets": [
+        "events/event_summary.csv",
+        "events/event_process.csv",
+        "events/annotated_series.csv",
+        "events/flood_event_dataset.xlsx",
+        "events/event_config.yaml",
+        "events/event_manifest.json",
+        "events/event_qc.csv",
+        "events/event_files"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.15
+    },
+    {
+      "field": "checks.0.check",
+      "name": "scientific_qc_name",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.075
+    },
+    {
+      "field": "checks.0.status",
+      "name": "scientific_qc_status",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.075
+    }
+  ],
+  "id": "hydrodata-flood-events-010",
+  "primary_skill": "data-processing/extract-flood-events",
+  "prompt": "Use components/result.json and the complete confirmed parameters in event_config.yaml to extract flood events. Write CSV main tables and CSV per-event files under events/, naming per-event files by event-id. Do not change, infer, or relax any scientific parameter. Preserve the native error result.json and do not create event artifacts when validation or scientific QC fails.",
+  "required_outputs": [
+    "events/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "components/ contains a complete hash-verifiable separate-baseflow-eckhardt result; do not rerun upstream skills.",
+    "Every scientific parameter is explicit in event_config.yaml. Do not tune or relax the configuration."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject event products that fail component-volume conservation"
+}

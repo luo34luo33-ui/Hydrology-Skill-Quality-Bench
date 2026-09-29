@@ -1,0 +1,88 @@
+{
+  "data_description": "A deterministic ML residual-correction fixture with confirmed columns, backend, hyperparameters, and split; training is reproducible from the provided random state.",
+  "data_files": [
+    "train_table.csv",
+    "hyperparameters.json"
+  ],
+  "difficulty": "basic",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "expected_rows": {
+        "ml-train/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "target": "ml-train/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/ml-train/result.json",
+      "target": "ml-train/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/ml-train/result.json",
+      "target": "ml-train/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/ml-train/result.json",
+      "target": "ml-train/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/ml-train/result.json",
+      "target": "ml-train/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "ml-train/corrected_series.csv",
+        "ml-train/model_card.json",
+        "ml-train/model.joblib"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydroanalysis-ml-correct-003",
+  "primary_skill": "post-processing/correct-residual-with-ml",
+  "prompt": "Use train_table.csv and hyperparameters.json exactly as supplied to run post-processing/correct-residual-with-ml in train mode with --base-column Q_total, --observed-column Q_obs, --feature-columns P,Qt, backend ridge, and the confirmed hyperparameters. No random state is provided anywhere in the task, and none may be invented. Run the skill verbatim; it must reject the training request itself and write only the native result.json under ml-train/. No corrected_series.csv, model_card.json, or model.joblib may remain in ml-train/.",
+  "required_outputs": [
+    "ml-train/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "scikit-learn is pre-installed in the evaluation environment.",
+    "The backend, hyperparameters, random state, split, and columns are confirmed and must not be altered.",
+    "The residual is observed minus base and the correction is base plus the predicted residual."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject a residual-correction training run without a random state"
+}

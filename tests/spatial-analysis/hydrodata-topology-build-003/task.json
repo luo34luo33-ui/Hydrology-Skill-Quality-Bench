@@ -1,0 +1,147 @@
+{
+  "data_description": "Build hydrological topology case 3",
+  "data_files": [
+    "basin.gpkg",
+    "d8_pointer.tif",
+    "dem_filled.tif",
+    "flow_accumulation_cells.tif",
+    "strahler_order.tif",
+    "stream_links.tif",
+    "subbasins.tif"
+  ],
+  "difficulty": "advanced",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "artifacts",
+      "targets": [
+        "hydrobase/subbasins.csv",
+        "hydrobase/reaches.csv",
+        "hydrobase/topology.csv",
+        "hydrobase/reaches_clipped.gpkg",
+        "hydrobase/stream_links_clipped.tif",
+        "hydrobase/stream_order_clipped.tif",
+        "hydrobase/subbasins_clipped.tif",
+        "hydrobase/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-06,
+      "name": "table_subbasins.csv",
+      "reference": "expected/golden_workspace/hydrobase/subbasins.csv",
+      "rtol": 1e-08,
+      "target": "hydrobase/subbasins.csv",
+      "type": "table_match",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-06,
+      "name": "table_reaches.csv",
+      "reference": "expected/golden_workspace/hydrobase/reaches.csv",
+      "rtol": 1e-08,
+      "target": "hydrobase/reaches.csv",
+      "type": "table_match",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-06,
+      "name": "table_topology.csv",
+      "reference": "expected/golden_workspace/hydrobase/topology.csv",
+      "rtol": 1e-08,
+      "target": "hydrobase/topology.csv",
+      "type": "table_match",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-06,
+      "geometry_tolerance": 1e-06,
+      "key_columns": [
+        "reach_id"
+      ],
+      "layer": "reaches",
+      "name": "reaches_vector",
+      "reference": "expected/golden_workspace/hydrobase/reaches_clipped.gpkg",
+      "rtol": 1e-08,
+      "target": "hydrobase/reaches_clipped.gpkg",
+      "type": "vector_match",
+      "weight": 0.1
+    },
+    {
+      "categorical": true,
+      "name": "links",
+      "reference": "expected/golden_workspace/hydrobase/stream_links_clipped.tif",
+      "target": "hydrobase/stream_links_clipped.tif",
+      "type": "raster_match",
+      "weight": 0.05
+    },
+    {
+      "categorical": true,
+      "name": "orders",
+      "reference": "expected/golden_workspace/hydrobase/stream_order_clipped.tif",
+      "target": "hydrobase/stream_order_clipped.tif",
+      "type": "raster_match",
+      "weight": 0.05
+    },
+    {
+      "categorical": true,
+      "name": "subbasins",
+      "reference": "expected/golden_workspace/hydrobase/subbasins_clipped.tif",
+      "target": "hydrobase/subbasins_clipped.tif",
+      "type": "raster_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "status",
+      "reference": "expected/golden_workspace/hydrobase/result.json",
+      "target": "hydrobase/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "warnings",
+      "name": "warnings",
+      "reference": "expected/golden_workspace/hydrobase/result.json",
+      "target": "hydrobase/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_integrity",
+      "required_keys": [
+        "subbasins_table",
+        "reaches_table",
+        "topology_table",
+        "reaches_vector",
+        "stream_links_clipped",
+        "stream_order_clipped",
+        "subbasins_clipped"
+      ],
+      "target": "hydrobase/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydrodata-topology-build-003",
+  "primary_skill": "spatial-analysis/build-hydrological-topology",
+  "prompt": "Build HydroBase from the supplied basin and six aligned hydrology rasters. Confirmed options: --cell-inclusion all-touched. Write outputs under hydrobase/. Do not infer topology from clipped line contact or repair rejected inputs.",
+  "required_outputs": [
+    "hydrobase/subbasins.csv",
+    "hydrobase/reaches.csv",
+    "hydrobase/topology.csv",
+    "hydrobase/reaches_clipped.gpkg",
+    "hydrobase/stream_links_clipped.tif",
+    "hydrobase/stream_order_clipped.tif",
+    "hydrobase/subbasins_clipped.tif",
+    "hydrobase/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, rasterio, GeoPandas, Shapely, matplotlib, Pillow, and WhiteboxTools are available.",
+    "Use only the explicitly confirmed spatial parameters and preserve the native skill result.json."
+  ],
+  "timeout_seconds": 600,
+  "title": "Build hydrological topology case 3"
+}

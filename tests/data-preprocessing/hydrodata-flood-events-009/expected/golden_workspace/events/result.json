@@ -1,0 +1,14 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "配置 merging 字段必须精确为 ['merge_gap_hours', 'valley_ratio_threshold']",
+  "parameters": {},
+  "provenance": {
+    "generator": "HSQB deterministic oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/extract-flood-events",
+  "status": "error",
+  "warnings": []
+}

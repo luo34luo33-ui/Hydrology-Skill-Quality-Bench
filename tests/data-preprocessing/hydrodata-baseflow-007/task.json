@@ -1,0 +1,83 @@
+{
+  "data_description": "A hash-valid prepared artifact containing one positive-infinite discharge value.",
+  "data_files": [
+    "prepared/result.json",
+    "prepared/discharge_timeseries.csv",
+    "prepared/series_metadata.json"
+  ],
+  "difficulty": "basic",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "components/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "skill",
+        "status",
+        "message",
+        "artifacts"
+      ],
+      "target": "components/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "components/flow_components.csv",
+        "components/flow_components.parquet",
+        "components/flow_components.xlsx",
+        "components/baseflow_metadata.json"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydrodata-baseflow-007",
+  "primary_skill": "data-processing/separate-baseflow-eckhardt",
+  "prompt": "Use prepared/result.json as the verified upstream result. The confirmed Eckhardt parameters are alpha=0.95 and BFImax=0.80. Write CSV outputs under components/. Reject non-finite discharge; do not remove or replace the affected row.",
+  "required_outputs": [
+    "components/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The prepared/ directory is a complete, hash-verifiable prepare-discharge-timeseries result. Do not rerun the upstream skill.",
+    "Write native separate-baseflow-eckhardt outputs under components/ and do not substitute another baseflow method."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject non-finite discharge in a hash-valid upstream artifact"
+}

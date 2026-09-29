@@ -1,0 +1,108 @@
+{
+  "artifacts": {
+    "corrected_table": {
+      "path": "corrected_series.csv",
+      "sha256": "f5791297cfccef96e242e3eeadaa96f312dc3a6c57470777bf026308b21926d5"
+    },
+    "model": {
+      "path": "model.joblib",
+      "sha256": "aec4144cf3f4c1815acbf20c989b6088e5065d134126b6139cea9075bda2f00a"
+    },
+    "model_card": {
+      "path": "model_card.json",
+      "sha256": "e25990a75b607d6c8d328f390dc0ee738b3b6d2eaf1630b653d26bc89b5b487d"
+    }
+  },
+  "checks": [
+    {
+      "message": "残差定义为 observed - base",
+      "name": "residual_definition",
+      "status": "PASS"
+    },
+    {
+      "message": "滞后步数均为非负整数，共 1 个滞后特征，不使用未来信息",
+      "name": "lag_nonnegative",
+      "status": "PASS"
+    },
+    {
+      "message": "特征列 2 个全部存在",
+      "name": "feature_columns_present",
+      "status": "PASS"
+    },
+    {
+      "message": "丢弃 1 行不完整滞后特征",
+      "name": "lag_rows_dropped",
+      "status": "WARN"
+    },
+    {
+      "message": "输入列无缺测",
+      "name": "missing_rows",
+      "status": "PASS"
+    },
+    {
+      "message": "训练样本 89 行",
+      "name": "train_sample_count",
+      "status": "PASS"
+    },
+    {
+      "message": "random_state=20260928 已写入模型卡",
+      "name": "random_state_recorded",
+      "status": "PASS"
+    },
+    {
+      "message": "预测残差均为有限值",
+      "name": "prediction_finite",
+      "status": "PASS"
+    },
+    {
+      "message": "校正后序列无负值",
+      "name": "corrected_negative",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "table": {
+      "path": "train_table.csv",
+      "sha256": "9e47004eacc7bc7d86b6ab3a8d500dae5a15380d77416828580bf03eab561717"
+    }
+  },
+  "message": "残差校正完成：train 模式，119 行，后端 ridge",
+  "parameters": {
+    "backend": "ridge",
+    "base_column": "Q_total",
+    "feature_columns": [
+      "P",
+      "Qt"
+    ],
+    "hyperparameters": {
+      "alpha": 1.0
+    },
+    "lag_fill_value": null,
+    "lag_policy": "drop",
+    "lag_spec": [
+      {
+        "column": "Qt",
+        "steps": [
+          1
+        ]
+      }
+    ],
+    "min_train_samples": 10,
+    "missing_policy": "fail",
+    "mode": "train",
+    "observed_column": "Q_obs",
+    "output_column": "corrected",
+    "random_state": 20260928,
+    "split": "chronological",
+    "test_size": 0.25
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/correct-residual-with-ml",
+  "status": "warning",
+  "warnings": [
+    "滞后特征不完整而丢弃 1 行；这些行位于序列开头，无法通过滞后构造获得完整特征"
+  ]
+}

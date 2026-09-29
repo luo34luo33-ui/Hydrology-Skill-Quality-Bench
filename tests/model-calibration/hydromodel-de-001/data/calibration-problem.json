@@ -1,0 +1,50 @@
+{
+  "adapter": {
+    "path": "synthetic_adapter.py",
+    "sha256": "e87fc6372e5eaf63c525daa0b033c8871dc3f705ae09b16d49dbe31f7a8c32f9"
+  },
+  "data_shape": "continuous",
+  "inputs": [
+    {
+      "id": "fixture",
+      "path": "fixture.json",
+      "sha256": "e7ffeb80d3417514a91bab7ad852b86842d1a90adfe6a2952e96206dba4e94ce"
+    }
+  ],
+  "objective": {
+    "direction": "maximize",
+    "metric": "objective"
+  },
+  "objective_consistency_tolerance": 1e-12,
+  "parameters": [
+    {
+      "lower": -2.0,
+      "name": "x",
+      "upper": 2.0
+    },
+    {
+      "lower": 10.0,
+      "name": "y",
+      "upper": 30.0
+    }
+  ],
+  "schema_version": "1.0",
+  "splits": {
+    "calibration": "calibration",
+    "validation": "validation"
+  },
+  "variables": {
+    "observed": {
+      "semantics": "synthetic observed discharge",
+      "units": "m3/s"
+    },
+    "simulated": {
+      "semantics": "synthetic simulated discharge",
+      "units": "m3/s"
+    }
+  },
+  "warmup": {
+    "confirmed": true,
+    "semantics": "the first two rows of each split are unscored warm-up rows"
+  }
+}

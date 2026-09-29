@@ -1,0 +1,18 @@
+{
+  "ADIMP": 0.1,
+  "LZFPM": 800.0,
+  "LZFSM": 200.0,
+  "LZPK": 0.01,
+  "LZSK": 0.3,
+  "LZTWM": 800.0,
+  "PCTIM": 0.02,
+  "PFREE": 0.3,
+  "REXP": 1.5,
+  "RIVA": 0.05,
+  "RSERV": 0.3,
+  "SIDE": 0.0,
+  "UZFWM": 50.0,
+  "UZK": 0.2,
+  "UZTWM": 150.0,
+  "ZPERC": 20.0
+}

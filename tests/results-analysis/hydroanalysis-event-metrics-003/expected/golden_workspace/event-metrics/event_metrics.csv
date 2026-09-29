@@ -1,0 +1,3 @@
+﻿event_id,rows,start,end,observed_volume,simulated_volume,volume_error_relative,observed_peak,simulated_peak,peak_error_relative,peak_time_error_hours,peak_tie_count,nse,r2,rmse,mae,qualified_volume,qualified_peak,qualified_peak_time
+event_01,24,2024-07-01 00:00:00,2024-07-01 23:00:00,325.92531948318,332.44382587284,-0.0199999999999891,80.0,81.6,-0.019999999999999928,0.0,2.0,0.9983001171373951,0.9983001171373951,0.862763456717243,0.7544567580625,是,是,是
+event_02,0,,,,,,,,,,,,,,,,,

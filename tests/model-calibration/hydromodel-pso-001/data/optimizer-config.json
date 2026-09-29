@@ -1,0 +1,13 @@
+{
+  "algorithm": "pso",
+  "cognitive_coefficient": 1.5,
+  "inertia_weight": 0.7,
+  "max_evaluations": 100,
+  "max_failed_evaluations": 2,
+  "max_iterations": 3,
+  "particle_count": 6,
+  "schema_version": "1.0",
+  "seed": 42,
+  "social_coefficient": 1.5,
+  "velocity_limit_fraction": 0.2
+}

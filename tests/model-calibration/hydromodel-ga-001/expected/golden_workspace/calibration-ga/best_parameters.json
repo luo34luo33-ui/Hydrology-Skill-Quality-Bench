@@ -1,0 +1,14 @@
+{
+  "algorithm": "ga",
+  "parameters": {
+    "x": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": -2.0,
+      "relative_position": 0.6684029617904717,
+      "upper": 2.0,
+      "value": 0.6736118471618866
+    }
+  },
+  "schema_version": "1.0"
+}

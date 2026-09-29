@@ -1,0 +1,6 @@
+{
+  "status": "warning",
+  "warnings": [
+    "DEM 未完整覆盖分析 buffer；边界附近拓扑和出口判定可能不可靠。"
+  ]
+}

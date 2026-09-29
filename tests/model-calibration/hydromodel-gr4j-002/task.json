@@ -1,0 +1,129 @@
+{
+  "data_description": "A deterministic continuous lumped-model problem with a complete confirmed parameter set and an hourly forcing table.",
+  "data_files": [
+    "forcing.csv",
+    "parameters.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "gr4j-run/lumped_gr4j_runoff.csv": [
+          "time",
+          "is_warmup",
+          "P",
+          "PET",
+          "EA",
+          "PS",
+          "PERC",
+          "PR",
+          "UH1_IN",
+          "UH2_IN",
+          "GW",
+          "QR",
+          "QD",
+          "Q_MM",
+          "PROD_STORE",
+          "ROUT_STORE",
+          "Q"
+        ],
+        "gr4j-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "gr4j-run/lumped_gr4j_runoff.csv",
+        "gr4j-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "simulation_table",
+      "reference": "expected/golden_workspace/gr4j-run/lumped_gr4j_runoff.csv",
+      "rtol": 1e-09,
+      "target": "gr4j-run/lumped_gr4j_runoff.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/gr4j-run/result.json",
+      "target": "gr4j-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/gr4j-run/result.json",
+      "target": "gr4j-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/gr4j-run/result.json",
+      "target": "gr4j-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/gr4j-run/result.json",
+      "target": "gr4j-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/gr4j-run/result.json",
+      "target": "gr4j-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "simulation_table"
+      ],
+      "target": "gr4j-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-gr4j-002",
+  "primary_skill": "hydrological-modeling/run-lumped-gr4j-model",
+  "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-gr4j-model. The confirmed parameter set uses X2=-5.0: a legal negative groundwater exchange that drives the routing store into the native numerical-clipping regime during the dry tail. Run it verbatim with --pet-column E0, area 640 km2, timestep 24 h, mode continuous, warm-up 12 steps, balance tolerance 0.2. Write the native outputs (lumped_gr4j_runoff.csv, result.json) under gr4j-run/. Numerical clipping must be reported natively in result.json, never hidden or corrected by altering parameters or forcing. Do not 'improve' the configuration to avoid the warning.",
+  "required_outputs": [
+    "gr4j-run/lumped_gr4j_runoff.csv",
+    "gr4j-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The parameter set, area, timestep, mode, and warm-up are confirmed by the user and must not be altered.",
+    "P and the evaporation column are instantaneous rates in mm/h; discharge outputs are in m3/s.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Report the native clipping caused by a negative groundwater exchange"
+}

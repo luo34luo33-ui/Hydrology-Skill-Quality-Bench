@@ -1,0 +1,99 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_dhf_runoff.csv",
+      "sha256": "49f888219e5cc8fe4d9862767eca593d4473678addc0c14e061c9e149bd918bf"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 60 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "全部参数落在源工程率定范围内",
+      "name": "continuous:parameter_range",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "蓄水状态在容量范围内",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "无数值裁剪",
+      "name": "continuous:numerical_clipping",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差占降雨 3.804%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "forcing.csv",
+      "sha256": "0a0ef7940a0737a900d383b7059431d85c951340ff5fe0b7bba598407bea34b8"
+    },
+    "param_scale": "original",
+    "params": {
+      "path": "parameters.json",
+      "sha256": "8b6d410e8007911270e33c68f4429904d078ed1c5f6d6506e1f615dc6c58ffde"
+    }
+  },
+  "message": "集总式 DHF 前向模拟完成：1 场（或段），72 行",
+  "parameters": {
+    "area_km2": 640.0,
+    "balance_tolerance_fraction": 0.05,
+    "carry_columns": [],
+    "initial_states": null,
+    "mode": "continuous",
+    "parameter_set": {
+      "A": 0.5,
+      "B": 1.5,
+      "B0": 1.0,
+      "CC": 2.0,
+      "CCL": 2.0,
+      "COE": 0.4,
+      "D0": 100.0,
+      "DD": 1.2,
+      "DDL": 1.0,
+      "G": 0.1,
+      "K0": 0.3,
+      "K2": 0.4,
+      "KA": 0.7,
+      "KC": 0.8,
+      "KW": 0.5,
+      "N": 3,
+      "S0": 50.0,
+      "U0": 90.0
+    },
+    "river_length_km": 20.0,
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-dhf-model",
+  "status": "success",
+  "warnings": []
+}

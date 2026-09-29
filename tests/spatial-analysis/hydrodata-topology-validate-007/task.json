@@ -1,0 +1,93 @@
+{
+  "data_description": "Validate hydrological topology case 7",
+  "data_files": [
+    "hydrobase/basin.gpkg",
+    "hydrobase/reaches.csv",
+    "hydrobase/reaches_clipped.gpkg",
+    "hydrobase/result.json",
+    "hydrobase/stream_links_clipped.tif",
+    "hydrobase/stream_order_clipped.tif",
+    "hydrobase/subbasins.csv",
+    "hydrobase/subbasins_clipped.tif",
+    "hydrobase/topology.csv"
+  ],
+  "difficulty": "advanced",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "artifacts",
+      "targets": [
+        "topology-qc/topology_checks.csv",
+        "topology-qc/topology_check_report.txt",
+        "topology-qc/network_topology_check.png",
+        "topology-qc/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "columns": [
+        "check",
+        "status",
+        "count",
+        "details"
+      ],
+      "name": "checks_table",
+      "reference": "expected/golden_workspace/topology-qc/topology_checks.csv",
+      "target": "topology-qc/topology_checks.csv",
+      "type": "table_match",
+      "weight": 0.55
+    },
+    {
+      "field": "status",
+      "name": "status",
+      "reference": "expected/golden_workspace/topology-qc/result.json",
+      "target": "topology-qc/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "warnings",
+      "name": "warnings",
+      "reference": "expected/golden_workspace/topology-qc/result.json",
+      "target": "topology-qc/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "checks",
+      "name": "checks",
+      "reference": "expected/golden_workspace/topology-qc/result.json",
+      "target": "topology-qc/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_integrity",
+      "required_keys": [
+        "topology_checks",
+        "topology_report",
+        "topology_figure"
+      ],
+      "target": "topology-qc/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydrodata-topology-validate-007",
+  "primary_skill": "spatial-analysis/validate-hydrological-topology",
+  "prompt": "Independently validate hydrobase/result.json with the confirmed expected outlet count 1. Write all QC evidence under topology-qc/. Do not modify or repair the supplied HydroBase.",
+  "required_outputs": [
+    "topology-qc/topology_checks.csv",
+    "topology-qc/topology_check_report.txt",
+    "topology-qc/network_topology_check.png",
+    "topology-qc/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, rasterio, GeoPandas, Shapely, matplotlib, Pillow, and WhiteboxTools are available.",
+    "Use only the explicitly confirmed spatial parameters and preserve the native skill result.json."
+  ],
+  "timeout_seconds": 600,
+  "title": "Validate hydrological topology case 7"
+}

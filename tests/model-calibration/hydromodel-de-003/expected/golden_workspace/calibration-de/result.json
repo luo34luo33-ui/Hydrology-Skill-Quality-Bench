@@ -1,0 +1,15 @@
+{
+  "algorithm": "de",
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "DE config 缺少字段: ['mutation_factor']",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-de",
+  "status": "error",
+  "warnings": []
+}

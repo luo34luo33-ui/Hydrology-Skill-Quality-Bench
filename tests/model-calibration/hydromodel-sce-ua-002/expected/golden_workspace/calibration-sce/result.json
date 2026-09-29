@@ -1,0 +1,97 @@
+{
+  "algorithm": "sce-ua",
+  "artifacts": {
+    "best_parameters": {
+      "path": "best_parameters.json",
+      "sha256": "87687a855b8d9fc4fd61b4d719b8e165946d68824cdea95bb8990c94872497af"
+    },
+    "calibration_metrics": {
+      "path": "calibration_metrics.json",
+      "sha256": "814a37c1c2c094d499ffcc19962b8077a2b4bd346676af1b8ddc6f2b9d85ab8d"
+    },
+    "calibration_series": {
+      "path": "calibration_series.csv",
+      "sha256": "832306e3bb8774329ace84c04687c4dabdd6c17c09667471f0ff1fbf52024275"
+    },
+    "calibration_trace": {
+      "path": "calibration_trace.csv",
+      "sha256": "ac9da26ef919f44febf95f3d67868639c15b58e4403bb1b774e8870790b0e783"
+    },
+    "validation_metrics": {
+      "path": "validation_metrics.json",
+      "sha256": "1b8a34a19dea8cc8d654dedea6c2e04bba4830472959736a371f8d1e0915e423"
+    },
+    "validation_series": {
+      "path": "validation_series.csv",
+      "sha256": "c8a784385024b753e528fe3ea0f320c74fc1cba19819e67be38800d53b8c3636"
+    }
+  },
+  "checks": [
+    {
+      "check": "parameter_bounds",
+      "details": "parameters=2",
+      "status": "PASS"
+    },
+    {
+      "check": "split_isolation",
+      "details": "validation evaluated only after parameter lock",
+      "status": "PASS"
+    },
+    {
+      "check": "objective_consistency",
+      "details": "tolerance=1e-12",
+      "status": "PASS"
+    }
+  ],
+  "data_shape": "continuous",
+  "evaluation_count": 8,
+  "failed_evaluation_count": 0,
+  "inputs": {
+    "adapter": {
+      "path": "synthetic_adapter.py",
+      "sha256": "e87fc6372e5eaf63c525daa0b033c8871dc3f705ae09b16d49dbe31f7a8c32f9"
+    },
+    "optimizer_config": {
+      "path": "optimizer-config.json",
+      "sha256": "371f521c7a0b61c879e34dfdf846e2031650e0ad549db6866f0042b123ceecfc"
+    },
+    "problem": {
+      "path": "calibration-problem.json",
+      "sha256": "df2aaab30dc0652246b12d0990ddd64e1189add3d539f2b35ea843abe28275bd"
+    }
+  },
+  "message": "sce-ua calibration completed",
+  "objective": {
+    "direction": "maximize",
+    "metric": "objective"
+  },
+  "parameters": {
+    "max_evaluations": 8,
+    "optimizer_config": {
+      "algorithm": "sce-ua",
+      "complex_count": 2,
+      "contraction_coefficient": 0.5,
+      "evolution_steps": 2,
+      "max_evaluations": 8,
+      "max_failed_evaluations": 2,
+      "max_loops": 2,
+      "objective_tolerance": 1e-12,
+      "points_per_complex": 3,
+      "reflection_coefficient": 1.0,
+      "schema_version": "1.0",
+      "seed": 42,
+      "stall_loops": 3
+    },
+    "seed": 42
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-sce-ua",
+  "status": "warning",
+  "termination_reason": "evaluation_budget_exhausted",
+  "warnings": [
+    "搜索在达到 max_evaluations 后返回当前最佳可行解"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "artifacts": {
+    "reaches_table": {
+      "path": "reaches.csv",
+      "sha256": "9d520c8629b1f00770ddf3de6844655906b900f95cca769df954f9d37a9b033d"
+    },
+    "reaches_vector": {
+      "path": "reaches_clipped.gpkg",
+      "sha256": "977af96050ee833e0dad19d9e717c847b289adca3c3e26b3039eaae029815554"
+    },
+    "stream_links_clipped": {
+      "path": "stream_links_clipped.tif",
+      "sha256": "71155dfae42fdc0c575dd8ca75a60815988ed5c41901b3520d0b22042d2230c0"
+    },
+    "stream_order_clipped": {
+      "path": "stream_order_clipped.tif",
+      "sha256": "d20bd425f7725417382176ed3c317a188b7543689293c19b73647fb7f3fc7680"
+    },
+    "subbasins_clipped": {
+      "path": "subbasins_clipped.tif",
+      "sha256": "71155dfae42fdc0c575dd8ca75a60815988ed5c41901b3520d0b22042d2230c0"
+    },
+    "subbasins_table": {
+      "path": "subbasins.csv",
+      "sha256": "d0d51ce352cf8e95a0d7ca8453d06d907389f46c396f8e19657bcaba12e1ad10"
+    },
+    "topology_table": {
+      "path": "topology.csv",
+      "sha256": "4d65c40a90c93d464fa1b5f90c92db25601291352ef5c7714a006f9538496a69"
+    }
+  },
+  "checks": [
+    {
+      "check": "same_grid",
+      "details": "all input rasters aligned",
+      "status": "PASS"
+    },
+    {
+      "check": "d8_encoding",
+      "details": "whitebox-default-non-esri",
+      "status": "PASS"
+    },
+    {
+      "check": "acyclic_topology",
+      "details": "reaches=3",
+      "status": "PASS"
+    },
+    {
+      "check": "subbasin_mapping",
+      "details": "subbasins=3",
+      "status": "PASS"
+    },
+    {
+      "check": "negative_elevation_steps",
+      "details": "count=0",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "basin_boundary": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-002\\data\\basin.gpkg",
+      "sha256": "6d7ef11d7011ebf561097a4f99c495dddfa8e166b15ecaeb6887e487cc1e05fb"
+    },
+    "d8_pointer": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-002\\data\\d8_pointer.tif",
+      "sha256": "8a41d17fbfeccce4ec00ba09ad812493c1cafe481bf39b55a568909394cb4bb8"
+    },
+    "filled_dem": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-002\\data\\dem_filled.tif",
+      "sha256": "e668de76c2ad4701875b7aea16b61e5733662b4c9611f020e494dd5394017287"
+    },
+    "flow_accumulation": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-002\\data\\flow_accumulation_cells.tif",
+      "sha256": "818f38fb4111ce8a2398910768e89a8ef18f52b164355c1d68afd449511f8e87"
+    },
+    "stream_links": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-002\\data\\stream_links.tif",
+      "sha256": "acf3cf1b2d4fc9237e0131157703fcecdff17cddefef898530d6d44df4ee205b"
+    },
+    "stream_order": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-002\\data\\strahler_order.tif",
+      "sha256": "9ec70372d10e5993053d6a914dbde0094e78fbe43b62462bb86ba7884c557b2d"
+    },
+    "subbasins": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-002\\data\\subbasins.tif",
+      "sha256": "acf3cf1b2d4fc9237e0131157703fcecdff17cddefef898530d6d44df4ee205b"
+    }
+  },
+  "message": "HydroBase topology built",
+  "parameters": {
+    "cell_area_m2": 900.0,
+    "cell_inclusion": "center",
+    "d8_encoding": "whitebox-default-non-esri"
+  },
+  "provenance": {
+    "geopandas": "1.1.1",
+    "numpy": "2.3.3",
+    "pandas": "2.3.3",
+    "python": "3.13.9",
+    "rasterio": "1.4.3",
+    "shapely": "2.1.1"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/build-hydrological-topology",
+  "status": "success",
+  "warnings": []
+}

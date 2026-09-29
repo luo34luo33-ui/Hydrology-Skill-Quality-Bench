@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "baseflow_metadata": {
+      "path": "baseflow_metadata.json",
+      "sha256": "0bc9526b1dcb7b33a2e9977e1f710c1e2adced18c71dac01635f8e893c45791b"
+    },
+    "flow_components": {
+      "path": "flow_components.csv",
+      "sha256": "c7f8c17c5a9e52f322d01281328a113a59dd037e38575c9eda6dafd9402b20d9"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Eckhardt baseflow separated with upstream warnings",
+  "parameters": {},
+  "provenance": {
+    "generator": "HSQB deterministic oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/separate-baseflow-eckhardt",
+  "status": "warning",
+  "warnings": [
+    "timezone explicitly recorded as naive"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "data_description": "A discharge series with zero-flow intervals and a valid upstream warning.",
+  "data_files": [
+    "prepared/result.json",
+    "prepared/discharge_timeseries.csv",
+    "prepared/series_metadata.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "components/baseflow_metadata.json": 1,
+        "components/flow_components.csv": 16,
+        "components/result.json": 1
+      },
+      "name": "artifact_schema",
+      "required_columns": {
+        "components/baseflow_metadata.json": [
+          "method",
+          "alpha",
+          "alpha_decision",
+          "recession_pair_count",
+          "bfi_max",
+          "row_count"
+        ],
+        "components/flow_components.csv": [
+          "time",
+          "discharge_m3_s",
+          "is_imputed",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        "components/result.json": [
+          "skill",
+          "status",
+          "message",
+          "artifacts",
+          "warnings"
+        ]
+      },
+      "targets": [
+        "components/flow_components.csv",
+        "components/baseflow_metadata.json",
+        "components/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction"
+      ],
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "flow_components",
+      "reference": "expected/golden_workspace/components/flow_components.csv",
+      "rtol": 1e-09,
+      "target": "components/flow_components.csv",
+      "type": "table_match",
+      "weight": 0.6
+    },
+    {
+      "field": "alpha",
+      "name": "metadata_alpha",
+      "reference": "expected/golden_workspace/components/baseflow_metadata.json",
+      "target": "components/baseflow_metadata.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "alpha_decision",
+      "name": "metadata_alpha_decision",
+      "reference": "expected/golden_workspace/components/baseflow_metadata.json",
+      "target": "components/baseflow_metadata.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "recession_pair_count",
+      "name": "metadata_recession_pair_count",
+      "reference": "expected/golden_workspace/components/baseflow_metadata.json",
+      "target": "components/baseflow_metadata.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "bfi_max",
+      "name": "metadata_bfi_max",
+      "reference": "expected/golden_workspace/components/baseflow_metadata.json",
+      "target": "components/baseflow_metadata.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.02
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    }
+  ],
+  "id": "hydrodata-baseflow-002",
+  "primary_skill": "data-processing/separate-baseflow-eckhardt",
+  "prompt": "Use prepared/result.json as the verified upstream result. The confirmed Eckhardt parameters are alpha=0.92 and BFImax=0.75; do not estimate alpha. Write CSV outputs under components/. Preserve the upstream warning and handle zero discharge without division errors.",
+  "required_outputs": [
+    "components/flow_components.csv",
+    "components/baseflow_metadata.json",
+    "components/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The prepared/ directory is a complete, hash-verifiable prepare-discharge-timeseries result. Do not rerun the upstream skill.",
+    "Write native separate-baseflow-eckhardt outputs under components/ and do not substitute another baseflow method."
+  ],
+  "timeout_seconds": 300,
+  "title": "Handle zero-flow intervals and propagate an upstream warning"
+}

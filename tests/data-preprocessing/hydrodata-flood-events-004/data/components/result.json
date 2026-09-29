@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "baseflow_metadata": {
+      "path": "baseflow_metadata.json",
+      "sha256": "b37455e36223391a7b9fe7a8a7913b73af0a89e2531c8b2e49614470dc6f53d5"
+    },
+    "flow_components": {
+      "path": "flow_components.csv",
+      "sha256": "69f40eec7568e5b40848888f1ac6506f9b23cac0b8d09e5290d09a2675cd6c45"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Eckhardt baseflow separated",
+  "parameters": {},
+  "provenance": {
+    "generator": "HSQB deterministic upstream"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/separate-baseflow-eckhardt",
+  "status": "success",
+  "warnings": []
+}

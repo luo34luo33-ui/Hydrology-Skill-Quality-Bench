@@ -1,0 +1,22 @@
+{
+  "algorithm": "de",
+  "parameters": {
+    "x": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": -2.0,
+      "relative_position": 0.7668525019572014,
+      "upper": 2.0,
+      "value": 1.0674100078288058
+    },
+    "y": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": 10.0,
+      "relative_position": 0.3593324200560337,
+      "upper": 30.0,
+      "value": 17.186648401120674
+    }
+  },
+  "schema_version": "1.0"
+}

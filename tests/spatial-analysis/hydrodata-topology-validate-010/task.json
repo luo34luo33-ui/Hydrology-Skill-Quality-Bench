@@ -1,0 +1,71 @@
+{
+  "data_description": "Validate hydrological topology case 10",
+  "data_files": [
+    "hydrobase/basin.gpkg",
+    "hydrobase/reaches.csv",
+    "hydrobase/reaches_clipped.gpkg",
+    "hydrobase/result.json",
+    "hydrobase/stream_links_clipped.tif",
+    "hydrobase/stream_order_clipped.tif",
+    "hydrobase/subbasins.csv",
+    "hydrobase/subbasins_clipped.tif",
+    "hydrobase/topology.csv"
+  ],
+  "difficulty": "advanced",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "error_result",
+      "target": "topology-qc/result.json",
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "error_status",
+      "reference": "expected/golden_workspace/topology-qc/result.json",
+      "target": "topology-qc/result.json",
+      "type": "exact_match",
+      "weight": 0.35
+    },
+    {
+      "field": "message",
+      "name": "error_message",
+      "reference": "expected/golden_workspace/topology-qc/result.json",
+      "target": "topology-qc/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/topology-qc/result.json",
+      "target": "topology-qc/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_forbidden_artifacts",
+      "targets": [
+        "topology-qc/topology_checks.csv",
+        "topology-qc/topology_check_report.txt",
+        "topology-qc/network_topology_check.png"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydrodata-topology-validate-010",
+  "primary_skill": "spatial-analysis/validate-hydrological-topology",
+  "prompt": "Independently validate hydrobase/result.json with the confirmed expected outlet count 1. Write all QC evidence under topology-qc/. Do not modify or repair the supplied HydroBase.",
+  "required_outputs": [
+    "topology-qc/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, rasterio, GeoPandas, Shapely, matplotlib, Pillow, and WhiteboxTools are available.",
+    "Use only the explicitly confirmed spatial parameters and preserve the native skill result.json."
+  ],
+  "timeout_seconds": 600,
+  "title": "Validate hydrological topology case 10"
+}

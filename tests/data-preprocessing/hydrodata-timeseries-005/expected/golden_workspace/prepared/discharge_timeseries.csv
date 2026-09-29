@@ -1,0 +1,15 @@
+time,discharge_m3_s,is_imputed,sample_id
+2024-05-01 00:00:00,30,False,original-00
+2024-05-01 01:00:00,31,False,original-01
+2024-05-01 02:00:00,32,False,original-02
+2024-05-01 03:00:00,33,False,original-03
+2024-05-01 04:00:00,34,False,original-04
+2024-05-01 05:00:00,35,False,original-05
+2024-05-01 06:00:00,99,False,replacement-06
+2024-05-01 07:00:00,37,False,original-07
+2024-05-01 08:00:00,38,False,original-08
+2024-05-01 09:00:00,39,False,original-09
+2024-05-01 10:00:00,40,False,original-10
+2024-05-01 11:00:00,41,False,original-11
+2024-05-01 12:00:00,42,False,original-12
+2024-05-01 13:00:00,43,False,original-13

@@ -1,0 +1,85 @@
+{
+  "artifacts": {
+    "corrected_table": {
+      "path": "corrected_series.csv",
+      "sha256": "49f2e07254e1764ed872f7402298a2ad69a649f0914f1a696e5223d70064eb62"
+    },
+    "model_used": {
+      "path": "model.joblib",
+      "sha256": "5184be0170e2fd1616a1437c67a381fe40092f329241b54c47e12cb7d441eac5"
+    }
+  },
+  "checks": [
+    {
+      "message": "残差定义为 observed - base",
+      "name": "residual_definition",
+      "status": "PASS"
+    },
+    {
+      "message": "滞后步数均为非负整数，共 0 个滞后特征，不使用未来信息",
+      "name": "lag_nonnegative",
+      "status": "PASS"
+    },
+    {
+      "message": "特征列 2 个全部存在",
+      "name": "feature_columns_present",
+      "status": "PASS"
+    },
+    {
+      "message": "滞后特征完整",
+      "name": "lag_rows_dropped",
+      "status": "PASS"
+    },
+    {
+      "message": "输入列无缺测",
+      "name": "missing_rows",
+      "status": "PASS"
+    },
+    {
+      "message": "预测残差均为有限值",
+      "name": "prediction_finite",
+      "status": "PASS"
+    },
+    {
+      "message": "校正后序列无负值",
+      "name": "corrected_negative",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "table": {
+      "path": "predict_table.csv",
+      "sha256": "873e588d6a7c2fa116e4b40ce871d742b76727ea1008d7113c8659e28e43aa00"
+    }
+  },
+  "message": "残差校正完成：predict 模式，96 行，后端 ridge",
+  "parameters": {
+    "backend": "ridge",
+    "base_column": "Q_total",
+    "feature_columns": [
+      "P",
+      "Qt"
+    ],
+    "hyperparameters": {
+      "alpha": 1.0
+    },
+    "lag_fill_value": null,
+    "lag_policy": "drop",
+    "lag_spec": [],
+    "min_train_samples": 10,
+    "missing_policy": "fail",
+    "mode": "predict",
+    "observed_column": null,
+    "output_column": "corrected",
+    "random_state": null,
+    "split": "random",
+    "test_size": 0.2
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/correct-residual-with-ml",
+  "status": "success",
+  "warnings": []
+}

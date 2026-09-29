@@ -1,0 +1,113 @@
+{
+  "artifacts": {
+    "reaches_table": {
+      "path": "reaches.csv",
+      "sha256": "da17e63ba4272703b90e638135e3108f1601564c161daa1b9eefcbaec7dd05d0"
+    },
+    "reaches_vector": {
+      "path": "reaches_clipped.gpkg",
+      "sha256": "1d8e4c89882a439c081dadce47a7e80368cb396adc55aab836926ed8725de98c"
+    },
+    "stream_links_clipped": {
+      "path": "stream_links_clipped.tif",
+      "sha256": "3f553a682062390aa219544a3a9f827b4b3dc28634370e6ee20825242949d4fd"
+    },
+    "stream_order_clipped": {
+      "path": "stream_order_clipped.tif",
+      "sha256": "0409f73ff8bc0e60146f3f93134edd5d81480629586958086fcf5850325bc35e"
+    },
+    "subbasins_clipped": {
+      "path": "subbasins_clipped.tif",
+      "sha256": "3f553a682062390aa219544a3a9f827b4b3dc28634370e6ee20825242949d4fd"
+    },
+    "subbasins_table": {
+      "path": "subbasins.csv",
+      "sha256": "213df44b0da1d6f8313c5170c0823f10e36bf79cf3f935a406408bf6388cdcd7"
+    },
+    "topology_table": {
+      "path": "topology.csv",
+      "sha256": "8bba9d3d5b3fee4799b5f9994d9de7cf39f627a476526fa41d64bf79cda1992c"
+    }
+  },
+  "checks": [
+    {
+      "check": "same_grid",
+      "details": "all input rasters aligned",
+      "status": "PASS"
+    },
+    {
+      "check": "d8_encoding",
+      "details": "whitebox-default-non-esri",
+      "status": "PASS"
+    },
+    {
+      "check": "acyclic_topology",
+      "details": "reaches=4",
+      "status": "PASS"
+    },
+    {
+      "check": "subbasin_mapping",
+      "details": "subbasins=4",
+      "status": "PASS"
+    },
+    {
+      "check": "negative_elevation_steps",
+      "details": "count=0",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "basin_boundary": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\basin.gpkg",
+      "sha256": "549015c1600eaf7ef5ac77f939c63690cc80b94558ab3e4a04eca9ecee16cd7f"
+    },
+    "d8_pointer": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\d8_pointer.tif",
+      "sha256": "8a41d17fbfeccce4ec00ba09ad812493c1cafe481bf39b55a568909394cb4bb8"
+    },
+    "filled_dem": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\dem_filled.tif",
+      "sha256": "e668de76c2ad4701875b7aea16b61e5733662b4c9611f020e494dd5394017287"
+    },
+    "flow_accumulation": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\flow_accumulation_cells.tif",
+      "sha256": "818f38fb4111ce8a2398910768e89a8ef18f52b164355c1d68afd449511f8e87"
+    },
+    "stream_links": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\stream_links.tif",
+      "sha256": "acf3cf1b2d4fc9237e0131157703fcecdff17cddefef898530d6d44df4ee205b"
+    },
+    "stream_order": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\strahler_order.tif",
+      "sha256": "9ec70372d10e5993053d6a914dbde0094e78fbe43b62462bb86ba7884c557b2d"
+    },
+    "subbasins": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\subbasins.tif",
+      "sha256": "acf3cf1b2d4fc9237e0131157703fcecdff17cddefef898530d6d44df4ee205b"
+    },
+    "upstream_result_1": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-004\\data\\prepare_result.json",
+      "sha256": "34bef6bb670b293671733fd1b85cf4ad8c089306cdaf278c74602ca284533865"
+    }
+  },
+  "message": "HydroBase topology built with warnings",
+  "parameters": {
+    "cell_area_m2": 900.0,
+    "cell_inclusion": "center",
+    "d8_encoding": "whitebox-default-non-esri"
+  },
+  "provenance": {
+    "geopandas": "1.1.1",
+    "numpy": "2.3.3",
+    "pandas": "2.3.3",
+    "python": "3.13.9",
+    "rasterio": "1.4.3",
+    "shapely": "2.1.1"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/build-hydrological-topology",
+  "status": "warning",
+  "warnings": [
+    "DEM 未完整覆盖分析 buffer；边界附近拓扑和出口判定可能不可靠。"
+  ]
+}

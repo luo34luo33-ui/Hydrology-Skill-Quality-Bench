@@ -1,0 +1,16 @@
+{
+  "accept": -5.0,
+  "algorithm": "two-stage",
+  "annealing_max_evaluations": 20,
+  "annealing_max_iterations": 50,
+  "initial_temperature": 5230.0,
+  "local_ftol": 1e-09,
+  "local_max_evaluations": 10,
+  "local_max_iterations": 20,
+  "max_evaluations": 100,
+  "max_failed_evaluations": 2,
+  "restart_temperature_ratio": 0.0001,
+  "schema_version": "1.0",
+  "seed": 42,
+  "visit": 2.62
+}

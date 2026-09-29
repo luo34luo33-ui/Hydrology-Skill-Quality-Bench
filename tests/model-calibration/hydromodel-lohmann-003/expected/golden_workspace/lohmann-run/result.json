@@ -1,0 +1,30 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "message": "时间轴等间隔 24.0 小时",
+      "name": "time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "时间步长为 24 小时，与 UH 的日尺度语义一致",
+      "name": "daily_timestep",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列存在 1 个缺测；缺测必须由上游显式修复后重跑",
+      "name": "no_missing_inflow",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "科学 QC 失败，未生成演进结果",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/route-lohmann-channel",
+  "status": "error",
+  "warnings": []
+}

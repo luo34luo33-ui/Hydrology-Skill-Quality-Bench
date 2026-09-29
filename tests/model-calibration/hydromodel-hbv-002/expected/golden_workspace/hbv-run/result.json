@@ -1,0 +1,90 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_hbv_runoff.csv",
+      "sha256": "1ba88ffca409426438bf7fe45bf42752883d8298265f2ba973a54c60485e013d"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 60 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "存在超出源工程率定范围的参数",
+      "name": "continuous:parameter_range",
+      "status": "WARN"
+    },
+    {
+      "message": "蒸发能力按 c=0.07 缩放，实际蒸发 AE 受 lp×fc 调蓄",
+      "name": "continuous:evaporation_coefficient",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "蓄水状态非负",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "无数值截断",
+      "name": "continuous:numerical_clipping",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差占降雨 648.888%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "params": {
+      "path": "parameters.json",
+      "sha256": "b4bac4a3baed2e025eddcda81ec9c8151587e94b31359dfd456bd182280793a1"
+    }
+  },
+  "message": "集总式 HBV 前向模拟完成：1 场（或段），72 行",
+  "parameters": {
+    "area_km2": 640.0,
+    "balance_tolerance_fraction": 6.5,
+    "carry_columns": [],
+    "mode": "continuous",
+    "parameter_set": {
+      "beta": 2.6,
+      "c": 0.07,
+      "fc": 250.0,
+      "k0": 0.163,
+      "k1": 0.029,
+      "k2": 0.049,
+      "kp": 0.05,
+      "l": 4.87,
+      "lp": 0.5
+    },
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-hbv-model",
+  "status": "warning",
+  "warnings": [
+    "continuous 参数 fc=250 超出源工程率定范围 [100.0, 200.0]；该范围是率定先验而非硬约束，请确认取值依据"
+  ]
+}

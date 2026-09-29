@@ -1,0 +1,16 @@
+{
+  "calibration_target": {
+    "x": 0.35,
+    "y": 22.0
+  },
+  "direction": "minimize",
+  "fail_on_calls": [],
+  "validation_target": {
+    "x": 0.35,
+    "y": 22.0
+  },
+  "weights": {
+    "x": 1.0,
+    "y": 0.01
+  }
+}

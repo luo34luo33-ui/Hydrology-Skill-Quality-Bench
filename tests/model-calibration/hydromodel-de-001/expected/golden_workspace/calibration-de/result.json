@@ -1,0 +1,93 @@
+{
+  "algorithm": "de",
+  "artifacts": {
+    "best_parameters": {
+      "path": "best_parameters.json",
+      "sha256": "cc3419fdf62abf4458d449b28e956ba7078b59646049c703b7922fd5241414b1"
+    },
+    "calibration_metrics": {
+      "path": "calibration_metrics.json",
+      "sha256": "710ed73061919f732dc1cb3cffc748d9f800296bc39d68c9ce7d2c88002d9782"
+    },
+    "calibration_series": {
+      "path": "calibration_series.csv",
+      "sha256": "db92652f0659b85e74386ce145e4324f6596e62a7cade704cbe5e99167ba69a8"
+    },
+    "calibration_trace": {
+      "path": "calibration_trace.csv",
+      "sha256": "c26a990dc879983e32fe403f0e90bc75983e9cab40cc2a5952d4def2269afe14"
+    },
+    "validation_metrics": {
+      "path": "validation_metrics.json",
+      "sha256": "fd0b3e988fb74bbb520e5c1aabbc8b5a4510b95a94a6ff1dba3db3e0819444ae"
+    },
+    "validation_series": {
+      "path": "validation_series.csv",
+      "sha256": "9757533f01057b31d5bf2aa51a36311872ec15e8b6fd2545d05ae580854b5f51"
+    }
+  },
+  "checks": [
+    {
+      "check": "parameter_bounds",
+      "details": "parameters=2",
+      "status": "PASS"
+    },
+    {
+      "check": "split_isolation",
+      "details": "validation evaluated only after parameter lock",
+      "status": "PASS"
+    },
+    {
+      "check": "objective_consistency",
+      "details": "tolerance=1e-12",
+      "status": "PASS"
+    }
+  ],
+  "data_shape": "continuous",
+  "evaluation_count": 24,
+  "failed_evaluation_count": 0,
+  "inputs": {
+    "adapter": {
+      "path": "synthetic_adapter.py",
+      "sha256": "e87fc6372e5eaf63c525daa0b033c8871dc3f705ae09b16d49dbe31f7a8c32f9"
+    },
+    "optimizer_config": {
+      "path": "optimizer-config.json",
+      "sha256": "4b8441515bc62f7e3de7357ac3b347e8f3d839d052ee3626490b4b7a0c1b39c6"
+    },
+    "problem": {
+      "path": "calibration-problem.json",
+      "sha256": "df2aaab30dc0652246b12d0990ddd64e1189add3d539f2b35ea843abe28275bd"
+    }
+  },
+  "message": "de calibration completed",
+  "objective": {
+    "direction": "maximize",
+    "metric": "objective"
+  },
+  "parameters": {
+    "max_evaluations": 100,
+    "optimizer_config": {
+      "algorithm": "de",
+      "crossover_probability": 0.7,
+      "max_evaluations": 100,
+      "max_failed_evaluations": 2,
+      "max_generations": 3,
+      "mutation_factor": 0.8,
+      "polish": false,
+      "population_multiplier": 3,
+      "schema_version": "1.0",
+      "seed": 42,
+      "tolerance": 1e-09
+    },
+    "seed": 42
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-de",
+  "status": "success",
+  "termination_reason": "optimizer_completed",
+  "warnings": []
+}

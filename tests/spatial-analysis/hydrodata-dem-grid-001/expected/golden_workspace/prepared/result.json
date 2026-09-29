@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "analysis_dem": {
+      "path": "dem_analysis_buffer.tif",
+      "sha256": "9bdcbb8d21fc0e32a2147791b0fc905d9d0bb14203989927136df70f6a81c139"
+    },
+    "metric_dem": {
+      "path": "dem_metric.tif",
+      "sha256": "ee581f4cd9834127fbbd1ee5fe3eed952dc0519b24be08e193f0af0cf567e546"
+    },
+    "normalized_basin": {
+      "path": "basin_normalized.gpkg",
+      "sha256": "1cfa0700caf777e8e1b71aed407d57d716fca104b0ed9f264c15e4796d2be815"
+    }
+  },
+  "checks": [
+    {
+      "check": "metric_projected_crs",
+      "details": "EPSG:32650",
+      "status": "PASS"
+    },
+    {
+      "check": "vertical_unit",
+      "details": "m -> m; scale=1.0",
+      "status": "PASS"
+    },
+    {
+      "check": "true_basin_coverage",
+      "details": "DEM covers basin",
+      "status": "PASS"
+    },
+    {
+      "check": "analysis_buffer_coverage",
+      "details": "DEM covers buffer",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "basin_boundary": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-dem-grid-001\\data\\basin.gpkg",
+      "sha256": "ff1e6691eb11ddf16969db7b93023df3c62aaa63967ca63a7a4df1c4b5eb6c09"
+    },
+    "source_dem": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-dem-grid-001\\data\\source_dem.tif",
+      "sha256": "4eadd4022815fc1aa3115015776a293f6c42fad05947f6b3334488ccc20c7073"
+    }
+  },
+  "message": "DEM analysis grid prepared",
+  "parameters": {
+    "analysis_buffer_km": 0.2,
+    "crs_decision": "preserved-source",
+    "mask_rule": "center",
+    "target_crs": "EPSG:32650",
+    "vertical_scale_to_m": 1.0,
+    "vertical_unit": "m"
+  },
+  "provenance": {
+    "geopandas": "1.1.1",
+    "python": "3.13.9",
+    "rasterio": "1.4.3",
+    "shapely": "2.1.1"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/prepare-dem-analysis-grid",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,137 @@
+{
+  "data_description": "A deterministic continuous lumped-model problem with a complete confirmed parameter set and an hourly forcing table.",
+  "data_files": [
+    "forcing.csv",
+    "parameters.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "sacsma-run/lumped_sacsma_runoff.csv": [
+          "time",
+          "is_warmup",
+          "P",
+          "PET",
+          "ET1",
+          "ET2",
+          "ET3",
+          "ET4",
+          "ET5",
+          "TET",
+          "ROIMP",
+          "SSUR",
+          "SIF",
+          "SDRO",
+          "SURF",
+          "BASE",
+          "PERC",
+          "Q_MM",
+          "UZTWC",
+          "UZFWC",
+          "LZTWC",
+          "LZFSC",
+          "LZFPC",
+          "ADIMC",
+          "Q"
+        ],
+        "sacsma-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "sacsma-run/lumped_sacsma_runoff.csv",
+        "sacsma-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "simulation_table",
+      "reference": "expected/golden_workspace/sacsma-run/lumped_sacsma_runoff.csv",
+      "rtol": 1e-09,
+      "target": "sacsma-run/lumped_sacsma_runoff.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/sacsma-run/result.json",
+      "target": "sacsma-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/sacsma-run/result.json",
+      "target": "sacsma-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/sacsma-run/result.json",
+      "target": "sacsma-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/sacsma-run/result.json",
+      "target": "sacsma-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/sacsma-run/result.json",
+      "target": "sacsma-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "simulation_table"
+      ],
+      "target": "sacsma-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-sacsma-002",
+  "primary_skill": "hydrological-modeling/run-lumped-sacsma-model",
+  "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-sacsma-model. The confirmed parameter set uses RIVA=0.05, and the forcing deliberately contains a strong-evaporation dry spell (days 40-52: P=0, E0=8 mm/day) that drives the riparian demand into the native numerical-clipping regime. Run verbatim with --pet-column E0, area 640 km2, timestep 24 h, mode continuous, warm-up 12 steps, balance tolerance 4.5. Write the native outputs (lumped_sacsma_runoff.csv, result.json) under sacsma-run/. Numerical clipping must be reported natively in result.json, never hidden or corrected by altering parameters or forcing. Do not 'improve' the configuration to avoid the warning.",
+  "required_outputs": [
+    "sacsma-run/lumped_sacsma_runoff.csv",
+    "sacsma-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The parameter set, area, timestep, mode, and warm-up are confirmed by the user and must not be altered.",
+    "P and the evaporation column are instantaneous rates in mm/h; discharge outputs are in m3/s.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Report the native clipping caused by riparian demand in a dry spell"
+}

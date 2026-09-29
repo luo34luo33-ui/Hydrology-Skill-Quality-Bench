@@ -1,0 +1,90 @@
+{
+  "artifacts": {
+    "annotated_series": {
+      "path": "annotated_series.csv",
+      "sha256": "93e4ba91512df82a6d2e18dc4ebf9f6b1c74d123e4b28fc0cdb0556d90801083"
+    },
+    "event_config": {
+      "path": "event_config.yaml",
+      "sha256": "2be6fb4275cedff830861d3a04029af196903414fb2e01b2dac9260539b75200"
+    },
+    "event_manifest": {
+      "path": "event_manifest.json",
+      "sha256": "13eb68fb20b48b360678fdcd67cffc1a2e4cf3c394f60308e846212997ba8b3f"
+    },
+    "event_process": {
+      "path": "event_process.csv",
+      "sha256": "37cb6d86e24475e020ac06dc1f7a46e4c69d1f1b29f30b5f56a1a26632604a52"
+    },
+    "event_qc": {
+      "path": "event_qc.csv",
+      "sha256": "78271194b863e14d2afaefc2506d8e5f3136ba3a5b7cbd7ecd69efa30957fd7d"
+    },
+    "event_summary": {
+      "path": "event_summary.csv",
+      "sha256": "c49b689d2de55fb5b7cbea2920e8782b3cf5c698dd462c2638629955a8f34a37"
+    }
+  },
+  "checks": [
+    {
+      "check": "event_identity_and_order",
+      "details": "events=2; stable chronological IDs",
+      "status": "PASS"
+    },
+    {
+      "check": "event_boundaries",
+      "details": "boundaries, times and peaks are consistent",
+      "status": "PASS"
+    },
+    {
+      "check": "configured_filters",
+      "details": "all retained events satisfy explicit filters",
+      "status": "PASS"
+    },
+    {
+      "check": "volume_balance",
+      "details": "total = baseflow + quickflow within tolerance",
+      "status": "PASS"
+    },
+    {
+      "check": "table_consistency",
+      "details": "summary=2, process=20, series=30",
+      "status": "PASS"
+    },
+    {
+      "check": "warmup_exclusion",
+      "details": "warm-up rows are flagged and excluded from event metrics",
+      "status": "PASS"
+    },
+    {
+      "check": "per_event_file_count",
+      "details": "expected=2; actual=2",
+      "status": "PASS"
+    },
+    {
+      "check": "event_count",
+      "details": "events=2",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {},
+  "message": "extracted 2 flood events",
+  "parameters": {
+    "candidate_peak_count": 2,
+    "event_filename_by": "peak-time",
+    "final_event_count": 2,
+    "merged_event_count": 2,
+    "output_format": "csv",
+    "per_event_format": "csv",
+    "raw_event_count": 2,
+    "refined_event_count": 2,
+    "timestep_seconds": 3600.0
+  },
+  "provenance": {
+    "generator": "HSQB deterministic oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/extract-flood-events",
+  "status": "success",
+  "warnings": []
+}

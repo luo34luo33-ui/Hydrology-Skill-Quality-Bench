@@ -1,0 +1,13 @@
+{
+  "algorithm": "de",
+  "crossover_probability": 0.7,
+  "max_evaluations": 100,
+  "max_failed_evaluations": 2,
+  "max_generations": 3,
+  "mutation_factor": 0.8,
+  "polish": false,
+  "population_multiplier": 3,
+  "schema_version": "1.0",
+  "seed": 42,
+  "tolerance": 1e-09
+}

@@ -1,0 +1,93 @@
+{
+  "data_description": "A deterministic continuous two-split calibration problem with an explicit hashed Python evaluator and versioned optimizer configuration.",
+  "data_files": [
+    "calibration-problem.json",
+    "optimizer-config.json",
+    "fixture.json",
+    "synthetic_adapter.py"
+  ],
+  "difficulty": "advanced",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "expected_rows": {
+        "calibration-sce/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "target": "calibration-sce/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/calibration-sce/result.json",
+      "target": "calibration-sce/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "calibration-sce/best_parameters.json",
+        "calibration-sce/calibration_trace.csv",
+        "calibration-sce/calibration_metrics.json",
+        "calibration-sce/validation_metrics.json",
+        "calibration-sce/calibration_series.csv",
+        "calibration-sce/validation_series.csv"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydromodel-sce-ua-003",
+  "primary_skill": "model-calibration/calibrate-model-sce-ua",
+  "prompt": "Use calibration-problem.json and optimizer-config.json exactly as supplied to run model-calibration/calibrate-model-sce-ua. All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. Use calibration only for search and evaluate validation only after parameters are locked. Do not repair the optimizer config, alter its seed or budget, switch optimizers, or use validation for selection. Write the native outputs under calibration-sce/. Reject the invalid optimizer config, write only the native error result.json, and leave no normal calibration artifacts.",
+  "required_outputs": [
+    "calibration-sce/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The evaluator contract implements create_evaluator(), evaluate(), and materialize(); no upstream skill is required.",
+    "The first two rows of each materialized split are confirmed warm-up rows with scored=false.",
+    "Do not install software or substitute another optimization algorithm."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject an undersized SCE-UA complex"
+}

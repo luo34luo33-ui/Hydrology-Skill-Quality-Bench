@@ -1,0 +1,35 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "降雨或蒸发能力列存在 1 个缺测；缺测必须由上游显式修复后重跑",
+      "name": "continuous:no_missing_forcing",
+      "status": "FAIL"
+    },
+    {
+      "message": "预热 12 步，模拟期 60 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "全部参数落在源工程率定范围内",
+      "name": "continuous:parameter_range",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {},
+  "message": "科学 QC 失败，未生成模拟表",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-dhf-model",
+  "status": "error",
+  "warnings": []
+}

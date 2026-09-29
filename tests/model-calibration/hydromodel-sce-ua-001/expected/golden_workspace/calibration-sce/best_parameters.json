@@ -1,0 +1,22 @@
+{
+  "algorithm": "sce-ua",
+  "parameters": {
+    "x": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": -2.0,
+      "relative_position": 0.6793731454878476,
+      "upper": 2.0,
+      "value": 0.7174925819513904
+    },
+    "y": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": 10.0,
+      "relative_position": 0.6675967308530909,
+      "upper": 30.0,
+      "value": 23.35193461706182
+    }
+  },
+  "schema_version": "1.0"
+}

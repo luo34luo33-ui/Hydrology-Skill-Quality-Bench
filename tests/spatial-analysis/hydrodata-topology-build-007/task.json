@@ -1,0 +1,73 @@
+{
+  "data_description": "Build hydrological topology case 7",
+  "data_files": [
+    "basin.gpkg",
+    "d8_pointer.tif",
+    "dem_filled.tif",
+    "flow_accumulation_cells.tif",
+    "strahler_order.tif",
+    "stream_links.tif",
+    "subbasins.tif"
+  ],
+  "difficulty": "advanced",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "error_result",
+      "target": "hydrobase/result.json",
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "error_status",
+      "reference": "expected/golden_workspace/hydrobase/result.json",
+      "target": "hydrobase/result.json",
+      "type": "exact_match",
+      "weight": 0.35
+    },
+    {
+      "field": "message",
+      "name": "error_message",
+      "reference": "expected/golden_workspace/hydrobase/result.json",
+      "target": "hydrobase/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/hydrobase/result.json",
+      "target": "hydrobase/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_forbidden_artifacts",
+      "targets": [
+        "hydrobase/subbasins.csv",
+        "hydrobase/reaches.csv",
+        "hydrobase/topology.csv",
+        "hydrobase/reaches_clipped.gpkg",
+        "hydrobase/stream_links_clipped.tif",
+        "hydrobase/stream_order_clipped.tif",
+        "hydrobase/subbasins_clipped.tif"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydrodata-topology-build-007",
+  "primary_skill": "spatial-analysis/build-hydrological-topology",
+  "prompt": "Build HydroBase from the supplied basin and six aligned hydrology rasters. Confirmed options: --cell-inclusion center. Write outputs under hydrobase/. Do not infer topology from clipped line contact or repair rejected inputs.",
+  "required_outputs": [
+    "hydrobase/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, rasterio, GeoPandas, Shapely, matplotlib, Pillow, and WhiteboxTools are available.",
+    "Use only the explicitly confirmed spatial parameters and preserve the native skill result.json."
+  ],
+  "timeout_seconds": 600,
+  "title": "Build hydrological topology case 7"
+}

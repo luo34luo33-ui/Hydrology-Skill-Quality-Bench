@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "discharge_timeseries": {
+      "path": "discharge_timeseries.csv",
+      "sha256": "06249d2ded07593f489da7b0e2f18fea6a41f3095c0d418ac211733f505171bb"
+    },
+    "series_metadata": {
+      "path": "series_metadata.json",
+      "sha256": "2e45af676bd7b058b63244683acd2a9bdf350f8a9ceccab3f51dc0d0e582a7ea"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "discharge time series prepared",
+  "parameters": {},
+  "provenance": {
+    "generator": "HSQB deterministic upstream"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-discharge-timeseries",
+  "status": "success",
+  "warnings": []
+}

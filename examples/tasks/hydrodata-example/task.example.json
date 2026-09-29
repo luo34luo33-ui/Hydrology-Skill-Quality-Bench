@@ -1,0 +1,59 @@
+{
+  "id": "hydrodata-example",
+  "title": "Example template: quality-control a daily precipitation series",
+  "domain": "data-preprocessing",
+  "difficulty": "basic",
+  "primary_skill": "meteorological-qc",
+  "secondary_skills": [],
+  "prompt": "Inspect raw_precipitation.csv and produce cleaned.csv and qc_flags.csv. The intended daily axis is 2020-01-01 through 2020-03-30 inclusive. cleaned.csv must contain exactly one row for every date with columns timestamp and precipitation_mm, sorted chronologically. For duplicate timestamps retain the first occurrence in file order. Convert negative precipitation to a missing value; do not replace missing or negative observations with zero or an estimate. qc_flags.csv must contain one row per detected issue with columns timestamp and issue. Use issue values duplicate_timestamp, negative_precipitation, and missing_timestamp. Record one duplicate_timestamp flag per duplicated date, one negative_precipitation flag per affected date, and one missing_timestamp flag per absent date.",
+  "data_description": "Synthetic daily precipitation in millimetres with known duplicate timestamps, negative values, and missing dates.",
+  "data_files": [
+    "raw_precipitation.csv"
+  ],
+  "required_outputs": [
+    "cleaned.csv",
+    "qc_flags.csv"
+  ],
+  "setup_notes": [
+    "Python, NumPy, pandas, and SciPy are pre-installed.",
+    "Do not infer or fill missing precipitation values."
+  ],
+  "timeout_seconds": 300,
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "type": "file_check",
+      "targets": ["cleaned.csv", "qc_flags.csv"],
+      "required_columns": {
+        "cleaned.csv": ["timestamp", "precipitation_mm"],
+        "qc_flags.csv": ["timestamp", "issue"]
+      },
+      "expected_rows": {
+        "cleaned.csv": 90,
+        "qc_flags.csv": 12
+      },
+      "weight": 0.15
+    },
+    {
+      "name": "anomaly_detection",
+      "type": "set_overlap",
+      "target": "qc_flags.csv",
+      "reference": "expected/qc_flags_expected.csv",
+      "columns": ["timestamp", "issue"],
+      "metric": "f1",
+      "weight": 0.35
+    },
+    {
+      "name": "cleaned_series",
+      "type": "timeseries_match",
+      "target": "cleaned.csv",
+      "reference": "expected/cleaned_valid_expected.csv",
+      "time_column": "timestamp",
+      "target_column": "precipitation_mm",
+      "reference_column": "precipitation_mm",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "weight": 0.5
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "algorithm": "pso",
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "PSO particle_count、max_iterations 或 velocity_limit_fraction 非法",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-pso",
+  "status": "error",
+  "warnings": []
+}

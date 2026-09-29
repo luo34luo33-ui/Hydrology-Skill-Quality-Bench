@@ -1,0 +1,118 @@
+{
+  "artifacts": {
+    "event_metrics": {
+      "path": "event_metrics.csv",
+      "sha256": "94649019e82fc2d87f73d219d8c3b984bb001d4193ce3a08d9dec983cc0d75dc"
+    }
+  },
+  "checks": [
+    {
+      "message": "观测与模拟均为 24 行",
+      "name": "event_01:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "event_01:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "event_01:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "event_01:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "event_01:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为 24 行",
+      "name": "event_02:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "event_02:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "event_02:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "event_02:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "event_02:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为 24 行",
+      "name": "event_03:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "event_03:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "event_03:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "event_03:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "event_03:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "合格阈值 ['peak_time_error_hours', 'relative_peak_error', 'relative_volume_error']",
+      "name": "thresholds_provided",
+      "status": "PASS"
+    },
+    {
+      "message": "洪量单位为 10k m3",
+      "name": "volume_unit_recorded",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "events_dir": "events"
+  },
+  "message": "场次指标计算完成：3 场",
+  "parameters": {
+    "observed_column": "Q_obs",
+    "simulated_column": "Q_total",
+    "thresholds": {
+      "peak_time_error_hours": 3.0,
+      "relative_peak_error": 0.2,
+      "relative_volume_error": 0.2
+    },
+    "time_column": "time",
+    "timestep_hours": 1.0,
+    "volume_unit": "10k m3"
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-event-flood-metrics",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,267 @@
+{
+  "data_description": "A clear candidate flood peak paired with an intentionally higher confirmed minimum peak threshold.",
+  "data_files": [
+    "components/result.json",
+    "components/flow_components.csv",
+    "components/baseflow_metadata.json",
+    "event_config.yaml"
+  ],
+  "difficulty": "intermediate",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "events/annotated_series.csv": 48,
+        "events/event_manifest.json": 1,
+        "events/event_process.csv": 0,
+        "events/event_qc.csv": 8,
+        "events/event_summary.csv": 0,
+        "events/result.json": 1
+      },
+      "name": "artifact_schema",
+      "required_columns": {
+        "events/annotated_series.csv": [
+          "time",
+          "discharge_m3_s",
+          "is_imputed",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "event_id"
+        ],
+        "events/event_manifest.json": [
+          "event_count",
+          "files"
+        ],
+        "events/event_process.csv": [
+          "event_id",
+          "time",
+          "discharge_m3_s",
+          "is_imputed",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "is_warmup",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "events/event_qc.csv": [
+          "check",
+          "status",
+          "details"
+        ],
+        "events/event_summary.csv": [
+          "event_id",
+          "warmup_start_time",
+          "start_time",
+          "peak_time",
+          "end_time",
+          "warmup_start_idx",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "start_flow_m3_s",
+          "peak_flow_m3_s",
+          "end_flow_m3_s",
+          "duration_hours",
+          "rise_time_hours",
+          "recession_time_hours",
+          "total_volume_m3",
+          "quickflow_volume_m3",
+          "baseflow_volume_m3",
+          "quickflow_fraction",
+          "n_local_peaks"
+        ],
+        "events/result.json": [
+          "skill",
+          "status",
+          "parameters",
+          "artifacts",
+          "warnings"
+        ]
+      },
+      "targets": [
+        "events/event_summary.csv",
+        "events/event_process.csv",
+        "events/annotated_series.csv",
+        "events/event_config.yaml",
+        "events/event_manifest.json",
+        "events/event_qc.csv",
+        "events/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-08,
+      "columns": [
+        "event_id",
+        "warmup_start_time",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "warmup_start_idx",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "start_flow_m3_s",
+        "peak_flow_m3_s",
+        "end_flow_m3_s",
+        "duration_hours",
+        "rise_time_hours",
+        "recession_time_hours",
+        "total_volume_m3",
+        "quickflow_volume_m3",
+        "baseflow_volume_m3",
+        "quickflow_fraction",
+        "n_local_peaks"
+      ],
+      "datetime_columns": [
+        "warmup_start_time",
+        "start_time",
+        "peak_time",
+        "end_time"
+      ],
+      "name": "event_summary",
+      "reference": "expected/golden_workspace/events/event_summary.csv",
+      "rtol": 1e-09,
+      "target": "events/event_summary.csv",
+      "type": "table_match",
+      "weight": 0.2
+    },
+    {
+      "atol": 1e-08,
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "event_process",
+      "reference": "expected/golden_workspace/events/event_process.csv",
+      "rtol": 1e-09,
+      "target": "events/event_process.csv",
+      "type": "table_match",
+      "weight": 0.18
+    },
+    {
+      "atol": 1e-08,
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "event_id"
+      ],
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "annotated_series",
+      "reference": "expected/golden_workspace/events/annotated_series.csv",
+      "rtol": 1e-09,
+      "target": "events/annotated_series.csv",
+      "type": "table_match",
+      "weight": 0.17
+    },
+    {
+      "field": "event_count",
+      "name": "manifest_event_count",
+      "reference": "expected/golden_workspace/events/event_manifest.json",
+      "target": "events/event_manifest.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.02
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.03
+    },
+    {
+      "field": "parameters.candidate_peak_count",
+      "name": "result_candidate_peak_count",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "parameters.merged_event_count",
+      "name": "result_merged_event_count",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "field": "parameters.final_event_count",
+      "name": "result_final_event_count",
+      "reference": "expected/golden_workspace/events/result.json",
+      "target": "events/result.json",
+      "type": "exact_match",
+      "weight": 0.04
+    },
+    {
+      "columns": [
+        "check",
+        "status"
+      ],
+      "metric": "f1",
+      "name": "qc_checks",
+      "reference": "expected/golden_workspace/events/event_qc.csv",
+      "target": "events/event_qc.csv",
+      "type": "set_overlap",
+      "weight": 0.09
+    }
+  ],
+  "id": "hydrodata-flood-events-008",
+  "primary_skill": "data-processing/extract-flood-events",
+  "prompt": "Use components/result.json and the complete confirmed parameters in event_config.yaml to extract flood events. Write CSV main tables and CSV per-event files under events/, naming per-event files by event-id. Do not change, infer, or relax any scientific parameter.",
+  "required_outputs": [
+    "events/event_summary.csv",
+    "events/event_process.csv",
+    "events/annotated_series.csv",
+    "events/event_config.yaml",
+    "events/event_manifest.json",
+    "events/event_qc.csv",
+    "events/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "components/ contains a complete hash-verifiable separate-baseflow-eckhardt result; do not rerun upstream skills.",
+    "Every scientific parameter is explicit in event_config.yaml. Do not tune or relax the configuration."
+  ],
+  "timeout_seconds": 300,
+  "title": "Retain zero events when explicit filters reject detected peaks"
+}

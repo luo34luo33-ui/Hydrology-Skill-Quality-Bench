@@ -1,0 +1,27 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "拓扑无效: self_loops=[], cycles=[[1, 2]], unresolved=[1, 2]",
+  "parameters": {
+    "basin": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\data\\basin.gpkg",
+    "basin_layer": null,
+    "cell_inclusion": "center",
+    "d8_pointer": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\data\\d8_pointer.tif",
+    "dem_filled": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\data\\dem_filled.tif",
+    "flow_accumulation": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\data\\flow_accumulation_cells.tif",
+    "output_dir": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\expected\\golden_workspace\\hydrobase",
+    "overwrite": false,
+    "stream_links": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\data\\stream_links.tif",
+    "stream_order": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\data\\strahler_order.tif",
+    "subbasins": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-build-008\\data\\subbasins.tif",
+    "upstream_result": null
+  },
+  "provenance": {
+    "python": "3.13.9"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/build-hydrological-topology",
+  "status": "error",
+  "warnings": []
+}

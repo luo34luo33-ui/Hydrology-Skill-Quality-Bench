@@ -1,0 +1,102 @@
+{
+  "data_description": "A deterministic evaluation-diagnostics fixture with confirmed columns, units, and (where applicable) qualification thresholds.",
+  "data_files": [
+    "events/event_01.csv",
+    "events/event_02.csv",
+    "thresholds.json"
+  ],
+  "difficulty": "basic",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "event-metrics/event_metrics.csv": [
+          "event_id",
+          "rows",
+          "start",
+          "end",
+          "observed_volume",
+          "simulated_volume",
+          "volume_error_relative",
+          "qualified_volume"
+        ],
+        "event-metrics/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "event-metrics/event_metrics.csv",
+        "event-metrics/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "atol": 1e-09,
+      "name": "partial_metrics_table",
+      "reference": "expected/golden_workspace/event-metrics/event_metrics.csv",
+      "rtol": 1e-09,
+      "target": "event-metrics/event_metrics.csv",
+      "type": "table_match",
+      "weight": 0.2
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/event-metrics/result.json",
+      "target": "event-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "event_metrics"
+      ],
+      "target": "event-metrics/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.25
+    }
+  ],
+  "id": "hydroanalysis-event-metrics-003",
+  "primary_skill": "evaluation-diagnostics/compute-event-flood-metrics",
+  "prompt": "Use the two event tables under events/ exactly as supplied to run evaluation-diagnostics/compute-event-flood-metrics. Event 02 contains missing Q_obs values; run the skill verbatim with --timestep-hours 1 and thresholds.json. The native contract scores the healthy event, records the QC failure for the broken one, and reports an error result.json alongside the partial event_metrics.csv under event-metrics/. Do not fill, interpolate, or drop the missing values; do not repair event 02; do not suppress the QC failure. Keep the native partial outputs exactly as the script produces them.",
+  "required_outputs": [
+    "event-metrics/event_metrics.csv",
+    "event-metrics/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "All input columns and thresholds are confirmed by the user and must not be altered.",
+    "Error conventions follow the skill contract; error signs must never be flipped.",
+    "Do not install software or reimplement the metric formulas."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject event metrics when one event contains missing observations"
+}

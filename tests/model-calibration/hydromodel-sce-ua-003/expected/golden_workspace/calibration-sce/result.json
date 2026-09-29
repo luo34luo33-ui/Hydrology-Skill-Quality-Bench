@@ -1,0 +1,15 @@
+{
+  "algorithm": "ua",
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "SCE-UA 复形规模、演化步数或停止参数非法",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-sce-ua",
+  "status": "error",
+  "warnings": []
+}

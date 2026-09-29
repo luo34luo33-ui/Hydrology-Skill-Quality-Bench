@@ -1,0 +1,134 @@
+{
+  "data_description": "A deterministic continuous lumped-model problem with a complete confirmed parameter set and an hourly forcing table.",
+  "data_files": [
+    "forcing.csv",
+    "parameters.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "dhf-run/lumped_dhf_runoff.csv": [
+          "time",
+          "is_warmup",
+          "P",
+          "PET",
+          "E",
+          "PE",
+          "PC",
+          "Y0",
+          "EU",
+          "EL",
+          "RR",
+          "Y",
+          "YU",
+          "YL",
+          "RUNOFF",
+          "QS",
+          "QL",
+          "Q",
+          "SA",
+          "UA",
+          "YA",
+          "EB"
+        ],
+        "dhf-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "dhf-run/lumped_dhf_runoff.csv",
+        "dhf-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "simulation_table",
+      "reference": "expected/golden_workspace/dhf-run/lumped_dhf_runoff.csv",
+      "rtol": 1e-09,
+      "target": "dhf-run/lumped_dhf_runoff.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/dhf-run/result.json",
+      "target": "dhf-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/dhf-run/result.json",
+      "target": "dhf-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/dhf-run/result.json",
+      "target": "dhf-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/dhf-run/result.json",
+      "target": "dhf-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/dhf-run/result.json",
+      "target": "dhf-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "simulation_table"
+      ],
+      "target": "dhf-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-dhf-002",
+  "primary_skill": "hydrological-modeling/run-lumped-dhf-model",
+  "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-dhf-model. The parameter set deliberately contains values outside the documented soft ranges (U0=100, B=0.6); this is a confirmed user decision, and the skill must accept the run and natively report the parameter_range warning. Run verbatim with --pet-column E0, area 640 km2, river length 20 km, timestep 1 h, mode continuous, warm-up 12 steps, balance tolerance 0.05, and write the native outputs (lumped_dhf_runoff.csv, result.json) under dhf-run/. Do not 'fix' the parameters to the soft ranges or suppress the warning.",
+  "required_outputs": [
+    "dhf-run/lumped_dhf_runoff.csv",
+    "dhf-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The parameter set, area, timestep, mode, and warm-up are confirmed by the user and must not be altered.",
+    "P and the evaporation column are instantaneous rates in mm/h; discharge outputs are in m3/s.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Report out-of-range DHF parameters instead of silently accepting them"
+}

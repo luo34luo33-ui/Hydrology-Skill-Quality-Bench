@@ -1,0 +1,17 @@
+check,status,count,details
+unique_reach_id,PASS,0,
+topology_table_consistency,PASS,0,topology.csv matches reaches.csv
+downstream_references,PASS,0,
+self_loop,PASS,0,
+reach_cycle,PASS,0,
+upstream_downstream_reciprocity,PASS,0,
+topological_levels,PASS,0,
+expected_outlets,PASS,1,expected=1; actual=[4]
+subbasin_mapping,PASS,0,
+positive_reach_length,PASS,0,
+reach_geometry,PASS,0,
+artifact_grid_and_crs,PASS,0,
+reach_count_matches_links,PASS,0,table=4; raster=4
+subbasin_area_consistency,PASS,0,
+negative_elevation_steps,WARN,1,count=1
+upstream_warning_1,WARN,1,negative elevation steps=1

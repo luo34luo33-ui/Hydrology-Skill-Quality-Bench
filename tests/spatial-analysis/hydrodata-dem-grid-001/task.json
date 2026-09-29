@@ -1,0 +1,106 @@
+{
+  "data_description": "Prepare DEM grid case 1",
+  "data_files": [
+    "basin.gpkg",
+    "source_dem.tif"
+  ],
+  "difficulty": "advanced",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "artifacts",
+      "targets": [
+        "prepared/dem_metric.tif",
+        "prepared/dem_analysis_buffer.tif",
+        "prepared/basin_normalized.gpkg",
+        "prepared/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-05,
+      "name": "metric_dem",
+      "reference": "expected/golden_workspace/prepared/dem_metric.tif",
+      "rtol": 1e-06,
+      "target": "prepared/dem_metric.tif",
+      "type": "raster_match",
+      "weight": 0.2
+    },
+    {
+      "atol": 1e-05,
+      "name": "analysis_dem",
+      "reference": "expected/golden_workspace/prepared/dem_analysis_buffer.tif",
+      "rtol": 1e-06,
+      "target": "prepared/dem_analysis_buffer.tif",
+      "type": "raster_match",
+      "weight": 0.2
+    },
+    {
+      "columns": [
+        "basin_id"
+      ],
+      "geometry_tolerance": 1e-05,
+      "key_columns": [
+        "basin_id"
+      ],
+      "layer": "basin",
+      "name": "basin",
+      "reference": "expected/golden_workspace/prepared/basin_normalized.gpkg",
+      "target": "prepared/basin_normalized.gpkg",
+      "type": "vector_match",
+      "weight": 0.15
+    },
+    {
+      "field": "status",
+      "name": "status",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "warnings",
+      "name": "warnings",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "parameters",
+      "name": "parameters",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_integrity",
+      "required_keys": [
+        "metric_dem",
+        "analysis_dem",
+        "normalized_basin"
+      ],
+      "target": "prepared/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydrodata-dem-grid-001",
+  "primary_skill": "spatial-analysis/prepare-dem-analysis-grid",
+  "prompt": "Prepare source_dem.tif and basin.gpkg using the confirmed options: --analysis-buffer-km 0.2 --vertical-unit m. Write all outputs under prepared/. Do not infer missing CRS, change units, or relax coverage checks. If validation rejects the input, preserve result.json but remove partial declared artifacts.",
+  "required_outputs": [
+    "prepared/dem_metric.tif",
+    "prepared/dem_analysis_buffer.tif",
+    "prepared/basin_normalized.gpkg",
+    "prepared/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, rasterio, GeoPandas, Shapely, matplotlib, Pillow, and WhiteboxTools are available.",
+    "Use only the explicitly confirmed spatial parameters and preserve the native skill result.json."
+  ],
+  "timeout_seconds": 600,
+  "title": "Prepare DEM grid case 1"
+}

@@ -1,0 +1,86 @@
+{
+  "data_description": "A deterministic continuous lumped-model problem with a complete confirmed parameter set and an hourly forcing table.",
+  "data_files": [
+    "forcing.csv",
+    "parameters.json"
+  ],
+  "difficulty": "basic",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "expected_rows": {
+        "hbv-run/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "target": "hbv-run/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/hbv-run/result.json",
+      "target": "hbv-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "hbv-run/lumped_hbv_runoff.csv"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydromodel-hbv-003",
+  "primary_skill": "hydrological-modeling/run-lumped-hbv-model",
+  "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-hbv-model. The forcing table is hourly and contains at least one missing E0 value. Run the simulation verbatim with area 640 km2, timestep 1 h, mode continuous, warm-up 12 steps, balance tolerance 6.5, and only the native result.json under hbv-run/. Do not fill, interpolate, or drop the missing evaporation value; do not rerun with repaired data; the script must reject the input itself. No lumped_hbv_runoff.csv may remain in hbv-run/.",
+  "required_outputs": [
+    "hbv-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The parameter set, area, timestep, mode, and warm-up are confirmed by the user and must not be altered.",
+    "P and the evaporation column are instantaneous rates in mm/h; discharge outputs are in m3/s.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject an HBV run with missing evaporation forcing"
+}

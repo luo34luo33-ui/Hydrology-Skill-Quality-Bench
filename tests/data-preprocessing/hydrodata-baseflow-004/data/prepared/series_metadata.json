@@ -1,0 +1,17 @@
+{
+  "additional_column_semantics": "unconfirmed",
+  "additional_columns": [],
+  "end_time": "2024-04-02T05:00:00+00:00",
+  "flow_column": "discharge_m3_s",
+  "row_count": 30,
+  "schema_version": "1.0",
+  "source_flow_unit": "m3/s",
+  "source_format": "csv",
+  "standard_flow_unit": "m3/s",
+  "start_time": "2024-04-01T00:00:00+00:00",
+  "time_column": "time",
+  "time_regularity": 1.0,
+  "timestep_seconds": 3600.0,
+  "timezone": "UTC",
+  "unit_scale": 1.0
+}

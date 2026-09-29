@@ -1,0 +1,87 @@
+{
+  "data_description": "A deterministic hourly Muskingum routing problem with a confirmed route specification and gap-free (or explicitly broken) inflow table.",
+  "data_files": [
+    "inflow.csv",
+    "route_spec.json"
+  ],
+  "difficulty": "basic",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "expected_rows": {
+        "routed/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "target": "routed/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "routed/routed_flow.csv",
+        "routed/route_coefficients.json"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydromodel-muskingum-003",
+  "primary_skill": "hydrological-modeling/route-muskingum-channel",
+  "prompt": "Use inflow.csv and route_spec.json exactly as supplied to run hydrological-modeling/route-muskingum-channel. The inflow table is hourly discharge in m3/s and contains at least one missing value in an inflow column. Run the routing verbatim with --timestep-hours 1 and only the native result.json under routed/. Do not fill, interpolate, or drop the missing value; do not rerun with repaired data; the script must reject the input itself. No routed_flow.csv or route_coefficients.json may remain in routed/.",
+  "required_outputs": [
+    "routed/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The route specification is confirmed by the user and must not be altered.",
+    "All inflow values are instantaneous discharge in m3/s on a regular hourly axis.",
+    "Do not install software or implement a replacement routing routine."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject Muskingum routing when the inflow series contains missing values"
+}

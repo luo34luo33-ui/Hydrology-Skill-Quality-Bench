@@ -1,0 +1,116 @@
+{
+  "data_description": "A deterministic evaluation-diagnostics fixture with confirmed columns, units, and (where applicable) qualification thresholds.",
+  "data_files": [
+    "event_metrics.csv",
+    "thresholds.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "aggregate-metrics/aggregate_metrics.csv": [
+          "group",
+          "events",
+          "nse_mean",
+          "nse_count",
+          "volume_error_relative_mean",
+          "qualified_volume_qualified_rate",
+          "qualified_peak_qualified_rate"
+        ],
+        "aggregate-metrics/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "aggregate-metrics/aggregate_metrics.csv",
+        "aggregate-metrics/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "metrics_table",
+      "reference": "expected/golden_workspace/aggregate-metrics/aggregate_metrics.csv",
+      "rtol": 1e-09,
+      "target": "aggregate-metrics/aggregate_metrics.csv",
+      "type": "table_match",
+      "weight": 0.25
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/aggregate-metrics/result.json",
+      "target": "aggregate-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/aggregate-metrics/result.json",
+      "target": "aggregate-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/aggregate-metrics/result.json",
+      "target": "aggregate-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/aggregate-metrics/result.json",
+      "target": "aggregate-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/aggregate-metrics/result.json",
+      "target": "aggregate-metrics/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "aggregate_metrics"
+      ],
+      "target": "aggregate-metrics/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydroanalysis-aggregate-metrics-001",
+  "primary_skill": "evaluation-diagnostics/aggregate-event-metrics",
+  "prompt": "Use event_metrics.csv exactly as supplied to run evaluation-diagnostics/aggregate-event-metrics. The table holds per-event metrics; group by catchment, aggregate the value columns nse, volume_error_relative, and peak_error_relative, and compute qualification rates for qualified_volume and qualified_peak with the confirmed thresholds.json. Write the native outputs (aggregate_metrics.csv, result.json) under aggregate-metrics/. Do not add weighting, recompute upstream metrics, or alter the qualification columns.",
+  "required_outputs": [
+    "aggregate-metrics/aggregate_metrics.csv",
+    "aggregate-metrics/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "All input columns and thresholds are confirmed by the user and must not be altered.",
+    "Error conventions follow the skill contract; error signs must never be flipped.",
+    "Do not install software or reimplement the metric formulas."
+  ],
+  "timeout_seconds": 300,
+  "title": "Aggregate event metrics by catchment with qualification rates"
+}

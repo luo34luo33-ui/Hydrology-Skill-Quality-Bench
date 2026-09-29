@@ -1,0 +1,103 @@
+{
+  "id": "hydroanalysis-001",
+  "title": "Diagnose a delayed simulated hydrograph",
+  "domain": "results-analysis",
+  "difficulty": "intermediate",
+  "primary_skill": "hydrologic-diagnostics",
+  "secondary_skills": [],
+  "prompt": "Compare observed.csv and simulated.csv. Write metrics.json containing numeric fields NSE, KGE, PBIAS, RMSE, MAE, R2, and peak_timing_error_steps. Use KGE 2009, PBIAS = 100 * sum(simulated - observed) / sum(observed), sample standard deviations in KGE, and Pearson correlation squared for R2. Positive peak_timing_error_steps means the simulated global peak occurs later than the observed global peak. Write diagnosis.json with a primary_category field. Choose the primary category from peak_timing_delay, peak_timing_advance, magnitude_bias, volume_bias, or no_material_pathology.",
+  "data_description": "Synthetic observed and simulated daily discharge series containing one dominant, deliberately constructed pathology.",
+  "data_files": [
+    "observed.csv",
+    "simulated.csv"
+  ],
+  "required_outputs": [
+    "metrics.json",
+    "diagnosis.json"
+  ],
+  "setup_notes": [
+    "Align records by timestamp before computing metrics.",
+    "Do not modify the supplied observed or simulated data."
+  ],
+  "timeout_seconds": 300,
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "type": "file_check",
+      "targets": ["metrics.json", "diagnosis.json"],
+      "weight": 0.1
+    },
+    {
+      "name": "nse_accuracy",
+      "type": "range_check",
+      "target": "metrics.json",
+      "field": "NSE",
+      "reference": "expected/metrics_expected.json",
+      "tolerance": 1e-06,
+      "weight": 0.08333333333333333
+    },
+    {
+      "name": "kge_accuracy",
+      "type": "range_check",
+      "target": "metrics.json",
+      "field": "KGE",
+      "reference": "expected/metrics_expected.json",
+      "tolerance": 1e-06,
+      "weight": 0.08333333333333333
+    },
+    {
+      "name": "pbias_accuracy",
+      "type": "range_check",
+      "target": "metrics.json",
+      "field": "PBIAS",
+      "reference": "expected/metrics_expected.json",
+      "tolerance": 1e-06,
+      "weight": 0.08333333333333333
+    },
+    {
+      "name": "rmse_accuracy",
+      "type": "range_check",
+      "target": "metrics.json",
+      "field": "RMSE",
+      "reference": "expected/metrics_expected.json",
+      "tolerance": 1e-06,
+      "weight": 0.08333333333333333
+    },
+    {
+      "name": "mae_accuracy",
+      "type": "range_check",
+      "target": "metrics.json",
+      "field": "MAE",
+      "reference": "expected/metrics_expected.json",
+      "tolerance": 1e-06,
+      "weight": 0.08333333333333333
+    },
+    {
+      "name": "r2_accuracy",
+      "type": "range_check",
+      "target": "metrics.json",
+      "field": "R2",
+      "reference": "expected/metrics_expected.json",
+      "tolerance": 1e-06,
+      "weight": 0.08333333333333333
+    },
+    {
+      "name": "peak_timing",
+      "type": "peak_check",
+      "target": "metrics.json",
+      "field": "peak_timing_error_steps",
+      "reference": "expected/metrics_expected.json",
+      "tolerance": 0,
+      "weight": 0.2
+    },
+    {
+      "name": "primary_diagnosis",
+      "type": "exact_match",
+      "target": "diagnosis.json",
+      "field": "primary_category",
+      "reference": "expected/diagnosis_expected.json",
+      "weight": 0.2
+    }
+  ]
+}
+

@@ -1,0 +1,91 @@
+{
+  "artifacts": {
+    "route_coefficients": {
+      "path": "route_coefficients.json",
+      "sha256": "4c612727c120edd8b392e02d216d4bc58ed67d80602ab95705220c4275ff7468"
+    },
+    "routed_table": {
+      "path": "routed_flow.csv",
+      "sha256": "14c1670a31db1084a7f5d058ad6df3d677a4884c4e2db96f89c0bb52c1ef9428"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列无缺测",
+      "name": "no_missing_inflow",
+      "status": "PASS"
+    },
+    {
+      "message": "C0+C1+C2 等于 1",
+      "name": "unstable_cascade:coefficient_sum",
+      "status": "PASS"
+    },
+    {
+      "message": "X 等价取值 -1.5 超出 [0, 0.5]；系数可能产生振荡或负出流，请确认 reaches 与 X 的组合是否来自有依据的率定",
+      "name": "unstable_cascade:stability_range",
+      "status": "WARN"
+    },
+    {
+      "message": "演进结果无负值",
+      "name": "unstable_cascade:negative_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "演进结果均为有限值",
+      "name": "unstable_cascade:finite_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "体积相对差 0.003%",
+      "name": "unstable_cascade:volume_difference",
+      "status": "PASS"
+    },
+    {
+      "message": "单条路由，输出列等于该路由结果",
+      "name": "multi_source_combination",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "inflow": {
+      "path": "inflow.csv",
+      "sha256": "e1b5346bb4d5aa3c360d530bd89e414dd583f3df4b1c978422b58c96a8e77c17"
+    },
+    "route_spec": {
+      "path": "route_spec.json",
+      "sha256": "d6fad3aab2aa6e5f1a87b2575898488c47093812197ec04b7700c178f536b309"
+    }
+  },
+  "message": "马斯京根演进完成：1 条路由，60 行",
+  "parameters": {
+    "combine": "sum",
+    "output_column": "Q_total",
+    "routes": [
+      {
+        "column": "channel_q",
+        "id": "unstable_cascade",
+        "k": 1.0,
+        "layout": "cascade",
+        "output_level": "final",
+        "reaches": 4,
+        "x": 0.0
+      }
+    ],
+    "timestep_hours": 1.0,
+    "volume_tolerance": 0.02
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/route-muskingum-channel",
+  "status": "warning",
+  "warnings": [
+    "unstable_cascade 的 X 等价取值 -1.5 超出经典稳定区间 [0, 0.5]"
+  ]
+}

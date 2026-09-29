@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_gr4j_runoff.csv",
+      "sha256": "6bd9015ce50e6be76dc26f4048778ed4054fbad644799fe74c430fed33f2e725"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 24.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 60 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "水库状态非负",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "数值截断 31 次",
+      "name": "continuous:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "水量平衡残差占降雨 16.200%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "params": {
+      "path": "parameters.json",
+      "sha256": "c54f00711ae4c6ffc29d598779e486588860f991d566fda663d1743e3d11c140"
+    }
+  },
+  "message": "集总式 GR4J 前向模拟完成：1 场（或段），72 行",
+  "parameters": {
+    "area_km2": 640.0,
+    "balance_tolerance_fraction": 0.2,
+    "carry_columns": [],
+    "initial_states": null,
+    "mode": "continuous",
+    "parameter_set": {
+      "X1": 350.0,
+      "X2": -5.0,
+      "X3": 90.0,
+      "X4": 1.7
+    },
+    "timestep_hours": 24.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-gr4j-model",
+  "status": "warning",
+  "warnings": [
+    "continuous 发生 31 次数值截断（max(0,·) 兜底或 tanh 饱和截断到 13），截断会损耗水量，请检查 X2 与降雨量级"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_sacsma_runoff.csv",
+      "sha256": "1dcc6e866771a4cb2b32335b9c3412f750f7212abbf78f854277b8ae837e4c0c"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 24.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "时间步长为 24 小时，与源码日水量核算语义一致",
+      "name": "continuous:daily_timestep",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 60 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "水库状态与总出流非负",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "数值截断 34 次",
+      "name": "continuous:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "水量平衡残差占降雨 448.816%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "params": {
+      "path": "parameters.json",
+      "sha256": "1fa7e6d683f396b57b56974f46154afcba12eb9e22b9e12c169f52c0147d9b5f"
+    }
+  },
+  "message": "集总式 SAC-SMA 前向模拟完成：1 场（或段），72 行",
+  "parameters": {
+    "area_km2": 640.0,
+    "balance_tolerance_fraction": 4.5,
+    "carry_columns": [],
+    "initial_states": {
+      "ADIMC": 0.0,
+      "LZFPC": 500.0,
+      "LZFSC": 500.0,
+      "LZTWC": 500.0,
+      "UZFWC": 0.0,
+      "UZTWC": 0.0
+    },
+    "initial_states_source": "source_equivalent_default",
+    "mode": "continuous",
+    "parameter_set": {
+      "ADIMP": 0.1,
+      "LZFPM": 800.0,
+      "LZFSM": 200.0,
+      "LZPK": 0.01,
+      "LZSK": 0.3,
+      "LZTWM": 800.0,
+      "PCTIM": 0.02,
+      "PFREE": 0.3,
+      "REXP": 1.5,
+      "RIVA": 0.05,
+      "RSERV": 0.3,
+      "SIDE": 0.0,
+      "UZFWM": 50.0,
+      "UZK": 0.2,
+      "UZTWM": 150.0,
+      "ZPERC": 20.0
+    },
+    "timestep_hours": 24.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-sacsma-model",
+  "status": "warning",
+  "warnings": [
+    "continuous 发生 34 次数值截断（负出流兜底、阈值复位与库间溢出回补），截断会调整水量分配，请检查参数量级与输入"
+  ]
+}

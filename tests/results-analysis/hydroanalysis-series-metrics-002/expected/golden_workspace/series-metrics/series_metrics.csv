@@ -1,0 +1,7 @@
+﻿metric,value,unit,status
+nse,unavailable,dimensionless,unavailable
+rmse,3.1757713626480206,m3/s,ok
+mae,2.996609326240625,m3/s,ok
+r2,0.0,dimensionless,ok
+volume_bias,-1035628.18314876,m3,ok
+relative_volume_bias,-0.0599321865248125,dimensionless,ok

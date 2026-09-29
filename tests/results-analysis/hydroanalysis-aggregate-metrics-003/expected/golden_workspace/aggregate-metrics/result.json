@@ -1,0 +1,14 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "未知统计量: p25；可用统计量: mean, median, p10, p90, min, max, count",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/aggregate-event-metrics",
+  "status": "error",
+  "warnings": []
+}

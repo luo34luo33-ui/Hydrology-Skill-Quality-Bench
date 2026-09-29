@@ -1,0 +1,16 @@
+{
+  "event_count": 2,
+  "files": [
+    {
+      "event_id": 1,
+      "path": "event_files/event_0001.csv",
+      "sha256": "bafc04d95fef72c8c5fb939ebede87675c83e9b3500ed172f2910ead745b2dab"
+    },
+    {
+      "event_id": 2,
+      "path": "event_files/event_0002.csv",
+      "sha256": "6e5e77cacc331490eba71c53abbba8bc93e0cc77cba51fd56d0a4af9ca236bec"
+    }
+  ],
+  "schema_version": "1.0"
+}

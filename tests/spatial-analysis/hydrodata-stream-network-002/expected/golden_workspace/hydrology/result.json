@@ -1,0 +1,82 @@
+{
+  "artifacts": {
+    "d8_pointer": {
+      "path": "d8_pointer.tif",
+      "sha256": "7e57832a855d9dfec1ea92b46351cbb5d54ce2144e9ab6c1f3a56fa30635baa4"
+    },
+    "filled_dem": {
+      "path": "dem_filled.tif",
+      "sha256": "2d345b48221fbfac53926b84d2dd87529d007b898f59e51376b88a22060cd10f"
+    },
+    "flow_accumulation": {
+      "path": "flow_accumulation_cells.tif",
+      "sha256": "b39dc7bbf3e9448b16c91615e0cc9a0f933a219d102538805891ec8551e041fb"
+    },
+    "stream_links": {
+      "path": "stream_links.tif",
+      "sha256": "8f87796f1de3cc0606eb01b9e4ef5598882261f18d3382702b6329631fbc8415"
+    },
+    "stream_order": {
+      "path": "strahler_order.tif",
+      "sha256": "810850de99306b085b9bf637359508c3d0c5480542ec4a18b2e19f1f0a9e8766"
+    },
+    "streams": {
+      "path": "streams.tif",
+      "sha256": "b33f5f7d36f97db024e2e2532c26fc24b53e39df87e8f23ce4419da981b54c1b"
+    },
+    "streams_vector": {
+      "path": "streams.gpkg",
+      "sha256": "d317d0912fb218cd0538d35626c2fdeeb42856aa8ff8aa47231849bcabb4a67a"
+    },
+    "subbasins": {
+      "path": "subbasins.tif",
+      "sha256": "33387d034863d5914489b7d8c8a536765b35674f59231b988b707a4bfafd3047"
+    }
+  },
+  "checks": [
+    {
+      "check": "metric_grid",
+      "details": "cell_area_m2=800",
+      "status": "PASS"
+    },
+    {
+      "check": "threshold_conversion",
+      "details": "threshold_cells=4",
+      "status": "PASS"
+    },
+    {
+      "check": "same_grid",
+      "details": "all core rasters aligned",
+      "status": "PASS"
+    },
+    {
+      "check": "nonempty_stream_network",
+      "details": "stream_cells=674; reaches=127",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "analysis_dem": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-stream-network-002\\data\\analysis_dem.tif",
+      "sha256": "960b46fdff26744f7836aadf2d23b7afbe2a2ce05b99c3da850e1c3ef28836ae"
+    }
+  },
+  "message": "Unburned D8 stream network extracted",
+  "parameters": {
+    "cell_area_m2": 800.0,
+    "d8_encoding": "whitebox-default-non-esri",
+    "stream_init_area_km2": 0.0031,
+    "threshold_cells": 4
+  },
+  "provenance": {
+    "geopandas": "1.1.1",
+    "python": "3.13.9",
+    "rasterio": "1.4.3",
+    "whitebox_python": "2.3.6",
+    "whitebox_tools": "WhiteboxTools v2.4.0 (c) Dr. John Lindsay 2017-2023"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/extract-dem-stream-network",
+  "status": "success",
+  "warnings": []
+}

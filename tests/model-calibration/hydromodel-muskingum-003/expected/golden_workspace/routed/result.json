@@ -1,0 +1,25 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列存在缺测: mainstem_q；缺测必须由上游显式修复后重跑",
+      "name": "no_missing_inflow",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "科学 QC 失败，未生成演进结果",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/route-muskingum-channel",
+  "status": "error",
+  "warnings": []
+}

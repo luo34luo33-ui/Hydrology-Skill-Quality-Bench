@@ -1,0 +1,5 @@
+sub_id,reach_id,upstream_count,upstream_reach_ids,downstream_sub_id,downstream_reach_id,topo_level,is_headwater,is_outlet
+1,1,0,,3,3,1,1,0
+2,2,0,,3,3,1,1,0
+3,3,2,1;2,0,0,2,0,1
+4,4,0,,0,0,1,1,1

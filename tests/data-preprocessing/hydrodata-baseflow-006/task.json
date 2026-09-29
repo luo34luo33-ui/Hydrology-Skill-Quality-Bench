@@ -1,0 +1,83 @@
+{
+  "data_description": "A monotonically rising series with no valid recession pairs.",
+  "data_files": [
+    "prepared/result.json",
+    "prepared/discharge_timeseries.csv",
+    "prepared/series_metadata.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "components/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "skill",
+        "status",
+        "message",
+        "artifacts"
+      ],
+      "target": "components/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/components/result.json",
+      "target": "components/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "components/flow_components.csv",
+        "components/flow_components.parquet",
+        "components/flow_components.xlsx",
+        "components/baseflow_metadata.json"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydrodata-baseflow-006",
+  "primary_skill": "data-processing/separate-baseflow-eckhardt",
+  "prompt": "Use prepared/result.json as the verified upstream result. The confirmed Eckhardt parameters are BFImax=0.80 and automatic alpha estimation. Write CSV outputs under components/. Do not use a fallback alpha when recession evidence is insufficient.",
+  "required_outputs": [
+    "components/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The prepared/ directory is a complete, hash-verifiable prepare-discharge-timeseries result. Do not rerun the upstream skill.",
+    "Write native separate-baseflow-eckhardt outputs under components/ and do not substitute another baseflow method."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject automatic alpha estimation with insufficient recession evidence"
+}

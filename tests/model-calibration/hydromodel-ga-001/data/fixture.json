@@ -1,0 +1,13 @@
+{
+  "calibration_target": {
+    "x": 0.35
+  },
+  "direction": "maximize",
+  "fail_on_calls": [],
+  "validation_target": {
+    "x": 0.35
+  },
+  "weights": {
+    "x": 1.0
+  }
+}

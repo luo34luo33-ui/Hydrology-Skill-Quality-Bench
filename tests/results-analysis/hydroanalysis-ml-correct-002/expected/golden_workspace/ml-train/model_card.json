@@ -1,0 +1,33 @@
+{
+  "backend": "ridge",
+  "backend_version": "1.9.1",
+  "base_column": "Q_total",
+  "feature_columns": [
+    "P",
+    "Qt"
+  ],
+  "hyperparameters": {
+    "alpha": 1.0
+  },
+  "lag_spec": [
+    {
+      "column": "Qt",
+      "steps": [
+        1
+      ]
+    }
+  ],
+  "observed_column": "Q_obs",
+  "output_column": "corrected",
+  "random_state": 20260928,
+  "residual_definition": "observed - base",
+  "skill": "post-processing/correct-residual-with-ml",
+  "split": "chronological",
+  "test_r2": 0.1347517931435287,
+  "test_rmse": 2.7102122791089114,
+  "test_rows": 30,
+  "test_size": 0.25,
+  "train_r2": 0.273801383847885,
+  "train_rmse": 2.717066128653291,
+  "train_rows": 89
+}

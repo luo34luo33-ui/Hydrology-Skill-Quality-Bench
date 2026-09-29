@@ -1,0 +1,15 @@
+{
+  "algorithm": "ga",
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "GA 种群、代数、锦标赛或精英参数非法",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-ga",
+  "status": "error",
+  "warnings": []
+}

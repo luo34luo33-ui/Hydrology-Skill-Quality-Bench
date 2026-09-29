@@ -1,0 +1,19 @@
+{
+  "additional_column_semantics": "unconfirmed",
+  "additional_columns": [
+    "quality_code"
+  ],
+  "end_time": "2024-02-12T00:00:00",
+  "flow_column": "flow_l_s",
+  "row_count": 12,
+  "schema_version": "1.0",
+  "source_flow_unit": "L/s",
+  "source_format": "xlsx",
+  "standard_flow_unit": "m3/s",
+  "start_time": "2024-02-01T00:00:00",
+  "time_column": "serial_date",
+  "time_regularity": 1.0,
+  "timestep_seconds": 86400.0,
+  "timezone": "naive",
+  "unit_scale": 0.001
+}

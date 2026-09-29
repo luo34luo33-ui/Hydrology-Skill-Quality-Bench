@@ -1,0 +1,3 @@
+event_id,warmup_start_time,start_time,peak_time,end_time,warmup_start_idx,start_idx,peak_idx,end_idx,start_flow_m3_s,peak_flow_m3_s,end_flow_m3_s,duration_hours,rise_time_hours,recession_time_hours,total_volume_m3,quickflow_volume_m3,baseflow_volume_m3,quickflow_fraction,n_local_peaks
+1,2024-04-01 00:00:00+00:00,2024-04-01 03:00:00+00:00,2024-04-01 06:00:00+00:00,2024-04-01 09:00:00+00:00,0,3,6,9,1,15,1,6,3,3,172800,151200,21600,0.875000000000001,1
+2,2024-04-01 12:00:00+00:00,2024-04-01 15:00:00+00:00,2024-04-01 18:00:00+00:00,2024-04-01 21:00:00+00:00,12,15,18,21,1,13,1,6,3,3,151200,129600,21600,0.857142857142857,1

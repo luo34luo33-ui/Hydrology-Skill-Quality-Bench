@@ -1,0 +1,20 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "scientific_qc",
+      "details": "event 1 volume balance failed",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "event 1 volume balance failed",
+  "parameters": {},
+  "provenance": {
+    "generator": "HSQB deterministic oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/extract-flood-events",
+  "status": "error",
+  "warnings": []
+}

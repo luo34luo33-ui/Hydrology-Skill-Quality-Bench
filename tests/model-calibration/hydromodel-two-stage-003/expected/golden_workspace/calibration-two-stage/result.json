@@ -1,0 +1,15 @@
+{
+  "algorithm": "stage",
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "两阶段评估预算之和不得超过 max_evaluations",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-two-stage",
+  "status": "error",
+  "warnings": []
+}

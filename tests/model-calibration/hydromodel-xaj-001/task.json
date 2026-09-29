@@ -1,0 +1,140 @@
+{
+  "data_description": "A deterministic continuous lumped Xinanjiang problem with a complete 21-parameter set and an hourly forcing table.",
+  "data_files": [
+    "forcing.csv",
+    "parameters.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "xaj-run/lumped_xaj_runoff.csv": [
+          "time",
+          "is_warmup",
+          "P",
+          "E0",
+          "P_perv",
+          "P_im",
+          "WU",
+          "WL",
+          "WD",
+          "EP",
+          "EU",
+          "EL",
+          "ED",
+          "E",
+          "PE",
+          "W",
+          "R",
+          "FR",
+          "S1",
+          "RS",
+          "RI",
+          "RG",
+          "QS",
+          "QI",
+          "QG",
+          "QT",
+          "Qt",
+          "R_im"
+        ],
+        "xaj-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "xaj-run/lumped_xaj_runoff.csv",
+        "xaj-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "simulation_table",
+      "reference": "expected/golden_workspace/xaj-run/lumped_xaj_runoff.csv",
+      "rtol": 1e-09,
+      "target": "xaj-run/lumped_xaj_runoff.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/xaj-run/result.json",
+      "target": "xaj-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/xaj-run/result.json",
+      "target": "xaj-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/xaj-run/result.json",
+      "target": "xaj-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/xaj-run/result.json",
+      "target": "xaj-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/xaj-run/result.json",
+      "target": "xaj-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "simulation_table"
+      ],
+      "target": "xaj-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-xaj-001",
+  "primary_skill": "hydrological-modeling/run-lumped-xaj-model",
+  "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-xaj-model. The forcing table is hourly; P and E0 are instantaneous rates in mm/h on a gap-free axis; the two zero-E0 hours are confirmed and intentional. The 21-parameter set is confirmed; area is 640 km2, timestep is 1 h, mode is continuous, and warm-up is 12 steps. Write the native outputs (lumped_xaj_runoff.csv, result.json) under xaj-run/. Do not modify parameters, fill missing values, change the warm-up, or substitute another model implementation.",
+  "required_outputs": [
+    "xaj-run/lumped_xaj_runoff.csv",
+    "xaj-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The parameter set, area, timestep, mode, and warm-up are confirmed by the user and must not be altered.",
+    "P and E0 are instantaneous rates in mm/h; discharge outputs are in m3/s.",
+    "Do not install software or implement a replacement Xinanjiang model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Run a continuous lumped Xinanjiang simulation with warm-up"
+}

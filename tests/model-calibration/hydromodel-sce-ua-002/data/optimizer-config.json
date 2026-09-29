@@ -1,0 +1,15 @@
+{
+  "algorithm": "sce-ua",
+  "complex_count": 2,
+  "contraction_coefficient": 0.5,
+  "evolution_steps": 2,
+  "max_evaluations": 8,
+  "max_failed_evaluations": 2,
+  "max_loops": 2,
+  "objective_tolerance": 1e-12,
+  "points_per_complex": 3,
+  "reflection_coefficient": 1.0,
+  "schema_version": "1.0",
+  "seed": 42,
+  "stall_loops": 3
+}

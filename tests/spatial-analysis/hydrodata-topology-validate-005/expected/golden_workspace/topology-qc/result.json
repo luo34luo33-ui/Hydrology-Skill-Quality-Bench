@@ -1,0 +1,114 @@
+{
+  "artifacts": {
+    "topology_checks": {
+      "path": "topology_checks.csv",
+      "sha256": "d3a9fad10978b3a6ce702cbfd260f52c001100b810328feaad5f1d2c7bd244a9"
+    },
+    "topology_figure": {
+      "path": "network_topology_check.png",
+      "sha256": "02d21582b5b6208dad3b81ef6fb4c0e6fddc92aea0296dfcdd237fc1f6875aab"
+    },
+    "topology_report": {
+      "path": "topology_check_report.txt",
+      "sha256": "587bdb9c7e0948ae95a4a6d93623b6e72c0f17cb2a3600843980e0c48f9dbe38"
+    }
+  },
+  "checks": [
+    {
+      "check": "unique_reach_id",
+      "details": "1",
+      "status": "FAIL"
+    },
+    {
+      "check": "topology_table_consistency",
+      "details": "missing_columns=[]; content_or_order_differs=true",
+      "status": "FAIL"
+    },
+    {
+      "check": "downstream_references",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "self_loop",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "reach_cycle",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "upstream_downstream_reciprocity",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "topological_levels",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "expected_outlets",
+      "details": "expected=1; actual=[4]",
+      "status": "PASS"
+    },
+    {
+      "check": "subbasin_mapping",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "positive_reach_length",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "reach_geometry",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "artifact_grid_and_crs",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "reach_count_matches_links",
+      "details": "table=4; raster=4",
+      "status": "PASS"
+    },
+    {
+      "check": "subbasin_area_consistency",
+      "details": "",
+      "status": "PASS"
+    },
+    {
+      "check": "negative_elevation_steps",
+      "details": "count=0",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "build_result": {
+      "path": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-topology-validate-005\\data\\hydrobase\\result.json",
+      "sha256": "b97d4c7c179f76550a587dda8f0bf9d887722c81ee813adefd521de7f458484f"
+    }
+  },
+  "message": "Topology validation completed: FAIL=2, WARN=0",
+  "parameters": {
+    "expected_outlets": 1
+  },
+  "provenance": {
+    "geopandas": "1.1.1",
+    "matplotlib": "3.10.6",
+    "pandas": "2.3.3",
+    "python": "3.13.9",
+    "rasterio": "1.4.3"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/validate-hydrological-topology",
+  "status": "error",
+  "warnings": []
+}

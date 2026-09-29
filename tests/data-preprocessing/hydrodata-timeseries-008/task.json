@@ -1,0 +1,82 @@
+{
+  "data_description": "Mostly hourly discharge with one shifted timestamp producing 90- and 30-minute steps.",
+  "data_files": [
+    "irregular_time.csv"
+  ],
+  "difficulty": "intermediate",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "prepared/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "skill",
+        "status",
+        "message",
+        "artifacts",
+        "warnings"
+      ],
+      "target": "prepared/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/prepared/result.json",
+      "target": "prepared/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "prepared/discharge_timeseries.csv",
+        "prepared/discharge_timeseries.parquet",
+        "prepared/discharge_timeseries.xlsx",
+        "prepared/series_metadata.json"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydrodata-timeseries-008",
+  "primary_skill": "data-processing/prepare-discharge-timeseries",
+  "prompt": "Inspect irregular_time.csv using timestamp as the confirmed instantaneous time column and flow as discharge confirmed in m3/s with timezone UTC. Do not resample, interpolate timestamps, or split the series. Write the native error result to prepared/result.json and do not create a standardized time series or metadata when the contract rejects the input.",
+  "required_outputs": [
+    "prepared/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, SciPy, openpyxl, and xlsxwriter are available.",
+    "Write all outputs under prepared/. Always preserve the native prepare-discharge-timeseries result.json, including for rejected inputs."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject an irregular discharge time axis"
+}

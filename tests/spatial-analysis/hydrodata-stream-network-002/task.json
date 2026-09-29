@@ -1,0 +1,158 @@
+{
+  "data_description": "Extract DEM stream network case 2",
+  "data_files": [
+    "analysis_dem.tif"
+  ],
+  "difficulty": "advanced",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "artifacts",
+      "targets": [
+        "hydrology/dem_filled.tif",
+        "hydrology/d8_pointer.tif",
+        "hydrology/flow_accumulation_cells.tif",
+        "hydrology/streams.tif",
+        "hydrology/stream_links.tif",
+        "hydrology/strahler_order.tif",
+        "hydrology/subbasins.tif",
+        "hydrology/streams.gpkg",
+        "hydrology/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-05,
+      "categorical": false,
+      "name": "raster_0",
+      "reference": "expected/golden_workspace/hydrology/dem_filled.tif",
+      "rtol": 1e-06,
+      "target": "hydrology/dem_filled.tif",
+      "type": "raster_match",
+      "weight": 0.07
+    },
+    {
+      "atol": 1e-05,
+      "categorical": true,
+      "name": "raster_1",
+      "reference": "expected/golden_workspace/hydrology/d8_pointer.tif",
+      "rtol": 1e-06,
+      "target": "hydrology/d8_pointer.tif",
+      "type": "raster_match",
+      "weight": 0.07
+    },
+    {
+      "atol": 1e-05,
+      "categorical": false,
+      "name": "raster_2",
+      "reference": "expected/golden_workspace/hydrology/flow_accumulation_cells.tif",
+      "rtol": 1e-06,
+      "target": "hydrology/flow_accumulation_cells.tif",
+      "type": "raster_match",
+      "weight": 0.07
+    },
+    {
+      "atol": 1e-05,
+      "categorical": true,
+      "name": "raster_3",
+      "reference": "expected/golden_workspace/hydrology/streams.tif",
+      "rtol": 1e-06,
+      "target": "hydrology/streams.tif",
+      "type": "raster_match",
+      "weight": 0.07
+    },
+    {
+      "atol": 1e-05,
+      "categorical": true,
+      "name": "raster_4",
+      "reference": "expected/golden_workspace/hydrology/stream_links.tif",
+      "rtol": 1e-06,
+      "target": "hydrology/stream_links.tif",
+      "type": "raster_match",
+      "weight": 0.07
+    },
+    {
+      "atol": 1e-05,
+      "categorical": true,
+      "name": "raster_5",
+      "reference": "expected/golden_workspace/hydrology/strahler_order.tif",
+      "rtol": 1e-06,
+      "target": "hydrology/strahler_order.tif",
+      "type": "raster_match",
+      "weight": 0.07
+    },
+    {
+      "atol": 1e-05,
+      "categorical": true,
+      "name": "raster_6",
+      "reference": "expected/golden_workspace/hydrology/subbasins.tif",
+      "rtol": 1e-06,
+      "target": "hydrology/subbasins.tif",
+      "type": "raster_match",
+      "weight": 0.07
+    },
+    {
+      "geometry_tolerance": 1e-05,
+      "layer": "streams",
+      "name": "streams_vector",
+      "reference": "expected/golden_workspace/hydrology/streams.gpkg",
+      "target": "hydrology/streams.gpkg",
+      "type": "vector_match",
+      "weight": 0.06
+    },
+    {
+      "field": "status",
+      "name": "status",
+      "reference": "expected/golden_workspace/hydrology/result.json",
+      "target": "hydrology/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "parameters",
+      "name": "parameters",
+      "reference": "expected/golden_workspace/hydrology/result.json",
+      "target": "hydrology/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "artifact_integrity",
+      "required_keys": [
+        "filled_dem",
+        "d8_pointer",
+        "flow_accumulation",
+        "streams",
+        "stream_links",
+        "stream_order",
+        "subbasins",
+        "streams_vector"
+      ],
+      "target": "hydrology/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydrodata-stream-network-002",
+  "primary_skill": "spatial-analysis/extract-dem-stream-network",
+  "prompt": "Extract the network from analysis_dem.tif with the confirmed stream initiation area 0.0031 km2. Write outputs under hydrology/. Do not change the threshold or D8 encoding. If validation rejects the input, preserve result.json but remove partial declared artifacts.",
+  "required_outputs": [
+    "hydrology/dem_filled.tif",
+    "hydrology/d8_pointer.tif",
+    "hydrology/flow_accumulation_cells.tif",
+    "hydrology/streams.tif",
+    "hydrology/stream_links.tif",
+    "hydrology/strahler_order.tif",
+    "hydrology/subbasins.tif",
+    "hydrology/streams.gpkg",
+    "hydrology/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "Python, NumPy, pandas, rasterio, GeoPandas, Shapely, matplotlib, Pillow, and WhiteboxTools are available.",
+    "Use only the explicitly confirmed spatial parameters and preserve the native skill result.json."
+  ],
+  "timeout_seconds": 600,
+  "title": "Extract DEM stream network case 2"
+}

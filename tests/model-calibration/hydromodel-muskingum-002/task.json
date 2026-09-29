@@ -1,0 +1,128 @@
+{
+  "data_description": "A deterministic hourly Muskingum routing problem with a confirmed route specification and gap-free (or explicitly broken) inflow table.",
+  "data_files": [
+    "inflow.csv",
+    "route_spec.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "routed/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ],
+        "routed/route_coefficients.json": [
+          "unstable_cascade"
+        ],
+        "routed/routed_flow.csv": [
+          "time",
+          "routed_unstable_cascade",
+          "Q_total"
+        ]
+      },
+      "targets": [
+        "routed/routed_flow.csv",
+        "routed/route_coefficients.json",
+        "routed/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "routed_flow",
+      "reference": "expected/golden_workspace/routed/routed_flow.csv",
+      "rtol": 1e-09,
+      "target": "routed/routed_flow.csv",
+      "type": "table_match",
+      "weight": 0.25
+    },
+    {
+      "name": "route_coefficients",
+      "reference": "expected/golden_workspace/routed/route_coefficients.json",
+      "target": "routed/route_coefficients.json",
+      "type": "exact_match",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/routed/result.json",
+      "target": "routed/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "routed_table",
+        "route_coefficients"
+      ],
+      "target": "routed/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydromodel-muskingum-002",
+  "primary_skill": "hydrological-modeling/route-muskingum-channel",
+  "prompt": "Use inflow.csv and route_spec.json exactly as supplied to run hydrological-modeling/route-muskingum-channel. The route spec deliberately declares a cascaded configuration (X=0, reaches=4) provided by the user; run it verbatim with --timestep-hours 1 and write the native outputs (routed_flow.csv, route_coefficients.json, result.json) under routed/. The negative equivalent X of this cascade is a confirmed user decision: keep it unclipped, keep every clipped negative outflow value clipped to zero as the script does, and report the native warnings in result.json. Do not 'fix' the configuration, raise X, reduce reaches, or suppress the warnings.",
+  "required_outputs": [
+    "routed/routed_flow.csv",
+    "routed/route_coefficients.json",
+    "routed/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The route specification is confirmed by the user and must not be altered.",
+    "All inflow values are instantaneous discharge in m3/s on a regular hourly axis.",
+    "Do not install software or implement a replacement routing routine."
+  ],
+  "timeout_seconds": 300,
+  "title": "Preserve the negative equivalent X of an unstable cascaded Muskingum configuration"
+}

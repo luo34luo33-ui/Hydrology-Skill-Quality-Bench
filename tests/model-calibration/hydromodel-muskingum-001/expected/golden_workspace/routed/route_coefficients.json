@@ -1,0 +1,34 @@
+{
+  "mainstem": {
+    "c0": 0.0,
+    "c1": 0.5,
+    "c2": 0.5,
+    "coefficients_clipped": false,
+    "column": "mainstem_q",
+    "k": 2.0,
+    "layout": "single",
+    "negative_before_clip": 0,
+    "output_level": "final",
+    "q0": 50.1544363309,
+    "q0_source": "first-inflow",
+    "reaches": 1,
+    "x": 0.25,
+    "x_used": 0.25
+  },
+  "tributary": {
+    "c0": 0.3103448275862069,
+    "c1": 0.37931034482758613,
+    "c2": 0.310344827586207,
+    "coefficients_clipped": false,
+    "column": "tributary_q",
+    "k": 1.0,
+    "layout": "cascade",
+    "negative_before_clip": 0,
+    "output_level": "final",
+    "q0": 20.0000002449,
+    "q0_source": "first-inflow",
+    "reaches": 3,
+    "x": 0.35,
+    "x_used": 0.04999999999999993
+  }
+}

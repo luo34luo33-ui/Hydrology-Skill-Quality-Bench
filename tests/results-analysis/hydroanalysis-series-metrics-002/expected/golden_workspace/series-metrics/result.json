@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "series_metrics": {
+      "path": "series_metrics.csv",
+      "sha256": "2def368275e48632cee59598ac03d81e36645e527c362baf55acc674fd636c9c"
+    }
+  },
+  "checks": [
+    {
+      "message": "观测与模拟均为 96 行",
+      "name": "series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测序列方差为 0，nse 不适用",
+      "name": "variance_available",
+      "status": "WARN"
+    },
+    {
+      "message": "已计算 6 项指标",
+      "name": "metrics_recorded",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "series": {
+      "path": "series.csv",
+      "sha256": "7749db98c34a9262542a477754aa0cdacaa0c09de0562460a0746f0223db3d79"
+    }
+  },
+  "message": "连续序列指标计算完成：96 行，6 项指标",
+  "parameters": {
+    "metrics": [
+      "nse",
+      "rmse",
+      "mae",
+      "r2",
+      "volume_bias",
+      "relative_volume_bias"
+    ],
+    "observed_column": "Q_obs",
+    "simulated_column": "Q_total",
+    "time_column": "time",
+    "timestep_hours": 1.0,
+    "volume_unit": "m3"
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-continuous-series-metrics",
+  "status": "warning",
+  "warnings": [
+    "观测序列方差为 0，nse 记为 unavailable；r2 按 scikit-learn 约定给出边界值"
+  ]
+}

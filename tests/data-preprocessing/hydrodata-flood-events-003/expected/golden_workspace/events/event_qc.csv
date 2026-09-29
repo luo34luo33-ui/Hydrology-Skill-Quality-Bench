@@ -1,0 +1,9 @@
+check,status,details
+event_identity_and_order,PASS,events=1; stable chronological IDs
+event_boundaries,PASS,"boundaries, times and peaks are consistent"
+configured_filters,PASS,all retained events satisfy explicit filters
+volume_balance,PASS,total = baseflow + quickflow within tolerance
+table_consistency,PASS,"summary=1, process=10, series=52"
+warmup_exclusion,PASS,warm-up rows are flagged and excluded from event metrics
+per_event_file_count,PASS,expected=1; actual=1
+event_count,PASS,events=1

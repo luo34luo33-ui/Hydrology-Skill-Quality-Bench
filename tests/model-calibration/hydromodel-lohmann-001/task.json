@@ -1,0 +1,134 @@
+{
+  "data_description": "A deterministic daily Lohmann routing problem with two confirmed discharge components and routing parameters.",
+  "data_files": [
+    "inflow.csv",
+    "route_params.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "lohmann-run/lohmann_unit_hydrographs.json": [
+          "parameters",
+          "flowlen_m",
+          "uh_river_days",
+          "uh_direct_steps",
+          "uh_base_steps",
+          "uh_hru_direct_days"
+        ],
+        "lohmann-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ],
+        "lohmann-run/routed_lohmann.csv": [
+          "time",
+          "routed_direct",
+          "routed_base",
+          "Q_total"
+        ]
+      },
+      "targets": [
+        "lohmann-run/routed_lohmann.csv",
+        "lohmann-run/lohmann_unit_hydrographs.json",
+        "lohmann-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "datetime_columns": [
+        "time"
+      ],
+      "name": "routed_flow",
+      "reference": "expected/golden_workspace/lohmann-run/routed_lohmann.csv",
+      "rtol": 1e-09,
+      "target": "lohmann-run/routed_lohmann.csv",
+      "type": "table_match",
+      "weight": 0.25
+    },
+    {
+      "name": "unit_hydrographs",
+      "reference": "expected/golden_workspace/lohmann-run/lohmann_unit_hydrographs.json",
+      "target": "lohmann-run/lohmann_unit_hydrographs.json",
+      "type": "exact_match",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/lohmann-run/result.json",
+      "target": "lohmann-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "routed_table",
+        "unit_hydrographs"
+      ],
+      "target": "lohmann-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydromodel-lohmann-001",
+  "primary_skill": "hydrological-modeling/route-lohmann-channel",
+  "prompt": "Use inflow.csv and route_params.json exactly as supplied to run hydrological-modeling/route-lohmann-channel. The inflow table is daily with two discharge components in the direct and base columns (pass --direct-column direct and --base-column base); the flow length is 100000 m and the timestep is 24 h. Write the native outputs (routed_lohmann.csv, lohmann_unit_hydrographs.json, result.json) under lohmann-run/. Do not modify the routing parameters, rescale the components, or substitute another routing method.",
+  "required_outputs": [
+    "lohmann-run/routed_lohmann.csv",
+    "lohmann-run/lohmann_unit_hydrographs.json",
+    "lohmann-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The routing parameters, flow length, timestep, and component columns are confirmed by the user and must not be altered.",
+    "Component values pass through the routing in their input units; no area conversion is applied.",
+    "Do not install software or implement a replacement routing routine."
+  ],
+  "timeout_seconds": 300,
+  "title": "Route two discharge components through a Lohmann channel"
+}

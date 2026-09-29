@@ -1,0 +1,41 @@
+# Generated results / benchmark outputs
+results/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+.env.*
+*.local
+
+# IDE / editors
+.idea/
+.vscode/
+.codebuddy/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+

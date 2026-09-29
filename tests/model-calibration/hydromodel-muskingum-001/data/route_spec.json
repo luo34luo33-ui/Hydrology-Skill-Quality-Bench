@@ -1,0 +1,21 @@
+{
+  "routes": [
+    {
+      "column": "mainstem_q",
+      "id": "mainstem",
+      "k": 2.0,
+      "layout": "single",
+      "x": 0.25
+    },
+    {
+      "column": "tributary_q",
+      "id": "tributary",
+      "k": 1.0,
+      "layout": "cascade",
+      "output_level": "final",
+      "reaches": 3,
+      "x": 0.35
+    }
+  ],
+  "schema_version": "1.0"
+}

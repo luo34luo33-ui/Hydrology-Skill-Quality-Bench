@@ -1,0 +1,22 @@
+{
+  "algorithm": "two-stage",
+  "parameters": {
+    "x": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": -2.0,
+      "relative_position": 0.5872725926708192,
+      "upper": 2.0,
+      "value": 0.34909037068327675
+    },
+    "y": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": 10.0,
+      "relative_position": 0.6954320921964865,
+      "upper": 30.0,
+      "value": 23.90864184392973
+    }
+  },
+  "schema_version": "1.0"
+}

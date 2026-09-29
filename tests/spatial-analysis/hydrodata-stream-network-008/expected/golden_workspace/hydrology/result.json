@@ -1,0 +1,20 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "河网起始汇水面积必须是大于零的有限数。",
+  "parameters": {
+    "analysis_dem": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-stream-network-008\\data\\analysis_dem.tif",
+    "output_dir": "E:\\Hydrology-Skill-Quality-Bench\\tests\\spatial-analysis\\hydrodata-stream-network-008\\expected\\golden_workspace\\hydrology",
+    "overwrite": false,
+    "stream_init_area_km2": 0.0,
+    "whitebox_dir": null
+  },
+  "provenance": {
+    "python": "3.13.9"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/extract-dem-stream-network",
+  "status": "error",
+  "warnings": []
+}
