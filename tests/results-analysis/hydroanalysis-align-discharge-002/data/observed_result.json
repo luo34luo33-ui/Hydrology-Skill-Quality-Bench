@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "discharge_timeseries": {
+      "path": "observed.csv",
+      "sha256": "5fc6ac6cc8cf78fad96c2644c40eca9b80a599601414787cbbf74894256acb09"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_upstream",
+      "details": "deterministic benchmark fixture",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-discharge-timeseries",
+  "status": "success"
+}

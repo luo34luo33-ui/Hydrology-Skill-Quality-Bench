@@ -1,0 +1,11 @@
+{
+  "parameters": {
+    "duplicate_policy": "error",
+    "edge_missing": "error",
+    "flow_column": "GZ_in",
+    "flow_unit": "m3/s",
+    "missing_policy": "error",
+    "time_column": "time",
+    "timezone": "Asia/Shanghai"
+  }
+}

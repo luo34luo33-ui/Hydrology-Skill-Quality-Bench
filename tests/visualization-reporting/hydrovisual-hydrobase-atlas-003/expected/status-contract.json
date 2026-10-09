@@ -1,0 +1,11 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "error_reason_contains": "scientific QC failed; rendered failure dashboard only",
+      "skill": "visualization-reporting/visualize-hydrobase-atlas",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

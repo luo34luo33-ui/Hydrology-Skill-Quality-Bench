@@ -1,0 +1,50 @@
+{
+  "adapter": {
+    "path": "synthetic_adapter.py",
+    "sha256": "6614e191efbdb136378c12146694f96011e70a8730510caa7c8a8f69d327fac0"
+  },
+  "data_shape": "continuous",
+  "inputs": [
+    {
+      "id": "fixture",
+      "path": "input.json",
+      "sha256": "b3d8871f42d535d3da2ee2342883c4e5f0bfc548752f5f58cddc06ab743ebdd6"
+    }
+  ],
+  "objective": {
+    "direction": "maximize",
+    "metric": "score"
+  },
+  "objective_consistency_tolerance": 1e-12,
+  "parameters": [
+    {
+      "lower": 0.0,
+      "name": "x",
+      "upper": 1.0
+    },
+    {
+      "lower": 0.0,
+      "name": "y",
+      "upper": 1.0
+    }
+  ],
+  "schema_version": "1.0",
+  "splits": {
+    "calibration": "calibration",
+    "validation": "validation"
+  },
+  "variables": {
+    "observed": {
+      "semantics": "observed flow",
+      "units": "m3/s"
+    },
+    "simulated": {
+      "semantics": "simulated flow",
+      "units": "m3/s"
+    }
+  },
+  "warmup": {
+    "confirmed": true,
+    "semantics": "first two rows are unscored"
+  }
+}

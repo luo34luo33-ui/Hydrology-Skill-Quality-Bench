@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_dhf_runoff.csv",
+      "sha256": "ff3a70bf9f40326ff22f08552d8c76760221f1c8859da213bd7fdc4cc7d06de6"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 732 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "全部参数落在源工程率定范围内",
+      "name": "continuous:parameter_range",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "蓄水状态在容量范围内",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "数值裁剪 116 次",
+      "name": "continuous:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "水量平衡残差占降雨 0.958%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "../forcing.csv",
+      "sha256": "8d92f28cad738642869f79fe16a16fb3640fb1ffb6f1d8189e09d2963f9f54aa"
+    },
+    "param_scale": "original",
+    "params": {
+      "path": "../params.json",
+      "sha256": "3071ce7644075749fdfc64a2dcea8f91ff97d53146936aa65203ff4b863cd25b"
+    }
+  },
+  "message": "集总式 DHF 前向模拟完成：1 场（或段），744 行",
+  "parameters": {
+    "area_km2": 564.4784427125312,
+    "balance_tolerance_fraction": 0.01,
+    "carry_columns": [],
+    "initial_states": null,
+    "mode": "continuous",
+    "parameter_set": {
+      "A": 0.5,
+      "B": 1.5,
+      "B0": 1.0,
+      "CC": 2.0,
+      "CCL": 2.0,
+      "COE": 0.4,
+      "D0": 100.0,
+      "DD": 1.2,
+      "DDL": 1.0,
+      "G": 0.1,
+      "K0": 0.3,
+      "K2": 0.4,
+      "KA": 0.7,
+      "KC": 0.8,
+      "KW": 0.5,
+      "N": 3,
+      "S0": 50.0,
+      "U0": 90.0
+    },
+    "river_length_km": 40.0,
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-dhf-model",
+  "status": "warning",
+  "warnings": [
+    "continuous 发生 116 次数值裁剪（状态钳制、负值截断或 NaN 置零），说明参数或 forcing 使公式越过定义域，请检查蓄水容量与降雨量级"
+  ]
+}

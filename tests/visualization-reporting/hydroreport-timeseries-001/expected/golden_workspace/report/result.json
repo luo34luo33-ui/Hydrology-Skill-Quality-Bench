@@ -1,0 +1,87 @@
+{
+  "artifacts": {
+    "analysis-tables.json": {
+      "path": "analysis-tables.json",
+      "sha256": "a39e184fb41a93ee58fee97c48fb102931514f1f64ff331048385db35ac1c30c"
+    },
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "42b99c315fd0689f19a4be383ff5f2c1277780cd29e91313f019be4f66790459"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "ed371e98586a9ad630a0eb78eefacc12374426b3ba50ef990749e3d446b6e6b4"
+    },
+    "events.csv": {
+      "path": "events.csv",
+      "sha256": "d40285e69aefc9605b9379a2576ae8f789264088e18f2b99977acd8498ffc990"
+    },
+    "evidence-index.csv": {
+      "path": "evidence-index.csv",
+      "sha256": "609cf9e86169831b57a49826239babfbeefa4eaae916a6e74d6bcd93c8f6349d"
+    },
+    "evidence-index.json": {
+      "path": "evidence-index.json",
+      "sha256": "8994f0fe365b1ea92a4a42983baa093a7bd8b8828ed6d2cb5b5286fc052cc6c5"
+    },
+    "figures/distribution-2.svg": {
+      "path": "figures/distribution-2.svg",
+      "sha256": "66a44f5004c609b276e2d8940098496d2b7c959fb27582cf4ddf2d02f50527f2"
+    },
+    "figures/distribution-3.svg": {
+      "path": "figures/distribution-3.svg",
+      "sha256": "66a44f5004c609b276e2d8940098496d2b7c959fb27582cf4ddf2d02f50527f2"
+    },
+    "figures/distribution-4.svg": {
+      "path": "figures/distribution-4.svg",
+      "sha256": "e5cbe945e5eca84402f6e0b75af03d63622fde4f891b6fafbcb3f806e14802fb"
+    },
+    "figures/distribution-7.svg": {
+      "path": "figures/distribution-7.svg",
+      "sha256": "480ad3e90e88a15237df864af10f7e736f6e5ee0c7b651ff6d9b2b56a7c6895f"
+    },
+    "report.json": {
+      "path": "report.json",
+      "sha256": "694a01ab28397e33ca505787b58fb0c935150f307c1c94bdb26a25d6278169d3"
+    },
+    "report.md": {
+      "path": "report.md",
+      "sha256": "56e5537d82cab4c5ab4a62b123d4afdc1ce7f73bcff2972edd99fddd7a144dfe"
+    },
+    "summary.csv": {
+      "path": "summary.csv",
+      "sha256": "957c92cc16c718f7b185bdb1cfd40bbb988f5853eec51aba6c75fa1c13f9920c"
+    }
+  },
+  "checks": [
+    {
+      "check": "source_integrity",
+      "details": "Declared outputs and results verified",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "events": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vjp7q2le\\events\\result.json",
+      "sha256": "725715134c1d4f15292d8ae97bd53af7ff807f40bc0a1afb65768a76db62a524"
+    },
+    "flow": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vjp7q2le\\flow\\result.json",
+      "sha256": "1c5a8d3da7fba59222fd6a898c9bc1d18ab886ce5ea3589557c9152e0058029d"
+    },
+    "processing_manifest": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vjp7q2le\\manifest.json",
+      "sha256": "38bf66f3508781cd4551a1ea79ca2da3af752a323695a846c77b098f22d0abc1"
+    }
+  },
+  "message": "Data-processing report generated from verified upstream outputs",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-timeseries-data-processing-report",
+  "status": "warning",
+  "warnings": []
+}

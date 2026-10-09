@@ -1,0 +1,46 @@
+{
+  "checks": [
+    "original_sources",
+    "report_values_units_context",
+    "markdown",
+    "tables",
+    "figures",
+    "narrative_bindings"
+  ],
+  "findings": [
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "-0.25",
+      "category": "value",
+      "evidence_location": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-6uye6nun\\eval\\event_metrics.csv#/rows/0/nse",
+      "expected": "-0.5",
+      "needs_human_judgment": false,
+      "report_location": "/evidence/13/value",
+      "severity": "error"
+    },
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "Original facts differ: evidence",
+      "category": "narrative_binding",
+      "evidence_location": "/sections",
+      "expected": "Valid evidence and numeric bindings",
+      "needs_human_judgment": false,
+      "report_location": "/sections",
+      "severity": "error"
+    },
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "not completed",
+      "category": "semantic_review",
+      "evidence_location": "/sections",
+      "expected": "Independent Agent evidence assessment",
+      "needs_human_judgment": true,
+      "report_location": "/sections",
+      "severity": "warning"
+    }
+  ],
+  "package_fingerprint": "177db535385fc02f061842cd930dff8e231dd41cb213b2e7d6fbbbba2daecb40",
+  "schema_version": "1.0",
+  "semantic_review_completed": false,
+  "status": "needs_revision"
+}

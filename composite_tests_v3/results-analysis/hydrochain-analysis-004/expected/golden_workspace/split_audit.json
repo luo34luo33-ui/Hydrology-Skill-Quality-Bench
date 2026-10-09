@@ -1,0 +1,16 @@
+{
+  "overlap_count": 0,
+  "overlap_times": [],
+  "review_pass": true,
+  "sources": {
+    "calibration_scored.csv": {
+      "path": "calibration_scored.csv",
+      "sha256": "6eb9c8c1722e30af19f49ea9d6b6ca80b4df02dcadc256b05780917aaa4c0563"
+    },
+    "validation_scored.csv": {
+      "path": "validation_scored.csv",
+      "sha256": "e03d09d4f462aa37de532e5482b2362eeae7a89717489cfab81f5f5df213fb9d"
+    }
+  },
+  "validation_independent": true
+}

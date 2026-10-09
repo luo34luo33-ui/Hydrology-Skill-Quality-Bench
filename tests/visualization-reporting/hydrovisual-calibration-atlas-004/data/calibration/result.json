@@ -1,0 +1,97 @@
+{
+  "algorithm": "ga",
+  "artifacts": {
+    "best_parameters": {
+      "path": "best_parameters.json",
+      "sha256": "c54dcc952018dadb3af4a7a79b398d3fa7408b7b4f2a5c0798b4ce557335cceb"
+    },
+    "calibration_metrics": {
+      "path": "calibration_metrics.json",
+      "sha256": "1c1410acc5ce54bab9261de078fe99a1f5568fae16eaf88ee01c09495e394f4c"
+    },
+    "calibration_series": {
+      "path": "calibration_series.csv",
+      "sha256": "e8571d2e4e7917d044f2682106906d7b4658118465d38445d9b0ebbe78ddfaf0"
+    },
+    "calibration_trace": {
+      "path": "calibration_trace.csv",
+      "sha256": "3022330d276e377264b2d54b51c4ea5da9905cbc4c086e46903a3922d9e8d902"
+    },
+    "validation_metrics": {
+      "path": "validation_metrics.json",
+      "sha256": "d43ce11405b0a9e33942875c82b59db72fff98edac7da95a1892f47d749c4f2b"
+    },
+    "validation_series": {
+      "path": "validation_series.csv",
+      "sha256": "27c81c3d2e6757d2db8be643ef5f992fc42e86d550e3b27b2fd1f4cd3e7e3cb9"
+    }
+  },
+  "checks": [
+    {
+      "check": "parameter_bounds",
+      "details": "parameters=2",
+      "status": "PASS"
+    },
+    {
+      "check": "split_isolation",
+      "details": "validation evaluated only after parameter lock",
+      "status": "PASS"
+    },
+    {
+      "check": "objective_consistency",
+      "details": "tolerance=1e-12",
+      "status": "PASS"
+    }
+  ],
+  "data_shape": "continuous",
+  "evaluation_count": 40,
+  "failed_evaluation_count": 0,
+  "inputs": {
+    "adapter": {
+      "path": "../synthetic_adapter.py",
+      "sha256": "6614e191efbdb136378c12146694f96011e70a8730510caa7c8a8f69d327fac0"
+    },
+    "optimizer_config": {
+      "path": "../optimizer-config.json",
+      "sha256": "a9352cfa558bcf11960fec9f111db4f9824075fe6fb9808c141a231d1e818879"
+    },
+    "problem": {
+      "path": "../calibration-problem.json",
+      "sha256": "20169170bcace5529fc14136d1e476296732108366d63467a1d7d1f26e409846"
+    }
+  },
+  "message": "ga calibration completed",
+  "objective": {
+    "direction": "maximize",
+    "metric": "score"
+  },
+  "parameters": {
+    "max_evaluations": 100,
+    "optimizer_config": {
+      "algorithm": "ga",
+      "crossover_probability": 0.8,
+      "elite_count": 1,
+      "gene_mutation_probability": 0.5,
+      "max_evaluations": 100,
+      "max_failed_evaluations": 3,
+      "max_generations": 4,
+      "mutation_probability": 0.4,
+      "population_size": 8,
+      "schema_version": "1.0",
+      "seed": 42,
+      "tournament_size": 3
+    },
+    "seed": 42
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "scipy": "1.17.1"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-ga",
+  "status": "success",
+  "termination_reason": "optimizer_completed",
+  "warnings": []
+}

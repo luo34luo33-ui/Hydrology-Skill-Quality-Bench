@@ -1,0 +1,56 @@
+{
+  "checks": [
+    "original_sources",
+    "report_values_units_context",
+    "markdown",
+    "tables",
+    "figures",
+    "narrative_bindings"
+  ],
+  "findings": [
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+      "category": "markdown_sync",
+      "evidence_location": "report.md:13",
+      "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+      "needs_human_judgment": false,
+      "report_location": "report.md:13",
+      "severity": "error"
+    },
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+      "category": "markdown_sync",
+      "evidence_location": "report.md:72",
+      "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+      "needs_human_judgment": false,
+      "report_location": "report.md:72",
+      "severity": "error"
+    },
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+      "category": "markdown_sync",
+      "evidence_location": "report.md:86",
+      "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+      "needs_human_judgment": false,
+      "report_location": "report.md:86",
+      "severity": "error"
+    },
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "Checked the synthetic source value, scope and stated limitations.",
+      "category": "semantic_support",
+      "evidence_location": "/paragraph/overview",
+      "expected": "Evidence supports wording, split, limitations and inference strength",
+      "needs_human_judgment": false,
+      "report_location": "/paragraph/overview",
+      "severity": "error"
+    }
+  ],
+  "package_fingerprint": "734d81d12f8078bf56eb5ab76df07e50b17e71095934a74a3b79ef820e964435",
+  "schema_version": "1.0",
+  "semantic_review_completed": true,
+  "status": "needs_revision"
+}

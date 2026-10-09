@@ -1,0 +1,12 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "skill": "visualization-reporting/visualize-flood-event-atlas",
+      "status": "warning",
+      "warnings": [
+        "Rainfall missing at 236 display steps; only observed rainfall is plotted, without zero filling or interpolation"
+      ]
+    }
+  },
+  "kind": "status"
+}

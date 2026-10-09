@@ -1,0 +1,90 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "HBV-result.json",
+    "HBV.csv",
+    "members.json",
+    "observed-result.json",
+    "observed.csv",
+    "Tank-result.json",
+    "Tank.csv"
+  ],
+  "difficulty": "advanced",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "fit/alignment_qc.json",
+        "fit/bma_model.json",
+        "fit/fit_diagnostics.json",
+        "fit/model_card.json",
+        "fit/result.json",
+        "forecast/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "fit_artifact_integrity",
+      "required_keys": [
+        "fit_diagnostics",
+        "model",
+        "model_card",
+        "qc"
+      ],
+      "target": "fit/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "forecast_artifact_integrity",
+      "required_keys": [],
+      "target": "forecast/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "evidence_and_scientific_contract",
+      "reference": "expected/report-contract.json",
+      "target": "forecast/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "forecast/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "prohibited_deliverables_absent",
+      "targets": [
+        "forecast/bma_model.json",
+        "forecast/ensemble_discharge.csv",
+        "forecast/component_predictions.csv"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.16666666666666674
+    }
+  ],
+  "id": "hydroanalysis-bma-004",
+  "primary_skill": "post-processing/ensemble-discharge-with-bma",
+  "prompt": "Use the post-processing/ensemble-discharge-with-bma capability on the supplied synthetic artifacts. Scenario: overlapping prediction period. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --mode train --members members.json --observed-result observed-result.json --random-state 2026 --output-dir fit --start 2020-01-01T00:00:00+08:00 --end 2020-01-10T23:00:00+08:00\nStage 2: --mode predict --members members.json --model-result fit/result.json --output-dir forecast --start 2020-01-10T00:00:00+08:00 --end 2020-01-15T23:00:00+08:00\n Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "fit/alignment_qc.json",
+    "fit/bma_model.json",
+    "fit/fit_diagnostics.json",
+    "fit/model_card.json",
+    "fit/result.json",
+    "forecast/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 900,
+  "title": "overlapping prediction period"
+}

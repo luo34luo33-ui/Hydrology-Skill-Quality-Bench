@@ -1,0 +1,1070 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "visualization-reporting/visualize-flood-event-atlas",
+  "source_contract_sha256": "3b0df50be598727682d98ff7451ad5fe45a9860080ba006827e8223b88668eae",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "extract_result",
+        "description": "extract-flood-events 生成且 artifacts 哈希可验证的 result.json。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "rainfall",
+        "description": "可选 time,P_mm 的已确认流域平均雨量；允许空值、缺行、部分覆盖或仅表头，P_mm 为对应间隔深度，不接受未经聚合的站点表。",
+        "required": false,
+        "format": "UTF-8 CSV"
+      },
+      {
+        "id": "rainfall_metadata",
+        "description": "与 rainfall 同时提供；声明 spatial_scope=basin_mean、unit=mm/step、timestep_seconds、timezone 和 timestamp_semantics。",
+        "required": false,
+        "format": "JSON"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "overview_figure",
+        "description": "全时段流量、基流和事件洪峰总览。",
+        "required": true,
+        "format": "PNG, SVG and JSON"
+      },
+      {
+        "id": "event_figures",
+        "description": "所选事件的固定逐场水文过程图。",
+        "required": false,
+        "format": "PNG, SVG and JSON"
+      },
+      {
+        "id": "run_result",
+        "description": "符合 visualization-run-result schema 的运行结果。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "invariants": [
+      "绘图不得修改事件边界、分量或已有指标。",
+      "v2 PNG 为 2400×1200 像素，SVG 使用同一布局；v1 既有图件仍由 schema 接受。",
+      "白底，无主副标题、外置摘要卡片或 UPSTREAM WARNING；warning 保留在机器附件。",
+      "总洪量仅在显示时按 m3/100000000 转为亿立方米，不重算上游指标。",
+      "雨量柱和右侧倒置轴仅使用已确认的流域平均雨量；浅蓝色、50% 不透明度，位于流量线下方。",
+      "雨量叠加不要求完整无缺测覆盖流量及预热时段，仅绘制已有雨量，缺测不填零或插补，不自动重采样。",
+      "雨量时间戳必须无重复且落在声明的同时间步网格上；某图全无有效雨量时省略雨量柱和右轴，不阻止流量绘图。",
+      "总览分箱只累加已观测雨量，全缺测分箱留空，部分缺测分箱标明观测小计口径。",
+      "长序列抽稀只用于显示且必须记录方法和原始点数。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "template_version": {
+          "type": "computed; see field semantics"
+        },
+        "template_id": {
+          "type": "computed; see field semantics"
+        },
+        "event_id": {
+          "type": "computed; see field semantics"
+        },
+        "language": {
+          "type": "computed; see field semantics"
+        },
+        "title": {
+          "type": "computed; see field semantics"
+        },
+        "pixel_size": {
+          "width": {
+            "type": "computed; see field semantics"
+          },
+          "height": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "source_results": {
+          "type": "computed; see field semantics"
+        },
+        "layers": {
+          "type": "computed; see field semantics"
+        },
+        "outputs": {
+          "png": {
+            "type": "computed; see field semantics"
+          },
+          "svg": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "publication_ready": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        },
+        "matplotlib": {
+          "type": "computed; see field semantics"
+        },
+        "font": {
+          "type": "computed; see field semantics"
+        },
+        "template_version": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "font.family": {
+          "type": "computed; see field semantics"
+        },
+        "font.size": {
+          "type": "computed; see field semantics"
+        },
+        "axes.unicode_minus": {
+          "type": "boolean"
+        },
+        "text.color": {
+          "type": "computed; see field semantics"
+        },
+        "axes.labelcolor": {
+          "type": "computed; see field semantics"
+        },
+        "axes.edgecolor": {
+          "type": "computed; see field semantics"
+        },
+        "svg.fonttype": {
+          "type": "string"
+        },
+        "svg.hashsalt": {
+          "type": "computed; see field semantics"
+        },
+        "figure.facecolor": {
+          "type": "computed; see field semantics"
+        },
+        "savefig.facecolor": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "width": {
+          "type": "computed; see field semantics"
+        },
+        "height": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "png": {
+          "type": "computed; see field semantics"
+        },
+        "svg": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "Software": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "Date": {
+          "type": "null"
+        }
+      },
+      {
+        "true": {
+          "type": "boolean"
+        },
+        "false": {
+          "type": "boolean"
+        },
+        "1": {
+          "type": "boolean"
+        },
+        "0": {
+          "type": "boolean"
+        }
+      },
+      {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "display_transform": {
+          "type": "computed; see field semantics"
+        },
+        "palette": {
+          "type": "string"
+        }
+      },
+      {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "display_transform": {
+          "type": "string"
+        },
+        "palette": {
+          "type": "string"
+        }
+      },
+      {
+        "facecolor": {
+          "type": "string"
+        },
+        "edgecolor": {
+          "type": "string"
+        },
+        "alpha": {
+          "type": "number"
+        },
+        "pad": {
+          "type": "number"
+        }
+      },
+      {
+        "zh": {
+          "overview_title": {
+            "type": "string"
+          },
+          "overview_subtitle": {
+            "type": "string"
+          },
+          "event_title": {
+            "type": "string"
+          },
+          "event_subtitle": {
+            "type": "string"
+          },
+          "discharge": {
+            "type": "string"
+          },
+          "baseflow": {
+            "type": "string"
+          },
+          "quickflow": {
+            "type": "string"
+          },
+          "peak": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "flow": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "events": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "peak_flow": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "string"
+          },
+          "rainfall": {
+            "type": "string"
+          },
+          "rainfall_axis": {
+            "type": "string"
+          },
+          "volume_unit": {
+            "type": "string"
+          },
+          "quick_fraction": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "warmup": {
+            "type": "string"
+          }
+        },
+        "en": {
+          "overview_title": {
+            "type": "string"
+          },
+          "overview_subtitle": {
+            "type": "string"
+          },
+          "event_title": {
+            "type": "string"
+          },
+          "event_subtitle": {
+            "type": "string"
+          },
+          "discharge": {
+            "type": "string"
+          },
+          "baseflow": {
+            "type": "string"
+          },
+          "quickflow": {
+            "type": "string"
+          },
+          "peak": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "flow": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "events": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "peak_flow": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "string"
+          },
+          "rainfall": {
+            "type": "string"
+          },
+          "rainfall_axis": {
+            "type": "string"
+          },
+          "volume_unit": {
+            "type": "string"
+          },
+          "quick_fraction": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "warmup": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "overview_title": {
+          "type": "string"
+        },
+        "overview_subtitle": {
+          "type": "string"
+        },
+        "event_title": {
+          "type": "string"
+        },
+        "event_subtitle": {
+          "type": "string"
+        },
+        "discharge": {
+          "type": "string"
+        },
+        "baseflow": {
+          "type": "string"
+        },
+        "quickflow": {
+          "type": "string"
+        },
+        "peak": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "flow": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "events": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        },
+        "peak_flow": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "rainfall": {
+          "type": "string"
+        },
+        "rainfall_axis": {
+          "type": "string"
+        },
+        "volume_unit": {
+          "type": "string"
+        },
+        "quick_fraction": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "warmup": {
+          "type": "string"
+        }
+      },
+      {
+        "extract_result": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "language": {
+            "type": "computed; see field semantics"
+          },
+          "selection": {
+            "type": "computed; see field semantics"
+          },
+          "max_events": {
+            "type": "computed; see field semantics"
+          },
+          "rendered_event_ids": {
+            "type": "computed; see field semantics"
+          },
+          "pixel_size": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "rainfall_available": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_step_seconds": {
+            "type": "computed; see field semantics"
+          },
+          "total_volume_display_unit": {
+            "type": "string"
+          }
+        },
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "string"
+            }
+          }
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "rainfall": {
+          "type": "computed; see field semantics"
+        },
+        "rainfall_metadata": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "language": {
+          "type": "computed; see field semantics"
+        },
+        "selection": {
+          "type": "computed; see field semantics"
+        },
+        "max_events": {
+          "type": "computed; see field semantics"
+        },
+        "rendered_event_ids": {
+          "type": "computed; see field semantics"
+        },
+        "pixel_size": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "rainfall_available": {
+          "type": "computed; see field semantics"
+        },
+        "rainfall_step_seconds": {
+          "type": "computed; see field semantics"
+        },
+        "total_volume_display_unit": {
+          "type": "string"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "Times New Roman"
+      ],
+      [
+        "SimSun"
+      ],
+      [
+        "time",
+        "last"
+      ],
+      [
+        "P_mm",
+        "size"
+      ],
+      [
+        "event_id",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "peak_flow_m3_s",
+        "duration_hours",
+        "total_volume_m3"
+      ],
+      [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "baseflow_m3_s",
+        "is_warmup"
+      ],
+      [
+        "time",
+        "discharge_m3_s",
+        "baseflow_m3_s"
+      ],
+      [
+        "interval_start",
+        "interval_end"
+      ],
+      [
+        "start_time",
+        "peak_time",
+        "end_time"
+      ],
+      [
+        "time"
+      ],
+      [
+        "zh",
+        "en"
+      ],
+      [
+        "all",
+        "first",
+        "largest"
+      ],
+      [
+        "time",
+        "P_mm"
+      ],
+      [
+        "discharge_m3_s",
+        "baseflow_m3_s"
+      ],
+      [
+        "event_id",
+        "time"
+      ],
+      [
+        "peak_flow_m3_s",
+        "event_id"
+      ]
+    ],
+    "field_names": [
+      "0",
+      "1",
+      "Date",
+      "P_mm",
+      "SimSun",
+      "Software",
+      "Times New Roman",
+      "Title",
+      "action",
+      "align",
+      "all",
+      "alpha",
+      "artifacts",
+      "ascending",
+      "atol",
+      "axes.edgecolor",
+      "axes.labelcolor",
+      "axes.unicode_minus",
+      "axis",
+      "axis_label_size",
+      "background",
+      "baseflow",
+      "baseflow_m3_s",
+      "bbox",
+      "body_size",
+      "canvas",
+      "check",
+      "checks",
+      "choices",
+      "color",
+      "colors",
+      "default",
+      "description",
+      "details",
+      "direction",
+      "discharge",
+      "discharge_m3_s",
+      "display",
+      "display_transform",
+      "dpi",
+      "dtype",
+      "duration",
+      "duration_hours",
+      "edgecolor",
+      "en",
+      "encoding",
+      "end",
+      "end_time",
+      "ensure_ascii",
+      "errors",
+      "event_id",
+      "event_subtitle",
+      "event_title",
+      "events",
+      "exist_ok",
+      "extract_result",
+      "facecolor",
+      "false",
+      "figsize",
+      "figsize_inches",
+      "figure.facecolor",
+      "file",
+      "first",
+      "flow",
+      "font",
+      "font.family",
+      "font.size",
+      "fontsize",
+      "framealpha",
+      "frameon",
+      "grid",
+      "ha",
+      "handlelength",
+      "handles",
+      "height",
+      "help",
+      "id",
+      "indent",
+      "ink",
+      "inputs",
+      "interval_end",
+      "interval_start",
+      "is_warmup",
+      "label",
+      "labelsize",
+      "labelspacing",
+      "language",
+      "largest",
+      "last",
+      "layers",
+      "layout",
+      "legend_size",
+      "length",
+      "linespacing",
+      "linestyle",
+      "linewidth",
+      "loc",
+      "main_axes",
+      "marker",
+      "matplotlib",
+      "max_events",
+      "maxticks",
+      "message",
+      "metadata",
+      "min_count",
+      "minticks",
+      "muted_ink",
+      "names",
+      "outputs",
+      "overview",
+      "overview_subtitle",
+      "overview_title",
+      "pad",
+      "palette",
+      "pandas",
+      "parameters",
+      "parents",
+      "path",
+      "peak",
+      "peak_flow",
+      "peak_flow_m3_s",
+      "peak_time",
+      "period",
+      "pixel_size",
+      "png",
+      "provenance",
+      "publication_ready",
+      "python",
+      "quick_fraction",
+      "quickflow",
+      "rain",
+      "rain_step",
+      "rainfall",
+      "rainfall_alpha",
+      "rainfall_available",
+      "rainfall_axis",
+      "rainfall_metadata",
+      "rainfall_step_seconds",
+      "rendered_event_ids",
+      "required",
+      "right",
+      "rtol",
+      "s",
+      "savefig.facecolor",
+      "schema_version",
+      "seconds",
+      "selection",
+      "sha256",
+      "sheet_name",
+      "size",
+      "skill",
+      "sort",
+      "sort_keys",
+      "source",
+      "source_results",
+      "start",
+      "start_time",
+      "status",
+      "steps",
+      "summary",
+      "summary_size",
+      "svg",
+      "svg.fonttype",
+      "svg.hashsalt",
+      "template_id",
+      "template_version",
+      "text.color",
+      "tick_size",
+      "time",
+      "timestamp_semantics",
+      "timestep_seconds",
+      "timezone",
+      "title",
+      "total_volume_display_unit",
+      "total_volume_m3",
+      "transform",
+      "true",
+      "type",
+      "typography",
+      "tz",
+      "utc",
+      "va",
+      "volume",
+      "volume_unit",
+      "warmup",
+      "warmup_band",
+      "warnings",
+      "width",
+      "x",
+      "zh",
+      "zorder"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "PASS",
+        "error"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [
+      {
+        "id": "basin-rainfall",
+        "source": "rainfall",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "light-blue"
+      },
+      {
+        "id": "discharge-baseflow",
+        "source": "extract_result.artifacts.annotated_series",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "black-darkgray"
+      },
+      {
+        "id": "event-peaks",
+        "source": "extract_result.artifacts.event_summary",
+        "display_transform": "existing peak_time and peak_flow_m3_s",
+        "palette": "red"
+      },
+      {
+        "id": "warmup",
+        "source": "extract_result.artifacts.event_process",
+        "display_transform": "existing is_warmup; light gray warmup, white event background",
+        "palette": "warmup-gray"
+      },
+      {
+        "id": "discharge-baseflow",
+        "source": "extract_result.artifacts.event_process",
+        "display_transform": "no value transform; black solid total flow, dark gray dashed baseflow",
+        "palette": "black-darkgray"
+      },
+      {
+        "id": "event-metrics",
+        "source": "extract_result.artifacts.event_summary",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "black"
+      }
+    ],
+    "dynamic_field_patterns": [
+      "^,\\.1f$",
+      "^,\\.2f$",
+      "^.+\\.figure\\.json$",
+      "^.+\\.png$",
+      "^.+\\.svg$",
+      "^.+_figure$",
+      "^.+_png$",
+      "^.+_svg$",
+      "^04d$",
+      "^event\\-.+\\-hydrograph$",
+      "^events=.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "visualization-reporting/visualize-flood-event-atlas"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations.",
+  "presentation_interface": {
+    "schemas_and_layouts": {
+      "flood-event-style-v2.json": {
+        "template_version": "hydrotune.flood-event-atlas.v2",
+        "canvas": {
+          "width_px": 2400,
+          "height_px": 1200,
+          "figsize_inches": [
+            12,
+            6
+          ],
+          "dpi": 200,
+          "background": "#FFFFFF",
+          "panel_background": "#FFFFFF"
+        },
+        "typography": {
+          "zh": [
+            "SimSun"
+          ],
+          "en": [
+            "Times New Roman"
+          ],
+          "body_size": 16,
+          "axis_label_size": 18,
+          "tick_size": 16,
+          "legend_size": 16,
+          "summary_size": 16
+        },
+        "colors": {
+          "ink": "#000000",
+          "muted_ink": "#444444",
+          "discharge": "#000000",
+          "baseflow": "#555555",
+          "quickflow": "#8FC7D8",
+          "peak": "#D62828",
+          "event_band": "#FFFFFF",
+          "warmup_band": "#EEEEEE",
+          "pass": "#287A53",
+          "warn": "#C47A16",
+          "fail": "#B33A32",
+          "grid": "#D8D8D8",
+          "rainfall": "#9CCAE8"
+        },
+        "layout": {
+          "main_axes": [
+            0.09,
+            0.15,
+            0.82,
+            0.81
+          ],
+          "rainfall_alpha": 0.5
+        }
+      }
+    }
+  }
+}
+```

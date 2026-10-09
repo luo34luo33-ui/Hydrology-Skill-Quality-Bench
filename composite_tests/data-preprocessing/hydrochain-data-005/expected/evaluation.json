@@ -1,0 +1,734 @@
+{
+  "core_capabilities": [
+    "independent_topology_qc",
+    "forcing_standardization",
+    "spatial_aggregation"
+  ],
+  "critical_rules": [
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "unit_id",
+          "coverage_fraction",
+          "covered_area_m2",
+          "unit_area_m2"
+        ],
+        "reference": "expected/golden_workspace/aggregate/coverage.csv",
+        "rtol": 0.01,
+        "target": "aggregate/coverage.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aggregate/coverage.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.layers.P.variable",
+        "target": "aggregate/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aggregate/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.layers.evap.variable",
+        "target": "aggregate/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aggregate/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P_mm",
+          "E0_mm"
+        ],
+        "reference": "expected/golden_workspace/aggregate/subbasin_forcing.csv",
+        "rtol": 0.01,
+        "target": "aggregate/subbasin_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aggregate/subbasin_forcing.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "unit_id",
+          "weight",
+          "area_m2"
+        ],
+        "reference": "expected/golden_workspace/aggregate/weights.csv",
+        "rtol": 0.01,
+        "target": "aggregate/weights.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aggregate/weights.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 1,
+        "field": "parameters.expected_outlets",
+        "target": "topology-qc/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "topology-qc/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "count"
+        ],
+        "reference": "expected/golden_workspace/topology-qc/topology_checks.csv",
+        "rtol": 0.01,
+        "target": "topology-qc/topology_checks.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "topology-qc/topology_checks.csv"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "aggregate/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aggregate/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "topology-qc/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "topology-qc/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": "Asia/Shanghai",
+        "field": "parameters.timezone",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "downstream": "aggregate/result.json",
+      "field": "inputs.P_result",
+      "id": "aggregate/result.json:inputs.P_result",
+      "upstream": "rain/result.json"
+    },
+    {
+      "downstream": "aggregate/result.json",
+      "field": "inputs.P_stations",
+      "id": "aggregate/result.json:inputs.P_stations",
+      "upstream": "stations.csv"
+    },
+    {
+      "downstream": "aggregate/result.json",
+      "field": "inputs.evap_result",
+      "id": "aggregate/result.json:inputs.evap_result",
+      "upstream": "evap/result.json"
+    },
+    {
+      "downstream": "aggregate/result.json",
+      "field": "inputs.evap_stations",
+      "id": "aggregate/result.json:inputs.evap_stations",
+      "upstream": "stations.csv"
+    },
+    {
+      "downstream": "aggregate/result.json",
+      "field": "inputs.topology_qc_result",
+      "id": "aggregate/result.json:inputs.topology_qc_result",
+      "upstream": "topology-qc/result.json"
+    },
+    {
+      "downstream": "aggregate/result.json",
+      "field": "inputs.topology_result",
+      "id": "aggregate/result.json:inputs.topology_result",
+      "upstream": "hydrobase/result.json"
+    },
+    {
+      "downstream": "evap/result.json",
+      "field": "inputs.source",
+      "id": "evap/result.json:inputs.source",
+      "upstream": "evap_source.csv"
+    },
+    {
+      "downstream": "rain/result.json",
+      "field": "inputs.source",
+      "id": "rain/result.json:inputs.source",
+      "upstream": "rain_source.csv"
+    },
+    {
+      "downstream": "topology-qc/result.json",
+      "field": "inputs.build_result",
+      "id": "topology-qc/result.json:inputs.build_result",
+      "upstream": "hydrobase/result.json"
+    }
+  ],
+  "forbidden_outputs": [],
+  "gates": [
+    {
+      "criteria": [
+        {
+          "check": "protected_sources",
+          "reference": "expected/protected_sources.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "scenario.json"
+      ],
+      "id": "protected_sources"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "variable",
+            "unit_id",
+            "coverage_fraction",
+            "covered_area_m2",
+            "unit_area_m2"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/aggregate/coverage.csv",
+          "rtol": 1e-06,
+          "target": "aggregate/coverage.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aggregate/coverage.csv"
+      ],
+      "id": "aggregate/coverage.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/aggregate/result.json",
+          "target": "aggregate/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "aggregate/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "aggregate/result.json"
+      ],
+      "id": "aggregate/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "sub_id",
+            "P_mm",
+            "E0_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/aggregate/subbasin_forcing.csv",
+          "rtol": 1e-06,
+          "target": "aggregate/subbasin_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aggregate/subbasin_forcing.csv"
+      ],
+      "id": "aggregate/subbasin_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "unit_id",
+            "source_id",
+            "weight",
+            "area_m2",
+            "variable"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/aggregate/weights.csv",
+          "rtol": 1e-06,
+          "target": "aggregate/weights.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aggregate/weights.csv"
+      ],
+      "id": "aggregate/weights.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "evap/prepared_forcing.csv"
+      ],
+      "id": "evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/evap/result.json",
+          "target": "evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "evap/result.json"
+      ],
+      "id": "evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "rain/prepared_forcing.csv"
+      ],
+      "id": "rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/rain/result.json",
+          "target": "rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "rain/result.json"
+      ],
+      "id": "rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/topology-qc/result.json",
+          "target": "topology-qc/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "topology-qc/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "topology-qc/result.json"
+      ],
+      "id": "topology-qc/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "check",
+            "status",
+            "count",
+            "details"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/topology-qc/topology_checks.csv",
+          "rtol": 1e-06,
+          "target": "topology-qc/topology_checks.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "topology-qc/topology_checks.csv"
+      ],
+      "id": "topology-qc/topology_checks.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/decision.json",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "decision_evidence",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "decision.json"
+      ],
+      "id": "decision"
+    }
+  ],
+  "interaction_mode": "none",
+  "provided_settings": [
+    {
+      "bindings": [
+        {
+          "expected": "Asia/Shanghai",
+          "field": "parameters.timezone",
+          "target": "rain/result.json"
+        }
+      ],
+      "field": "timezone",
+      "key": "timezone",
+      "source": "scenario.json"
+    }
+  ],
+  "reference_execution": [
+    {
+      "arguments": [
+        "--build-result",
+        "hydrobase/result.json",
+        "--expected-outlets",
+        "1",
+        "--output-dir",
+        "topology-qc"
+      ],
+      "exit_code": 0,
+      "program": "spatial-analysis/validate-hydrological-topology",
+      "stderr": "",
+      "stdout": "success: Topology validation completed: FAIL=0, WARN=0\n"
+    },
+    {
+      "arguments": [
+        "--source",
+        "rain_source.csv",
+        "--config",
+        "rain_config.json",
+        "--output-dir",
+        "rain"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "evap_source.csv",
+        "--config",
+        "evap_config.json",
+        "--output-dir",
+        "evap"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--topology-result",
+        "hydrobase/result.json",
+        "--topology-qc-result",
+        "topology-qc/result.json",
+        "--source-config",
+        "source_config.json",
+        "--target",
+        "subbasin",
+        "--output-dir",
+        "aggregate"
+      ],
+      "exit_code": 0,
+      "program": "spatial-analysis/aggregate-forcing-to-model-units",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "schema_version": "2.0",
+  "scientific_graph": {
+    "edges": [
+      {
+        "from": "independent_topology_qc",
+        "to": "spatial_aggregation"
+      },
+      {
+        "from": "forcing_standardization",
+        "to": "spatial_aggregation"
+      }
+    ],
+    "nodes": [
+      {
+        "artifact": "topology-qc/result.json",
+        "capability": "independent_topology_qc",
+        "id": "independent_topology_qc"
+      },
+      {
+        "artifact": "rain/result.json",
+        "capability": "forcing_standardization",
+        "id": "forcing_standardization"
+      },
+      {
+        "artifact": "aggregate/result.json",
+        "capability": "spatial_aggregation",
+        "id": "spatial_aggregation"
+      }
+    ],
+    "note": "Dependencies below bind actual files and hashes; transform tables are independently checked. Listed graph is developer metadata, never visible to candidates."
+  },
+  "severity_policy": "Missing evidence is unknown. Artifact tolerances 1e-6; a critical numerical error exceeds 1e-3 + 1% of reference magnitude. Critical categorical failures are explicitly enumerated.",
+  "task_version": "composite-unattended-v2"
+}

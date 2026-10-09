@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "error",
+  "message": "predict member set differs from training",
+  "parameters": {},
+  "inputs": {},
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "status": "FAIL",
+      "details": "predict member set differs from training"
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "python": "3.11.16"
+  }
+}

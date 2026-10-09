@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "experiment_version": "composite-unattended-v2",
+  "interaction_mode": "none",
+  "seed": 20261004,
+  "repetitions": 3,
+  "image_digest": "",
+  "network_name": "",
+  "isolated_network_certified": false,
+  "common_config_dir": "",
+  "public_programs_sha256": "",
+  "skills_sha256": "",
+  "clis": {
+    "codex": {
+      "version": "",
+      "model": "",
+      "effort": "",
+      "config_sha256": "",
+      "budget_audit_certified": false
+    },
+    "opencode": {
+      "version": "",
+      "model": "",
+      "effort": "",
+      "config_sha256": "",
+      "budget_audit_certified": false
+    },
+    "qwen": {
+      "version": "",
+      "model": "",
+      "effort": "",
+      "config_sha256": "",
+      "budget_audit_certified": false
+    }
+  },
+  "common_config_sha256": ""
+}

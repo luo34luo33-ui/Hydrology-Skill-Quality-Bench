@@ -1,0 +1,24 @@
+{
+  "group": "hydrovisual-calibration-atlas",
+  "outputs": [
+    "atlas"
+  ],
+  "steps": [
+    {
+      "action": null,
+      "args": [
+        "--calibration-result",
+        "calibration/result.json",
+        "--comparison-manifest",
+        "comparisons.json",
+        "--event-manifest",
+        "events.json",
+        "--language",
+        "zh",
+        "--output-dir",
+        "atlas"
+      ],
+      "code": 0
+    }
+  ]
+}

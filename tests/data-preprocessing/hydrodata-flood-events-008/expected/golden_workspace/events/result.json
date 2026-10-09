@@ -2,11 +2,11 @@
   "artifacts": {
     "annotated_series": {
       "path": "annotated_series.csv",
-      "sha256": "640c8971ee7ddaa19451fa85dd9fb4eae36e2a5168b2622b5f091703beaa6e75"
+      "sha256": "f6162209c9a9fc46909ace4dd24508980fb02579d83868ddaf0b12fd6dca814d"
     },
     "event_config": {
       "path": "event_config.yaml",
-      "sha256": "9cfcab65812190d43ad1deb3bb2e0bcb491414c83a30b7774dbedcbd27b09878"
+      "sha256": "df36d697fa0031439a107509687153c91a24e867f7a9e44746a5a3bf42dfdbd5"
     },
     "event_manifest": {
       "path": "event_manifest.json",
@@ -14,15 +14,19 @@
     },
     "event_process": {
       "path": "event_process.csv",
-      "sha256": "f65484cfd6c996fc2dc882d1d2a9cb8937531ea2b90358649b0f7bf2ac94f09a"
+      "sha256": "500483c289b26e6887c4e1f51c022f2cfea63269545732e5e8f74f242b887613"
     },
     "event_qc": {
       "path": "event_qc.csv",
-      "sha256": "9b891f6fba1a2b3b12bd67d9919d3921c08f13d71bdeed63412e3515b85c00a0"
+      "sha256": "b459a92d6f01a833eef4179728376388905ab312db9a41671b5fddbb89d8d195"
     },
     "event_summary": {
       "path": "event_summary.csv",
-      "sha256": "4107ccdb408b0db6875437cb213bb0cef2e87fa5c9924bc52ab16c1d3aaee795"
+      "sha256": "a7226cb470f844c5078e611df82cb4474f159fb82ce17e8d68cbe44124e5c3d9"
+    },
+    "rainfall_screening": {
+      "path": "rainfall_screening.csv",
+      "sha256": "c454787e821b4ecb6dad9f53551520fcb59c547a035432415e4936ed9e440ea0"
     }
   },
   "checks": [
@@ -57,6 +61,16 @@
       "status": "PASS"
     },
     {
+      "check": "rainfall_support",
+      "details": "screened=0; retained=0; missing values are not zero rainfall",
+      "status": "PASS"
+    },
+    {
+      "check": "shape_filter",
+      "details": "long plateau and abrupt jump must both qualify; rainfall policies cannot override shape rejection",
+      "status": "PASS"
+    },
+    {
       "check": "per_event_file_count",
       "details": "expected=0; actual=0",
       "status": "PASS"
@@ -67,21 +81,59 @@
       "status": "WARN"
     }
   ],
-  "inputs": {},
+  "inputs": {
+    "baseflow_result": {
+      "path": "../components/result.json",
+      "sha256": "a773a23cb3a40b390417f19b3bf93a2a4a6688a1d480c2d3bb8bc71745b96733"
+    },
+    "event_config": {
+      "path": "../event_config.yaml",
+      "sha256": "df36d697fa0031439a107509687153c91a24e867f7a9e44746a5a3bf42dfdbd5"
+    },
+    "rainfall": {
+      "path": "../rainfall.csv",
+      "sha256": "3439954994dbd3b8480d71575a70799abe01a0414b332e1db35a798313c39aa4"
+    },
+    "rainfall_metadata": {
+      "path": "../rainfall_metadata.json",
+      "sha256": "1c9af7e799ed505e3d0b8957db685c41ed08052e57298e0fd220c867b45f9c7c"
+    }
+  },
   "message": "extracted 0 flood events",
   "parameters": {
     "candidate_peak_count": 1,
+    "event_config_schema_version": "1.2",
     "event_filename_by": "event-id",
     "final_event_count": 0,
     "merged_event_count": 1,
+    "missing_rainfall_policy": "keep",
+    "no_rainfall_policy": "keep",
     "output_format": "csv",
+    "partial_rainfall_event_count": 0,
     "per_event_format": "csv",
+    "policy_retained_event_count": 0,
+    "rainfall_rejected_event_count": 0,
+    "rainfall_support": {
+      "lookback_hours": 6.0,
+      "min_observed_rainfall_mm": 1.0,
+      "missing_rainfall_policy": "keep",
+      "no_rainfall_policy": "keep"
+    },
     "raw_event_count": 1,
     "refined_event_count": 1,
+    "scale_filtered_event_count": 0,
+    "shape_filter": {
+      "jump_window_steps": 2,
+      "min_jump_fraction": 0.1,
+      "min_plateau_duration_hours": 24.0,
+      "min_plateau_fraction": 0.5,
+      "plateau_range_fraction": 0.005
+    },
+    "shape_rejected_event_count": 0,
     "timestep_seconds": 3600.0
   },
   "provenance": {
-    "generator": "HSQB deterministic oracle"
+    "generator": "Frozen current native flood program; v2 rainfall interface"
   },
   "schema_version": "1.0",
   "skill": "data-processing/extract-flood-events",

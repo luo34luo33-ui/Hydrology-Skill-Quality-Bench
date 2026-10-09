@@ -1,0 +1,3 @@
+﻿source_id,severity,reason,section,action
+flow,warning,Upstream QC checks not provided / 未提供上游 QC 检查证据,flow,Provide or correct the upstream evidence; regenerate and review.
+events,warning,Upstream QC checks not provided / 未提供上游 QC 检查证据,events,Provide or correct the upstream evidence; regenerate and review.

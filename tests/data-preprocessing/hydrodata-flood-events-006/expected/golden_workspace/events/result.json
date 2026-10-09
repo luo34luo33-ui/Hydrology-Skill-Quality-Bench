@@ -2,27 +2,31 @@
   "artifacts": {
     "annotated_series": {
       "path": "annotated_series.csv",
-      "sha256": "f38c65369687aecf5ab58d9560e24a636b86b338577dc0a2cb190d277b5341b4"
+      "sha256": "929f24331db3a35fcdb3f5a79575a39eac19339c84e1f37ae3e6813e90f62090"
     },
     "event_config": {
       "path": "event_config.yaml",
-      "sha256": "a804aa56546b352e890d52d7efa8ff6480935a73c8098e247e162d92583285f2"
+      "sha256": "80ce9cc93bc477910f472cc60976ee95c002f5fe9c3bfec8eabac9bc3204f9c3"
     },
     "event_manifest": {
       "path": "event_manifest.json",
-      "sha256": "13c39a0b8d7d532dfd0f20bfb81a1f005a5f4b4586e804af179c17eb23fdf657"
+      "sha256": "d26969839ab11ebe7354a737aafbb0efa26a91f4c809d47f220b355f6da43838"
     },
     "event_process": {
       "path": "event_process.csv",
-      "sha256": "72a76501eba56d56fd618e448cc30964e2887a414eb5bfae555b3899cfa26374"
+      "sha256": "0d5cf6129ce43b7803953fde23c4efa825c887365d42c7634b7e3b3202e9b6ce"
     },
     "event_qc": {
       "path": "event_qc.csv",
-      "sha256": "8fbbc2b3e725b966747c9c5a2e788b78f202e8bd1dfdd6cacc45ab2120a06ecc"
+      "sha256": "49041e8e3abd3727ee841af8a152d7ae0a427492757f5466bcc1187d90585799"
     },
     "event_summary": {
       "path": "event_summary.csv",
-      "sha256": "d68a2624a35dfb651e0c3ed025f3fb77abd8a06a0e69d441f632051ab0fbdd39"
+      "sha256": "f507a3ad8024a6f524b603c0f96e7e84a31d6340f8aa0aeac9587e791e383201"
+    },
+    "rainfall_screening": {
+      "path": "rainfall_screening.csv",
+      "sha256": "90647212a829df16434152d431dd692279b38fc883f5d91ad2f4ef958b7cfce3"
     }
   },
   "checks": [
@@ -57,6 +61,16 @@
       "status": "PASS"
     },
     {
+      "check": "rainfall_support",
+      "details": "screened=1; retained=1; missing values are not zero rainfall",
+      "status": "PASS"
+    },
+    {
+      "check": "shape_filter",
+      "details": "long plateau and abrupt jump must both qualify; rainfall policies cannot override shape rejection",
+      "status": "PASS"
+    },
+    {
       "check": "per_event_file_count",
       "details": "expected=1; actual=1",
       "status": "PASS"
@@ -67,21 +81,59 @@
       "status": "PASS"
     }
   ],
-  "inputs": {},
+  "inputs": {
+    "baseflow_result": {
+      "path": "../components/result.json",
+      "sha256": "1c7f6ed7144d3c470edea2840af8827c5739dfb1e1ac48f50ca498ff7be6c844"
+    },
+    "event_config": {
+      "path": "../event_config.yaml",
+      "sha256": "80ce9cc93bc477910f472cc60976ee95c002f5fe9c3bfec8eabac9bc3204f9c3"
+    },
+    "rainfall": {
+      "path": "../rainfall.csv",
+      "sha256": "4af0b677ae8e3a58c56223061ecc4035560991991a357a475072ecbe7aa12c39"
+    },
+    "rainfall_metadata": {
+      "path": "../rainfall_metadata.json",
+      "sha256": "e060141115f6748f9e42fc46323ab3bd5d61b923d205ad4fff0aea27e3009f64"
+    }
+  },
   "message": "extracted 1 flood events",
   "parameters": {
     "candidate_peak_count": 3,
+    "event_config_schema_version": "1.2",
     "event_filename_by": "event-id",
     "final_event_count": 1,
     "merged_event_count": 3,
+    "missing_rainfall_policy": "keep",
+    "no_rainfall_policy": "keep",
     "output_format": "csv",
+    "partial_rainfall_event_count": 0,
     "per_event_format": "csv",
+    "policy_retained_event_count": 0,
+    "rainfall_rejected_event_count": 0,
+    "rainfall_support": {
+      "lookback_hours": 6.0,
+      "min_observed_rainfall_mm": 1.0,
+      "missing_rainfall_policy": "keep",
+      "no_rainfall_policy": "keep"
+    },
     "raw_event_count": 3,
     "refined_event_count": 3,
+    "scale_filtered_event_count": 1,
+    "shape_filter": {
+      "jump_window_steps": 2,
+      "min_jump_fraction": 0.1,
+      "min_plateau_duration_hours": 24.0,
+      "min_plateau_fraction": 0.5,
+      "plateau_range_fraction": 0.005
+    },
+    "shape_rejected_event_count": 0,
     "timestep_seconds": 3600.0
   },
   "provenance": {
-    "generator": "HSQB deterministic oracle"
+    "generator": "Frozen current native flood program; v2 rainfall interface"
   },
   "schema_version": "1.0",
   "skill": "data-processing/extract-flood-events",

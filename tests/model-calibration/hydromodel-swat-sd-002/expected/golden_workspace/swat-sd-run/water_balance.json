@@ -1,0 +1,65 @@
+{
+  "basin_fluxes_m3": {
+    "actual_et_m3": 157200.0,
+    "boundary_inflow_m3": 0.0,
+    "channel_loss_m3": 0.0,
+    "deep_seepage_m3": 0.0,
+    "delta_storage_m3": 74030.85811517447,
+    "outlet_outflow_m3": 769.1418848255989,
+    "precip_m3": 232000.0,
+    "residual_m3": -7.262252439492987e-11,
+    "revap_m3": 0.0
+  },
+  "checks": [
+    {
+      "details": "HRU 控制体逐步残差（mm）",
+      "id": "water_balance_hru",
+      "max_abs_residual_mm": 2.842170943040401e-14,
+      "status": "PASS",
+      "tolerance_mm": 1e-06
+    },
+    {
+      "details": "河段控制体逐步残差（m3）",
+      "id": "water_balance_reach",
+      "max_abs_residual_m3": 0.0,
+      "status": "PASS",
+      "tolerance_m3": 1e-06
+    },
+    {
+      "details": "子流域控制体逐步残差（m3，含承接河段）",
+      "id": "water_balance_subbasin",
+      "max_abs_residual_m3": 5.820766091346741e-11,
+      "status": "PASS",
+      "tolerance_m3": 1e-05
+    },
+    {
+      "details": "全流域残差相对入流水量",
+      "id": "water_balance_basin",
+      "relative_residual": 3.130281223919391e-16,
+      "residual_m3": -7.262252439492987e-11,
+      "status": "PASS",
+      "tolerance_relative": 1e-09
+    }
+  ],
+  "control_volumes": [
+    "hru",
+    "reach",
+    "subbasin",
+    "basin"
+  ],
+  "max_abs_residual": {
+    "basin_residual_m3": -7.262252439492987e-11,
+    "hru_mm": 2.842170943040401e-14,
+    "reach_m3": 0.0,
+    "subbasin_m3": 5.820766091346741e-11
+  },
+  "note": "residual = initial storage + all inflow - all outflow - final storage; the channel inflow minus outflow difference also carries end-of-run storage",
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-semi-distributed-swat-model",
+  "tolerances": {
+    "basin_relative": 1e-09,
+    "hru_mm": 1e-06,
+    "reach_m3": 1e-06,
+    "subbasin_m3": 1e-05
+  }
+}

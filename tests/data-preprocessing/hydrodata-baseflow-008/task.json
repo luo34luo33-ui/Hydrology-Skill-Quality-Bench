@@ -70,6 +70,7 @@
   "id": "hydrodata-baseflow-008",
   "primary_skill": "data-processing/separate-baseflow-eckhardt",
   "prompt": "Use prepared/result.json as the verified upstream result. The confirmed Eckhardt parameters are alpha=0.95 and BFImax=1.0. Write CSV outputs under components/. Do not clamp or replace the explicitly supplied BFImax.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "components/result.json"
   ],

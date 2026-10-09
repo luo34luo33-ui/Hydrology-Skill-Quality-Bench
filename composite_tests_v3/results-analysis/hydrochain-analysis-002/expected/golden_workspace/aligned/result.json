@@ -1,0 +1,59 @@
+{
+  "artifacts": {
+    "aligned": {
+      "path": "aligned_discharge.csv",
+      "sha256": "9715fe20216fca95110534f418482e6217bf28c63702ed9d110eb43a5110f978"
+    },
+    "evaluation": {
+      "path": "evaluation_discharge.csv",
+      "sha256": "7fbf66311a52368f0103ee9bb66284b9e7bb1ef3b7d3fd634c4e51510f10b959"
+    },
+    "excluded_observations": {
+      "path": "excluded_observations.csv",
+      "sha256": "1908cf5dd501d4c0c3e93d170e72502ea7d157889bdd5902dc91bd4046e34d79"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "abff77ef43138145da199bc22178e7ed42bca7c388996016974319d52a1846c4"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed artifacts resolved by hash",
+      "status": "PASS"
+    },
+    {
+      "check": "outlet_semantics",
+      "details": "run-lumped-dhf-model",
+      "status": "PASS"
+    },
+    {
+      "check": "exact_time_match",
+      "details": "evaluation_rows=732",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "observed_result": {
+      "path": "../flow/result.json",
+      "sha256": "16e4b6fe69f6082bed4a1bcf70edc588bb3a5530cb2d6aec1178b81d174a1700"
+    },
+    "simulation_result": {
+      "path": "../members/dhf/model/result.json",
+      "sha256": "060a5ae7664c4ab48cdefe87a914113e30aaeca84c7311042ae080b54dac2829"
+    }
+  },
+  "message": "Observed and outlet discharge aligned",
+  "parameters": {
+    "model": "run-lumped-dhf-model"
+  },
+  "provenance": {
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/align-observed-simulated-discharge",
+  "status": "success",
+  "warnings": []
+}

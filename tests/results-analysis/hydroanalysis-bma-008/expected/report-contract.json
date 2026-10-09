@@ -1,0 +1,23 @@
+{
+  "files": {
+    "fit/alignment_qc.json": {
+      "member_count": 2,
+      "mode": "continuous",
+      "rows": 237,
+      "selected_rows_per_member": {
+        "HBV": 240,
+        "Tank": 240
+      },
+      "warmup_union_rows": 3
+    },
+    "fit/fit_diagnostics.json": {},
+    "fit/result.json": {
+      "error_reason_contains": "no converged BMA initialization; see fit_diagnostics.json",
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "bma",
+  "markdown": {}
+}

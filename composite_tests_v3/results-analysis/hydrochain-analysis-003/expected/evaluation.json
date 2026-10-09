@@ -1,0 +1,853 @@
+{
+  "core_capabilities": [
+    "member_alignment",
+    "bma",
+    "continuous_metrics"
+  ],
+  "critical_rules": [
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "simulated_m3_s",
+          "observed_m3_s"
+        ],
+        "reference": "expected/golden_workspace/aligned-dhf/aligned_discharge.csv",
+        "rtol": 0.01,
+        "target": "aligned-dhf/aligned_discharge.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned-dhf/aligned_discharge.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "observed_m3_s",
+          "simulated_m3_s"
+        ],
+        "reference": "expected/golden_workspace/aligned-dhf/evaluation_discharge.csv",
+        "rtol": 0.01,
+        "target": "aligned-dhf/evaluation_discharge.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned-dhf/evaluation_discharge.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "simulated_m3_s",
+          "observed_m3_s"
+        ],
+        "reference": "expected/golden_workspace/aligned-semi/aligned_discharge.csv",
+        "rtol": 0.01,
+        "target": "aligned-semi/aligned_discharge.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned-semi/aligned_discharge.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "observed_m3_s",
+          "simulated_m3_s"
+        ],
+        "reference": "expected/golden_workspace/aligned-semi/evaluation_discharge.csv",
+        "rtol": 0.01,
+        "target": "aligned-semi/evaluation_discharge.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned-semi/evaluation_discharge.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "train",
+        "field": "parameters.mode",
+        "target": "fit/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "fit/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/flow/discharge_timeseries.csv",
+        "rtol": 0.01,
+        "target": "flow/discharge_timeseries.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "predict",
+        "field": "parameters.mode",
+        "target": "forecast/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "forecast/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 1.0,
+        "field": "parameters.timestep_hours",
+        "target": "metrics/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "metrics/result.json"
+      ]
+    },
+    {
+      "code": "bma_distribution_or_source_error",
+      "criterion": {
+        "check": "bma_replay",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "fit/bma_model.json",
+        "forecast/component_predictions.csv",
+        "evaluation.csv"
+      ]
+    },
+    {
+      "code": "unsupported_scientific_conclusion",
+      "criterion": {
+        "check": "controlled_claims",
+        "reference": "expected/conclusions.json",
+        "target": "conclusions.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "conclusions.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "aligned-dhf/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned-dhf/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "aligned-semi/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned-semi/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "fit/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "fit/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "flow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "flow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "forecast/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "forecast/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "metrics/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "metrics/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": "basin_outlet",
+        "field": "outlet_semantics",
+        "target": "resolved_information.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "resolved_information.json"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "downstream": "aligned-dhf/result.json",
+      "field": "inputs.observed_result",
+      "id": "aligned-dhf/result.json:inputs.observed_result",
+      "upstream": "flow/result.json"
+    },
+    {
+      "downstream": "aligned-dhf/result.json",
+      "field": "inputs.simulation_result",
+      "id": "aligned-dhf/result.json:inputs.simulation_result",
+      "upstream": "members/dhf/model/result.json"
+    },
+    {
+      "downstream": "aligned-semi/result.json",
+      "field": "inputs.observed_result",
+      "id": "aligned-semi/result.json:inputs.observed_result",
+      "upstream": "flow/result.json"
+    },
+    {
+      "downstream": "aligned-semi/result.json",
+      "field": "inputs.simulation_result",
+      "id": "aligned-semi/result.json:inputs.simulation_result",
+      "upstream": "members/semi/model/result.json"
+    },
+    {
+      "downstream": "fit/result.json",
+      "field": "inputs.observations",
+      "id": "fit/result.json:inputs.observations",
+      "upstream": "flow/discharge_timeseries.csv"
+    },
+    {
+      "downstream": "fit/result.json",
+      "field": "inputs.observed_result",
+      "id": "fit/result.json:inputs.observed_result",
+      "upstream": "flow/result.json"
+    },
+    {
+      "downstream": "fit/result.json",
+      "field": "inputs.table_0_continuous_simulation_table",
+      "id": "fit/result.json:inputs.table_0_continuous_simulation_table",
+      "upstream": "aligned_members/dhf.csv"
+    },
+    {
+      "downstream": "fit/result.json",
+      "field": "inputs.table_1_continuous_outlet_flow",
+      "id": "fit/result.json:inputs.table_1_continuous_outlet_flow",
+      "upstream": "aligned_members/semi.csv"
+    },
+    {
+      "downstream": "flow/result.json",
+      "field": "inputs.source_timeseries",
+      "id": "flow/result.json:inputs.source_timeseries",
+      "upstream": "raw.csv"
+    },
+    {
+      "downstream": "forecast/result.json",
+      "field": "inputs.model",
+      "id": "forecast/result.json:inputs.model",
+      "upstream": "fit/bma_model.json"
+    },
+    {
+      "downstream": "forecast/result.json",
+      "field": "inputs.model_result",
+      "id": "forecast/result.json:inputs.model_result",
+      "upstream": "fit/result.json"
+    },
+    {
+      "downstream": "forecast/result.json",
+      "field": "inputs.table_0_continuous_simulation_table",
+      "id": "forecast/result.json:inputs.table_0_continuous_simulation_table",
+      "upstream": "aligned_members/dhf.csv"
+    },
+    {
+      "downstream": "forecast/result.json",
+      "field": "inputs.table_1_continuous_outlet_flow",
+      "id": "forecast/result.json:inputs.table_1_continuous_outlet_flow",
+      "upstream": "aligned_members/semi.csv"
+    },
+    {
+      "downstream": "metrics/result.json",
+      "field": "inputs.series",
+      "id": "metrics/result.json:inputs.series",
+      "upstream": "evaluation.csv"
+    }
+  ],
+  "forbidden_outputs": [],
+  "gates": [
+    {
+      "criteria": [
+        {
+          "check": "protected_sources",
+          "reference": "expected/protected_sources.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "scenario.json"
+      ],
+      "id": "protected_sources"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "simulated_m3_s",
+            "is_warmup",
+            "observed_m3_s",
+            "matched",
+            "excluded_reason"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/aligned-dhf/aligned_discharge.csv",
+          "rtol": 1e-06,
+          "target": "aligned-dhf/aligned_discharge.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aligned-dhf/aligned_discharge.csv"
+      ],
+      "id": "aligned-dhf/aligned_discharge.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "observed_m3_s",
+            "simulated_m3_s"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/aligned-dhf/evaluation_discharge.csv",
+          "rtol": 1e-06,
+          "target": "aligned-dhf/evaluation_discharge.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aligned-dhf/evaluation_discharge.csv"
+      ],
+      "id": "aligned-dhf/evaluation_discharge.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/aligned-dhf/result.json",
+          "target": "aligned-dhf/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "aligned-dhf/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "aligned-dhf/result.json"
+      ],
+      "id": "aligned-dhf/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "simulated_m3_s",
+            "is_warmup",
+            "observed_m3_s",
+            "matched",
+            "excluded_reason"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/aligned-semi/aligned_discharge.csv",
+          "rtol": 1e-06,
+          "target": "aligned-semi/aligned_discharge.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aligned-semi/aligned_discharge.csv"
+      ],
+      "id": "aligned-semi/aligned_discharge.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "observed_m3_s",
+            "simulated_m3_s"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/aligned-semi/evaluation_discharge.csv",
+          "rtol": 1e-06,
+          "target": "aligned-semi/evaluation_discharge.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aligned-semi/evaluation_discharge.csv"
+      ],
+      "id": "aligned-semi/evaluation_discharge.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/aligned-semi/result.json",
+          "target": "aligned-semi/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "aligned-semi/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "aligned-semi/result.json"
+      ],
+      "id": "aligned-semi/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/fit/result.json",
+          "target": "fit/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "fit/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "fit/result.json"
+      ],
+      "id": "fit/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "year",
+            "month",
+            "day",
+            "hour",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/flow/discharge_timeseries.csv",
+          "rtol": 1e-06,
+          "target": "flow/discharge_timeseries.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "flow/discharge_timeseries.csv"
+      ],
+      "id": "flow/discharge_timeseries.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/flow/result.json",
+          "target": "flow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "flow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "flow/result.json"
+      ],
+      "id": "flow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/forecast/result.json",
+          "target": "forecast/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "forecast/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "forecast/result.json"
+      ],
+      "id": "forecast/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/metrics/result.json",
+          "target": "metrics/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "metrics/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "metrics/result.json"
+      ],
+      "id": "metrics/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/decision.json",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "decision_evidence",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "decision.json"
+      ],
+      "id": "decision"
+    },
+    {
+      "criteria": [
+        {
+          "reference": "expected/bma.json",
+          "type": "report_contract_check"
+        }
+      ],
+      "evidence": [
+        "fit/bma_model.json",
+        "forecast/ensemble_discharge.csv"
+      ],
+      "id": "bma_distribution"
+    },
+    {
+      "criteria": [
+        {
+          "check": "bma_replay",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "metric_recompute",
+          "series": "evaluation.csv",
+          "target": "metrics/series_metrics.csv",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "forecast/component_predictions.csv",
+        "metrics/series_metrics.csv"
+      ],
+      "id": "bma_source_and_metric_replay"
+    },
+    {
+      "criteria": [
+        {
+          "check": "controlled_claims",
+          "reference": "expected/conclusions.json",
+          "target": "conclusions.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "markdown_json_consistency",
+          "markdown": "report.md",
+          "target": "conclusions.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "markdown_evidence_binding",
+          "markdown": "report.md",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "conclusions.json"
+      ],
+      "id": "controlled_conclusions"
+    },
+    {
+      "id": "axis:aligned-dhf/aligned_discharge.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "aligned-dhf/aligned_discharge.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "aligned-dhf/aligned_discharge.csv"
+      ]
+    },
+    {
+      "id": "axis:aligned-dhf/evaluation_discharge.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "aligned-dhf/evaluation_discharge.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "aligned-dhf/evaluation_discharge.csv"
+      ]
+    },
+    {
+      "id": "axis:aligned-semi/aligned_discharge.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "aligned-semi/aligned_discharge.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "aligned-semi/aligned_discharge.csv"
+      ]
+    },
+    {
+      "id": "axis:aligned-semi/evaluation_discharge.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "aligned-semi/evaluation_discharge.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "aligned-semi/evaluation_discharge.csv"
+      ]
+    },
+    {
+      "id": "axis:evaluation.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "evaluation.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "evaluation.csv"
+      ]
+    },
+    {
+      "id": "axis:flow/discharge_timeseries.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "flow/discharge_timeseries.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "id": "axis:forecast/component_predictions.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "forecast/component_predictions.csv",
+          "time_column": "time",
+          "group_columns": [
+            "model_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "forecast/component_predictions.csv"
+      ]
+    },
+    {
+      "id": "axis:forecast/ensemble_discharge.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "forecast/ensemble_discharge.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "forecast/ensemble_discharge.csv"
+      ]
+    }
+  ],
+  "interaction_mode": "none",
+  "provided_settings": [
+    {
+      "bindings": [
+        {
+          "expected": "basin_outlet",
+          "field": "outlet_semantics",
+          "target": "resolved_information.json"
+        }
+      ],
+      "field": "outlet_semantics",
+      "key": "outlet_semantics",
+      "source": "scenario.json"
+    }
+  ],
+  "schema_version": "2.0",
+  "scientific_graph": {
+    "edges": [
+      {
+        "from": "member_alignment",
+        "to": "bma"
+      },
+      {
+        "from": "bma",
+        "to": "continuous_metrics"
+      }
+    ],
+    "nodes": [
+      {
+        "artifact": "aligned-dhf/result.json",
+        "capability": "member_alignment",
+        "id": "member_alignment"
+      },
+      {
+        "artifact": "fit/result.json",
+        "capability": "bma",
+        "id": "bma"
+      },
+      {
+        "artifact": "metrics/result.json",
+        "capability": "continuous_metrics",
+        "id": "continuous_metrics"
+      }
+    ],
+    "note": "Dependencies below bind actual files and hashes; transform tables are independently checked. Listed graph is developer metadata, never visible to candidates."
+  },
+  "severity_policy": "Missing evidence is unknown. Artifact tolerances 1e-6; a critical numerical error exceeds 1e-3 + 1% of reference magnitude. Critical categorical failures are explicitly enumerated.",
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5,
+  "scoring_version": "composite-scientific-v3",
+  "validation_status": "pending_reference_recomputation"
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "source_count": 1,
+  "source_semantics": "step_depth",
+  "steps": 744,
+  "timestamp_semantics": "interval_end",
+  "timestep_seconds": 3600,
+  "timezone": "Asia/Shanghai",
+  "unit": "mm/step",
+  "variable": "E0"
+}

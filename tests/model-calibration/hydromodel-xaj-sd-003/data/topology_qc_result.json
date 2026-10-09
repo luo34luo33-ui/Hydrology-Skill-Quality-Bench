@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "check": "expected_outlets",
+      "details": "single outlet confirmed",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "build_result": {
+      "path": "build_result.json",
+      "sha256": "4f23b1e376f25391e28d8edbb2517add70d5aa703f6aa3389450132befdd3c35"
+    }
+  },
+  "parameters": {
+    "expected_outlets": 1
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/validate-hydrological-topology",
+  "status": "success"
+}

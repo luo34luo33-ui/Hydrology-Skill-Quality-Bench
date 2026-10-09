@@ -1,0 +1,430 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydrodata-dem-grid-008",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "spatial-analysis/prepare-dem-analysis-grid",
+    "source_contract_sha256": "efa6ec222a35dd4272f647587de27948165d3558554df48c653085fb19b791be",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "source_dem",
+          "description": "具有已确认水平 CRS 和垂直单位的单波段高程栅格。",
+          "required": true,
+          "format": "GeoTIFF or GDAL-readable raster",
+          "variables": [
+            {
+              "name": "elevation",
+              "semantics": "地表高程；输入单位由 vertical-unit 明确声明。",
+              "units": "m or ft as confirmed",
+              "coordinate_reference_system": "必须由源文件明确给出",
+              "spatial_unit": "raster cell",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "使用源 NoData；没有 NoData 时仅有限数值视为有效高程。"
+            }
+          ]
+        },
+        {
+          "id": "basin_boundary",
+          "description": "真实研究流域的有效多边形边界。",
+          "required": true,
+          "format": "GDAL-readable vector"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "metric_dem",
+          "description": "米制水平 CRS 且高程统一为米的标准 DEM。",
+          "required": true,
+          "format": "GeoTIFF"
+        },
+        {
+          "id": "analysis_dem",
+          "description": "按确认 buffer 裁出的水文分析 DEM。",
+          "required": true,
+          "format": "GeoTIFF"
+        },
+        {
+          "id": "normalized_basin",
+          "description": "修复、合并并投影到分析 CRS 的真实流域边界。",
+          "required": true,
+          "format": "GeoPackage"
+        },
+        {
+          "id": "run_result",
+          "description": "符合 spatial-run-result schema 的确定性运行结果。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "invariants": [
+        "输出水平 CRS 必须是以米为线性单位的投影坐标系。",
+        "输出高程单位必须为米，且输入单位和换算必须记录。",
+        "DEM 必须完整覆盖真实流域；外扩覆盖不足必须保留 warning。",
+        "原始 DEM 和边界不得被修改。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "metric_dem": {
+            "type": "computed; see field semantics"
+          },
+          "analysis_dem": {
+            "type": "computed; see field semantics"
+          },
+          "normalized_basin": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "analysis_buffer_km": {
+              "type": "computed; see field semantics"
+            },
+            "vertical_unit": {
+              "type": "computed; see field semantics"
+            },
+            "vertical_scale_to_m": {
+              "type": "computed; see field semantics"
+            },
+            "target_crs": {
+              "type": "computed; see field semantics"
+            },
+            "crs_decision": {
+              "type": "computed; see field semantics"
+            },
+            "mask_rule": {
+              "type": "string"
+            }
+          },
+          "inputs": {
+            "source_dem": {
+              "type": "computed; see field semantics"
+            },
+            "basin_boundary": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "artifacts": {
+            "type": "computed; see field semantics"
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            },
+            "rasterio": {
+              "type": "computed; see field semantics"
+            },
+            "geopandas": {
+              "type": "computed; see field semantics"
+            },
+            "shapely": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "basin_id": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "analysis_buffer_km": {
+            "type": "computed; see field semantics"
+          },
+          "vertical_unit": {
+            "type": "computed; see field semantics"
+          },
+          "vertical_scale_to_m": {
+            "type": "computed; see field semantics"
+          },
+          "target_crs": {
+            "type": "computed; see field semantics"
+          },
+          "crs_decision": {
+            "type": "computed; see field semantics"
+          },
+          "mask_rule": {
+            "type": "string"
+          }
+        },
+        {
+          "source_dem": {
+            "type": "computed; see field semantics"
+          },
+          "basin_boundary": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "rasterio": {
+            "type": "computed; see field semantics"
+          },
+          "geopandas": {
+            "type": "computed; see field semantics"
+          },
+          "shapely": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "type": "computed; see field semantics"
+          },
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "dem_metric.tif",
+          "dem_analysis_buffer.tif",
+          "basin_normalized.gpkg",
+          "result.json"
+        ],
+        [
+          "Polygon",
+          "MultiPolygon"
+        ],
+        [
+          "m",
+          "ft"
+        ],
+        [
+          "metre",
+          "meter",
+          "metres",
+          "meters",
+          "m"
+        ]
+      ],
+      "field_names": [
+        "MultiPolygon",
+        "Polygon",
+        "abs_tol",
+        "action",
+        "all_touched",
+        "analysis_buffer_km",
+        "analysis_dem",
+        "artifacts",
+        "basin_boundary",
+        "basin_id",
+        "basin_normalized.gpkg",
+        "check",
+        "checks",
+        "choices",
+        "compress",
+        "count",
+        "crop",
+        "crs",
+        "crs_decision",
+        "dem_analysis_buffer.tif",
+        "dem_metric.tif",
+        "densify_pts",
+        "description",
+        "destination",
+        "details",
+        "driver",
+        "dst_crs",
+        "dst_nodata",
+        "dst_transform",
+        "dtype",
+        "encoding",
+        "ensure_ascii",
+        "exist_ok",
+        "file",
+        "filled",
+        "ft",
+        "geometry",
+        "geopandas",
+        "height",
+        "indent",
+        "inputs",
+        "layer",
+        "m",
+        "mask_rule",
+        "message",
+        "meter",
+        "meters",
+        "metre",
+        "metres",
+        "metric_dem",
+        "nodata",
+        "normalized_basin",
+        "parameters",
+        "parents",
+        "path",
+        "provenance",
+        "python",
+        "rasterio",
+        "rel_tol",
+        "required",
+        "resampling",
+        "result.json",
+        "schema_version",
+        "sha256",
+        "shapely",
+        "skill",
+        "sort_keys",
+        "source",
+        "source_dem",
+        "src_crs",
+        "src_nodata",
+        "src_transform",
+        "status",
+        "target_crs",
+        "transform",
+        "type",
+        "vertical_scale_to_m",
+        "vertical_unit",
+        "warnings",
+        "width",
+        "window"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "PASS",
+          "WARN",
+          "error"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "spatial-analysis/prepare-dem-analysis-grid"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "basin.gpkg",
+    "source_dem.tif"
+  ],
+  "outputs": [
+    "prepared/result.json"
+  ],
+  "input_field_names": [],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

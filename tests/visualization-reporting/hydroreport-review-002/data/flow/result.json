@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "series_metadata_json": {
+      "path": "series_metadata.json",
+      "sha256": "3b89d005fb5582abc50bf677535160fb50cf0eae19b4d2ba7458d306f97ffba6"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Synthetic benchmark evidence",
+  "parameters": {},
+  "provenance": {
+    "fixture": true
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-discharge-timeseries",
+  "status": "success",
+  "warnings": []
+}

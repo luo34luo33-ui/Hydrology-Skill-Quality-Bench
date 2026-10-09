@@ -1,0 +1,36 @@
+{
+  "distribution": "censored_gaussian",
+  "model_ids": [
+    "dhf",
+    "semi"
+  ],
+  "outlet_id": "benchmark_outlet",
+  "random_state": 20261004,
+  "scale_m3_s": 426.487223135,
+  "schema_version": "1.0",
+  "score": 1.0468373836894935,
+  "selected_start": 1,
+  "series_mode": "continuous",
+  "theta": [
+    [
+      0.025516775042423608,
+      1.2697004702129053,
+      0.02083589111796733
+    ],
+    [
+      0.055950609479638834,
+      0.546074813003393,
+      0.13975563624636744
+    ]
+  ],
+  "timestep_hours": 1,
+  "timezone": "Asia/Shanghai",
+  "training_end": "2023-08-20T15:00:00+00:00",
+  "training_events": [],
+  "training_start": "2023-08-01T04:00:00+00:00",
+  "unit": "m3/s",
+  "weights": [
+    0.47074350851323493,
+    0.5292564914867652
+  ]
+}

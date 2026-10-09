@@ -1,0 +1,85 @@
+{
+  "artifacts": {
+    "analysis-tables.json": {
+      "path": "analysis-tables.json",
+      "sha256": "953e6ccdbcd744d60bcee44dda0335e1958b29954eea75b19e4f2c3fe19662fc"
+    },
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "ca1c58e9f1026d2336803d1412055ea0db91c70620b30064f0fac0ae0359eca3"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "evidence-index.csv": {
+      "path": "evidence-index.csv",
+      "sha256": "3011e845a39ce053b3841ee8e111db866d5a35a5b0efe0dcaff41aee9f6273ec"
+    },
+    "evidence-index.json": {
+      "path": "evidence-index.json",
+      "sha256": "80592ff9d566132b63d2afae1b5552ce8a06da8ea34fd3c1d07d33ede16af7d5"
+    },
+    "figures/nse-distributions.svg": {
+      "path": "figures/nse-distributions.svg",
+      "sha256": "68fe3d5d25e19ff7ba0fe6ab5b41342ef83a7d219e8c96f4a3429250faff2d97"
+    },
+    "report.json": {
+      "path": "report.json",
+      "sha256": "bf6b47f48381fe2e86a4a1f4fab31d2b7bd3034608f37172cc775c5a6f351f7d"
+    },
+    "report.md": {
+      "path": "report.md",
+      "sha256": "467782e3479654630bd559a37cfe2f0b252acbb49beff74782581effcef88509"
+    },
+    "summary.csv": {
+      "path": "summary.csv",
+      "sha256": "fff2a8e41ff1778836f88dcc08a1dbaef53d987f78bc65a478d3605fbe7c7d0b"
+    },
+    "worst-events.csv": {
+      "path": "worst-events.csv",
+      "sha256": "5090983139226298092ac0e9d952dbc2a7c035d2651e7b8a16546c3001e4303e"
+    }
+  },
+  "checks": [
+    {
+      "check": "source_integrity",
+      "details": "Original sources verified",
+      "status": "PASS"
+    },
+    {
+      "check": "evaluation_scope",
+      "details": "Timezone-aware scored periods and complete event scopes verified",
+      "status": "PASS"
+    },
+    {
+      "check": "run_series_identity",
+      "details": "Evaluation values bound to original run series; declared comparisons use identical samples",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "eval": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lqb1uotk\\eval\\result.json",
+      "sha256": "52eb100f91b9c53e60f7bd0aafa2ca3a0ba37f794ddb56ecaf3941d8dc73e780"
+    },
+    "sim": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lqb1uotk\\sim\\result.json",
+      "sha256": "64dd2a5dfbd9788b660eacc80ef3d32fb15b4f7ccc89cc87b7e4f2124c7ef384"
+    },
+    "study_manifest": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lqb1uotk\\manifest.json",
+      "sha256": "42958da9fc468d67c8f8dbd641c9723ebfef230eded31e560cd980c6cc30c43f"
+    }
+  },
+  "message": "Report rendered; independent semantic review required",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-hydrological-study-report",
+  "status": "success",
+  "warnings": []
+}

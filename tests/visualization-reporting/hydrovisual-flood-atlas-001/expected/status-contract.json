@@ -1,0 +1,10 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "skill": "visualization-reporting/visualize-flood-event-atlas",
+      "status": "success",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

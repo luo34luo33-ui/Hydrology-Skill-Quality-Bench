@@ -1,0 +1,10 @@
+{
+  "files": {
+    "report/result.json": {
+      "skill": "visualization-reporting/generate-spatial-data-processing-report",
+      "status": "success",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

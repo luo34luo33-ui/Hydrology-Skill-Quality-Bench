@@ -1,0 +1,11 @@
+{
+  "parameters": {
+    "source_timezone_mode": "local_naive",
+    "timestamp_semantics": "interval_end",
+    "timestep_seconds": 3600,
+    "timezone": "Asia/Shanghai",
+    "unit": "mm/step",
+    "value_semantics": "step_depth",
+    "variable": "P"
+  }
+}

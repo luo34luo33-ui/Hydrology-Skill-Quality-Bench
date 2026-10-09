@@ -1,0 +1,16 @@
+﻿count,denominator,item,max,mean,median,metric,min,month,p10,p90,percent,shape,source,table,unit,value
+,,standard_flow_unit,,,,,,,,,,,flow,资料概况 / Data coverage,unspecified,m3/s
+,,timestep_seconds,,,,,,,,,,,flow,资料概况 / Data coverage,unspecified,3600
+,,timezone,,,,,,,,,,,flow,资料概况 / Data coverage,unspecified,Asia/Shanghai
+,,row_count,,,,,,,,,,,events,资料概况 / Data coverage,count,24
+,,start,,,,,,,,,,,events,资料概况 / Data coverage,unspecified,2019-12-31T23:00:00
+,,end,,,,,,,,,,,events,资料概况 / Data coverage,unspecified,2020-01-01T04:00:00
+,,row_count,,,,,,,,,,,events,资料概况 / Data coverage,count,4
+,,events,,,,,,,,,,,,洪水总数 / Event count,count,4
+0,0,,,,,,,,,,,single,,显著峰型 / Significant peaks,,
+0,0,,,,,,,,,,,multiple,,显著峰型 / Significant peaks,,
+4,0,,,,,,,,,,,unclassified,,显著峰型 / Significant peaks,,
+4,,,30.0,17.25,15.0,peak_flow_m3_s,9.0,,9.3,27.0,,,,事件分布 / Event distributions,m3/s,
+4,,,300.0,174.75,150.0,total_volume_m3,99.0,,99.3,270.0,,,,事件分布 / Event distributions,m3,
+4,,,4.0,4.0,4.0,duration_hours,4.0,,4.0,4.0,,,,事件分布 / Event distributions,hours,
+4,,,,,,,,01,,,,,,月份分布 / Months,,

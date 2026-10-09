@@ -72,6 +72,7 @@
   "id": "hydromodel-xaj-003",
   "primary_skill": "hydrological-modeling/run-lumped-xaj-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-xaj-model. The forcing table is hourly and contains at least one missing E0 value. Run the simulation verbatim with area 640 km2, timestep 1 h, mode continuous, warm-up 12 steps, and only the native result.json under xaj-run/. Do not fill, interpolate, or drop the missing evaporation value; do not rerun with repaired data; the script must reject the input itself. No lumped_xaj_runoff.csv may remain in xaj-run/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "xaj-run/result.json"
   ],

@@ -7,7 +7,12 @@ import hashlib
 import io
 import json
 import math
+import os
 from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
 from typing import Any
 
 import numpy as np
@@ -43,6 +48,15 @@ def _write_text(path: Path, text: str) -> None:
 
 
 def _write_json(path: Path, value: dict[str, Any]) -> None:
+    # Retain the independently authored public interface when regenerating fixtures.
+    if path.name == "task.json" and isinstance(value, dict):
+        canonical = Path(__file__).resolve().parent / value["id"] / "public_contract.json"
+        if canonical.is_file():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            destination = path.parent / "public_contract.json"
+            if canonical.resolve() != destination.resolve():
+                destination.write_bytes(canonical.read_bytes())
+            value = dict(value, public_contract="public_contract.json")
     _write_text(path, json.dumps(_json_safe(value), ensure_ascii=False, indent=2, sort_keys=True) + "\n")
 
 
@@ -357,7 +371,7 @@ def _task(task_id: str, title: str, difficulty: str, prompt: str, description: s
     }
 
 
-def _materialize(task_dir: Path, task_id: str, title: str, difficulty: str, description: str, frame: pd.DataFrame, raw_config: dict[str, Any], filename_by: str = "event-id", positive: bool = True, error_message: str | None = None, scientific_qc: bool = False) -> None:
+def _materialize_v1(task_dir: Path, task_id: str, title: str, difficulty: str, description: str, frame: pd.DataFrame, raw_config: dict[str, Any], filename_by: str = "event-id", positive: bool = True, error_message: str | None = None, scientific_qc: bool = False) -> None:
     _upstream(task_dir, frame)
     _write_yaml(task_dir / "data" / "event_config.yaml", raw_config)
     prompt = f"Use components/result.json and the complete confirmed parameters in event_config.yaml to extract flood events. Write CSV main tables and CSV per-event files under events/, naming per-event files by {filename_by}. Do not change, infer, or relax any scientific parameter."
@@ -417,6 +431,73 @@ def _materialize(task_dir: Path, task_id: str, title: str, difficulty: str, desc
     status = "warning" if warnings else "success"
     _write_json(golden / "result.json", _result(task_dir, status, f"extracted {len(summary)} flood events", warnings, artifacts, parameters, checks))
     task = _task(task_id, title, difficulty, prompt, description, True, summary, process, annotated, per_event_paths)
+    _write_json(task_dir / "task.json", task)
+
+
+def _materialize(task_dir: Path, task_id: str, title: str, difficulty: str, description: str, frame: pd.DataFrame, raw_config: dict[str, Any], filename_by: str = "event-id", positive: bool = True, error_message: str | None = None, scientific_qc: bool = False) -> None:
+    """v2: preserve flow cases, explicitly supply synthetic companion rainfall."""
+    _upstream(task_dir, frame)
+    raw_config = dict(raw_config, schema_version="1.2",
+        rainfall_support={"lookback_hours": 6.0, "min_observed_rainfall_mm": 1.0,
+                          "no_rainfall_policy": "keep", "missing_rainfall_policy": "keep"},
+        shape_filter={"min_plateau_duration_hours": 24.0, "min_plateau_fraction": 0.5,
+                      "plateau_range_fraction": 0.005, "min_jump_fraction": 0.1, "jump_window_steps": 2})
+    data = task_dir / "data"
+    _write_yaml(data / "event_config.yaml", raw_config)
+    times = pd.to_datetime(frame["time"], utc=True)
+    rain_times = pd.date_range(times.iloc[0] - pd.Timedelta(hours=6), times.iloc[-1], freq="h")
+    _write_csv(data / "rainfall.csv", pd.DataFrame({"time": rain_times, "P_mm": 1.0}))
+    _write_json(data / "rainfall_metadata.json", {"spatial_scope": "basin_mean", "unit": "mm/step",
+        "timestamp_semantics": "interval_end", "timezone": "UTC", "timestep_seconds": 3600,
+        "origin": "Synthetic companion rainfall: 1 mm per hour; explicit test setting, not repaired observations.",
+        "sha256": _sha256(data / "rainfall.csv")})
+    source = Path(os.environ.get("HYDROTUNE_SKILLS_ROOT", r"E:\HydroTune-Skills（仿BioSkills版）"))
+    script = source / EVENT_SKILL / "examples/extract_flood_events.py"
+    with tempfile.TemporaryDirectory(prefix="hsqb-flood-v2-") as temporary:
+        work = Path(temporary); shutil.copytree(data, work, dirs_exist_ok=True)
+        command = [sys.executable, str(script), "--baseflow-result", "components/result.json",
+                   "--config", "event_config.yaml", "--rainfall", "rainfall.csv",
+                   "--rainfall-metadata", "rainfall_metadata.json", "--output-format", "csv",
+                   "--per-event-format", "csv", "--event-filename-by", filename_by, "--output-dir", "events"]
+        completed = subprocess.run(command, cwd=work, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
+        if completed.returncode != (0 if positive else 2 if scientific_qc else 1):
+            raise RuntimeError(f"{task_id}: unexpected native exit: {completed.stderr}")
+        output = work / "events"
+        document = json.loads((output / "result.json").read_text(encoding="utf-8"))
+        for reference in document.get("inputs", {}).values():
+            if isinstance(reference, dict) and "path" in reference:
+                reference["path"] = "../" + Path(reference["path"]).relative_to(work).as_posix()
+        document["provenance"] = {"generator": "Frozen current native flood program; v2 rainfall interface"}
+        (output / "result.json").write_bytes((json.dumps(document, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode())
+        golden = task_dir / "expected/golden_workspace/events"
+        for path in output.rglob("*"):
+            if path.is_file():
+                target = golden / path.relative_to(output); target.parent.mkdir(parents=True, exist_ok=True)
+                if target.exists() and target.read_bytes() != path.read_bytes():
+                    raise RuntimeError(f"refusing to overwrite non-matching deterministic artifact: {target}")
+                shutil.copyfile(path, target)
+    prompt = (f"Use components/result.json, rainfall.csv, rainfall_metadata.json and the complete confirmed parameters in event_config.yaml to extract flood events. "
+              f"Write CSV main tables, rainfall_screening.csv and CSV per-event files under events/, naming per-event files by {filename_by}. "
+              "Rainfall is an explicitly synthetic basin-mean companion test series, 1 mm per hourly interval end in UTC. "
+              "No-rain and all-missing-rain event policies are both confirmed keep; keeping an event does not establish forcing completeness. "
+              "Do not change, infer, or relax any scientific parameter.")
+    if not positive:
+        prompt += " Preserve the native error result.json and do not create event artifacts when validation or scientific QC fails."
+        task = _task(task_id, title, difficulty, prompt, description, False, scientific_qc=scientific_qc)
+    else:
+        summary = pd.read_csv(golden / "event_summary.csv")
+        process = pd.read_csv(golden / "event_process.csv")
+        annotated = pd.read_csv(golden / "annotated_series.csv")
+        manifest = json.loads((golden / "event_manifest.json").read_text(encoding="utf-8"))
+        per_event = ["events/" + entry["path"] for entry in manifest["files"]]
+        task = _task(task_id, title, difficulty, prompt, description, True, summary, process, annotated, per_event)
+        task["required_outputs"].append("events/rainfall_screening.csv")
+        schema = task["grading"][0]
+        schema["targets"].append("events/rainfall_screening.csv")
+        schema["required_columns"]["events/rainfall_screening.csv"] = list(pd.read_csv(golden / "rainfall_screening.csv").columns)
+        schema["expected_rows"]["events/event_qc.csv"] = len(pd.read_csv(golden / "event_qc.csv"))
+    task["data_files"] += ["rainfall.csv", "rainfall_metadata.json"]
+    task["data_description"] += " Explicit synthetic companion rainfall is supplied; the original flow components are unchanged."
     _write_json(task_dir / "task.json", task)
 
 

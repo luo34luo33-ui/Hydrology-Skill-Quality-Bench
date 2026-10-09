@@ -1,0 +1,24 @@
+{
+  "group": "hydrovisual-flood-atlas",
+  "outputs": [
+    "atlas"
+  ],
+  "steps": [
+    {
+      "action": null,
+      "args": [
+        "--extract-result",
+        "events/result.json",
+        "--rainfall",
+        "流域 雨量.csv",
+        "--rainfall-metadata",
+        "雨量 元数据.json",
+        "--language",
+        "en",
+        "--output-dir",
+        "atlas"
+      ],
+      "code": 1
+    }
+  ]
+}

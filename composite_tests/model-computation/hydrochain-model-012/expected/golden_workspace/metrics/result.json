@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "event_metrics": {
+      "path": "event_metrics.csv",
+      "sha256": "4c025f87b8fa17d4ad35391a55c649e6595b00e9c0049af3f3920c221928b026"
+    }
+  },
+  "checks": [
+    {
+      "message": "观测与模拟均为 92 行",
+      "name": "20241030:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "20241030:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "20241030:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "20241030:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "20241030:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为 84 行",
+      "name": "20250627:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "20250627:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "20250627:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "20250627:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "20250627:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "未提供合格阈值，不判定合格",
+      "name": "thresholds_provided",
+      "status": "WARN"
+    },
+    {
+      "message": "洪量单位为 m3",
+      "name": "volume_unit_recorded",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "event_file_0000": {
+      "path": "../scoring_events/20241030.csv",
+      "sha256": "567c533d97b7bc7be8c525548df0a723d7d5ce284c66d3cf3b9d212c70d30cea"
+    },
+    "event_file_0001": {
+      "path": "../scoring_events/20250627.csv",
+      "sha256": "c8230b5152e4e744e68fc3f61ef7c316879863922d8b3e52f435d016f9e3037f"
+    },
+    "events_dir": "scoring_events"
+  },
+  "message": "场次指标计算完成：2 场",
+  "parameters": {
+    "event_id_column": "event_id",
+    "observed_column": "observed_m3_s",
+    "scoring_policy": "exclude_unscored_and_warmup",
+    "simulated_column": "simulated_m3_s",
+    "thresholds": {},
+    "time_column": "time",
+    "timestep_hours": 1.0,
+    "volume_unit": "m3"
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-event-flood-metrics",
+  "status": "warning",
+  "warnings": [
+    "未提供 --thresholds，合格判定列记为 unavailable；合格阈值必须由使用者显式给出"
+  ]
+}

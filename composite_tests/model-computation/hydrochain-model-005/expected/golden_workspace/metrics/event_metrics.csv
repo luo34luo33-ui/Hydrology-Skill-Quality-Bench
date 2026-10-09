@@ -1,0 +1,2 @@
+﻿event_id,rows,start,end,observed_volume,simulated_volume,volume_error_relative,observed_peak,simulated_peak,peak_error_relative,peak_time_error_hours,peak_tie_count,nse,r2,rmse,mae,qualified_volume,qualified_peak,qualified_peak_time
+evaluation_events,732,2023-08-01 04:00:00+00:00,2023-08-31 15:00:00+00:00,231031403.99999997,125817620.37981611,0.45540901279457174,517.344,484.212608121,0.0640413185018093,163.0,2,-0.2907429615443833,-0.2907429615443833,103.91175222203978,66.35523280439813,unavailable,unavailable,unavailable

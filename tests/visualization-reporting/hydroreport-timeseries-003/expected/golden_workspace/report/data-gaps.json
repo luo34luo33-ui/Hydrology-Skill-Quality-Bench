@@ -1,0 +1,16 @@
+[
+  {
+    "action": "Provide or correct the upstream evidence; regenerate and review.",
+    "reason": "Artifact hash mismatch: series_metadata_json",
+    "section": "flow",
+    "severity": "error",
+    "source_id": "flow"
+  },
+  {
+    "action": "Provide or correct the upstream evidence; regenerate and review.",
+    "reason": "Upstream QC checks not provided / 未提供上游 QC 检查证据",
+    "section": "events",
+    "severity": "warning",
+    "source_id": "events"
+  }
+]

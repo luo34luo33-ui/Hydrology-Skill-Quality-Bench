@@ -1,0 +1,115 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "basin.gpkg",
+    "build/reaches.csv",
+    "build/reaches_clipped.gpkg",
+    "build/result.json",
+    "build/stream_links_clipped.tif",
+    "build/stream_order_clipped.tif",
+    "build/subbasins.csv",
+    "build/subbasins_clipped.tif",
+    "build/topology.csv",
+    "dem.tif",
+    "extract/d8_pointer.tif",
+    "extract/dem_filled.tif",
+    "extract/flow_accumulation_cells.tif",
+    "extract/result.json",
+    "extract/strahler_order.tif",
+    "extract/stream_links.tif",
+    "extract/streams.gpkg",
+    "extract/streams.tif",
+    "extract/subbasins.tif",
+    "prepare/basin_normalized.gpkg",
+    "prepare/dem_analysis_buffer.tif",
+    "prepare/dem_metric.tif",
+    "prepare/result.json",
+    "validate/network_topology_check.png",
+    "validate/result.json",
+    "validate/topology_check_report.txt",
+    "validate/topology_checks.csv"
+  ],
+  "difficulty": "intermediate",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "atlas/dem-basin-context.figure.json",
+        "atlas/dem-basin-context.png",
+        "atlas/dem-basin-context.svg",
+        "atlas/dem-terrain.figure.json",
+        "atlas/dem-terrain.png",
+        "atlas/dem-terrain.svg",
+        "atlas/flow-accumulation-network.figure.json",
+        "atlas/flow-accumulation-network.png",
+        "atlas/flow-accumulation-network.svg",
+        "atlas/result.json",
+        "atlas/stream-order-subbasins.figure.json",
+        "atlas/stream-order-subbasins.png",
+        "atlas/stream-order-subbasins.svg"
+      ],
+      "type": "file_check",
+      "weight": 0.25
+    },
+    {
+      "name": "atlas_artifact_integrity",
+      "required_keys": [
+        "dem-basin-context_figure",
+        "dem-basin-context_png",
+        "dem-basin-context_svg",
+        "dem-terrain_figure",
+        "dem-terrain_png",
+        "dem-terrain_svg",
+        "flow-accumulation-network_figure",
+        "flow-accumulation-network_png",
+        "flow-accumulation-network_svg",
+        "stream-order-subbasins_figure",
+        "stream-order-subbasins_png",
+        "stream-order-subbasins_svg"
+      ],
+      "target": "atlas/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.25
+    },
+    {
+      "name": "rendered_figure_contract",
+      "reference": "expected/figure-contract.json",
+      "target": "atlas/result.json",
+      "type": "figure_contract_check",
+      "weight": 0.25
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "atlas/result.json",
+      "type": "report_contract_check",
+      "weight": 0.25
+    }
+  ],
+  "id": "hydrovisual-dem-atlas-001",
+  "primary_skill": "visualization-reporting/visualize-dem-hydrology-atlas",
+  "prompt": "Use the visualization-reporting/visualize-dem-hydrology-atlas capability on the supplied synthetic artifacts. Scenario: full four maps. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --prepare-result prepare/result.json --extract-result extract/result.json --language zh --output-dir atlas\n Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "atlas/dem-basin-context.figure.json",
+    "atlas/dem-basin-context.png",
+    "atlas/dem-basin-context.svg",
+    "atlas/dem-terrain.figure.json",
+    "atlas/dem-terrain.png",
+    "atlas/dem-terrain.svg",
+    "atlas/flow-accumulation-network.figure.json",
+    "atlas/flow-accumulation-network.png",
+    "atlas/flow-accumulation-network.svg",
+    "atlas/result.json",
+    "atlas/stream-order-subbasins.figure.json",
+    "atlas/stream-order-subbasins.png",
+    "atlas/stream-order-subbasins.svg"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "full four maps"
+}

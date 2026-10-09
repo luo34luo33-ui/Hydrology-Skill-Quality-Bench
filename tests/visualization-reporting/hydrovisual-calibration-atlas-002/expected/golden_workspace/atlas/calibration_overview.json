@@ -1,0 +1,49 @@
+{
+  "display_transforms": [
+    "upstream trace, parameter positions and metrics unchanged; no visible titles"
+  ],
+  "figure_type": "overview",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\result.json",
+      "sha256": "f1b59ef80d01093695410f1ba6587adb8c90b6cbf6f2021b34a7859c6a747125"
+    },
+    "source_0_best_parameters": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\best_parameters.json",
+      "sha256": "c54dcc952018dadb3af4a7a79b398d3fa7408b7b4f2a5c0798b4ce557335cceb"
+    },
+    "source_1_calibration_trace": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\calibration_trace.csv",
+      "sha256": "3022330d276e377264b2d54b51c4ea5da9905cbc4c086e46903a3922d9e8d902"
+    },
+    "source_2_calibration_metrics": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\calibration_metrics.json",
+      "sha256": "1c1410acc5ce54bab9261de078fe99a1f5568fae16eaf88ee01c09495e394f4c"
+    },
+    "source_3_validation_metrics": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\validation_metrics.json",
+      "sha256": "d43ce11405b0a9e33942875c82b59db72fff98edac7da95a1892f47d749c4f2b"
+    },
+    "source_4_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\validation_series.csv",
+      "sha256": "fb3330aed08d62c8f95cd07eaefc50850cc07c198899406291fd26f2b9307ad4"
+    }
+  },
+  "language": "en",
+  "outputs": {
+    "png": {
+      "path": "calibration_overview.png",
+      "sha256": "a8aa8e687b9a7bc58ca4cc469a683b98010b2c17fcf6c3f30231d31db703ad68"
+    },
+    "svg": {
+      "path": "calibration_overview.svg",
+      "sha256": "ac0ba203a12e4d488fbc251954a6fd720e9f2cb8d7668c9b49254bb3ce9a2f16"
+    }
+  },
+  "schema_version": "1.0",
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "Model calibration overview",
+  "warnings": [],
+  "width_px": 2400
+}

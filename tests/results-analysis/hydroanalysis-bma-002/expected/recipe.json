@@ -1,0 +1,44 @@
+{
+  "group": "hydroanalysis-bma",
+  "outputs": [
+    "fit",
+    "forecast"
+  ],
+  "steps": [
+    {
+      "action": null,
+      "args": [
+        "--mode",
+        "train",
+        "--members",
+        "members.json",
+        "--observed-result",
+        "observed-result.json",
+        "--random-state",
+        "2026",
+        "--output-dir",
+        "fit",
+        "--events",
+        "flood-001",
+        "flood-002"
+      ],
+      "code": 0
+    },
+    {
+      "action": null,
+      "args": [
+        "--mode",
+        "predict",
+        "--members",
+        "members.json",
+        "--model-result",
+        "fit/result.json",
+        "--output-dir",
+        "forecast",
+        "--events",
+        "flood-003"
+      ],
+      "code": 0
+    }
+  ]
+}

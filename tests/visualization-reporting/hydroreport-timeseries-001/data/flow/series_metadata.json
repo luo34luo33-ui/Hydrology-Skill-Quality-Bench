@@ -1,0 +1,5 @@
+{
+  "standard_flow_unit": "m3/s",
+  "timestep_seconds": 3600,
+  "timezone": "Asia/Shanghai"
+}

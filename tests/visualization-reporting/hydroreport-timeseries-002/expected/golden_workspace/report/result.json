@@ -1,0 +1,79 @@
+{
+  "artifacts": {
+    "analysis-tables.json": {
+      "path": "analysis-tables.json",
+      "sha256": "09488a1e4ecd3e102322bcca4b9829439cd1777a36feea30dcdec0f7a12a5ee6"
+    },
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "42b99c315fd0689f19a4be383ff5f2c1277780cd29e91313f019be4f66790459"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "ed371e98586a9ad630a0eb78eefacc12374426b3ba50ef990749e3d446b6e6b4"
+    },
+    "events.csv": {
+      "path": "events.csv",
+      "sha256": "ccf3b239a36e4b06c50b20d784155d7bb32c4498dff51464103cfa7e5fb83ff5"
+    },
+    "evidence-index.csv": {
+      "path": "evidence-index.csv",
+      "sha256": "bafafbf1475e6a091bf076316c4214fa44ccf05a532d85c8b4f5fb06a1202263"
+    },
+    "evidence-index.json": {
+      "path": "evidence-index.json",
+      "sha256": "ffad925c139f813f4ed861076a500fafe559c0db8caa12723ad605ca37fc2ecd"
+    },
+    "figures/distribution-2.svg": {
+      "path": "figures/distribution-2.svg",
+      "sha256": "bd651eaeb09402fba1a81d5e4abc5d4c666667a73a70c7b99ef21d5ea1c77f44"
+    },
+    "figures/distribution-4.svg": {
+      "path": "figures/distribution-4.svg",
+      "sha256": "480ad3e90e88a15237df864af10f7e736f6e5ee0c7b651ff6d9b2b56a7c6895f"
+    },
+    "report.json": {
+      "path": "report.json",
+      "sha256": "3b97858cff53735d8eab35bdfb111b54c5a178c33285d5f08f2a2ca1b571d978"
+    },
+    "report.md": {
+      "path": "report.md",
+      "sha256": "4ce38c3d02c183335c4137e7fba6950f891ffc348d9ae223b507b23236445d74"
+    },
+    "summary.csv": {
+      "path": "summary.csv",
+      "sha256": "ad46566714184dffce1adb9c3b7dc38d368144d2e39e681cf530e0dd49d7df3c"
+    }
+  },
+  "checks": [
+    {
+      "check": "source_integrity",
+      "details": "Declared outputs and results verified",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "events": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-4l51q6r1\\events\\result.json",
+      "sha256": "725715134c1d4f15292d8ae97bd53af7ff807f40bc0a1afb65768a76db62a524"
+    },
+    "flow": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-4l51q6r1\\flow\\result.json",
+      "sha256": "1c5a8d3da7fba59222fd6a898c9bc1d18ab886ce5ea3589557c9152e0058029d"
+    },
+    "processing_manifest": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-4l51q6r1\\manifest.json",
+      "sha256": "e9a3da3ceafd84ea46f7e32ce0779777a3f7c85e3092955bdb1c33e0b4439923"
+    }
+  },
+  "message": "Data-processing report generated from verified upstream outputs",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-timeseries-data-processing-report",
+  "status": "warning",
+  "warnings": []
+}

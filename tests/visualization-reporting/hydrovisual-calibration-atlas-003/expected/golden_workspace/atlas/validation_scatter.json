@@ -1,0 +1,41 @@
+{
+  "display_transforms": [
+    "validation scored=true rows only; multiple explicitly aligned simulations; 1:1 display reference; no visible titles"
+  ],
+  "figure_type": "validation-scatter",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\calibration\\result.json",
+      "sha256": "029c5f9d1904047aa3bc0580310228beb98632d13eba70f31f4dab443d6376c8"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\calibration\\validation_series.csv",
+      "sha256": "1d7274491fe304067dbfae1804f1df04999d01e2b46a4583209fbbb799f01c54"
+    },
+    "source_1_comparisons": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\comparisons.json",
+      "sha256": "f66b523f5aea072177b3fdc97ac4513d669ab8aebc42de8506440302b0f3ccbd"
+    },
+    "source_2_comparison": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\comparison.csv",
+      "sha256": "1beb0351b2803f5b720eab068c12f73afbc49318283aec33cb3b826a7afb45c1"
+    }
+  },
+  "language": "zh",
+  "outputs": {
+    "png": {
+      "path": "validation_scatter.png",
+      "sha256": "23f82dd7075bb2dc08e179738a1e36ee162dfc71c2c7713c2a7edc769a3c0fd2"
+    },
+    "svg": {
+      "path": "validation_scatter.svg",
+      "sha256": "cab807f1dd7d3a02ad69c5a56487fce7d13a49e85175496b33aa45c510b998ea"
+    }
+  },
+  "schema_version": "1.0",
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "验证期观测—模拟散点",
+  "warnings": [],
+  "width_px": 2400
+}

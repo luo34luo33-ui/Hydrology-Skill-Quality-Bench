@@ -1,0 +1,152 @@
+{
+  "data_description": "A deterministic lumped TOPMODEL fixture consuming a hash-checked terrain product and its HydroBase provenance.",
+  "data_files": [
+    "terrain_result.json",
+    "topographic_index.tif",
+    "topographic_index_classes.csv",
+    "distance_area.csv",
+    "stream_result.json",
+    "build_result.json",
+    "topology_qc_result.json",
+    "subbasins_table.csv",
+    "subbasins_clipped.tif",
+    "filled_dem.tif",
+    "d8_pointer.tif",
+    "flow_accumulation_cells.tif",
+    "forcing.csv",
+    "params.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "topmodel-run/final_state.json": [
+          "mean_deficit_m",
+          "root_deficit_m",
+          "routing_m",
+          "routing_storage_m"
+        ],
+        "topmodel-run/model_config.json": [
+          "schema_version",
+          "timestep_hours",
+          "timezone",
+          "timestamp_semantics",
+          "forcing_unit",
+          "warmup_steps",
+          "simulation_start",
+          "simulation_end",
+          "water_balance_tolerance_m",
+          "parameters"
+        ],
+        "topmodel-run/process.csv": [
+          "time",
+          "warmup",
+          "P_mm",
+          "PET_mm",
+          "outlet_m3_s",
+          "water_balance_residual_mm"
+        ],
+        "topmodel-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "topmodel-run/process.csv",
+        "topmodel-run/final_state.json",
+        "topmodel-run/model_config.json",
+        "topmodel-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "process_table",
+      "reference": "expected/golden_workspace/topmodel-run/process.csv",
+      "rtol": 1e-09,
+      "target": "topmodel-run/process.csv",
+      "type": "table_match",
+      "weight": 0.35
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/topmodel-run/result.json",
+      "target": "topmodel-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/topmodel-run/result.json",
+      "target": "topmodel-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/topmodel-run/result.json",
+      "target": "topmodel-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/topmodel-run/result.json",
+      "target": "topmodel-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/topmodel-run/result.json",
+      "target": "topmodel-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "process.csv",
+        "final_state.json",
+        "model_config.json"
+      ],
+      "target": "topmodel-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-topmodel-002",
+  "primary_skill": "hydrological-modeling/run-lumped-topmodel",
+  "prompt": "Use terrain_result.json, forcing.csv, and params.json exactly as supplied to run hydrological-modeling/run-lumped-topmodel. The confirmed configuration enables the Green-Ampt infiltration-excess branch (parameters K0, psi, dtheta alongside td); run it verbatim. Write the native outputs (process.csv, final_state.json, model_config.json, result.json) under topmodel-run/. Do not disable the branch, drop the Green-Ampt parameters, or substitute another runoff partition.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "topmodel-run/process.csv",
+    "topmodel-run/final_state.json",
+    "topmodel-run/model_config.json",
+    "topmodel-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The terrain chain and the model configuration are confirmed by the user and must not be altered.",
+    "Forcing timestamps carry explicit +08:00 offsets with interval_end semantics.",
+    "Do not install software or implement a replacement TOPMODEL."
+  ],
+  "timeout_seconds": 300,
+  "title": "Run TOPMODEL with the confirmed Green-Ampt infiltration-excess branch"
+}

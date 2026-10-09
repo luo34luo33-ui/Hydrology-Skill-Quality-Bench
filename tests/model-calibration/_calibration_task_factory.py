@@ -92,7 +92,7 @@ class Evaluator:
         target = self.fixture.get(target_key, self.fixture["calibration_target"])
         shift = sum(float(parameters[name]) - float(target[name]) for name in parameters)
         series = pd.DataFrame({
-            "time": pd.date_range("2024-01-01" if split == "calibration" else "2025-01-01", periods=12, freq="D"),
+            "time": pd.date_range("2024-01-01" if split == "calibration" else "2025-01-01", periods=12, freq="D", tz="UTC"),
             "observed": observed,
             "simulated": observed + shift,
             "scored": [False, False] + [True] * 10,
@@ -121,7 +121,21 @@ def _write_bytes(path: Path, content: bytes) -> None:
 
 
 def _write_json(path: Path, value: Any) -> None:
-    _write_bytes(path, _stable_json(value))
+    # Retain the independently authored public interface when regenerating fixtures.
+    if path.name == "task.json" and isinstance(value, dict):
+        canonical = Path(__file__).resolve().parent / value["id"] / "public_contract.json"
+        if canonical.is_file():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            destination = path.parent / "public_contract.json"
+            if canonical.resolve() != destination.resolve():
+                destination.write_bytes(canonical.read_bytes())
+            value = dict(value, public_contract="public_contract.json")
+    content = _stable_json(value)
+    if path.name == "task.json" and isinstance(value, dict):
+        original = Path(__file__).resolve().parent / value["id"] / "task.json"
+        if original.is_file() and b"\r\n" in original.read_bytes():
+            content = content.replace(b"\n", b"\r\n")
+    _write_bytes(path, content)
 
 
 def _task_parts(task_id: str) -> tuple[str, int]:
@@ -270,7 +284,7 @@ def _build_task(task_id: str, spec: dict[str, Any]) -> dict[str, Any]:
         behavior = "Reject the invalid optimizer config, write only the native error result.json, and leave no normal calibration artifacts."
     prompt = (
         f"Use calibration-problem.json and optimizer-config.json exactly as supplied to run {meta['skill']}. "
-        "All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. "
+        "All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. The synthetic evaluator uses UTC timestamps (a declared test setting). "
         "Use calibration only for search and evaluate validation only after parameters are locked. Do not repair the optimizer config, alter its seed or budget, switch optimizers, or use validation for selection. "
         f"Write the native outputs under {output}/. {behavior}"
     )

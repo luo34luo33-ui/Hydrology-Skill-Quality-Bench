@@ -1,0 +1,31 @@
+{
+  "boundaries": {
+    "boundary_fraction": 0.1,
+    "boundary_persistence_steps": 3,
+    "max_search_days": 5
+  },
+  "filters": {
+    "min_event_duration_hours": 1,
+    "min_event_volume_m3": null,
+    "min_peak_flow_m3_s": null
+  },
+  "merging": {
+    "merge_gap_hours": 6,
+    "valley_ratio_threshold": 0.6
+  },
+  "peak_detection": {
+    "min_peak_distance_hours": 12,
+    "peak_quantile": 0.8,
+    "prominence_factor": 0.15
+  },
+  "rainfall_support": {
+    "lookback_hours": 24,
+    "min_observed_rainfall_mm": 1,
+    "missing_rainfall_policy": "keep",
+    "no_rainfall_policy": "exclude"
+  },
+  "schema_version": "1.2",
+  "warmup": {
+    "steps": 12
+  }
+}

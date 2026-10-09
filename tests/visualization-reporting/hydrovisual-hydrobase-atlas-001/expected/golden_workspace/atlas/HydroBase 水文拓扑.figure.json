@@ -1,0 +1,70 @@
+{
+  "crs": "EPSG:32650",
+  "extent": [
+    499958.0,
+    501002.0,
+    4098998.0,
+    4100042.0
+  ],
+  "language": "zh",
+  "layers": [
+    {
+      "display_transform": "stable IDs; display clipped to real basin; pale-gray boundaries from existing raster IDs",
+      "id": "subbasins",
+      "palette": "subbasins",
+      "source": "build_result.artifacts.subbasins_clipped"
+    },
+    {
+      "display_transform": "existing Strahler order, directions and outlet flags; selected labels",
+      "id": "reaches",
+      "palette": "water",
+      "source": "build_result.artifacts.reaches_vector"
+    },
+    {
+      "display_transform": "real boundary; projected WGS84 graticules; inward geographic ticks; scale; black-white north arrow",
+      "id": "basin-boundary",
+      "palette": "black",
+      "source": "build_result.inputs.basin_boundary"
+    },
+    {
+      "display_transform": "unique existing sub_id count=39; inset label",
+      "id": "subbasin-count",
+      "palette": "black",
+      "source": "build_result.artifacts.subbasins_table"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "HydroBase 水文拓扑.png",
+      "sha256": "0e8f5152ec7c21ca3938c84eee1d63a33b66ad52535fc116f6636c3b2b9a74c0"
+    },
+    "svg": {
+      "path": "HydroBase 水文拓扑.svg",
+      "sha256": "3dfc9eb33e6ef7ad48b6972acef4affca1043281086ce555ed512186b564e88b"
+    }
+  },
+  "pixel_size": {
+    "height": 2366,
+    "width": 2400
+  },
+  "publication_ready": true,
+  "schema_version": "1.0",
+  "source_results": {
+    "basin_boundary": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\prepare\\basin_normalized.gpkg",
+      "sha256": "d6bab5a8448645a0818b29cecd7b6fa375189706b1b3eb2a3c94c147ca9f0af6"
+    },
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\validate\\result.json",
+      "sha256": "1506cb4d73c0f2c413e9256860a86bfb03a13d1926b091db05159dadb3aa62c7"
+    }
+  },
+  "template_id": "hydrobase-topology",
+  "template_version": "hydrotune.hydrobase-topology.v2",
+  "title": "HydroBase 水文拓扑",
+  "warnings": []
+}

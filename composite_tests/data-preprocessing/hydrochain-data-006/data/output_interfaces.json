@@ -1,0 +1,1854 @@
+{
+  "calibration_evidence": "Trace rows contain status, objective and param:NAME columns; at most 128 evaluations, objective independently replayable, best parameters locked before validation. No prescribed optimizer trajectory.",
+  "decision": {
+    "evidence": "nonempty list of {path, sha256}, relative to workspace root",
+    "limitations": "nonempty list including synthetic-data limitations and implementation choices",
+    "reason": "scientific_contracts_satisfied",
+    "status": "deliverable"
+  },
+  "interaction_mode": "none",
+  "numerical_tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "outputs": {
+    "decision.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "evidence": [
+          {
+            "path": "string",
+            "sha256": "string"
+          }
+        ],
+        "limitations": [
+          "string"
+        ],
+        "reason": "string",
+        "status": "string"
+      }
+    },
+    "window-20230908/baseflow/flow_components.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/baseflow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "baseflow_metadata": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "flow_components": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "prepare_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "alpha": "number",
+          "alpha_decision": "string",
+          "bfi_max": "number",
+          "output_format": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20230908/basin_rain.csv": {
+      "columns": [
+        "time",
+        "P_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20230908/events/annotated_series.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/events/event_files/event_0001.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/events/event_files/event_0002.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/events/event_process.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/events/event_qc.csv": {
+      "columns": [
+        "check",
+        "status",
+        "details"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/events/event_summary.csv": {
+      "columns": [
+        "event_id",
+        "warmup_start_time",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "warmup_start_idx",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "start_flow_m3_s",
+        "peak_flow_m3_s",
+        "end_flow_m3_s",
+        "duration_hours",
+        "rise_time_hours",
+        "recession_time_hours",
+        "total_volume_m3",
+        "quickflow_volume_m3",
+        "baseflow_volume_m3",
+        "quickflow_fraction",
+        "n_local_peaks",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/events/rainfall_screening.csv": {
+      "columns": [
+        "candidate_id",
+        "event_id",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/events/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "event_config",
+        "rainfall_metadata"
+      ],
+      "structure": {
+        "artifacts": {
+          "annotated_series": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_config": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_manifest": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_process": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_qc": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_summary": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_screening": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "baseflow_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "candidate_peak_count": "number",
+          "event_config_schema_version": "string",
+          "event_filename_by": "string",
+          "final_event_count": "number",
+          "merged_event_count": "number",
+          "missing_rainfall_policy": "string",
+          "no_rainfall_policy": "string",
+          "output_format": "string",
+          "partial_rainfall_event_count": "number",
+          "per_event_format": "string",
+          "policy_retained_event_count": "number",
+          "rainfall_rejected_event_count": "number",
+          "rainfall_support": {
+            "lookback_hours": "number",
+            "min_observed_rainfall_mm": "number",
+            "missing_rainfall_policy": "string",
+            "no_rainfall_policy": "string"
+          },
+          "raw_event_count": "number",
+          "refined_event_count": "number",
+          "scale_filtered_event_count": "number",
+          "shape_filter": {
+            "jump_window_steps": "number",
+            "min_jump_fraction": "number",
+            "min_plateau_duration_hours": "number",
+            "min_plateau_fraction": "number",
+            "plateau_range_fraction": "number"
+          },
+          "shape_rejected_event_count": "number",
+          "timestep_seconds": "number"
+        },
+        "provenance": {
+          "event_method": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "scipy": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": [
+          "string"
+        ]
+      }
+    },
+    "window-20230908/flow/discharge_timeseries.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/flow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "discharge_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "series_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "duplicate_policy": "string",
+          "edge_missing": "string",
+          "flow_column": "string",
+          "flow_unit": "string",
+          "input_format": "string",
+          "max_interpolation_gap_hours": "nullable",
+          "missing_policy": "string",
+          "output_format": "string",
+          "overwrite": "boolean",
+          "sheet": "nullable",
+          "time_column": "string",
+          "timezone": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20230908/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20230908/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20241030/baseflow/flow_components.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/baseflow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "baseflow_metadata": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "flow_components": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "prepare_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "alpha": "number",
+          "alpha_decision": "string",
+          "bfi_max": "number",
+          "output_format": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20241030/basin_rain.csv": {
+      "columns": [
+        "time",
+        "P_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20241030/events/annotated_series.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/events/event_files/event_0001.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/events/event_process.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/events/event_qc.csv": {
+      "columns": [
+        "check",
+        "status",
+        "details"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/events/event_summary.csv": {
+      "columns": [
+        "event_id",
+        "warmup_start_time",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "warmup_start_idx",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "start_flow_m3_s",
+        "peak_flow_m3_s",
+        "end_flow_m3_s",
+        "duration_hours",
+        "rise_time_hours",
+        "recession_time_hours",
+        "total_volume_m3",
+        "quickflow_volume_m3",
+        "baseflow_volume_m3",
+        "quickflow_fraction",
+        "n_local_peaks",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/events/rainfall_screening.csv": {
+      "columns": [
+        "candidate_id",
+        "event_id",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/events/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "event_config",
+        "rainfall_metadata"
+      ],
+      "structure": {
+        "artifacts": {
+          "annotated_series": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_config": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_manifest": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_process": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_qc": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_summary": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_screening": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "baseflow_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "candidate_peak_count": "number",
+          "event_config_schema_version": "string",
+          "event_filename_by": "string",
+          "final_event_count": "number",
+          "merged_event_count": "number",
+          "missing_rainfall_policy": "string",
+          "no_rainfall_policy": "string",
+          "output_format": "string",
+          "partial_rainfall_event_count": "number",
+          "per_event_format": "string",
+          "policy_retained_event_count": "number",
+          "rainfall_rejected_event_count": "number",
+          "rainfall_support": {
+            "lookback_hours": "number",
+            "min_observed_rainfall_mm": "number",
+            "missing_rainfall_policy": "string",
+            "no_rainfall_policy": "string"
+          },
+          "raw_event_count": "number",
+          "refined_event_count": "number",
+          "scale_filtered_event_count": "number",
+          "shape_filter": {
+            "jump_window_steps": "number",
+            "min_jump_fraction": "number",
+            "min_plateau_duration_hours": "number",
+            "min_plateau_fraction": "number",
+            "plateau_range_fraction": "number"
+          },
+          "shape_rejected_event_count": "number",
+          "timestep_seconds": "number"
+        },
+        "provenance": {
+          "event_method": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "scipy": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20241030/flow/discharge_timeseries.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/flow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "discharge_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "series_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "duplicate_policy": "string",
+          "edge_missing": "string",
+          "flow_column": "string",
+          "flow_unit": "string",
+          "input_format": "string",
+          "max_interpolation_gap_hours": "nullable",
+          "missing_policy": "string",
+          "output_format": "string",
+          "overwrite": "boolean",
+          "sheet": "nullable",
+          "time_column": "string",
+          "timezone": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20241030/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20241030/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20250627/baseflow/flow_components.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/baseflow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "baseflow_metadata": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "flow_components": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "prepare_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "alpha": "number",
+          "alpha_decision": "string",
+          "bfi_max": "number",
+          "output_format": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20250627/basin_rain.csv": {
+      "columns": [
+        "time",
+        "P_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20250627/events/annotated_series.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/events/event_files/event_0001.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/events/event_files/event_0002.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/events/event_process.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/events/event_qc.csv": {
+      "columns": [
+        "check",
+        "status",
+        "details"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/events/event_summary.csv": {
+      "columns": [
+        "event_id",
+        "warmup_start_time",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "warmup_start_idx",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "start_flow_m3_s",
+        "peak_flow_m3_s",
+        "end_flow_m3_s",
+        "duration_hours",
+        "rise_time_hours",
+        "recession_time_hours",
+        "total_volume_m3",
+        "quickflow_volume_m3",
+        "baseflow_volume_m3",
+        "quickflow_fraction",
+        "n_local_peaks",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/events/rainfall_screening.csv": {
+      "columns": [
+        "candidate_id",
+        "event_id",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/events/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "event_config",
+        "rainfall_metadata"
+      ],
+      "structure": {
+        "artifacts": {
+          "annotated_series": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_config": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_manifest": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_process": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_qc": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_summary": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_screening": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "baseflow_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "candidate_peak_count": "number",
+          "event_config_schema_version": "string",
+          "event_filename_by": "string",
+          "final_event_count": "number",
+          "merged_event_count": "number",
+          "missing_rainfall_policy": "string",
+          "no_rainfall_policy": "string",
+          "output_format": "string",
+          "partial_rainfall_event_count": "number",
+          "per_event_format": "string",
+          "policy_retained_event_count": "number",
+          "rainfall_rejected_event_count": "number",
+          "rainfall_support": {
+            "lookback_hours": "number",
+            "min_observed_rainfall_mm": "number",
+            "missing_rainfall_policy": "string",
+            "no_rainfall_policy": "string"
+          },
+          "raw_event_count": "number",
+          "refined_event_count": "number",
+          "scale_filtered_event_count": "number",
+          "shape_filter": {
+            "jump_window_steps": "number",
+            "min_jump_fraction": "number",
+            "min_plateau_duration_hours": "number",
+            "min_plateau_fraction": "number",
+            "plateau_range_fraction": "number"
+          },
+          "shape_rejected_event_count": "number",
+          "timestep_seconds": "number"
+        },
+        "provenance": {
+          "event_method": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "scipy": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20250627/flow/discharge_timeseries.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/flow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "discharge_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "series_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "duplicate_policy": "string",
+          "edge_missing": "string",
+          "flow_column": "string",
+          "flow_unit": "string",
+          "input_format": "string",
+          "max_interpolation_gap_hours": "nullable",
+          "missing_policy": "string",
+          "output_format": "string",
+          "overwrite": "boolean",
+          "sheet": "nullable",
+          "time_column": "string",
+          "timezone": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "window-20250627/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "window-20250627/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    }
+  },
+  "provided_settings": [
+    {
+      "field": "timezone",
+      "key": "timezone",
+      "output_bindings": [
+        {
+          "field": "parameters.timezone",
+          "target": "window-20230908/flow/result.json"
+        }
+      ],
+      "source": "scenario.json"
+    }
+  ],
+  "result_manifest": "Scientific inputs/artifacts: role -> {path, sha256}, relative to manifest parent. Optional config/adapter input roles may be omitted; equivalent implementations may use their own upstream filenames. Every reference that is declared must resolve and have a valid SHA-256.",
+  "task_version": "composite-unattended-v2"
+}

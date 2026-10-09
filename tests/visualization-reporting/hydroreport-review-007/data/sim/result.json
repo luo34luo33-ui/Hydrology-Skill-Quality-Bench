@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "simulation_table_csv": {
+      "path": "simulation_table.csv",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Synthetic benchmark evidence",
+  "parameters": {},
+  "provenance": {
+    "fixture": true
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-hbv-model",
+  "status": "success",
+  "warnings": []
+}

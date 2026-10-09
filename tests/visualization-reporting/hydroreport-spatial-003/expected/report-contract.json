@@ -1,0 +1,12 @@
+{
+  "files": {
+    "report/result.json": {
+      "error_reason_contains": "Artifact hash mismatch: reaches_table",
+      "skill": "visualization-reporting/generate-spatial-data-processing-report",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "report",
+  "markdown": {}
+}

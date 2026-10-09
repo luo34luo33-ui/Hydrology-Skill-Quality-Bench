@@ -1,0 +1,123 @@
+{
+  "artifacts": {
+    "model_config": {
+      "path": "model_config.json",
+      "sha256": "24a488149769950367b240e9d06332aa31b0b917c526af03d15a14a74d3d348d"
+    },
+    "outlet_flow": {
+      "path": "outlet_flow.csv",
+      "sha256": "c92af042cce33e8ad86eb125d7ed87b85c3e13f102314dc7be2493b4cc352fb5"
+    },
+    "reach_process": {
+      "path": "reach_process.csv",
+      "sha256": "fb6d924aec26e182ada2866d8d6077f1dffaa5698dc1bf09753bc0fc2b7217ec"
+    },
+    "subbasin_process": {
+      "path": "subbasin_process.csv",
+      "sha256": "dda02199ce34ef5789504914bddfae1b93e06ace67cb167e478f2cd7542be9aa"
+    }
+  },
+  "checks": [
+    {
+      "check": "hydrobase_qc",
+      "details": "independent validation and hashes checked",
+      "status": "PASS"
+    },
+    {
+      "check": "finite_outputs",
+      "details": "all simulated flows are finite",
+      "status": "PASS"
+    },
+    {
+      "check": "accounting_reported",
+      "details": {
+        "channel_in_minus_out_m3": 10612.139953041682,
+        "lag_tail_steps": 0,
+        "local_runoff_m3": 499330.56000000006,
+        "potential_evaporation_m3": 26880.0,
+        "rainfall_m3": 692000.0,
+        "soil_storage_change_m3": 165789.44000000006,
+        "source_split_residual_m3": 443164.6553825957
+      },
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "forcing.csv",
+      "sha256": "07d827f6e3fdc527872af42938feb9f40b4c05f0d31e947241b533c164228b31"
+    },
+    "params": {
+      "path": "params.json",
+      "sha256": "e8ba387516e8953c962f0b6a0698b9ab531f443860d147f6b17c83c0abf08ae1"
+    },
+    "topology_qc_result": {
+      "path": "topology_qc_result.json",
+      "sha256": "f45971676a49b97181eb08dbbb3d467475d939dd3a0312763aaaf3378a5d9eee"
+    },
+    "topology_result": {
+      "path": "build_result.json",
+      "sha256": "4f23b1e376f25391e28d8edbb2517add70d5aa703f6aa3389450132befdd3c35"
+    }
+  },
+  "message": "Semi-distributed XAJ simulation completed",
+  "parameters": {
+    "initial": {
+      "fr": 0.4,
+      "qg_cs_m3s": 0.1,
+      "qg_m3s": 0.1,
+      "qi_cs_m3s": 0.05,
+      "qi_m3s": 0.05,
+      "qs_cs_m3s": 0.0,
+      "s_mm": 5.0,
+      "soil_fraction": 0.3
+    },
+    "muskingum_coefficients": [
+      0.11764705882352937,
+      0.47058823529411764,
+      0.411764705882353
+    ],
+    "routing": {
+      "dp_by_reach": {
+        "1": 1,
+        "2": 1
+      },
+      "lag_steps": 0
+    },
+    "simulation": {
+      "end": "2020-07-03T00:00:00+08:00",
+      "start": "2020-07-01T13:00:00+08:00"
+    },
+    "time": {
+      "step_seconds": 3600,
+      "timestamp_meaning": "interval_end",
+      "timezone": "Asia/Shanghai"
+    },
+    "warmup_steps": 12,
+    "xaj": {
+      "B": 0.3,
+      "C": 0.12,
+      "CG": 0.95,
+      "CI": 0.6,
+      "CS": 0.2,
+      "EX": 1.2,
+      "IMP": 0.02,
+      "KC": 0.8,
+      "KE": 1.5,
+      "KG": 0.35,
+      "KI": 0.3,
+      "SM": 25.0,
+      "WLM": 60.0,
+      "WM": 120.0,
+      "WUM": 20.0,
+      "XE": 0.2
+    }
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-semi-distributed-xaj-model",
+  "status": "success",
+  "warnings": []
+}

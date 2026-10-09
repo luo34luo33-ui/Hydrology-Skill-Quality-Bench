@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "series_metrics": {
+      "path": "series_metrics.csv",
+      "sha256": "0ae068470ebf0cabb1cf3a1a39ab0c6d99d9591e4b89c9b353c30ce24b42768f"
+    }
+  },
+  "checks": [
+    {
+      "message": "观测与模拟均为 732 行",
+      "name": "series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测序列方差为正",
+      "name": "variance_available",
+      "status": "PASS"
+    },
+    {
+      "message": "已计算 6 项指标",
+      "name": "metrics_recorded",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "series": {
+      "path": "../aligned-semi/evaluation_discharge.csv",
+      "sha256": "948ec95b170695bc8bfa4a2be1e2659e2c4864b2e8149d23625b60aeed695d74"
+    }
+  },
+  "message": "连续序列指标计算完成：732 行，6 项指标",
+  "parameters": {
+    "metrics": [
+      "nse",
+      "rmse",
+      "mae",
+      "r2",
+      "volume_bias",
+      "relative_volume_bias"
+    ],
+    "observed_column": "observed_m3_s",
+    "scoring_policy": "exclude_unscored_and_warmup",
+    "sheet": null,
+    "simulated_column": "simulated_m3_s",
+    "time_column": "time",
+    "timestep_hours": 1.0,
+    "volume_unit": "m3"
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-continuous-series-metrics",
+  "status": "success",
+  "warnings": []
+}

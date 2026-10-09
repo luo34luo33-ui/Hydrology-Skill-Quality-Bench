@@ -1,0 +1,91 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "eval/event_metrics.csv",
+    "eval/result.json",
+    "eval/scored-input.csv",
+    "manifest.json",
+    "process.csv",
+    "sim/result.json",
+    "sim/simulation_table.csv"
+  ],
+  "difficulty": "advanced",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "report/data-gaps.csv",
+        "report/data-gaps.json",
+        "report/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "report_artifact_integrity",
+      "required_keys": [
+        "data-gaps.csv",
+        "data-gaps.json"
+      ],
+      "target": "report/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "atol": 1e-05,
+      "columns": [
+        "source_id",
+        "severity",
+        "reason",
+        "section",
+        "action"
+      ],
+      "name": "report_data-gaps",
+      "reference": "expected/golden_workspace/report/data-gaps.csv",
+      "rtol": 1e-05,
+      "target": "report/data-gaps.csv",
+      "type": "table_match",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "evidence_and_scientific_contract",
+      "reference": "expected/report-contract.json",
+      "target": "report/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "report/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "prohibited_deliverables_absent",
+      "targets": [
+        "report/report.md",
+        "report/report.json",
+        "report/summary.csv"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.16666666666666674
+    }
+  ],
+  "id": "hydroreport-study-003",
+  "primary_skill": "visualization-reporting/generate-hydrological-study-report",
+  "prompt": "Use the visualization-reporting/generate-hydrological-study-report capability on the supplied synthetic artifacts. Scenario: incomplete narrative. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: prepare --study-manifest manifest.json --output-dir draft\nStage 2: finalize --study-manifest manifest.json --report-json draft/report.json --output-dir report\n Between prepare and finalize, read the evidence, fill overview/evaluation/discussion/limitations paragraphs and narrative_provenance. Use stable paragraph IDs matching section IDs; for each available selected process add diagnosis-<event_id> with diagnosis and hypotheses (candidate/support/limitations/validation). State fact versus conditional inference and evidence gaps. Do not modify machine evidence. On completed-report cases also write conclusions.json with evaluation_scope (calibration/validation/combined), causal_status (established/unconfirmed), worst_event_ids in rank order, and process_event_ids with available selected process evidence. Derive these judgments from supplied evidence. For the incomplete-narrative case leave completed=false; for the immutable-evidence rejection case change only the first evidence value to a nonnumeric string before finalize. Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "report/data-gaps.csv",
+    "report/data-gaps.json",
+    "report/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "incomplete narrative"
+}

@@ -1,0 +1,1146 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydrodata-flood-events-006",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "data-processing/extract-flood-events",
+    "source_contract_sha256": "2ed808ed4d4091cacbcb4c879749afc2d5ec1819c2e63744862a47cf4ac08893",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "baseflow_result",
+          "description": "separate-baseflow-eckhardt 生成且哈希可验证的 result.json。",
+          "required": true,
+          "format": "JSON"
+        },
+        {
+          "id": "event_config",
+          "description": "通过 flood-event-config 1.2 schema 的显式识别/降雨参数和用户确认策略；shape_filter 可省略字段并使用已声明推荐值。",
+          "required": true,
+          "format": "YAML"
+        },
+        {
+          "id": "rainfall",
+          "description": "流域平均降雨表 time,P_mm，单位 mm/step；可有空值或缺行，不填补。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX"
+        },
+        {
+          "id": "rainfall_metadata",
+          "description": "JSON，含 spatial_scope=basin_mean、unit=mm/step、timezone、timestep_seconds、timestamp_semantics=interval_start 或 interval_end。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "event_summary",
+          "description": "每个保留事件的边界、洪峰、历时、洪量、分量比例，以及形态与降雨筛选证据。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX sheet"
+        },
+        {
+          "id": "event_process",
+          "description": "含显式 warm-up 标记的逐事件长表。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX sheet"
+        },
+        {
+          "id": "annotated_series",
+          "description": "带最终 event_id 的完整连续流量分量序列。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX sheet"
+        },
+        {
+          "id": "run_result",
+          "description": "运行状态、参数、QC 与文件哈希。",
+          "required": true,
+          "format": "JSON"
+        },
+        {
+          "id": "rainfall_screening",
+          "description": "通过规模过滤的每个候选事件，含 candidate_id、保留后的 event_id、边界、恒定段/突跳证据、降雨窗口/覆盖/累计量、rainfall_supported、rainfall_accepted、用户策略、shape_rejected、最终 retained 和 reason。",
+          "required": true,
+          "format": "CSV"
+        }
+      ],
+      "warmup_period": {
+        "required": false,
+        "semantics": "按配置步数在事件起点前导出，仅用于上下文，不参与事件指标。"
+      },
+      "invariants": [
+        "事件 ID 唯一、按时间稳定排序且 start 不晚于 peak、peak 不晚于 end。",
+        "最终事件不得重叠，warm-up 不得进入事件指标。",
+        "总洪量必须在数值容差内等于基流洪量加直接径流洪量。",
+        "配置版本为 1.2；lookback_hours 为有限非负数，min_observed_rainfall_mm 为有限正数，均显式提供。",
+        "no_rainfall_policy 与 missing_rainfall_policy 分别经用户确认，必需且为 keep 或 exclude；脚本不询问、不补默认选择。",
+        "shape_filter 省略项补齐为已声明的推荐值，并写入导出配置与 result 参数；形态过滤只检查事件本体总流量，不检查 warm-up。",
+        "长恒定段历时、历时占比与突跳幅度同时达门槛则整场剔除，任何降雨策略不能绕过，不拆分、不改原始流量。",
+        "雨量时间戳带偏移且符合声明时区；转换为区间末端后与流量同时间步、同网格，不自动重采样。",
+        "雨量筛选只累计事件起点前 lookback_hours 至主洪峰的闭区间内时间戳，不裁掉超出流量范围的前期窗口。",
+        "局部缺测但观测雨量达标可保留且标记；全缺测累计雨量为空而非零，完整窗口全零雨与全缺测分别执行用户选择，少雨与局部缺测未达门槛仍剔除。",
+        "rainfall_supported 表示观测雨量是否达门槛，rainfall_accepted 表示降雨策略是否接受；retained 为 rainfall_accepted 且 shape_rejected 为假。",
+        "无降雨支持但按用户策略保留的场次明确标记依据并返回 warning，不被 QC 当作达标雨量。",
+        "剔除事件无正式 event_id、过程或逐场文件；审计表按候选事件时间排序，正式 ID 连续。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "min_plateau_duration_hours": {
+            "type": "number"
+          },
+          "min_plateau_fraction": {
+            "type": "number"
+          },
+          "plateau_range_fraction": {
+            "type": "number"
+          },
+          "min_jump_fraction": {
+            "type": "number"
+          },
+          "jump_window_steps": {
+            "type": "number"
+          }
+        },
+        {
+          "peak_detection": {
+            "type": "computed; see field semantics"
+          },
+          "boundaries": {
+            "type": "computed; see field semantics"
+          },
+          "merging": {
+            "type": "computed; see field semantics"
+          },
+          "filters": {
+            "type": "computed; see field semantics"
+          },
+          "warmup": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_support": {
+            "type": "computed; see field semantics"
+          },
+          "shape_filter": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "shape_rejected": {
+            "type": "computed; see field semantics"
+          },
+          "shape_reference_flow_m3_s": {
+            "type": "computed; see field semantics"
+          },
+          "plateau_start_idx": {
+            "type": "computed; see field semantics"
+          },
+          "plateau_end_idx": {
+            "type": "computed; see field semantics"
+          },
+          "plateau_start_time": {
+            "type": "computed; see field semantics"
+          },
+          "plateau_end_time": {
+            "type": "computed; see field semantics"
+          },
+          "plateau_duration_hours": {
+            "type": "computed; see field semantics"
+          },
+          "plateau_fraction": {
+            "type": "computed; see field semantics"
+          },
+          "plateau_range_m3_s": {
+            "type": "computed; see field semantics"
+          },
+          "max_jump_change_m3_s": {
+            "type": "computed; see field semantics"
+          },
+          "max_jump_fraction": {
+            "type": "computed; see field semantics"
+          },
+          "jump_window_steps": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "rainfall_window_start": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_window_end": {
+            "type": "computed; see field semantics"
+          },
+          "expected_steps": {
+            "type": "computed; see field semantics"
+          },
+          "valid_steps": {
+            "type": "computed; see field semantics"
+          },
+          "missing_steps": {
+            "type": "computed; see field semantics"
+          },
+          "has_missing_rainfall": {
+            "type": "computed; see field semantics"
+          },
+          "observed_rainfall_mm": {
+            "type": "computed; see field semantics"
+          },
+          "min_observed_rainfall_mm": {
+            "type": "computed; see field semantics"
+          },
+          "retained": {
+            "type": "computed; see field semantics"
+          },
+          "reason": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_supported": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_accepted": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_reason": {
+            "type": "computed; see field semantics"
+          },
+          "no_rainfall_policy": {
+            "type": "computed; see field semantics"
+          },
+          "missing_rainfall_policy": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "event_summary": {
+            "type": "computed; see field semantics"
+          },
+          "event_process": {
+            "type": "computed; see field semantics"
+          },
+          "annotated_series": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "output_format": {
+              "type": "computed; see field semantics"
+            },
+            "per_event_format": {
+              "type": "computed; see field semantics"
+            },
+            "event_filename_by": {
+              "type": "computed; see field semantics"
+            },
+            "timestep_seconds": {
+              "type": "computed; see field semantics"
+            },
+            "candidate_peak_count": {
+              "type": "computed; see field semantics"
+            },
+            "raw_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "merged_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "refined_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "scale_filtered_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "shape_rejected_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "rainfall_rejected_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "partial_rainfall_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "policy_retained_event_count": {
+              "type": "computed; see field semantics"
+            },
+            "no_rainfall_policy": {
+              "type": "computed; see field semantics"
+            },
+            "missing_rainfall_policy": {
+              "type": "computed; see field semantics"
+            },
+            "rainfall_support": {
+              "type": "computed; see field semantics"
+            },
+            "shape_filter": {
+              "type": "computed; see field semantics"
+            },
+            "event_config_schema_version": {
+              "type": "string"
+            },
+            "final_event_count": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "inputs": {
+            "baseflow_result": {
+              "type": "computed; see field semantics"
+            },
+            "event_config": {
+              "type": "computed; see field semantics"
+            },
+            "rainfall": {
+              "type": "computed; see field semantics"
+            },
+            "rainfall_metadata": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "artifacts": {
+            "type": "computed; see field semantics"
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "scipy": {
+              "type": "computed; see field semantics"
+            },
+            "event_method": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "start_idx": {
+            "type": "computed; see field semantics"
+          },
+          "peak_idx": {
+            "type": "computed; see field semantics"
+          },
+          "end_idx": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "event_count": {
+            "type": "computed; see field semantics"
+          },
+          "files": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "event_config": {
+            "type": "computed; see field semantics"
+          },
+          "event_manifest": {
+            "type": "computed; see field semantics"
+          },
+          "event_qc": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "output_format": {
+            "type": "computed; see field semantics"
+          },
+          "per_event_format": {
+            "type": "computed; see field semantics"
+          },
+          "event_filename_by": {
+            "type": "computed; see field semantics"
+          },
+          "timestep_seconds": {
+            "type": "computed; see field semantics"
+          },
+          "candidate_peak_count": {
+            "type": "computed; see field semantics"
+          },
+          "raw_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "merged_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "refined_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "scale_filtered_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "shape_rejected_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_rejected_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "partial_rainfall_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "policy_retained_event_count": {
+            "type": "computed; see field semantics"
+          },
+          "no_rainfall_policy": {
+            "type": "computed; see field semantics"
+          },
+          "missing_rainfall_policy": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_support": {
+            "type": "computed; see field semantics"
+          },
+          "shape_filter": {
+            "type": "computed; see field semantics"
+          },
+          "event_config_schema_version": {
+            "type": "string"
+          },
+          "final_event_count": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "baseflow_result": {
+            "type": "computed; see field semantics"
+          },
+          "event_config": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall": {
+            "type": "computed; see field semantics"
+          },
+          "rainfall_metadata": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "scipy": {
+            "type": "computed; see field semantics"
+          },
+          "event_method": {
+            "type": "string"
+          }
+        },
+        {
+          "candidate_id": {
+            "type": "computed; see field semantics"
+          },
+          "event_id": {
+            "type": "computed; see field semantics"
+          },
+          "start_time": {
+            "type": "computed; see field semantics"
+          },
+          "peak_time": {
+            "type": "computed; see field semantics"
+          },
+          "end_time": {
+            "type": "computed; see field semantics"
+          },
+          "start_idx": {
+            "type": "computed; see field semantics"
+          },
+          "peak_idx": {
+            "type": "computed; see field semantics"
+          },
+          "end_idx": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "event_id": {
+            "type": "computed; see field semantics"
+          },
+          "warmup_start_time": {
+            "type": "computed; see field semantics"
+          },
+          "start_time": {
+            "type": "computed; see field semantics"
+          },
+          "peak_time": {
+            "type": "computed; see field semantics"
+          },
+          "end_time": {
+            "type": "computed; see field semantics"
+          },
+          "warmup_start_idx": {
+            "type": "computed; see field semantics"
+          },
+          "start_idx": {
+            "type": "computed; see field semantics"
+          },
+          "peak_idx": {
+            "type": "computed; see field semantics"
+          },
+          "end_idx": {
+            "type": "computed; see field semantics"
+          },
+          "start_flow_m3_s": {
+            "type": "computed; see field semantics"
+          },
+          "peak_flow_m3_s": {
+            "type": "computed; see field semantics"
+          },
+          "end_flow_m3_s": {
+            "type": "computed; see field semantics"
+          },
+          "duration_hours": {
+            "type": "computed; see field semantics"
+          },
+          "rise_time_hours": {
+            "type": "computed; see field semantics"
+          },
+          "recession_time_hours": {
+            "type": "computed; see field semantics"
+          },
+          "total_volume_m3": {
+            "type": "computed; see field semantics"
+          },
+          "quickflow_volume_m3": {
+            "type": "computed; see field semantics"
+          },
+          "baseflow_volume_m3": {
+            "type": "computed; see field semantics"
+          },
+          "quickflow_fraction": {
+            "type": "computed; see field semantics"
+          },
+          "n_local_peaks": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "event_id": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {},
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "check": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "details": {
+                "type": "computed; see field semantics"
+              }
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {},
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "csv",
+          "parquet",
+          "xlsx"
+        ],
+        [
+          "event_summary.csv",
+          "event_summary.parquet",
+          "event_process.csv",
+          "event_process.parquet",
+          "annotated_series.csv",
+          "annotated_series.parquet",
+          "flood_event_dataset.xlsx",
+          "event_config.yaml",
+          "event_manifest.json",
+          "event_qc.csv",
+          "rainfall_screening.csv",
+          "result.json"
+        ],
+        [
+          "candidate_id",
+          "event_id",
+          "start_time",
+          "peak_time",
+          "end_time",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "rainfall_window_start",
+          "rainfall_window_end",
+          "expected_steps",
+          "valid_steps",
+          "missing_steps",
+          "has_missing_rainfall",
+          "observed_rainfall_mm",
+          "min_observed_rainfall_mm",
+          "retained",
+          "reason",
+          "rainfall_supported",
+          "rainfall_accepted",
+          "rainfall_reason",
+          "no_rainfall_policy",
+          "missing_rainfall_policy",
+          "shape_rejected",
+          "shape_reference_flow_m3_s",
+          "plateau_start_idx",
+          "plateau_end_idx",
+          "plateau_start_time",
+          "plateau_end_time",
+          "plateau_duration_hours",
+          "plateau_fraction",
+          "plateau_range_m3_s",
+          "max_jump_change_m3_s",
+          "max_jump_fraction",
+          "jump_window_steps"
+        ],
+        [
+          "schema_version",
+          "peak_detection",
+          "boundaries",
+          "merging",
+          "filters",
+          "warmup",
+          "rainfall_support",
+          "shape_filter"
+        ],
+        [
+          "time",
+          "discharge_m3_s",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        [
+          "discharge_m3_s",
+          "baseflow_m3_s",
+          "quickflow_m3_s"
+        ],
+        [
+          "peak_quantile",
+          "prominence_factor",
+          "min_peak_distance_hours"
+        ],
+        [
+          "boundary_fraction",
+          "boundary_persistence_steps",
+          "max_search_days"
+        ],
+        [
+          "merge_gap_hours",
+          "valley_ratio_threshold"
+        ],
+        [
+          "min_event_duration_hours",
+          "min_peak_flow_m3_s",
+          "min_event_volume_m3"
+        ],
+        [
+          "steps"
+        ],
+        [
+          "lookback_hours",
+          "min_observed_rainfall_mm",
+          "no_rainfall_policy",
+          "missing_rainfall_policy"
+        ],
+        [
+          "interval_start",
+          "interval_end"
+        ],
+        [
+          "peak_detection",
+          "boundaries",
+          "merging",
+          "filters",
+          "warmup"
+        ],
+        [
+          "event-id",
+          "peak-time"
+        ],
+        [
+          "time",
+          "P_mm"
+        ],
+        [
+          "no_rainfall_policy",
+          "missing_rainfall_policy"
+        ],
+        [
+          "keep",
+          "exclude"
+        ],
+        [
+          "min_peak_flow_m3_s",
+          "min_event_volume_m3"
+        ],
+        [
+          "boundaries",
+          "boundary_persistence_steps"
+        ],
+        [
+          "warmup",
+          "steps"
+        ],
+        [
+          "shape_filter",
+          "jump_window_steps"
+        ]
+      ],
+      "field_names": [
+        "P_mm",
+        "abs_tol",
+        "action",
+        "allow_unicode",
+        "annotated_series",
+        "annotated_series.csv",
+        "annotated_series.parquet",
+        "artifacts",
+        "atol",
+        "baseflow_m3_s",
+        "baseflow_result",
+        "baseflow_volume_m3",
+        "boundaries",
+        "boundary_fraction",
+        "boundary_persistence_steps",
+        "candidate_id",
+        "candidate_peak_count",
+        "check",
+        "checks",
+        "choices",
+        "columns",
+        "csv",
+        "date_format",
+        "datetime_format",
+        "default",
+        "description",
+        "details",
+        "discharge_m3_s",
+        "distance",
+        "dtype",
+        "duration_hours",
+        "dx",
+        "encoding",
+        "end",
+        "end_flow_m3_s",
+        "end_idx",
+        "end_time",
+        "engine",
+        "ensure_ascii",
+        "errors",
+        "event-id",
+        "event_config",
+        "event_config.yaml",
+        "event_config_schema_version",
+        "event_count",
+        "event_filename_by",
+        "event_id",
+        "event_manifest",
+        "event_manifest.json",
+        "event_method",
+        "event_process",
+        "event_process.csv",
+        "event_process.parquet",
+        "event_qc",
+        "event_qc.csv",
+        "event_summary",
+        "event_summary.csv",
+        "event_summary.parquet",
+        "exclude",
+        "exist_ok",
+        "expected_steps",
+        "file",
+        "files",
+        "filters",
+        "final_event_count",
+        "flood_event_dataset.xlsx",
+        "freq",
+        "frozen",
+        "has_missing_rainfall",
+        "height",
+        "hours",
+        "hours_from_start",
+        "ignore_index",
+        "indent",
+        "index",
+        "inputs",
+        "interval_end",
+        "interval_start",
+        "is_warmup",
+        "jump_window_steps",
+        "keep",
+        "key",
+        "lookback_hours",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "max_search_days",
+        "merge_gap_hours",
+        "merged_event_count",
+        "merging",
+        "message",
+        "min_count",
+        "min_event_duration_hours",
+        "min_event_volume_m3",
+        "min_jump_fraction",
+        "min_observed_rainfall_mm",
+        "min_peak_distance_hours",
+        "min_peak_flow_m3_s",
+        "min_plateau_duration_hours",
+        "min_plateau_fraction",
+        "missing_rainfall_policy",
+        "missing_steps",
+        "n_local_peaks",
+        "name",
+        "no_rainfall_policy",
+        "numpy",
+        "observed_rainfall_mm",
+        "output_format",
+        "pandas",
+        "parameters",
+        "parents",
+        "parquet",
+        "partial_rainfall_event_count",
+        "path",
+        "peak-time",
+        "peak_detection",
+        "peak_flow_m3_s",
+        "peak_idx",
+        "peak_quantile",
+        "peak_time",
+        "per_event_format",
+        "periods",
+        "plateau_duration_hours",
+        "plateau_end_idx",
+        "plateau_end_time",
+        "plateau_fraction",
+        "plateau_range_fraction",
+        "plateau_range_m3_s",
+        "plateau_start_idx",
+        "plateau_start_time",
+        "policy_retained_event_count",
+        "prominence",
+        "prominence_factor",
+        "provenance",
+        "python",
+        "quickflow_fraction",
+        "quickflow_m3_s",
+        "quickflow_volume_m3",
+        "rainfall",
+        "rainfall_accepted",
+        "rainfall_metadata",
+        "rainfall_reason",
+        "rainfall_rejected_event_count",
+        "rainfall_screening",
+        "rainfall_screening.csv",
+        "rainfall_support",
+        "rainfall_supported",
+        "rainfall_window_end",
+        "rainfall_window_start",
+        "raw_event_count",
+        "reason",
+        "recession_time_hours",
+        "refined_event_count",
+        "rel_tol",
+        "relative_step",
+        "required",
+        "result.json",
+        "retained",
+        "rise_time_hours",
+        "rtol",
+        "scale_filtered_event_count",
+        "schema_version",
+        "scipy",
+        "seconds",
+        "sha256",
+        "shape_filter",
+        "shape_reference_flow_m3_s",
+        "shape_rejected",
+        "shape_rejected_event_count",
+        "sheet_name",
+        "skill",
+        "sort_keys",
+        "source_index",
+        "start_flow_m3_s",
+        "start_idx",
+        "start_time",
+        "status",
+        "steps",
+        "time",
+        "timestep_seconds",
+        "timezone",
+        "total_volume_m3",
+        "type",
+        "tz",
+        "utc",
+        "valid_steps",
+        "valley_ratio_threshold",
+        "warmup",
+        "warmup_start_idx",
+        "warmup_start_time",
+        "warnings",
+        "xlsx"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "FAIL",
+          "PASS",
+          "WARN",
+          "error"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^02d$",
+        "^04d$",
+        "^annotated_series\\..+$",
+        "^event_.+$",
+        "^event_process\\..+$",
+        "^event_summary\\..+$",
+        "^events=.+$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "data-processing/extract-flood-events"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "components/result.json",
+    "components/flow_components.csv",
+    "components/baseflow_metadata.json",
+    "event_config.yaml",
+    "rainfall.csv",
+    "rainfall_metadata.json"
+  ],
+  "outputs": [
+    "events/event_summary.csv",
+    "events/event_process.csv",
+    "events/annotated_series.csv",
+    "events/event_config.yaml",
+    "events/event_manifest.json",
+    "events/event_qc.csv",
+    "events/event_files/event_0001.csv",
+    "events/result.json",
+    "events/rainfall_screening.csv"
+  ],
+  "input_field_names": [
+    "P_mm",
+    "UTC",
+    "alpha",
+    "alpha_decision",
+    "artifacts",
+    "baseflow_m3_s",
+    "baseflow_metadata",
+    "basin_mean",
+    "bfi_max",
+    "checks",
+    "discharge_m3_s",
+    "f0493aadc77faeaec785878d0e7efc86c9076199b6d1323707bed4b10ed860b1",
+    "flow_components",
+    "flow_unit",
+    "generator",
+    "inputs",
+    "interval_end",
+    "is_imputed",
+    "message",
+    "method",
+    "origin",
+    "parameters",
+    "path",
+    "provenance",
+    "quickflow_fraction",
+    "quickflow_m3_s",
+    "recession_pair_count",
+    "row_count",
+    "schema_version",
+    "sha256",
+    "skill",
+    "spatial_scope",
+    "status",
+    "success",
+    "time",
+    "timestamp_semantics",
+    "timestep_seconds",
+    "timezone",
+    "unit",
+    "upstream_series_metadata",
+    "warnings"
+  ],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

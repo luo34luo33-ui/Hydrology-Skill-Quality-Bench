@@ -1,0 +1,58 @@
+{
+  "event_id": null,
+  "language": "zh",
+  "layers": [
+    {
+      "display_transform": "none; points=744",
+      "id": "discharge-baseflow",
+      "palette": "black-darkgray",
+      "source": "extract_result.artifacts.annotated_series"
+    },
+    {
+      "display_transform": "existing peak_time and peak_flow_m3_s",
+      "id": "event-peaks",
+      "palette": "red",
+      "source": "extract_result.artifacts.event_summary"
+    },
+    {
+      "display_transform": "basin mean depth mm/step; interval_end; step_seconds=3600.0; display bars sum observed values in 1 consecutive steps (last bin may be shorter); missing_steps=0; missing bars/bins omitted; partial bins show observed subtotal; no zero filling or interpolation",
+      "id": "basin-rainfall",
+      "palette": "light-blue",
+      "source": "rainfall"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "flood-event-overview.png",
+      "sha256": "e6790bec17cf1c34d6402b01905c5f380415f532357346080485101d4ebcbb51"
+    },
+    "svg": {
+      "path": "flood-event-overview.svg",
+      "sha256": "7c6e3ca50720aab45f10f9610691963adf7cc9ee9314a1afddff6e0e9f9dfda3"
+    }
+  },
+  "pixel_size": {
+    "height": 1200,
+    "width": 2400
+  },
+  "publication_ready": true,
+  "schema_version": "1.0",
+  "source_results": {
+    "extract_result": {
+      "path": "../observation/events/result.json",
+      "sha256": "d50cd217c25755625501e894d3fc1a6264015caf415b16676e4d2b820c2b287c"
+    },
+    "rainfall": {
+      "path": "../observation/basin_rain.csv",
+      "sha256": "cbe116616df85e5d1301694bef41406b793a9eaad648850156d3bb9a9eb3cd07"
+    },
+    "rainfall_metadata": {
+      "path": "../observation/rain_metadata.json",
+      "sha256": "21912cf4b99921a6e6d5d09533a8fa25973dd685b55d7b9234281d430aedd10f"
+    }
+  },
+  "template_id": "flood-event-overview",
+  "template_version": "hydrotune.flood-event-atlas.v2",
+  "title": "洪水事件总览",
+  "warnings": []
+}

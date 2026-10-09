@@ -1,0 +1,9 @@
+[
+  {
+    "action": "Provide or correct the upstream evidence; regenerate and review.",
+    "reason": "Artifact hash mismatch: reaches_table",
+    "section": "topo",
+    "severity": "error",
+    "source_id": "topo"
+  }
+]

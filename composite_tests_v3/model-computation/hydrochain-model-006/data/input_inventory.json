@@ -1,0 +1,99 @@
+{
+  "files": [
+    {
+      "path": "derivation.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "10429e947b09b296278cbf81734158471e26b8481c8940da86eca6e4572ef256"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out"
+      ],
+      "path": "original.csv",
+      "role": "original observations; preserve all values and missing entries",
+      "sha256": "e0219610570b88e17b9396cab9be45c390f1321c883ed06cac5681ec44587a92"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out",
+        "E0"
+      ],
+      "path": "raw.csv",
+      "role": "authorised calculation input, with labelled synthetic supplements",
+      "sha256": "0bc26621671645baa33197367c80ba53c8d1b533ffb81ef287051e99fa0f229d"
+    },
+    {
+      "path": "scenario.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "7b20bc8f347808a4ceb089f539ab60c3ace0c35a6b6aa94cc2da6681996daeb3"
+    },
+    {
+      "path": "source_manifest.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "196563eeae320263efd874f16c832f09e12a50b399af304f0c965d2562fee7ea"
+    },
+    {
+      "columns": [
+        "time",
+        "column",
+        "value",
+        "basis"
+      ],
+      "path": "supplements.csv",
+      "role": "synthetic supplement provenance; not repaired observations",
+      "sha256": "f046b78399adcd58e69889cb57dca68fdcdc6ca7d378cc918fc07c10de245999"
+    },
+    {
+      "path": "INPUT_GUIDE.md",
+      "role": "public input/output interface documentation",
+      "sha256": "598adba573f6905eba369a7d85a62daf7266562786af9562435f44d263b5ca94"
+    },
+    {
+      "path": "OUTPUT_INTERFACES.md",
+      "role": "public input/output interface documentation",
+      "sha256": "fcf7c23173affccf4cf6a28ddcfc3eb0ea1d44581998d3a1f82baefd8c182a9c"
+    },
+    {
+      "path": "output_interfaces.json",
+      "role": "public input/output interface documentation",
+      "sha256": "a80bc6ee95f4b22a166cc39d95bd91a4bcc5a642d068fb1ab4e47a6087344598"
+    },
+    {
+      "path": "workflow_requirements.json",
+      "role": "public workflow consistency requirements",
+      "sha256": "fc2716ee5f8d5491ee9231ad77648ced1ec8777030cd84b401ff3a1e0ff8a058"
+    }
+  ],
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5
+}

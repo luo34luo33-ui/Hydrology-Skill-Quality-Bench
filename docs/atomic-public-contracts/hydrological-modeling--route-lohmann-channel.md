@@ -1,0 +1,588 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "hydrological-modeling/route-lohmann-channel",
+  "source_contract_sha256": "0d9a0a4417504895308caec121011b475fa35c5a87fbc445f81d245816b00908",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "inflow_table",
+        "description": "含时间与直接径流、基流两条入流列的表格；列名可配（默认 direct/base），单位原样通过（线性归一化卷积）。",
+        "required": true,
+        "format": "CSV, Parquet or XLSX",
+        "variables": [
+          {
+            "name": "direct",
+            "semantics": "直接径流入流（如地表流与壤中流），与合成直径流单位线卷积；单位与出流一致，由调用方确认。",
+            "units": "与出流单位一致（mm per step 或 m3/s 等，原样通过）",
+            "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致；非 24 小时记 WARN（UH 为日尺度）",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺测必须停止；不得静默填 0 或插值后继续。"
+          },
+          {
+            "name": "base",
+            "semantics": "基流入流（如下区自由水出流），与脉冲型基流合成单位线卷积；单位与出流一致。",
+            "units": "与出流单位一致（原样通过）",
+            "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致；非 24 小时记 WARN",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺测必须停止。"
+          },
+          {
+            "name": "time",
+            "semantics": "严格递增且等间隔的时间索引。",
+            "units": "datetime",
+            "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "空值或重复值必须停止。"
+          }
+        ]
+      },
+      {
+        "id": "route_parameters",
+        "description": "Lohmann 4 参数集（N/K/VELO/DIFF），全部必填；源码无参数范围定义，本 Skill 不引入外部先验。",
+        "required": true,
+        "format": "JSON or YAML",
+        "variables": [
+          {
+            "name": "N",
+            "semantics": "Gamma HRU 直径流单位线的形状参数。",
+            "units": "dimensionless",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失或非正必须停止；源码行为即越界取值。"
+          },
+          {
+            "name": "K",
+            "semantics": "Gamma HRU 直径流单位线的尺度参数（水库常数）。",
+            "units": "days",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失或非正必须停止。"
+          },
+          {
+            "name": "VELO",
+            "semantics": "线性化 Saint-Venant 方程的波速。",
+            "units": "m/s",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失或非正必须停止。"
+          },
+          {
+            "name": "DIFF",
+            "semantics": "线性化 Saint-Venant 方程的扩散系数。",
+            "units": "m2/s",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失或非正必须停止。"
+          }
+        ]
+      },
+      {
+        "id": "reach_property",
+        "description": "河长，由 CLI 显式提供：--flowlen-m；0 表示河道单位线退化为脉冲（不做河道滞后）。",
+        "required": true,
+        "format": "CLI arguments"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "routed_table",
+        "description": "逐时步汇流结果表，含双分量与相加后的总出流；单位与入流一致。",
+        "required": true,
+        "format": "CSV, Parquet or XLSX",
+        "variables": [
+          {
+            "name": "routed_direct",
+            "semantics": "直接入流经合成直径流单位线卷积后的出流；零初始历史，单位与入流一致。",
+            "units": "与入流单位一致（原样通过）",
+            "time_step": "与输入时间步长一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          },
+          {
+            "name": "routed_base",
+            "semantics": "基流入流经脉冲型合成基流单位线（即河道日 UH）卷积后的出流。",
+            "units": "与入流单位一致（原样通过）",
+            "time_step": "与输入时间步长一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          },
+          {
+            "name": "Q_total",
+            "semantics": "流域出口总出流，routed_direct + routed_base。",
+            "units": "与入流单位一致（原样通过）",
+            "time_step": "与输入时间步长一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          }
+        ]
+      },
+      {
+        "id": "unit_hydrographs",
+        "description": "导出的单位线（96 天河道日 UH、107 步合成 UH、12 天 HRU UH）与参数、河长，供检查与复用。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "run_result",
+        "description": "符合 HydroTune 运行结果约定的 result.json，含参数、输入与产物 SHA-256、QC 与 provenance。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "warmup_period": {
+      "required": false,
+      "semantics": "本 Skill 为单序列连续演算，无预热概念；序列开头按零初始历史处理（无入流时出流为 0）。"
+    },
+    "simulation_period": {
+      "required": true,
+      "semantics": "全部时步；时间轴等间隔且与 --timestep-hours 一致是 FAIL 闸门。"
+    },
+    "invariants": [
+      "时间轴必须严格递增、等间隔，并与 --timestep-hours 一致。",
+      "步长非 24 小时时必须记录 WARN：河道与 HRU 单位线均为日尺度（内部小时积分聚合 96 天），参数不自动换算，结果未经验证。",
+      "三条单位线（河道日 UH、合成直径流/基流 UH）纵坐标和必须等于 1，偏差超过 1e-9 即失败。",
+      "卷积为线性且零初始历史；入流负值不截断，按 UH 传播并以 warning 报告。",
+      "出入流体积相对差含 UH 尾部截断滞留（序列末端水量仍留在单位线中，属预期行为），超容差记 warning 不判失败。",
+      "状态与通量必须全部有限，出现 NaN 或 Inf 即失败。",
+      "输出只写入 --output-dir，入流缺测或参数越界即停止，不静默填充也不静默复用旧结果。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "routed_direct": {
+          "type": "computed; see field semantics"
+        },
+        "routed_base": {
+          "type": "computed; see field semantics"
+        },
+        "uh_river": {
+          "type": "computed; see field semantics"
+        },
+        "uh_direct": {
+          "type": "computed; see field semantics"
+        },
+        "uh_base": {
+          "type": "computed; see field semantics"
+        },
+        "uh_hru_direct": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "name": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "N": {
+            "type": "computed; see field semantics"
+          },
+          "K": {
+            "type": "computed; see field semantics"
+          },
+          "VELO": {
+            "type": "computed; see field semantics"
+          },
+          "DIFF": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "flowlen_m": {
+          "type": "computed; see field semantics"
+        },
+        "uh_river_days": {
+          "type": "computed; see field semantics"
+        },
+        "uh_direct_steps": {
+          "type": "computed; see field semantics"
+        },
+        "uh_base_steps": {
+          "type": "computed; see field semantics"
+        },
+        "uh_hru_direct_days": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "timestep_hours": {
+            "type": "computed; see field semantics"
+          },
+          "flowlen_m": {
+            "type": "computed; see field semantics"
+          },
+          "direct_column": {
+            "type": "computed; see field semantics"
+          },
+          "base_column": {
+            "type": "computed; see field semantics"
+          },
+          "volume_tolerance": {
+            "type": "computed; see field semantics"
+          },
+          "route_parameters": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "inputs": {
+          "inflow": {
+            "type": "computed; see field semantics"
+          },
+          "route_params": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "artifacts": {
+          "routed_table": {
+            "type": "computed; see field semantics"
+          },
+          "unit_hydrographs": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "routed_direct": {
+          "type": "computed; see field semantics"
+        },
+        "routed_base": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "N": {
+          "type": "computed; see field semantics"
+        },
+        "K": {
+          "type": "computed; see field semantics"
+        },
+        "VELO": {
+          "type": "computed; see field semantics"
+        },
+        "DIFF": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "timestep_hours": {
+          "type": "computed; see field semantics"
+        },
+        "flowlen_m": {
+          "type": "computed; see field semantics"
+        },
+        "direct_column": {
+          "type": "computed; see field semantics"
+        },
+        "base_column": {
+          "type": "computed; see field semantics"
+        },
+        "volume_tolerance": {
+          "type": "computed; see field semantics"
+        },
+        "route_parameters": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "inflow": {
+          "type": "computed; see field semantics"
+        },
+        "route_params": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "routed_table": {
+          "type": "computed; see field semantics"
+        },
+        "unit_hydrographs": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "N",
+        "K",
+        "VELO",
+        "DIFF"
+      ],
+      [
+        "csv",
+        "parquet",
+        "xlsx"
+      ],
+      [
+        "routed_lohmann.csv",
+        "routed_lohmann.parquet",
+        "routed_lohmann.xlsx",
+        "lohmann_unit_hydrographs.json",
+        "result.json"
+      ],
+      [
+        "routed_direct",
+        "routed_base",
+        "Q_total"
+      ]
+    ],
+    "field_names": [
+      "DIFF",
+      "K",
+      "N",
+      "Q_total",
+      "VELO",
+      "action",
+      "artifacts",
+      "base",
+      "base_column",
+      "checks",
+      "choices",
+      "csv",
+      "date_format",
+      "default",
+      "description",
+      "diff",
+      "direct",
+      "direct_column",
+      "dtype",
+      "encoding",
+      "engine",
+      "ensure_ascii",
+      "errors",
+      "exist_ok",
+      "file",
+      "flowlen_m",
+      "frozen",
+      "help",
+      "indent",
+      "index",
+      "inflow",
+      "inputs",
+      "k",
+      "lohmann_unit_hydrographs.json",
+      "message",
+      "n",
+      "name",
+      "numpy",
+      "pandas",
+      "parameters",
+      "parents",
+      "parquet",
+      "path",
+      "provenance",
+      "python",
+      "required",
+      "result.json",
+      "route_parameters",
+      "route_params",
+      "routed_base",
+      "routed_direct",
+      "routed_lohmann.csv",
+      "routed_lohmann.parquet",
+      "routed_lohmann.xlsx",
+      "routed_table",
+      "scale",
+      "schema_version",
+      "sha256",
+      "sheet_name",
+      "skill",
+      "sort_keys",
+      "status",
+      "time",
+      "timestep_hours",
+      "type",
+      "uh_base",
+      "uh_base_steps",
+      "uh_direct",
+      "uh_direct_steps",
+      "uh_hru_direct",
+      "uh_hru_direct_days",
+      "uh_river",
+      "uh_river_days",
+      "unit_hydrographs",
+      "velo",
+      "volume_tolerance",
+      "warnings",
+      "xlsx"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "error"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^\\.2g$",
+      "^\\.3g$",
+      "^\\.4f$",
+      "^routed_lohmann\\..+$",
+      "^volume_difference:.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "hydrological-modeling/route-lohmann-channel"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}
+```

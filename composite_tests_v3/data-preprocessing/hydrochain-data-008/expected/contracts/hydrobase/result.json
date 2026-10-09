@@ -1,0 +1,7 @@
+{
+  "parameters": {
+    "cell_area_m2": 10000.0,
+    "cell_inclusion": "center",
+    "d8_encoding": "whitebox-default-non-esri"
+  }
+}

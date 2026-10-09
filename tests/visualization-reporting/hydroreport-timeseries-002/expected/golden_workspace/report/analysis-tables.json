@@ -1,0 +1,134 @@
+[
+  {
+    "rows": [
+      {
+        "item": "standard_flow_unit",
+        "source": "flow",
+        "unit": "unspecified",
+        "value": "m3/s"
+      },
+      {
+        "item": "timestep_seconds",
+        "source": "flow",
+        "unit": "unspecified",
+        "value": 3600
+      },
+      {
+        "item": "timezone",
+        "source": "flow",
+        "unit": "unspecified",
+        "value": "Asia/Shanghai"
+      },
+      {
+        "item": "row_count",
+        "source": "events",
+        "unit": "count",
+        "value": 24
+      },
+      {
+        "item": "start",
+        "source": "events",
+        "unit": "unspecified",
+        "value": "2019-12-31T23:00:00"
+      },
+      {
+        "item": "end",
+        "source": "events",
+        "unit": "unspecified",
+        "value": "2020-01-01T04:00:00"
+      },
+      {
+        "item": "row_count",
+        "source": "events",
+        "unit": "count",
+        "value": 4
+      }
+    ],
+    "section": "overview",
+    "title": "资料概况 / Data coverage"
+  },
+  {
+    "rows": [
+      {
+        "item": "events",
+        "unit": "count",
+        "value": 4
+      }
+    ],
+    "section": "overview",
+    "title": "洪水总数 / Event count"
+  },
+  {
+    "rows": [
+      {
+        "count": 0,
+        "denominator": 0,
+        "percent": null,
+        "shape": "single"
+      },
+      {
+        "count": 0,
+        "denominator": 0,
+        "percent": null,
+        "shape": "multiple"
+      },
+      {
+        "count": 4,
+        "denominator": 0,
+        "percent": null,
+        "shape": "unclassified"
+      }
+    ],
+    "section": "shapes",
+    "title": "显著峰型 / Significant peaks"
+  },
+  {
+    "rows": [
+      {
+        "count": 4,
+        "max": 30.0,
+        "mean": 17.25,
+        "median": 15.0,
+        "metric": "peak_flow_m3_s",
+        "min": 9.0,
+        "p10": 9.3,
+        "p90": 27.0,
+        "unit": "m3/s"
+      },
+      {
+        "count": 4,
+        "max": 300.0,
+        "mean": 174.75,
+        "median": 150.0,
+        "metric": "total_volume_m3",
+        "min": 99.0,
+        "p10": 99.3,
+        "p90": 270.0,
+        "unit": "m3"
+      },
+      {
+        "count": 4,
+        "max": 4.0,
+        "mean": 4.0,
+        "median": 4.0,
+        "metric": "duration_hours",
+        "min": 4.0,
+        "p10": 4.0,
+        "p90": 4.0,
+        "unit": "hours"
+      }
+    ],
+    "section": "events",
+    "title": "事件分布 / Event distributions"
+  },
+  {
+    "rows": [
+      {
+        "count": 4,
+        "month": "01"
+      }
+    ],
+    "section": "events",
+    "title": "月份分布 / Months"
+  }
+]

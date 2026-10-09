@@ -2,11 +2,11 @@
   "artifacts": {
     "corrected_table": {
       "path": "corrected_series.csv",
-      "sha256": "49f2e07254e1764ed872f7402298a2ad69a649f0914f1a696e5223d70064eb62"
+      "sha256": "b981f00ef9f6af3300ad4fa9c443dd1f107622477dd6a1e44ba4c33b144cfc83"
     },
     "model_used": {
       "path": "model.joblib",
-      "sha256": "5184be0170e2fd1616a1437c67a381fe40092f329241b54c47e12cb7d441eac5"
+      "sha256": "c2d14ae68b50100c13a1d0a7167729ce3f800c4947c300d32d1e68a7ce578ec2"
     }
   },
   "checks": [
@@ -16,7 +16,12 @@
       "status": "PASS"
     },
     {
-      "message": "滞后步数均为非负整数，共 0 个滞后特征，不使用未来信息",
+      "message": "包含 residual(t-1) 至 residual(t-5)，不使用当前残差",
+      "name": "required_residual_lags",
+      "status": "PASS"
+    },
+    {
+      "message": "滞后步数均为非负整数，共 5 个滞后特征，不使用未来信息",
       "name": "lag_nonnegative",
       "status": "PASS"
     },
@@ -26,9 +31,9 @@
       "status": "PASS"
     },
     {
-      "message": "滞后特征完整",
+      "message": "丢弃 5 行不完整滞后特征",
       "name": "lag_rows_dropped",
-      "status": "PASS"
+      "status": "WARN"
     },
     {
       "message": "输入列无缺测",
@@ -49,10 +54,10 @@
   "inputs": {
     "table": {
       "path": "predict_table.csv",
-      "sha256": "873e588d6a7c2fa116e4b40ce871d742b76727ea1008d7113c8659e28e43aa00"
+      "sha256": "a0dae34c0405cabf7e2a55d08f515b75323d70cffba7b74fc9af74b9f875e042"
     }
   },
-  "message": "残差校正完成：predict 模式，96 行，后端 ridge",
+  "message": "残差校正完成：predict 模式，91 行，后端 ridge",
   "parameters": {
     "backend": "ridge",
     "base_column": "Q_total",
@@ -65,7 +70,18 @@
     },
     "lag_fill_value": null,
     "lag_policy": "drop",
-    "lag_spec": [],
+    "lag_spec": [
+      {
+        "column": "residual",
+        "steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ],
     "min_train_samples": 10,
     "missing_policy": "fail",
     "mode": "predict",
@@ -80,6 +96,8 @@
   },
   "schema_version": "1.0",
   "skill": "post-processing/correct-residual-with-ml",
-  "status": "success",
-  "warnings": []
+  "status": "warning",
+  "warnings": [
+    "滞后特征不完整而丢弃 5 行；这些行位于序列开头，无法通过滞后构造获得完整特征"
+  ]
 }

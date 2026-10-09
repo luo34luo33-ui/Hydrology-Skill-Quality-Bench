@@ -1,0 +1,1280 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "visualization-reporting/visualize-hydrobase-atlas",
+  "source_contract_sha256": "1b6a4b3dbf678ca35ab86d5926fa98b22b4e6c2ec84b3a94593459712bef8c97",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "build_result",
+        "description": "build-hydrological-topology 生成且 artifacts 哈希可验证的 result.json。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "validation_result",
+        "description": "validate-hydrological-topology 生成且包含 QC artifacts 的 result.json。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "atlas_figures",
+        "description": "允许生成的固定模板对应 PNG、SVG 和 figure.json。",
+        "required": true,
+        "format": "PNG, SVG and JSON"
+      },
+      {
+        "id": "run_result",
+        "description": "符合 visualization-run-result schema 的总运行结果。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "invariants": [
+      "形态三联图 PNG 宽 2400 像素、高 760–1000 像素自适应；拓扑图 PNG 最长边 2400 像素、另一边自适应；QC 看板同样最长边 2400 像素、另一边自适应，SVG 与 PNG 使用相同布局。",
+      "build 和 validation 中所有被使用 artifact 必须先通过 SHA-256 检查。",
+      "科学 QC FAIL 时只能生成失败 dashboard，且运行退出码必须为 2。",
+      "图册不得重新计算水文指标、拓扑检查或失败原因。",
+      "形态三联图读取 build.inputs.basin_boundary 的真实边界，先核验来源，再投影与显示裁切。",
+      "形态三联图白底，三图下方标注 (a)(b)(c)，经纬网与刻度、比例尺、指北针、边界俱全。",
+      "坡度为深蓝至深红渐变，沿用 P98 显示上限且标记溢出；层级为既有 topo_level，不是 Strahler 等级。",
+      "拓扑图名放在文件名；机器 artifact 键保持 hydrobase-topology_*，文件定位通过引用完成。",
+      "拓扑图子流域数量来自唯一 sub_id，灰色子流域边界来自既有栅格 ID，仅用于显示。",
+      "QC 看板检查汇总放在主图空白处；没有 WARN 或 FAIL 时不显示重要证据及无异常提示。",
+      "QC 看板删除图内限制说明，科学 QC FAIL 保留红色 QC FAILED 和失败证据。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "Software": {
+          "type": "string"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "template_version": {
+          "type": "computed; see field semantics"
+        },
+        "template_id": {
+          "type": "computed; see field semantics"
+        },
+        "language": {
+          "type": "computed; see field semantics"
+        },
+        "title": {
+          "type": "computed; see field semantics"
+        },
+        "pixel_size": {
+          "width": {
+            "type": "computed; see field semantics"
+          },
+          "height": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "source_results": {
+          "type": "computed; see field semantics"
+        },
+        "layers": {
+          "type": "computed; see field semantics"
+        },
+        "crs": {
+          "type": "computed; see field semantics"
+        },
+        "extent": {
+          "type": "computed; see field semantics"
+        },
+        "outputs": {
+          "png": {
+            "type": "computed; see field semantics"
+          },
+          "svg": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "publication_ready": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "matplotlib": {
+          "type": "computed; see field semantics"
+        },
+        "rasterio": {
+          "type": "computed; see field semantics"
+        },
+        "geopandas": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "font": {
+          "type": "computed; see field semantics"
+        },
+        "template_version": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "font.family": {
+          "type": "computed; see field semantics"
+        },
+        "font.size": {
+          "type": "computed; see field semantics"
+        },
+        "axes.unicode_minus": {
+          "type": "boolean"
+        },
+        "text.color": {
+          "type": "computed; see field semantics"
+        },
+        "axes.labelcolor": {
+          "type": "computed; see field semantics"
+        },
+        "axes.edgecolor": {
+          "type": "computed; see field semantics"
+        },
+        "svg.fonttype": {
+          "type": "string"
+        },
+        "svg.hashsalt": {
+          "type": "string"
+        },
+        "savefig.facecolor": {
+          "type": "computed; see field semantics"
+        },
+        "figure.facecolor": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "crs": {
+          "type": "computed; see field semantics"
+        },
+        "transform": {
+          "type": "computed; see field semantics"
+        },
+        "width": {
+          "type": "computed; see field semantics"
+        },
+        "height": {
+          "type": "computed; see field semantics"
+        },
+        "bounds": {
+          "type": "computed; see field semantics"
+        },
+        "nodata": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "width": {
+          "type": "computed; see field semantics"
+        },
+        "height": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "png": {
+          "type": "computed; see field semantics"
+        },
+        "svg": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "boxstyle": {
+          "type": "string"
+        },
+        "facecolor": {
+          "type": "computed; see field semantics"
+        },
+        "edgecolor": {
+          "type": "string"
+        }
+      },
+      {
+        "arrowstyle": {
+          "type": "string"
+        },
+        "color": {
+          "type": "computed; see field semantics"
+        },
+        "lw": {
+          "type": "number"
+        }
+      },
+      {
+        "Date": {
+          "type": "null"
+        }
+      },
+      {
+        "facecolor": {
+          "type": "string"
+        },
+        "edgecolor": {
+          "type": "string"
+        },
+        "pad": {
+          "type": "number"
+        }
+      },
+      {
+        "font.family": {
+          "type": "computed; see field semantics"
+        },
+        "font.size": {
+          "type": "number"
+        },
+        "axes.unicode_minus": {
+          "type": "boolean"
+        },
+        "text.color": {
+          "type": "string"
+        },
+        "axes.labelcolor": {
+          "type": "string"
+        }
+      },
+      {
+        "colors": {
+          "ink": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "display_transform": {
+          "type": "computed; see field semantics"
+        },
+        "palette": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "display_transform": {
+          "type": "computed; see field semantics"
+        },
+        "palette": {
+          "type": "string"
+        }
+      },
+      {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "display_transform": {
+          "type": "string"
+        },
+        "palette": {
+          "type": "string"
+        }
+      },
+      {
+        "ink": {
+          "type": "string"
+        }
+      },
+      {
+        "font.family": {
+          "type": "computed; see field semantics"
+        },
+        "font.size": {
+          "type": "number"
+        },
+        "text.color": {
+          "type": "string"
+        },
+        "axes.unicode_minus": {
+          "type": "boolean"
+        }
+      },
+      {
+        "facecolor": {
+          "type": "string"
+        },
+        "edgecolor": {
+          "type": "string"
+        },
+        "alpha": {
+          "type": "number"
+        },
+        "pad": {
+          "type": "number"
+        }
+      },
+      {
+        "fontsize": {
+          "type": "number"
+        },
+        "fontweight": {
+          "type": "string"
+        }
+      },
+      {
+        "fontsize": {
+          "type": "number"
+        },
+        "color": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "fontsize": {
+          "type": "number"
+        },
+        "color": {
+          "type": "computed; see field semantics"
+        },
+        "fontweight": {
+          "type": "string"
+        }
+      },
+      {
+        "zh": {
+          "topology_title": {
+            "type": "string"
+          },
+          "topology_subtitle": {
+            "type": "string"
+          },
+          "morph_title": {
+            "type": "string"
+          },
+          "morph_subtitle": {
+            "type": "string"
+          },
+          "qc_title": {
+            "type": "string"
+          },
+          "qc_subtitle": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string"
+          },
+          "slope": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "order": {
+            "type": "string"
+          },
+          "subbasins": {
+            "type": "string"
+          },
+          "outlet": {
+            "type": "string"
+          },
+          "checks": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "limitations": {
+            "type": "string"
+          },
+          "limitations_text": {
+            "type": "string"
+          },
+          "no_issues": {
+            "type": "string"
+          }
+        },
+        "en": {
+          "topology_title": {
+            "type": "string"
+          },
+          "topology_subtitle": {
+            "type": "string"
+          },
+          "morph_title": {
+            "type": "string"
+          },
+          "morph_subtitle": {
+            "type": "string"
+          },
+          "qc_title": {
+            "type": "string"
+          },
+          "qc_subtitle": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string"
+          },
+          "slope": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "order": {
+            "type": "string"
+          },
+          "subbasins": {
+            "type": "string"
+          },
+          "outlet": {
+            "type": "string"
+          },
+          "checks": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "limitations": {
+            "type": "string"
+          },
+          "limitations_text": {
+            "type": "string"
+          },
+          "no_issues": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "topology_title": {
+          "type": "string"
+        },
+        "topology_subtitle": {
+          "type": "string"
+        },
+        "morph_title": {
+          "type": "string"
+        },
+        "morph_subtitle": {
+          "type": "string"
+        },
+        "qc_title": {
+          "type": "string"
+        },
+        "qc_subtitle": {
+          "type": "string"
+        },
+        "area": {
+          "type": "string"
+        },
+        "slope": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "order": {
+          "type": "string"
+        },
+        "subbasins": {
+          "type": "string"
+        },
+        "outlet": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "limitations": {
+          "type": "string"
+        },
+        "limitations_text": {
+          "type": "string"
+        },
+        "no_issues": {
+          "type": "string"
+        }
+      },
+      {
+        "build_result": {
+          "type": "computed; see field semantics"
+        },
+        "validation_result": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "basin_boundary": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "language": {
+            "type": "computed; see field semantics"
+          },
+          "templates": {
+            "type": "computed; see field semantics"
+          },
+          "pixel_sizes": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "language": {
+          "type": "computed; see field semantics"
+        },
+        "templates": {
+          "type": "computed; see field semantics"
+        },
+        "pixel_sizes": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "layer": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "arrowstyle": {
+          "type": "string"
+        },
+        "color": {
+          "type": "computed; see field semantics"
+        },
+        "lw": {
+          "type": "number"
+        },
+        "alpha": {
+          "type": "number"
+        }
+      },
+      {
+        "boxstyle": {
+          "type": "string"
+        },
+        "facecolor": {
+          "type": "string"
+        },
+        "edgecolor": {
+          "type": "string"
+        },
+        "alpha": {
+          "type": "number"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "language": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "inputs": {},
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "language": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "result.json"
+      ],
+      [
+        "HydroBase 水文拓扑",
+        "HydroBase hydrological topology"
+      ],
+      [
+        "png",
+        "svg",
+        "figure.json"
+      ],
+      [
+        "Polygon",
+        "MultiPolygon"
+      ],
+      [
+        "PASS",
+        "pass"
+      ],
+      [
+        "WARN",
+        "warn"
+      ],
+      [
+        "FAIL",
+        "fail"
+      ],
+      [
+        "WARN",
+        "FAIL"
+      ],
+      [
+        "hydrobase-topology",
+        "hydrobase-morphometry",
+        "hydrobase-qc-dashboard"
+      ],
+      [
+        "subbasins_table",
+        "reaches_table",
+        "topology_table",
+        "reaches_vector",
+        "stream_links_clipped",
+        "stream_order_clipped",
+        "subbasins_clipped"
+      ],
+      [
+        "topology_checks",
+        "topology_report",
+        "topology_figure"
+      ],
+      [
+        "reach_id",
+        "strahler_order",
+        "length_m",
+        "slope_percent",
+        "topo_level",
+        "is_outlet",
+        "geometry"
+      ],
+      [
+        "strahler_order",
+        "reach_id"
+      ],
+      [
+        "strahler_order",
+        "length_m",
+        "reach_id"
+      ],
+      [
+        "hydrobase-topology",
+        "hydrobase-morphometry"
+      ],
+      [
+        "zh",
+        "en"
+      ],
+      [
+        "sub_id",
+        "area_km2"
+      ]
+    ],
+    "field_names": [
+      "Date",
+      "FAIL",
+      "HydroBase hydrological topology",
+      "HydroBase 水文拓扑",
+      "MultiPolygon",
+      "PASS",
+      "Polygon",
+      "Software",
+      "WARN",
+      "_value",
+      "action",
+      "adjustable",
+      "align",
+      "allow_scientific_error",
+      "alpha",
+      "always_xy",
+      "area",
+      "area_km2",
+      "area_palette",
+      "arrowprops",
+      "arrows",
+      "arrowstyle",
+      "artifacts",
+      "ascending",
+      "atol",
+      "ax",
+      "axes.edgecolor",
+      "axes.labelcolor",
+      "axes.unicode_minus",
+      "background",
+      "basin_boundary",
+      "basin_edge_width",
+      "bbox",
+      "bbox_to_anchor",
+      "body_size",
+      "borderpad",
+      "bounds",
+      "boxstyle",
+      "build_result",
+      "canvas",
+      "caption_size",
+      "cax",
+      "check",
+      "checks",
+      "child",
+      "children",
+      "choices",
+      "closed",
+      "cmap",
+      "color",
+      "colorbar_size",
+      "colors",
+      "column",
+      "count_size",
+      "crs",
+      "default",
+      "description",
+      "details",
+      "direction",
+      "display_transform",
+      "dpi",
+      "edgecolor",
+      "en",
+      "encoding",
+      "ensure_ascii",
+      "errors",
+      "evidence",
+      "exist_ok",
+      "extend",
+      "extent",
+      "facecolor",
+      "fail",
+      "figsize",
+      "figsize_inches",
+      "figure.facecolor",
+      "figure.json",
+      "file",
+      "font",
+      "font.family",
+      "font.size",
+      "font_family",
+      "fontfamily",
+      "fontsize",
+      "fontweight",
+      "framealpha",
+      "frameon",
+      "geometry",
+      "geopandas",
+      "gid",
+      "ha",
+      "handles",
+      "height",
+      "height_range_inches",
+      "hydrobase-morphometry",
+      "hydrobase-qc-dashboard",
+      "hydrobase-topology",
+      "id",
+      "indent",
+      "ink",
+      "inputs",
+      "integer",
+      "interpolation",
+      "invert",
+      "is_outlet",
+      "key",
+      "label",
+      "labelright",
+      "labels",
+      "labelsize",
+      "labelspacing",
+      "labeltop",
+      "language",
+      "layer",
+      "layers",
+      "layout",
+      "legend_size",
+      "length",
+      "length_m",
+      "level",
+      "level_palette",
+      "limitations",
+      "limitations_text",
+      "line_widths",
+      "linestyle",
+      "linewidth",
+      "loc",
+      "lw",
+      "marker",
+      "markeredgecolor",
+      "markerfacecolor",
+      "markersize",
+      "mask",
+      "masked",
+      "matplotlib",
+      "max_reach_labels",
+      "message",
+      "metadata",
+      "morph_subtitle",
+      "morph_title",
+      "muted_ink",
+      "name",
+      "nbins",
+      "no_issues",
+      "nodata",
+      "norm",
+      "normalized",
+      "numpy",
+      "order",
+      "orientation",
+      "origin",
+      "out_shape",
+      "outlet",
+      "outlet_labels",
+      "outputs",
+      "pad",
+      "palette",
+      "panel_background",
+      "parameters",
+      "parents",
+      "pass",
+      "path",
+      "pixel_size",
+      "pixel_sizes",
+      "png",
+      "provenance",
+      "publication_ready",
+      "python",
+      "qc_subtitle",
+      "qc_title",
+      "rasterio",
+      "reach_id",
+      "reaches_table",
+      "reaches_vector",
+      "required",
+      "result.json",
+      "right",
+      "rotation",
+      "rtol",
+      "s",
+      "savefig.facecolor",
+      "schema_version",
+      "sep",
+      "sha256",
+      "skill",
+      "slope",
+      "slope_colors",
+      "slope_percent",
+      "solid_capstyle",
+      "sort_keys",
+      "source",
+      "source_results",
+      "status",
+      "steps",
+      "strahler_order",
+      "stream_base",
+      "stream_links_clipped",
+      "stream_order_clipped",
+      "stream_step",
+      "sub_id",
+      "subbasin_edge",
+      "subbasin_edge_width",
+      "subbasins",
+      "subbasins_clipped",
+      "subbasins_table",
+      "subtitle_size",
+      "svg",
+      "svg.fonttype",
+      "svg.hashsalt",
+      "template_id",
+      "template_version",
+      "templates",
+      "text",
+      "text.color",
+      "textcoords",
+      "textprops",
+      "tick_size",
+      "title",
+      "title_size",
+      "top",
+      "topo_level",
+      "topology_checks",
+      "topology_figure",
+      "topology_report",
+      "topology_subtitle",
+      "topology_table",
+      "topology_title",
+      "transform",
+      "type",
+      "typography",
+      "va",
+      "validation",
+      "validation_result",
+      "vmax",
+      "vmin",
+      "warn",
+      "warnings",
+      "weight",
+      "width",
+      "xy",
+      "xycoords",
+      "xytext",
+      "zh",
+      "zorder"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "FAIL",
+        "PASS",
+        "WARN",
+        "error",
+        "warning"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [
+      {
+        "id": "subbasin-area",
+        "source": "build_result.artifacts.subbasins_table",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "Input-dependent display metadata; preserve source scientific values."
+      },
+      {
+        "id": "reach-slope",
+        "source": "build_result.artifacts.reaches_table",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "deep-blue-to-deep-red"
+      },
+      {
+        "id": "topological-level",
+        "source": "build_result.artifacts.reaches_table",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "Input-dependent display metadata; preserve source scientific values."
+      },
+      {
+        "id": "basin-boundary",
+        "source": "build_result.inputs.basin_boundary",
+        "display_transform": "real boundary overlaid on all three maps; WGS84 graticules projected to map CRS; metric scale; north arrow",
+        "palette": "black"
+      },
+      {
+        "id": "topology-context",
+        "source": "build_result.artifacts.reaches_vector and subbasins_clipped",
+        "display_transform": "existing topology context, real basin and pale-gray subbasin boundaries",
+        "palette": "subbasins-water"
+      },
+      {
+        "id": "qc-summary",
+        "source": "validation_result.checks",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "qc-status"
+      },
+      {
+        "id": "subbasins",
+        "source": "build_result.artifacts.subbasins_clipped",
+        "display_transform": "stable IDs; display clipped to real basin; pale-gray boundaries from existing raster IDs",
+        "palette": "subbasins"
+      },
+      {
+        "id": "reaches",
+        "source": "build_result.artifacts.reaches_vector",
+        "display_transform": "existing Strahler order, directions and outlet flags; selected labels",
+        "palette": "water"
+      },
+      {
+        "id": "basin-boundary",
+        "source": "build_result.inputs.basin_boundary",
+        "display_transform": "real boundary; projected WGS84 graticules; inward geographic ticks; scale; black-white north arrow",
+        "palette": "black"
+      },
+      {
+        "id": "subbasin-count",
+        "source": "build_result.artifacts.subbasins_table",
+        "display_transform": "Input-dependent display metadata; preserve source scientific values.",
+        "palette": "black"
+      },
+      {
+        "id": "qc-evidence",
+        "source": "validation_result.checks",
+        "display_transform": "first six existing WARN/FAIL only; complete details retained upstream",
+        "palette": "qc-status"
+      }
+    ],
+    "dynamic_field_patterns": [
+      "^.+\\.figure\\.json$",
+      "^.+\\.png$",
+      "^.+\\.svg$",
+      "^.+_figure$",
+      "^.+_png$",
+      "^.+_svg$",
+      "^\\..+f$",
+      "^\\.0f$",
+      "^\\.6g$",
+      "^g$",
+      "^hydrotune_.+$",
+      "^子流域数量：.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "visualization-reporting/visualize-hydrobase-atlas"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations.",
+  "presentation_interface": {
+    "schemas_and_layouts": {
+      "atlas-style-v2.json": {
+        "template_version": "hydrotune.dem-hydrology-atlas.v2",
+        "canvas": {
+          "dpi": 200,
+          "background": "#FFFFFF",
+          "panel_background": "#FFFFFF",
+          "longest_edge_px": 2400
+        },
+        "typography": {
+          "zh": [
+            "SimSun"
+          ],
+          "en": [
+            "Times New Roman"
+          ],
+          "body_size": 13,
+          "legend_size": 16,
+          "small_size": 12,
+          "colorbar_label_size": 15,
+          "colorbar_tick_size": 13
+        },
+        "colors": {
+          "ink": "#17232D",
+          "muted_ink": "#5B6770",
+          "terrain": [
+            "#E7E2C6",
+            "#B9C9A3",
+            "#7F9A78",
+            "#82735F",
+            "#E8E6E0"
+          ],
+          "water": [
+            "#9DCBDA",
+            "#68A9C4",
+            "#2F82AC",
+            "#176B9A",
+            "#083D66"
+          ],
+          "subbasins": [
+            "#DCE8E5",
+            "#E8DFC8",
+            "#D7DDED",
+            "#E5D4D0",
+            "#D9E5C7",
+            "#E2D8EA",
+            "#CFE3E8",
+            "#E9E2D2",
+            "#D8E0D0",
+            "#E5D7DF"
+          ],
+          "pass": "#287A53",
+          "warn": "#C47A16",
+          "fail": "#B33A32",
+          "boundary": "#20282E",
+          "analysis_extent": "#B06A24"
+        },
+        "line_widths": {
+          "basin": 2.2,
+          "analysis_extent": 1.6,
+          "stream_base": 0.7,
+          "stream_step": 0.9,
+          "arrow": 0.8
+        },
+        "layout": {
+          "map_padding": 0.07,
+          "frame_margins": [
+            0.035,
+            0.045,
+            0.015,
+            0.015
+          ]
+        }
+      },
+      "topology-style-v2.json": {
+        "template_version": "hydrotune.hydrobase-topology.v2",
+        "font_family": [
+          "Times New Roman",
+          "SimSun"
+        ],
+        "tick_size": 16,
+        "legend_size": 16,
+        "count_size": 18,
+        "subbasin_edge": "#C8C8C8",
+        "subbasin_edge_width": 0.65,
+        "basin_edge_width": 1.5,
+        "longest_side_px": 2400
+      },
+      "morphometry-style-v2.json": {
+        "template_version": "hydrotune.hydrobase-morphometry.v2",
+        "width_inches": 12,
+        "dpi": 200,
+        "height_range_inches": [
+          3.8,
+          5.0
+        ],
+        "font_family": [
+          "Times New Roman",
+          "SimSun"
+        ],
+        "tick_size": 13,
+        "caption_size": 17,
+        "colorbar_size": 14,
+        "area_palette": "viridis",
+        "slope_colors": [
+          "#053061",
+          "#2166AC",
+          "#67A9CF",
+          "#F7F7F7",
+          "#EF8A62",
+          "#B2182B",
+          "#67001F"
+        ],
+        "level_palette": "plasma"
+      }
+    },
+    "pixel_size_rule": "Topology/QC map panel width 9.7 inches, height 9.7 * extent_height/extent_width; canvas adds 0.8 inches horizontally and 0.65 vertically, rescales longest side to 12 inches and rounds each side to 1/200 inch at 200 dpi. Morphometry map width 12 inches, height clamp(3.42 * extent_height/extent_width + 1, template height_range_inches), rounded to 1/200 inch at 200 dpi."
+  }
+}
+```

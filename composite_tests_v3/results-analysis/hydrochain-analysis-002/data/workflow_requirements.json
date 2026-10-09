@@ -1,0 +1,185 @@
+{
+  "task_revision": 5,
+  "measured_capabilities": [
+    "outlet_alignment",
+    "event_metrics",
+    "event_aggregation"
+  ],
+  "state": "Use scenario.json organization mode and initial states; independent events reset state, continuous runs retain state.",
+  "warmup": "Preserve model warm-up execution, exclude declared warm-up samples from scoring, and disclose the actual scored sample set.",
+  "aggregation": "Use the supplied timestep, units, forcing selection and spatial representativeness; rainfall/evaporation depths sum and discharge follows the declared aggregation.",
+  "external_inflow": "Where supplied, distinguish incremental local inflow and external contributions; inject and route each external contribution exactly once.",
+  "stability": "Where routing is used, use the supplied routing parameters and actual integration step; do not silently change them.",
+  "independence": "Where calibration or comparisons are used, respect the supplied train/validation split and independently recompute scored metrics.",
+  "applicability": "Apply each requirement only to capabilities and processes requested in this task; no extra model or scientific decision is required.",
+  "axis_checks": [
+    {
+      "path": "aligned/aligned_discharge.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "aligned/evaluation_discharge.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "evaluation_events.csv",
+      "time_column": "time",
+      "group_columns": [
+        "event_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "flow/discharge_timeseries.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/baseflow/flow_components.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/basin_rain.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/evap/prepared_forcing.csv",
+      "time_column": "time",
+      "group_columns": [
+        "source_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/events/annotated_series.csv",
+      "time_column": "time",
+      "group_columns": [
+        "event_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/events/event_files/event_0001.csv",
+      "time_column": "time",
+      "group_columns": [
+        "event_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/events/event_files/event_0002.csv",
+      "time_column": "time",
+      "group_columns": [
+        "event_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/events/event_files/event_0003.csv",
+      "time_column": "time",
+      "group_columns": [
+        "event_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/events/event_files/event_0004.csv",
+      "time_column": "time",
+      "group_columns": [
+        "event_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/events/event_process.csv",
+      "time_column": "time",
+      "group_columns": [
+        "event_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/flow/discharge_timeseries.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "observation/rain/prepared_forcing.csv",
+      "time_column": "time",
+      "group_columns": [
+        "source_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    }
+  ]
+}

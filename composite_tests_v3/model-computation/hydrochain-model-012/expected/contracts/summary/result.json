@@ -1,0 +1,24 @@
+{
+  "parameters": {
+    "group_by": null,
+    "pass_columns": [],
+    "pass_thresholds": {},
+    "statistics": [
+      "mean",
+      "median",
+      "p10",
+      "p90",
+      "min",
+      "max",
+      "count"
+    ],
+    "value_columns": [
+      "nse",
+      "rmse",
+      "mae",
+      "volume_error_relative",
+      "peak_error_relative",
+      "peak_time_error_hours"
+    ]
+  }
+}

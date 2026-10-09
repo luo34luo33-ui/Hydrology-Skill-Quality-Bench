@@ -1,0 +1,478 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydrodata-baseflow-007",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "data-processing/separate-baseflow-eckhardt",
+    "source_contract_sha256": "ec3240f28bac2cca10f789a7cf3a392d3e3beeb8c6ea03669c3169c8f1a07360",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "prepare_result",
+          "description": "prepare-discharge-timeseries 生成且哈希可验证的 result.json。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "flow_components",
+          "description": "标准时序附加基流、直接径流和直接径流比例。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX",
+          "variables": [
+            {
+              "name": "baseflow_m3_s",
+              "semantics": "Eckhardt 数字滤波得到的基流分量。",
+              "units": "m3/s",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "不允许缺测。"
+            },
+            {
+              "name": "quickflow_m3_s",
+              "semantics": "discharge_m3_s 减去 baseflow_m3_s。",
+              "units": "m3/s",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "不允许缺测。"
+            }
+          ]
+        },
+        {
+          "id": "run_result",
+          "description": "运行状态、参数、QC 与文件哈希。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "invariants": [
+        "baseflow_m3_s 必须介于零和 discharge_m3_s 之间。",
+        "discharge_m3_s 必须等于 baseflow_m3_s 与 quickflow_m3_s 之和。",
+        "自动 alpha 的证据不足时不得使用经验回退值。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "bfi_max": {
+              "type": "computed; see field semantics"
+            },
+            "alpha": {
+              "type": "computed; see field semantics"
+            },
+            "alpha_decision": {
+              "type": "computed; see field semantics"
+            },
+            "output_format": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "inputs": {
+            "prepare_result": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "artifacts": {
+            "flow_components": {
+              "type": "computed; see field semantics"
+            },
+            "baseflow_metadata": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "check": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "details": {
+                "type": "string"
+              }
+            }
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "alpha": {
+            "type": "computed; see field semantics"
+          },
+          "alpha_decision": {
+            "type": "computed; see field semantics"
+          },
+          "recession_pair_count": {
+            "type": "computed; see field semantics"
+          },
+          "bfi_max": {
+            "type": "computed; see field semantics"
+          },
+          "flow_unit": {
+            "type": "string"
+          },
+          "row_count": {
+            "type": "computed; see field semantics"
+          },
+          "upstream_series_metadata": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "bfi_max": {
+            "type": "computed; see field semantics"
+          },
+          "alpha": {
+            "type": "computed; see field semantics"
+          },
+          "alpha_decision": {
+            "type": "computed; see field semantics"
+          },
+          "output_format": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "prepare_result": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "flow_components": {
+            "type": "computed; see field semantics"
+          },
+          "baseflow_metadata": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {},
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "csv",
+          "parquet",
+          "xlsx"
+        ],
+        [
+          "flow_components.csv",
+          "flow_components.parquet",
+          "flow_components.xlsx",
+          "baseflow_metadata.json",
+          "result.json"
+        ],
+        [
+          "time",
+          "discharge_m3_s"
+        ]
+      ],
+      "field_names": [
+        "action",
+        "alpha",
+        "alpha_decision",
+        "artifacts",
+        "baseflow_m3_s",
+        "baseflow_metadata",
+        "baseflow_metadata.json",
+        "bfi_max",
+        "check",
+        "checks",
+        "choices",
+        "csv",
+        "date_format",
+        "default",
+        "description",
+        "details",
+        "discharge_m3_s",
+        "dtype",
+        "encoding",
+        "engine",
+        "ensure_ascii",
+        "errors",
+        "exist_ok",
+        "file",
+        "flow_components",
+        "flow_components.csv",
+        "flow_components.parquet",
+        "flow_components.xlsx",
+        "flow_unit",
+        "indent",
+        "index",
+        "inputs",
+        "message",
+        "method",
+        "numpy",
+        "out",
+        "output_format",
+        "pandas",
+        "parameters",
+        "parents",
+        "parquet",
+        "path",
+        "prepare_result",
+        "provenance",
+        "python",
+        "quickflow_fraction",
+        "quickflow_m3_s",
+        "recession_pair_count",
+        "required",
+        "result.json",
+        "row_count",
+        "schema_version",
+        "sha256",
+        "sheet_name",
+        "skill",
+        "sort_keys",
+        "status",
+        "time",
+        "type",
+        "upstream_series_metadata",
+        "utc",
+        "warnings",
+        "where",
+        "xlsx"
+      ],
+      "literal_enum_values": {
+        "flow_unit": [
+          "m3/s"
+        ],
+        "method": [
+          "Eckhardt digital filter"
+        ],
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "PASS",
+          "error"
+        ]
+      },
+      "static_interface_values": {
+        "flow_unit": [
+          "m3/s"
+        ],
+        "method": [
+          "Eckhardt digital filter"
+        ],
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^\\.6g$",
+        "^flow_components\\..+$",
+        "^max_absolute_error=.+$",
+        "^rows=.+$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "data-processing/separate-baseflow-eckhardt"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations.",
+    "details": {
+      "method_definition": "Single forward Eckhardt recursion; initial baseflow equals initial discharge; clamp each result to [0, discharge]. No backward pass.",
+      "tables": {
+        "flow_components": [
+          "time",
+          "discharge_m3_s",
+          "is_imputed",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ]
+      },
+      "objects": {
+        "baseflow_metadata": [
+          "schema_version",
+          "method",
+          "alpha",
+          "alpha_decision",
+          "recession_pair_count",
+          "bfi_max",
+          "flow_unit",
+          "row_count",
+          "upstream_series_metadata"
+        ]
+      },
+      "semantics": {
+        "quickflow_fraction": "quickflow/discharge; zero when discharge is zero",
+        "alpha_decision": [
+          "user-provided",
+          "estimated-90th-quantile-of-recession-ratios"
+        ],
+        "recession_pair_count": "Count used for automatic estimation; zero for explicitly supplied alpha",
+        "method": "Eckhardt digital filter"
+      },
+      "warning_rule": "Propagate upstream warnings; status is warning if warnings are present, otherwise success. Invalid inputs use the error branch."
+    }
+  },
+  "inputs": [
+    "prepared/result.json",
+    "prepared/discharge_timeseries.csv",
+    "prepared/series_metadata.json"
+  ],
+  "outputs": [
+    "components/result.json"
+  ],
+  "input_field_names": [
+    "UTC",
+    "additional_column_semantics",
+    "additional_columns",
+    "artifacts",
+    "checks",
+    "csv",
+    "discharge_m3_s",
+    "discharge_timeseries",
+    "end_time",
+    "flow_column",
+    "generator",
+    "inputs",
+    "is_imputed",
+    "message",
+    "parameters",
+    "path",
+    "provenance",
+    "row_count",
+    "schema_version",
+    "series_metadata",
+    "sha256",
+    "skill",
+    "source_flow_unit",
+    "source_format",
+    "standard_flow_unit",
+    "start_time",
+    "status",
+    "success",
+    "time",
+    "time_column",
+    "time_regularity",
+    "timestep_seconds",
+    "timezone",
+    "unconfirmed",
+    "unit_scale",
+    "warnings"
+  ],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

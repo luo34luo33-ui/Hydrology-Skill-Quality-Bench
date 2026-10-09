@@ -1,0 +1,12 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "skill": "visualization-reporting/visualize-hydrobase-atlas",
+      "status": "warning",
+      "warnings": [
+        "Synthetic upstream QC evidence"
+      ]
+    }
+  },
+  "kind": "status"
+}

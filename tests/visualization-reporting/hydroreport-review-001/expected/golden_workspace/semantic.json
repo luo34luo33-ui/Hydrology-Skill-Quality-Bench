@@ -1,0 +1,47 @@
+{
+  "package_fingerprint": "9bf26805857bbb3cc4685f67eb9fb434bc4cd7a3890c5c19540671d8752a6016",
+  "paragraphs": [
+    {
+      "evidence_ids": [
+        "ev-d0679d06e7211920fa63"
+      ],
+      "id": "overview",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    },
+    {
+      "evidence_ids": [
+        "ev-d0679d06e7211920fa63"
+      ],
+      "id": "evaluation",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    },
+    {
+      "evidence_ids": [
+        "ev-d0679d06e7211920fa63"
+      ],
+      "id": "discussion",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    },
+    {
+      "evidence_ids": [
+        "process-a37d89eb66197516"
+      ],
+      "id": "diagnosis-e1",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    },
+    {
+      "evidence_ids": [
+        "ev-d0679d06e7211920fa63"
+      ],
+      "id": "limitations",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    }
+  ],
+  "reviewer": "deterministic-fixture-reviewer",
+  "schema_version": "1.0"
+}

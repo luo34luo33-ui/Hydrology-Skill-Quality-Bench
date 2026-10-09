@@ -1,0 +1,9 @@
+{
+  "origin": "Synthetic companion rainfall: 1 mm per hour; explicit test setting, not repaired observations.",
+  "sha256": "c06bec811ec343b44ddc5cb23929bc1dd7162332f439b4efe1e03f7a35ba2eab",
+  "spatial_scope": "basin_mean",
+  "timestamp_semantics": "interval_end",
+  "timestep_seconds": 3600,
+  "timezone": "UTC",
+  "unit": "mm/step"
+}

@@ -1,0 +1,105 @@
+{
+  "artifacts": {
+    "dem-basin-context_figure": {
+      "path": "dem-basin-context.figure.json",
+      "sha256": "cc4aba85718dbf3038d914ce955024388dd71a4a7c95358e82b108769a06c2a8"
+    },
+    "dem-basin-context_png": {
+      "path": "dem-basin-context.png",
+      "sha256": "2f79bf97912481110059a1bf837f5d0ae86f86d6f447421ab47f1767e46b0f20"
+    },
+    "dem-basin-context_svg": {
+      "path": "dem-basin-context.svg",
+      "sha256": "42cac21eb88e466ad87d08ea9bbe1102b1c4a72f4fb30767dab37e8372c2365f"
+    },
+    "dem-terrain_figure": {
+      "path": "dem-terrain.figure.json",
+      "sha256": "beb1e99c093a4ce26f0e252f597761f4e27fb0b5856746ba2376368ea847d459"
+    },
+    "dem-terrain_png": {
+      "path": "dem-terrain.png",
+      "sha256": "26f44dba167f7e4c8bfc1eee890ad4d2cc7fc4afd6381c0c61c57abfc45193fa"
+    },
+    "dem-terrain_svg": {
+      "path": "dem-terrain.svg",
+      "sha256": "66514269971d6afeca0f8483460563abf4af7ed32c404ac9fb800c4bee2e6f0a"
+    },
+    "flow-accumulation-network_figure": {
+      "path": "flow-accumulation-network.figure.json",
+      "sha256": "9e0f908e6ba66741d4675525ace052f475dfc4e68c101c2146dbb38d46858adc"
+    },
+    "flow-accumulation-network_png": {
+      "path": "flow-accumulation-network.png",
+      "sha256": "051c1973f781b4c4987ef8c556fcb9e872b9ad865a4a105770aeeee5d1a6a9ea"
+    },
+    "flow-accumulation-network_svg": {
+      "path": "flow-accumulation-network.svg",
+      "sha256": "934f573066dc23fcfa73111cc0c3eedf43d1e95279c1b98215b1d39f33806182"
+    },
+    "stream-order-subbasins_figure": {
+      "path": "stream-order-subbasins.figure.json",
+      "sha256": "0f30a29cb20811a07bfcbba3ee9585b5b7872fed000bc56064ebf7100ada53ca"
+    },
+    "stream-order-subbasins_png": {
+      "path": "stream-order-subbasins.png",
+      "sha256": "7c4ad115ae741e8fde80de643a28453724a262782fcbe5a70c5473dc4b768fcb"
+    },
+    "stream-order-subbasins_svg": {
+      "path": "stream-order-subbasins.svg",
+      "sha256": "28ac92567261457e7ef58d874ab5552ebbbc1e2739f8c1a2a9525d321a76c62c"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed prepare artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "prepare_crs",
+      "details": "EPSG:32650",
+      "status": "PASS"
+    },
+    {
+      "check": "extract_grid_alignment",
+      "details": "five extraction rasters share CRS, transform and shape",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-5fuakybt\\extract\\result.json",
+      "sha256": "534545a6fa1ecc770d794b40c14c8f1f0e35c9caa6395ff8460ccf87872d774d"
+    },
+    "prepare_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-5fuakybt\\prepare\\result.json",
+      "sha256": "fb4420d6a32c3c037a323bc2c566be936f795db6d04cd4db9d5b232d6f11933f"
+    }
+  },
+  "message": "rendered 4 fixed atlas templates",
+  "parameters": {
+    "canvas_policy": "basin-aspect, longest edge 2400 px",
+    "display_clip": "true basin polygon",
+    "language": "zh",
+    "templates": [
+      "dem-basin-context",
+      "dem-terrain",
+      "flow-accumulation-network",
+      "stream-order-subbasins"
+    ],
+    "titles_in_image": false
+  },
+  "provenance": {
+    "font": "Times New Roman, SimSun",
+    "geopandas": "1.1.4",
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "template_version": "hydrotune.dem-hydrology-atlas.v2"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-dem-hydrology-atlas",
+  "status": "success",
+  "warnings": []
+}

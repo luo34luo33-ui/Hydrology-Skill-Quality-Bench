@@ -101,6 +101,7 @@
   "id": "hydroanalysis-aggregate-metrics-001",
   "primary_skill": "evaluation-diagnostics/aggregate-event-metrics",
   "prompt": "Use event_metrics.csv exactly as supplied to run evaluation-diagnostics/aggregate-event-metrics. The table holds per-event metrics; group by catchment, aggregate the value columns nse, volume_error_relative, and peak_error_relative, and compute qualification rates for qualified_volume and qualified_peak with the confirmed thresholds.json. Write the native outputs (aggregate_metrics.csv, result.json) under aggregate-metrics/. Do not add weighting, recompute upstream metrics, or alter the qualification columns.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "aggregate-metrics/aggregate_metrics.csv",
     "aggregate-metrics/result.json"

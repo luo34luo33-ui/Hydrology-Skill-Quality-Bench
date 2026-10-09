@@ -1,0 +1,19 @@
+{
+  "additional_column_semantics": "unconfirmed",
+  "additional_columns": [
+    "station_note"
+  ],
+  "end_time": "2020-01-10T23:00:00+00:00",
+  "flow_column": "flow",
+  "row_count": 240,
+  "schema_version": "1.0",
+  "source_flow_unit": "m3/s",
+  "source_format": "csv",
+  "standard_flow_unit": "m3/s",
+  "start_time": "2020-01-01T00:00:00+00:00",
+  "time_column": "when",
+  "time_regularity": 1.0,
+  "timestep_seconds": 3600.0,
+  "timezone": "UTC",
+  "unit_scale": 1.0
+}

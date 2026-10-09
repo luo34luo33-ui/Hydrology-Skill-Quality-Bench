@@ -9,18 +9,29 @@
   "hyperparameters": {
     "alpha": 1.0
   },
-  "lag_spec": [],
+  "lag_spec": [
+    {
+      "column": "residual",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
   "observed_column": "Q_obs",
   "output_column": "corrected",
   "random_state": 20260928,
   "residual_definition": "observed - base",
   "skill": "post-processing/correct-residual-with-ml",
   "split": "chronological",
-  "test_r2": 0.017206496179898556,
-  "test_rmse": 2.8884449390132945,
-  "test_rows": 30,
+  "test_r2": 0.9998318083234587,
+  "test_rmse": 0.037445887085195605,
+  "test_rows": 29,
   "test_size": 0.25,
-  "train_r2": 0.2594110916630161,
-  "train_rmse": 2.7310655363324736,
-  "train_rows": 90
+  "train_r2": 0.999766838383214,
+  "train_rmse": 0.05003664875038268,
+  "train_rows": 86
 }

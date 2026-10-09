@@ -119,6 +119,7 @@
   "id": "hydromodel-dhf-002",
   "primary_skill": "hydrological-modeling/run-lumped-dhf-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-dhf-model. The parameter set deliberately contains values outside the documented soft ranges (U0=100, B=0.6); this is a confirmed user decision, and the skill must accept the run and natively report the parameter_range warning. Run verbatim with --pet-column E0, area 640 km2, river length 20 km, timestep 1 h, mode continuous, warm-up 12 steps, balance tolerance 0.05, and write the native outputs (lumped_dhf_runoff.csv, result.json) under dhf-run/. Do not 'fix' the parameters to the soft ranges or suppress the warning.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "dhf-run/lumped_dhf_runoff.csv",
     "dhf-run/result.json"

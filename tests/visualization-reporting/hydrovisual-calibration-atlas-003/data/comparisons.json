@@ -1,0 +1,15 @@
+{
+  "join_on": [
+    "time"
+  ],
+  "schema_version": "1.0",
+  "series": [
+    {
+      "column": "corrected",
+      "label": "Corrected",
+      "path": "comparison.csv",
+      "split": "validation",
+      "unit": "m3/s"
+    }
+  ]
+}

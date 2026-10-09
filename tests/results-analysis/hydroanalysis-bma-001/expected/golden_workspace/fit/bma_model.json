@@ -1,0 +1,36 @@
+{
+  "weights": [
+    0.6494166336069764,
+    0.3505833663930237
+  ],
+  "theta": [
+    [
+      -0.09321740958288544,
+      0.8447750307698995,
+      0.0812022239467833
+    ],
+    [
+      -0.15745878526692766,
+      1.1440010031263035,
+      0.1071203436039903
+    ]
+  ],
+  "scale_m3_s": 67.43049582531924,
+  "score": 0.37856563280296285,
+  "selected_start": 3,
+  "schema_version": "1.0",
+  "distribution": "censored_gaussian",
+  "model_ids": [
+    "HBV",
+    "Tank"
+  ],
+  "outlet_id": "synthetic-outlet",
+  "timestep_hours": 1,
+  "timezone": "Asia/Shanghai",
+  "unit": "m3/s",
+  "series_mode": "continuous",
+  "training_start": "2019-12-31T19:00:00+00:00",
+  "training_end": "2020-01-10T15:00:00+00:00",
+  "training_events": [],
+  "random_state": 2026
+}

@@ -1,0 +1,69 @@
+{
+  "artifacts": {
+    "discharge_timeseries": {
+      "path": "discharge_timeseries.csv",
+      "sha256": "364440321ffec3bc96d43326f8504c6f2dcda7851e99740e64ecd8d6166bb199"
+    },
+    "series_metadata": {
+      "path": "series_metadata.json",
+      "sha256": "ae5356735cc777dae46b24ba83cb6248bfc2d6148b986559d0c5e31950f3d78b"
+    }
+  },
+  "checks": [
+    {
+      "check": "duplicate_timestamps",
+      "details": "count=0",
+      "status": "PASS"
+    },
+    {
+      "check": "edge_missing",
+      "details": "count=0",
+      "status": "PASS"
+    },
+    {
+      "check": "interior_missing",
+      "details": "count=0",
+      "status": "PASS"
+    },
+    {
+      "check": "regular_timestep",
+      "details": "seconds=3600",
+      "status": "PASS"
+    },
+    {
+      "check": "nonnegative_discharge",
+      "details": "rows=97",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "source_timeseries": {
+      "path": "../../raw_events/20230908.csv",
+      "sha256": "d7f26cf12498e90dab046e91e3476450ee547ef49871ad78629a79c78df38159"
+    }
+  },
+  "message": "discharge time series prepared",
+  "parameters": {
+    "duplicate_policy": "error",
+    "edge_missing": "error",
+    "flow_column": "GZ_in",
+    "flow_unit": "m3/s",
+    "input_format": "auto",
+    "max_interpolation_gap_hours": null,
+    "missing_policy": "error",
+    "output_format": "csv",
+    "overwrite": false,
+    "sheet": null,
+    "time_column": "time",
+    "timezone": "Asia/Shanghai"
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-discharge-timeseries",
+  "status": "success",
+  "warnings": []
+}

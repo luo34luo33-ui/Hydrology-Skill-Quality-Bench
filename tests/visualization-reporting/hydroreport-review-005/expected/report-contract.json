@@ -1,0 +1,46 @@
+{
+  "files": {
+    "review-initial/result.json": {
+      "skill": "visualization-reporting/review-hydrological-study-report",
+      "status": "warning",
+      "warnings": []
+    },
+    "review-initial/review.json": {
+      "findings": [
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "-0.25",
+          "category": "value",
+          "evidence_location": "nse",
+          "expected": "-0.5",
+          "needs_human_judgment": false,
+          "report_location": "/evidence/13/value",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "Original facts differ: evidence",
+          "category": "narrative_binding",
+          "evidence_location": "/sections",
+          "expected": "Valid evidence and numeric bindings",
+          "needs_human_judgment": false,
+          "report_location": "/sections",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "not completed",
+          "category": "semantic_review",
+          "evidence_location": "/sections",
+          "expected": "Independent Agent evidence assessment",
+          "needs_human_judgment": true,
+          "report_location": "/sections",
+          "severity": "warning"
+        }
+      ],
+      "status": "needs_revision"
+    }
+  },
+  "kind": "report",
+  "markdown": {}
+}

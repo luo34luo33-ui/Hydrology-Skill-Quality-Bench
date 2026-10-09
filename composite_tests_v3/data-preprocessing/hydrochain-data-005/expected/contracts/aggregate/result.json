@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "layers": {
+      "P": {
+        "kind": "station",
+        "station_crs": "EPSG:4326",
+        "variable": "P"
+      },
+      "evap": {
+        "kind": "station",
+        "station_crs": "EPSG:4326",
+        "variable": "E0"
+      }
+    },
+    "min_coverage_fraction": 1.0,
+    "target": "subbasin"
+  }
+}

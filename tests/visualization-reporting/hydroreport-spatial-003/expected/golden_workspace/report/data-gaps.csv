@@ -1,0 +1,2 @@
+﻿source_id,severity,reason,section,action
+topo,error,Artifact hash mismatch: reaches_table,topo,Provide or correct the upstream evidence; regenerate and review.

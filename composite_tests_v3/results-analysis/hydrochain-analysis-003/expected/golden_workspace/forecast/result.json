@@ -1,0 +1,90 @@
+{
+  "artifacts": {
+    "components": {
+      "path": "component_predictions.csv",
+      "sha256": "55cb68399c4eec988b387c46850e1fe2c4fc5810a3025a40a45d89bf44f96957"
+    },
+    "ensemble": {
+      "path": "ensemble_discharge.csv",
+      "sha256": "9308e2bf287d05d00063e107339ade4b83b90b2e9a17ce53a00341748df46137"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "854b4021b1a75f16a3fe6edb4a7a22113f396e36abfcc8d79e0b1647be32eb6e"
+    }
+  },
+  "checks": [
+    {
+      "check": "alignment_and_probability",
+      "details": {
+        "member_count": 2,
+        "mode": "continuous",
+        "rows": 264,
+        "selected_rows_per_member": {
+          "dhf": 264,
+          "semi": 264
+        },
+        "warmup_union_rows": 0
+      },
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "members": {
+      "path": "../members.json",
+      "sha256": "67b0ed7353452073e87167004bff7785b3d1e66240e30bfb0b31284adccdd491"
+    },
+    "model": {
+      "path": "../fit/bma_model.json",
+      "sha256": "0bc27e9de8cfd4ed489970c0836d6aa9b85814fca07546b52e2c5ee4eff43db7"
+    },
+    "model_result": {
+      "path": "../fit/result.json",
+      "sha256": "2b0c50886b956a9b6dde4aaa5990f4c60d743866f12e5c8ca8e0a2e7c633794c"
+    },
+    "simulation_0": {
+      "path": "../aligned_members/dhf-result.json",
+      "sha256": "6a021fdd3454a29c72a2bf2d79ac25516448cb5a236c6452baf57c33772f7cc6"
+    },
+    "simulation_1": {
+      "path": "../aligned_members/semi-result.json",
+      "sha256": "579d18463a46c202b6c33faf6be445fbe2ab8655d95c59ce36c4362074722103"
+    },
+    "table_0_continuous_simulation_table": {
+      "path": "../aligned_members/dhf.csv",
+      "sha256": "d30b15b87406bd561604c073b6452d75c2bb8e2f3af43f166487812c5b8d9e63"
+    },
+    "table_1_continuous_outlet_flow": {
+      "path": "../aligned_members/semi.csv",
+      "sha256": "7233d4045cd6129f7a551d30a81296d3692eeee4a061d5152aa649735480233a"
+    }
+  },
+  "parameters": {
+    "distribution": "censored_gaussian",
+    "max_iter": 500,
+    "mode": "predict",
+    "n_starts": 5,
+    "quantiles": [
+      0.05,
+      0.5,
+      0.95
+    ],
+    "random_state": null,
+    "selection": {
+      "end": "2023-08-31T23:00:00+08:00",
+      "events": null,
+      "start": "2023-08-21T00:00:00+08:00"
+    },
+    "tol": 1e-08
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "scipy": "1.17.1"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "success",
+  "warnings": []
+}

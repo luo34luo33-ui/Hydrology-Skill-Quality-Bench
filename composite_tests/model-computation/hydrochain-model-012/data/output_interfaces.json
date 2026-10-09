@@ -1,0 +1,995 @@
+{
+  "calibration_evidence": "Trace rows contain status, objective and param:NAME columns; at most 128 evaluations, objective independently replayable, best parameters locked before validation. No prescribed optimizer trajectory.",
+  "decision": {
+    "evidence": "nonempty list of {path, sha256}, relative to workspace root",
+    "limitations": "nonempty list including synthetic-data limitations and implementation choices",
+    "reason": "scientific_contracts_satisfied",
+    "status": "deliverable"
+  },
+  "interaction_mode": "none",
+  "numerical_tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "outputs": {
+    "calibration/best_parameters.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "algorithm": "string",
+        "parameters": {
+          "B": {
+            "at_lower_bound": "boolean",
+            "at_upper_bound": "boolean",
+            "lower": "number",
+            "relative_position": "number",
+            "upper": "number",
+            "value": "number"
+          },
+          "K": {
+            "at_lower_bound": "boolean",
+            "at_upper_bound": "boolean",
+            "lower": "number",
+            "relative_position": "number",
+            "upper": "number",
+            "value": "number"
+          }
+        },
+        "schema_version": "string"
+      }
+    },
+    "calibration/calibration_series.csv": {
+      "columns": [
+        "time",
+        "observed",
+        "simulated",
+        "scored",
+        "precipitation",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "calibration/calibration_trace.csv": {
+      "columns": [
+        "evaluation",
+        "stage",
+        "objective",
+        "loss",
+        "status",
+        "message",
+        "best_so_far",
+        "param:K",
+        "param:B"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "calibration/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "optimizer_config",
+        "problem"
+      ],
+      "structure": {
+        "algorithm": "string",
+        "artifacts": {
+          "best_parameters": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "calibration_metrics": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "calibration_series": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "calibration_trace": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "validation_metrics": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "validation_series": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "data_shape": "string",
+        "evaluation_count": "number",
+        "failed_evaluation_count": "number",
+        "inputs": {
+          "adapter": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "objective": {
+          "direction": "string",
+          "metric": "string"
+        },
+        "parameters": {
+          "max_evaluations": "number",
+          "optimizer_config": {
+            "algorithm": "string",
+            "crossover_probability": "number",
+            "max_evaluations": "number",
+            "max_failed_evaluations": "number",
+            "max_generations": "number",
+            "mutation_factor": "number",
+            "polish": "boolean",
+            "population_multiplier": "number",
+            "schema_version": "string",
+            "seed": "number",
+            "tolerance": "number"
+          },
+          "seed": "number"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "scipy": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "termination_reason": "string",
+        "warnings": []
+      }
+    },
+    "calibration/validation_series.csv": {
+      "columns": [
+        "time",
+        "observed",
+        "simulated",
+        "scored",
+        "precipitation",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "decision.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "evidence": [
+          {
+            "path": "string",
+            "sha256": "string"
+          }
+        ],
+        "limitations": [
+          "string"
+        ],
+        "reason": "string",
+        "status": "string"
+      }
+    },
+    "e0/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e0/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "e0/forcing.csv": {
+      "columns": [
+        "time",
+        "P",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e0/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e0/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "e1/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e1/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "e1/forcing.csv": {
+      "columns": [
+        "time",
+        "P",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e1/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e1/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "e2/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e2/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "e2/forcing.csv": {
+      "columns": [
+        "time",
+        "P",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e2/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e2/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "e3/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e3/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "e3/forcing.csv": {
+      "columns": [
+        "time",
+        "P",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e3/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "e3/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "metrics/event_metrics.csv": {
+      "columns": [
+        "event_id",
+        "rows",
+        "start",
+        "end",
+        "observed_volume",
+        "simulated_volume",
+        "volume_error_relative",
+        "observed_peak",
+        "simulated_peak",
+        "peak_error_relative",
+        "peak_time_error_hours",
+        "peak_tie_count",
+        "nse",
+        "r2",
+        "rmse",
+        "mae",
+        "qualified_volume",
+        "qualified_peak",
+        "qualified_peak_time"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "metrics/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "events_dir"
+      ],
+      "structure": {
+        "artifacts": {
+          "event_metrics": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "message": "string",
+            "name": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "event_file_0000": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_file_0001": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "event_id_column": "string",
+          "observed_column": "string",
+          "scoring_policy": "string",
+          "simulated_column": "string",
+          "thresholds": {},
+          "time_column": "string",
+          "timestep_hours": "number",
+          "volume_unit": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": [
+          "string"
+        ]
+      }
+    },
+    "problem.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "adapter": {
+          "path": "string",
+          "sha256": "string"
+        },
+        "data_shape": "string",
+        "inputs": [
+          {
+            "id": "string",
+            "path": "string",
+            "sha256": "string"
+          }
+        ],
+        "objective": {
+          "direction": "string",
+          "metric": "string"
+        },
+        "objective_consistency_tolerance": "number",
+        "parameters": [
+          {
+            "lower": "number",
+            "name": "string",
+            "upper": "number"
+          }
+        ],
+        "schema_version": "string",
+        "splits": {
+          "calibration": {
+            "events": [
+              "string"
+            ]
+          },
+          "validation": {
+            "events": [
+              "string"
+            ]
+          }
+        },
+        "variables": {
+          "observed": {
+            "semantics": "string",
+            "unit": "string"
+          },
+          "simulated": {
+            "semantics": "string",
+            "unit": "string"
+          }
+        },
+        "warmup": {
+          "confirmed": "boolean",
+          "semantics": "string"
+        }
+      }
+    },
+    "summary/aggregate_metrics.csv": {
+      "columns": [
+        "group",
+        "events",
+        "nse_mean",
+        "nse_median",
+        "nse_p10",
+        "nse_p90",
+        "nse_min",
+        "nse_max",
+        "nse_count",
+        "rmse_mean",
+        "rmse_median",
+        "rmse_p10",
+        "rmse_p90",
+        "rmse_min",
+        "rmse_max",
+        "rmse_count",
+        "mae_mean",
+        "mae_median",
+        "mae_p10",
+        "mae_p90",
+        "mae_min",
+        "mae_max",
+        "mae_count",
+        "volume_error_relative_mean",
+        "volume_error_relative_median",
+        "volume_error_relative_p10",
+        "volume_error_relative_p90",
+        "volume_error_relative_min",
+        "volume_error_relative_max",
+        "volume_error_relative_count",
+        "peak_error_relative_mean",
+        "peak_error_relative_median",
+        "peak_error_relative_p10",
+        "peak_error_relative_p90",
+        "peak_error_relative_min",
+        "peak_error_relative_max",
+        "peak_error_relative_count",
+        "peak_time_error_hours_mean",
+        "peak_time_error_hours_median",
+        "peak_time_error_hours_p10",
+        "peak_time_error_hours_p90",
+        "peak_time_error_hours_min",
+        "peak_time_error_hours_max",
+        "peak_time_error_hours_count"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "validation_aligned.csv": {
+      "columns": [
+        "time",
+        "observed_m3_s",
+        "simulated_m3_s",
+        "scored",
+        "precipitation",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    }
+  },
+  "provided_settings": [
+    {
+      "field": "organization_mode",
+      "key": "organization_mode",
+      "output_bindings": [
+        {
+          "field": "data_shape",
+          "target": "problem.json"
+        }
+      ],
+      "source": "scenario.json"
+    }
+  ],
+  "result_manifest": "Scientific inputs/artifacts: role -> {path, sha256}, relative to manifest parent. Optional config/adapter input roles may be omitted; equivalent implementations may use their own upstream filenames. Every reference that is declared must resolve and have a valid SHA-256.",
+  "task_version": "composite-unattended-v2"
+}

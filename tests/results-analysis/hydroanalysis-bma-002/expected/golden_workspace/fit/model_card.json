@@ -1,0 +1,106 @@
+{
+  "distribution": "censored_gaussian",
+  "estimator": "generalized_EM_maximum_likelihood",
+  "parameter_units": {
+    "theta_a": "normalized discharge",
+    "theta_b": "dimensionless",
+    "theta_sigma": "normalized discharge"
+  },
+  "training_rows": 234,
+  "row_weighting": "equal_per_timestep",
+  "model": {
+    "weights": [
+      0.6488591170694606,
+      0.35114088293053947
+    ],
+    "theta": [
+      [
+        -0.0931921803698509,
+        0.8435613149291652,
+        0.08197106907998836
+      ],
+      [
+        -0.1586219376844846,
+        1.1500255621345017,
+        0.10615626983546118
+      ]
+    ],
+    "scale_m3_s": 67.43049582531924,
+    "score": 0.36967478476944404,
+    "selected_start": 1,
+    "schema_version": "1.0",
+    "distribution": "censored_gaussian",
+    "model_ids": [
+      "HBV",
+      "Tank"
+    ],
+    "outlet_id": "synthetic-outlet",
+    "timestep_hours": 1,
+    "timezone": "Asia/Shanghai",
+    "unit": "m3/s",
+    "series_mode": "event",
+    "training_start": "2019-12-31T19:00:00+00:00",
+    "training_end": "2020-01-10T15:00:00+00:00",
+    "training_events": [
+      "flood-001",
+      "flood-002"
+    ],
+    "random_state": 2026
+  },
+  "inputs": {
+    "members": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\members.json",
+      "sha256": "a4302ecc0adc8201e5ee75afe3fe6d5fb7d5520cc755653c9647d319a14f3be9"
+    },
+    "event_manifest_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-events.json",
+      "sha256": "c80cfe86fb1a1b1f1cc089a7d1c9d7995d3bc4defdff1ce6e79ee44bd102a144"
+    },
+    "simulation_0_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-001-result.json",
+      "sha256": "cf06cf825b990390c9bff41066ae713df258deefc7a260ab83b0271a0241a245"
+    },
+    "table_0_0_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-001.csv",
+      "sha256": "01ed43fb253f26b1e4dc4fa49d3279944da19cf7f4a98b7d18fb310bc196bc36"
+    },
+    "simulation_0_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-002-result.json",
+      "sha256": "2e8e3409ea07ef31be6b59cb9f5957f5dd0df287fc2de1740cab374016773cfa"
+    },
+    "table_0_1_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-002.csv",
+      "sha256": "0a647c4658cf3059aaf7e44d579ad47e35defcc9aedd0b4f54bf7942ea374ff6"
+    },
+    "event_manifest_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-events.json",
+      "sha256": "03b807a46b091cca91f02537812a4b2ed1704ecc97696884172b4ca002647270"
+    },
+    "simulation_1_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-001-result.json",
+      "sha256": "611580a4e4a6891e9284103e01522c38146c0e11da38617a43f1a6404ea7edb2"
+    },
+    "table_1_0_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-001.csv",
+      "sha256": "d7cb067b7b1ad5b0006b83d9eda49f4f1b22a4baddd0d8e7d8344f8eaac5e605"
+    },
+    "simulation_1_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-002-result.json",
+      "sha256": "f0052e1d0c9808b067a330cc18465b17989b0c748445be0f62051af5b5f9c9a1"
+    },
+    "table_1_1_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-002.csv",
+      "sha256": "ce77ec3a3f32a53d0b4f8bf072d63928bd0832dad22fa474a42834a2e4131a65"
+    },
+    "observed_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\observed-result.json",
+      "sha256": "0b028ba07d4d3eea67457a751b7c00911d72d6d148ca1093dbd18a11168dd7a0"
+    },
+    "observations": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\observed.csv",
+      "sha256": "6f9cc62bfbf1f955729a4a418cdf9f5b6b44feb748aa0e3be24a9abcc1a38b4a"
+    }
+  },
+  "warnings": [],
+  "interpretation": "conditional predictive uncertainty; no parameter posterior sampling or trajectory dependence"
+}

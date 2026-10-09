@@ -1,0 +1,87 @@
+{
+  "display_transforms": [
+    "NSE = 1 - sum((sim-obs)^2)/sum((obs-mean(obs))^2), scored=true samples within this figure only; display diagnostic, upstream metrics unchanged",
+    "unscored samples shaded; explicit comparison keys; no visible titles"
+  ],
+  "event_slice": {
+    "end": "2021-01-08T00:00:00+00:00",
+    "event_id": "validation-event",
+    "event_list": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\validation-events.csv",
+      "sha256": "fa323d685860a80afba693a39268f620db96225aac21ea0b9642f95dfec419a7"
+    },
+    "event_manifest": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\events.json",
+      "sha256": "c269c6679924a5379c755e385870fffd2f003d0bdd5ac721c3abf07cdd13c611"
+    },
+    "rows": 6,
+    "scored_samples": 6,
+    "series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\calibration\\validation_series.csv",
+      "sha256": "1d7274491fe304067dbfae1804f1df04999d01e2b46a4583209fbbb799f01c54"
+    },
+    "start": "2021-01-03T00:00:00+00:00"
+  },
+  "figure_type": "validation-process",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\calibration\\result.json",
+      "sha256": "029c5f9d1904047aa3bc0580310228beb98632d13eba70f31f4dab443d6376c8"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\calibration\\validation_series.csv",
+      "sha256": "1d7274491fe304067dbfae1804f1df04999d01e2b46a4583209fbbb799f01c54"
+    },
+    "source_1_comparisons": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\comparisons.json",
+      "sha256": "f66b523f5aea072177b3fdc97ac4513d669ab8aebc42de8506440302b0f3ccbd"
+    },
+    "source_2_comparison": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\comparison.csv",
+      "sha256": "1beb0351b2803f5b720eab068c12f73afbc49318283aec33cb3b826a7afb45c1"
+    }
+  },
+  "language": "zh",
+  "outputs": {
+    "png": {
+      "path": "validation_event_001.png",
+      "sha256": "2967c9b0609196c39d1900c7cb979b1c7bea2687e7922e93d5358ffadf002c91"
+    },
+    "svg": {
+      "path": "validation_event_001.svg",
+      "sha256": "eeb335fcbd1f7a92ed3bce7b4ffeb57cfd87273599ec7603e9862ef56239748b"
+    }
+  },
+  "schema_version": "1.0",
+  "scope": {
+    "event_ids": [
+      "validation-event"
+    ],
+    "scored_only": true,
+    "split": "validation"
+  },
+  "simulation_metrics": [
+    {
+      "color": "#0072B2",
+      "column": "simulated",
+      "label": "模拟",
+      "nse": 0.5552702311080473,
+      "scored_samples": 6,
+      "unavailable_reason": null
+    },
+    {
+      "color": "#D55E00",
+      "column": "comparison_1",
+      "label": "Corrected",
+      "nse": 1.0,
+      "scored_samples": 6,
+      "unavailable_reason": null
+    }
+  ],
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "验证期观测—模拟过程 · validation-event",
+  "unit": "m3/s",
+  "warnings": [],
+  "width_px": 2400
+}

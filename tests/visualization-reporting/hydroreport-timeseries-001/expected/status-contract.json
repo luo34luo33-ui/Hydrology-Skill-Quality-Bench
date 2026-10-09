@@ -1,0 +1,10 @@
+{
+  "files": {
+    "report/result.json": {
+      "skill": "visualization-reporting/generate-timeseries-data-processing-report",
+      "status": "warning",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

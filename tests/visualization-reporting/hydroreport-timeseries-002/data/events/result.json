@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "event_process_csv": {
+      "path": "event_process.csv",
+      "sha256": "d0fbfae542d2fc7c1edb92e0a22f6f8935a71a7e495a1409f24d3ddd17e8bb8c"
+    },
+    "event_summary_csv": {
+      "path": "event_summary.csv",
+      "sha256": "26cb5d2c28316ec6dea6802d9dbc4beac66fbbc7fca3409e13feaed9aaa148c1"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Synthetic benchmark evidence",
+  "parameters": {},
+  "provenance": {
+    "fixture": true
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/extract-flood-events",
+  "status": "success",
+  "warnings": []
+}

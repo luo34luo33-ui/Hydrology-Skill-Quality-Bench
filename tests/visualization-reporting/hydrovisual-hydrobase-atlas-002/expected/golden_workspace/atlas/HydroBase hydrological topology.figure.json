@@ -1,0 +1,72 @@
+{
+  "crs": "EPSG:32650",
+  "extent": [
+    499958.0,
+    501002.0,
+    4098998.0,
+    4100042.0
+  ],
+  "language": "en",
+  "layers": [
+    {
+      "display_transform": "stable IDs; display clipped to real basin; pale-gray boundaries from existing raster IDs",
+      "id": "subbasins",
+      "palette": "subbasins",
+      "source": "build_result.artifacts.subbasins_clipped"
+    },
+    {
+      "display_transform": "existing Strahler order, directions and outlet flags; selected labels",
+      "id": "reaches",
+      "palette": "water",
+      "source": "build_result.artifacts.reaches_vector"
+    },
+    {
+      "display_transform": "real boundary; projected WGS84 graticules; inward geographic ticks; scale; black-white north arrow",
+      "id": "basin-boundary",
+      "palette": "black",
+      "source": "build_result.inputs.basin_boundary"
+    },
+    {
+      "display_transform": "unique existing sub_id count=39; inset label",
+      "id": "subbasin-count",
+      "palette": "black",
+      "source": "build_result.artifacts.subbasins_table"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "HydroBase hydrological topology.png",
+      "sha256": "5858496a06d7dbcc0eb42197e803532ab50cc5ba3d8a80bc2258d398dbda3e0a"
+    },
+    "svg": {
+      "path": "HydroBase hydrological topology.svg",
+      "sha256": "e0e6aea1721c71afe19748de88fe946298ea45bab1183a52dc4aa687540bb479"
+    }
+  },
+  "pixel_size": {
+    "height": 2366,
+    "width": 2400
+  },
+  "publication_ready": false,
+  "schema_version": "1.0",
+  "source_results": {
+    "basin_boundary": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\prepare\\basin_normalized.gpkg",
+      "sha256": "d6bab5a8448645a0818b29cecd7b6fa375189706b1b3eb2a3c94c147ca9f0af6"
+    },
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\validate\\result.json",
+      "sha256": "780836387ec5a2f49bbfc778abeb5f72dfe53ee5bd35c744ea6213c662b25643"
+    }
+  },
+  "template_id": "hydrobase-topology",
+  "template_version": "hydrotune.hydrobase-topology.v2",
+  "title": "HydroBase hydrological topology",
+  "warnings": [
+    "Synthetic upstream QC evidence"
+  ]
+}

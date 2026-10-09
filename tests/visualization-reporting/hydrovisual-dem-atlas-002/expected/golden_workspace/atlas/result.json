@@ -1,0 +1,77 @@
+{
+  "artifacts": {
+    "dem-basin-context_figure": {
+      "path": "dem-basin-context.figure.json",
+      "sha256": "f47ef44c536f1f61b66d9726da1c9ccc9eb4dc13ac4ba605d7a96907bfba7e4d"
+    },
+    "dem-basin-context_png": {
+      "path": "dem-basin-context.png",
+      "sha256": "342d8b7fa0168be55b845d3c1d018b6ee7fcf8be521b20e338a33fa9664de53b"
+    },
+    "dem-basin-context_svg": {
+      "path": "dem-basin-context.svg",
+      "sha256": "15753473db75069b2d9ebc71607869c83c394db2159a82f1b83031feae4a2ee7"
+    },
+    "dem-terrain_figure": {
+      "path": "dem-terrain.figure.json",
+      "sha256": "e8da561b58b76f95811461e82b66ca94333661ee6636e9619ab81b19884c4b9a"
+    },
+    "dem-terrain_png": {
+      "path": "dem-terrain.png",
+      "sha256": "da9b4dfba070d6077bcb4856b2e3f5561a999557e4ae66938102f755a3cefe57"
+    },
+    "dem-terrain_svg": {
+      "path": "dem-terrain.svg",
+      "sha256": "1c02032a2148465b63c173314d85e15647b3a12dfda7ad8ceae5ca2b0bc21001"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed prepare artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "prepare_crs",
+      "details": "EPSG:32650",
+      "status": "PASS"
+    },
+    {
+      "check": "extract_result",
+      "details": "No extract result supplied; network and subbasin templates were skipped",
+      "status": "WARN"
+    }
+  ],
+  "inputs": {
+    "prepare_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-6v61nmp1\\prepare\\result.json",
+      "sha256": "fb4420d6a32c3c037a323bc2c566be936f795db6d04cd4db9d5b232d6f11933f"
+    }
+  },
+  "message": "rendered 2 fixed atlas templates",
+  "parameters": {
+    "canvas_policy": "basin-aspect, longest edge 2400 px",
+    "display_clip": "true basin polygon",
+    "language": "en",
+    "templates": [
+      "dem-basin-context",
+      "dem-terrain"
+    ],
+    "titles_in_image": false
+  },
+  "provenance": {
+    "font": "Times New Roman",
+    "geopandas": "1.1.4",
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "template_version": "hydrotune.dem-hydrology-atlas.v2"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-dem-hydrology-atlas",
+  "status": "warning",
+  "warnings": [
+    "No extract result supplied; network and subbasin templates were skipped"
+  ]
+}

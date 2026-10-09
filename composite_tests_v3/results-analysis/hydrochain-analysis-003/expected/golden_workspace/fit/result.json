@@ -1,0 +1,94 @@
+{
+  "artifacts": {
+    "fit_diagnostics": {
+      "path": "fit_diagnostics.json",
+      "sha256": "b1001a4b2b1f179c2b1231a8999b64f4a5ddf58fd2f91250bf83a02d21f692a4"
+    },
+    "model": {
+      "path": "bma_model.json",
+      "sha256": "0bc27e9de8cfd4ed489970c0836d6aa9b85814fca07546b52e2c5ee4eff43db7"
+    },
+    "model_card": {
+      "path": "model_card.json",
+      "sha256": "38ce5d806942cf71e56d842730cc73869f1cf9965bbc152e2f879cd11f955a60"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "7c4d5f24e703a252fe0f810a51ba0de3060bee9b8125a594f8a79f0a47f97b94"
+    }
+  },
+  "checks": [
+    {
+      "check": "alignment_and_probability",
+      "details": {
+        "member_count": 2,
+        "mode": "continuous",
+        "rows": 468,
+        "selected_rows_per_member": {
+          "dhf": 468,
+          "semi": 468
+        },
+        "warmup_union_rows": 0
+      },
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "members": {
+      "path": "../members.json",
+      "sha256": "67b0ed7353452073e87167004bff7785b3d1e66240e30bfb0b31284adccdd491"
+    },
+    "observations": {
+      "path": "../flow/discharge_timeseries.csv",
+      "sha256": "1ab3f43d4bbfa218f071ab5822181cf59314b4fe1004966861befaa23f8be5b0"
+    },
+    "observed_result": {
+      "path": "../flow/result.json",
+      "sha256": "16e4b6fe69f6082bed4a1bcf70edc588bb3a5530cb2d6aec1178b81d174a1700"
+    },
+    "simulation_0": {
+      "path": "../aligned_members/dhf-result.json",
+      "sha256": "6a021fdd3454a29c72a2bf2d79ac25516448cb5a236c6452baf57c33772f7cc6"
+    },
+    "simulation_1": {
+      "path": "../aligned_members/semi-result.json",
+      "sha256": "579d18463a46c202b6c33faf6be445fbe2ab8655d95c59ce36c4362074722103"
+    },
+    "table_0_continuous_simulation_table": {
+      "path": "../aligned_members/dhf.csv",
+      "sha256": "d30b15b87406bd561604c073b6452d75c2bb8e2f3af43f166487812c5b8d9e63"
+    },
+    "table_1_continuous_outlet_flow": {
+      "path": "../aligned_members/semi.csv",
+      "sha256": "7233d4045cd6129f7a551d30a81296d3692eeee4a061d5152aa649735480233a"
+    }
+  },
+  "parameters": {
+    "distribution": "censored_gaussian",
+    "max_iter": 2000,
+    "mode": "train",
+    "n_starts": 5,
+    "quantiles": [
+      0.05,
+      0.5,
+      0.95
+    ],
+    "random_state": 20261004,
+    "selection": {
+      "end": "2023-08-20T23:00:00+08:00",
+      "events": null,
+      "start": "2023-08-01T12:00:00+08:00"
+    },
+    "tol": 1e-06
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "scipy": "1.17.1"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "success",
+  "warnings": []
+}

@@ -110,6 +110,7 @@
   "id": "hydromodel-hbv-002",
   "primary_skill": "hydrological-modeling/run-lumped-hbv-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-hbv-model. The parameter set deliberately contains fc=250, outside the documented [100, 200] soft range; this is a confirmed user decision, and the skill must accept the run and natively report the parameter_range warning. Run verbatim with area 640 km2, timestep 1 h, mode continuous, warm-up 12 steps, balance tolerance 6.5, and write the native outputs (lumped_hbv_runoff.csv, result.json) under hbv-run/. Do not 'fix' the parameters to the soft ranges or suppress the warning.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "hbv-run/lumped_hbv_runoff.csv",
     "hbv-run/result.json"

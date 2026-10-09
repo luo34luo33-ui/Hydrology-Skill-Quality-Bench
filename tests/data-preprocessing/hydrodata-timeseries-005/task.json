@@ -129,6 +129,7 @@
   "id": "hydrodata-timeseries-005",
   "primary_skill": "data-processing/prepare-discharge-timeseries",
   "prompt": "Prepare flow from duplicate_last.csv. timestamp is the confirmed instantaneous time column, flow is confirmed in m3/s, and timezone is UTC. Resolve duplicate timestamps by retaining the last occurrence in file order. Missing values must error. Preserve sample_id without interpreting it. Write CSV outputs under prepared/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "prepared/discharge_timeseries.csv",
     "prepared/series_metadata.json",

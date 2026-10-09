@@ -1,0 +1,19 @@
+{
+  "members": [
+    {
+      "model_id": "dhf",
+      "outlet_id": "benchmark_outlet",
+      "simulation_result": "aligned_members/dhf-result.json"
+    },
+    {
+      "model_id": "semi",
+      "outlet_id": "benchmark_outlet",
+      "simulation_result": "aligned_members/semi-result.json"
+    }
+  ],
+  "outlet_id": "benchmark_outlet",
+  "schema_version": "1.0",
+  "timestep_hours": 1,
+  "timezone": "Asia/Shanghai",
+  "unit": "m3/s"
+}

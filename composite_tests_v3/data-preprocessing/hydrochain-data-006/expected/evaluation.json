@@ -1,0 +1,3702 @@
+{
+  "core_capabilities": [
+    "discharge_standardization",
+    "baseflow",
+    "event_identification",
+    "forcing_standardization"
+  ],
+  "critical_rules": [
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/baseflow/flow_components.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/baseflow/flow_components.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/baseflow/flow_components.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/basin_rain.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/basin_rain.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/basin_rain.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "window-20230908/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20230908/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "window-20230908/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "window-20230908/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/events/annotated_series.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/events/annotated_series.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/annotated_series.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/events/event_files/event_0001.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/events/event_files/event_0001.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/event_files/event_0001.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/events/event_files/event_0002.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/events/event_files/event_0002.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/event_files/event_0002.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/events/event_process.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/events/event_process.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/event_process.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "warmup_start_idx",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "start_flow_m3_s",
+          "peak_flow_m3_s",
+          "end_flow_m3_s",
+          "duration_hours",
+          "rise_time_hours",
+          "recession_time_hours",
+          "total_volume_m3",
+          "quickflow_volume_m3",
+          "baseflow_volume_m3",
+          "quickflow_fraction",
+          "n_local_peaks",
+          "expected_steps",
+          "valid_steps",
+          "missing_steps",
+          "observed_rainfall_mm",
+          "min_observed_rainfall_mm",
+          "shape_reference_flow_m3_s",
+          "plateau_start_idx",
+          "plateau_end_idx",
+          "plateau_duration_hours",
+          "plateau_fraction",
+          "plateau_range_m3_s",
+          "max_jump_change_m3_s",
+          "max_jump_fraction",
+          "jump_window_steps"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/events/event_summary.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/events/event_summary.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/event_summary.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "candidate_id",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "expected_steps",
+          "valid_steps",
+          "missing_steps",
+          "observed_rainfall_mm",
+          "min_observed_rainfall_mm",
+          "shape_reference_flow_m3_s",
+          "plateau_start_idx",
+          "plateau_end_idx",
+          "plateau_duration_hours",
+          "plateau_fraction",
+          "plateau_range_m3_s",
+          "max_jump_change_m3_s",
+          "max_jump_fraction",
+          "jump_window_steps"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/events/rainfall_screening.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/events/rainfall_screening.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/rainfall_screening.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600.0,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20230908/events/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/flow/discharge_timeseries.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/flow/discharge_timeseries.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20230908/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "window-20230908/rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "window-20230908/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20230908/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "window-20230908/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "window-20230908/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/rain/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/baseflow/flow_components.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/baseflow/flow_components.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/baseflow/flow_components.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/basin_rain.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/basin_rain.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/basin_rain.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "window-20241030/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20241030/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "window-20241030/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "window-20241030/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/events/annotated_series.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/events/annotated_series.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/events/annotated_series.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/events/event_files/event_0001.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/events/event_files/event_0001.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/events/event_files/event_0001.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/events/event_process.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/events/event_process.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/events/event_process.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "warmup_start_idx",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "start_flow_m3_s",
+          "peak_flow_m3_s",
+          "end_flow_m3_s",
+          "duration_hours",
+          "rise_time_hours",
+          "recession_time_hours",
+          "total_volume_m3",
+          "quickflow_volume_m3",
+          "baseflow_volume_m3",
+          "quickflow_fraction",
+          "n_local_peaks",
+          "expected_steps",
+          "valid_steps",
+          "missing_steps",
+          "observed_rainfall_mm",
+          "min_observed_rainfall_mm",
+          "shape_reference_flow_m3_s",
+          "plateau_start_idx",
+          "plateau_end_idx",
+          "plateau_duration_hours",
+          "plateau_fraction",
+          "plateau_range_m3_s",
+          "max_jump_change_m3_s",
+          "max_jump_fraction",
+          "jump_window_steps"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/events/event_summary.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/events/event_summary.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/events/event_summary.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "candidate_id",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "expected_steps",
+          "valid_steps",
+          "missing_steps",
+          "observed_rainfall_mm",
+          "min_observed_rainfall_mm",
+          "shape_reference_flow_m3_s",
+          "plateau_start_idx",
+          "plateau_end_idx",
+          "plateau_duration_hours",
+          "plateau_fraction",
+          "plateau_range_m3_s",
+          "max_jump_change_m3_s",
+          "max_jump_fraction",
+          "jump_window_steps"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/events/rainfall_screening.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/events/rainfall_screening.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/events/rainfall_screening.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600.0,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20241030/events/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/events/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/flow/discharge_timeseries.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/flow/discharge_timeseries.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20241030/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "window-20241030/rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "window-20241030/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20241030/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "window-20241030/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "window-20241030/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/rain/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/baseflow/flow_components.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/baseflow/flow_components.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/baseflow/flow_components.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/basin_rain.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/basin_rain.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/basin_rain.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "window-20250627/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20250627/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "window-20250627/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "window-20250627/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/events/annotated_series.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/events/annotated_series.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/annotated_series.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/events/event_files/event_0001.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/events/event_files/event_0001.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/event_files/event_0001.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/events/event_files/event_0002.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/events/event_files/event_0002.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/event_files/event_0002.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0",
+          "baseflow_m3_s",
+          "quickflow_m3_s",
+          "quickflow_fraction",
+          "source_index",
+          "relative_step",
+          "hours_from_start"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/events/event_process.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/events/event_process.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/event_process.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "warmup_start_idx",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "start_flow_m3_s",
+          "peak_flow_m3_s",
+          "end_flow_m3_s",
+          "duration_hours",
+          "rise_time_hours",
+          "recession_time_hours",
+          "total_volume_m3",
+          "quickflow_volume_m3",
+          "baseflow_volume_m3",
+          "quickflow_fraction",
+          "n_local_peaks",
+          "expected_steps",
+          "valid_steps",
+          "missing_steps",
+          "observed_rainfall_mm",
+          "min_observed_rainfall_mm",
+          "shape_reference_flow_m3_s",
+          "plateau_start_idx",
+          "plateau_end_idx",
+          "plateau_duration_hours",
+          "plateau_fraction",
+          "plateau_range_m3_s",
+          "max_jump_change_m3_s",
+          "max_jump_fraction",
+          "jump_window_steps"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/events/event_summary.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/events/event_summary.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/event_summary.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "candidate_id",
+          "start_idx",
+          "peak_idx",
+          "end_idx",
+          "expected_steps",
+          "valid_steps",
+          "missing_steps",
+          "observed_rainfall_mm",
+          "min_observed_rainfall_mm",
+          "shape_reference_flow_m3_s",
+          "plateau_start_idx",
+          "plateau_end_idx",
+          "plateau_duration_hours",
+          "plateau_fraction",
+          "plateau_range_m3_s",
+          "max_jump_change_m3_s",
+          "max_jump_fraction",
+          "jump_window_steps"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/events/rainfall_screening.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/events/rainfall_screening.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/rainfall_screening.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600.0,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20250627/events/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/flow/discharge_timeseries.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/flow/discharge_timeseries.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/window-20250627/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "window-20250627/rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "window-20250627/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "window-20250627/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "window-20250627/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "window-20250627/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20230908/baseflow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/baseflow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20230908/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20230908/events/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/events/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20230908/flow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/flow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20230908/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20241030/baseflow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/baseflow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20241030/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20241030/events/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/events/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20241030/flow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/flow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20241030/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20241030/rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20250627/baseflow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/baseflow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20250627/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20250627/events/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/events/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20250627/flow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/flow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "window-20250627/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20250627/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": "Asia/Shanghai",
+        "field": "parameters.timezone",
+        "target": "window-20230908/flow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "window-20230908/flow/result.json"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "downstream": "window-20230908/baseflow/result.json",
+      "field": "inputs.prepare_result",
+      "id": "window-20230908/baseflow/result.json:inputs.prepare_result",
+      "upstream": "window-20230908/flow/result.json"
+    },
+    {
+      "downstream": "window-20230908/evap/result.json",
+      "field": "inputs.source",
+      "id": "window-20230908/evap/result.json:inputs.source",
+      "upstream": "window-20230908/evap_source.csv"
+    },
+    {
+      "downstream": "window-20230908/events/result.json",
+      "field": "inputs.baseflow_result",
+      "id": "window-20230908/events/result.json:inputs.baseflow_result",
+      "upstream": "window-20230908/baseflow/result.json"
+    },
+    {
+      "downstream": "window-20230908/events/result.json",
+      "field": "inputs.rainfall",
+      "id": "window-20230908/events/result.json:inputs.rainfall",
+      "upstream": "window-20230908/basin_rain.csv"
+    },
+    {
+      "downstream": "window-20230908/flow/result.json",
+      "field": "inputs.source_timeseries",
+      "id": "window-20230908/flow/result.json:inputs.source_timeseries",
+      "upstream": "raw_events/20230908.csv"
+    },
+    {
+      "downstream": "window-20230908/rain/result.json",
+      "field": "inputs.source",
+      "id": "window-20230908/rain/result.json:inputs.source",
+      "upstream": "window-20230908/rain_source.csv"
+    },
+    {
+      "downstream": "window-20241030/baseflow/result.json",
+      "field": "inputs.prepare_result",
+      "id": "window-20241030/baseflow/result.json:inputs.prepare_result",
+      "upstream": "window-20241030/flow/result.json"
+    },
+    {
+      "downstream": "window-20241030/evap/result.json",
+      "field": "inputs.source",
+      "id": "window-20241030/evap/result.json:inputs.source",
+      "upstream": "window-20241030/evap_source.csv"
+    },
+    {
+      "downstream": "window-20241030/events/result.json",
+      "field": "inputs.baseflow_result",
+      "id": "window-20241030/events/result.json:inputs.baseflow_result",
+      "upstream": "window-20241030/baseflow/result.json"
+    },
+    {
+      "downstream": "window-20241030/events/result.json",
+      "field": "inputs.rainfall",
+      "id": "window-20241030/events/result.json:inputs.rainfall",
+      "upstream": "window-20241030/basin_rain.csv"
+    },
+    {
+      "downstream": "window-20241030/flow/result.json",
+      "field": "inputs.source_timeseries",
+      "id": "window-20241030/flow/result.json:inputs.source_timeseries",
+      "upstream": "raw_events/20241030.csv"
+    },
+    {
+      "downstream": "window-20241030/rain/result.json",
+      "field": "inputs.source",
+      "id": "window-20241030/rain/result.json:inputs.source",
+      "upstream": "window-20241030/rain_source.csv"
+    },
+    {
+      "downstream": "window-20250627/baseflow/result.json",
+      "field": "inputs.prepare_result",
+      "id": "window-20250627/baseflow/result.json:inputs.prepare_result",
+      "upstream": "window-20250627/flow/result.json"
+    },
+    {
+      "downstream": "window-20250627/evap/result.json",
+      "field": "inputs.source",
+      "id": "window-20250627/evap/result.json:inputs.source",
+      "upstream": "window-20250627/evap_source.csv"
+    },
+    {
+      "downstream": "window-20250627/events/result.json",
+      "field": "inputs.baseflow_result",
+      "id": "window-20250627/events/result.json:inputs.baseflow_result",
+      "upstream": "window-20250627/baseflow/result.json"
+    },
+    {
+      "downstream": "window-20250627/events/result.json",
+      "field": "inputs.rainfall",
+      "id": "window-20250627/events/result.json:inputs.rainfall",
+      "upstream": "window-20250627/basin_rain.csv"
+    },
+    {
+      "downstream": "window-20250627/flow/result.json",
+      "field": "inputs.source_timeseries",
+      "id": "window-20250627/flow/result.json:inputs.source_timeseries",
+      "upstream": "raw_events/20250627.csv"
+    },
+    {
+      "downstream": "window-20250627/rain/result.json",
+      "field": "inputs.source",
+      "id": "window-20250627/rain/result.json:inputs.source",
+      "upstream": "window-20250627/rain_source.csv"
+    }
+  ],
+  "forbidden_outputs": [],
+  "gates": [
+    {
+      "criteria": [
+        {
+          "check": "protected_sources",
+          "reference": "expected/protected_sources.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "scenario.json"
+      ],
+      "id": "protected_sources"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/baseflow/flow_components.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/baseflow/flow_components.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/baseflow/flow_components.csv"
+      ],
+      "id": "window-20230908/baseflow/flow_components.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20230908/baseflow/result.json",
+          "target": "window-20230908/baseflow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20230908/baseflow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20230908/baseflow/result.json"
+      ],
+      "id": "window-20230908/baseflow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/basin_rain.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/basin_rain.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/basin_rain.csv"
+      ],
+      "id": "window-20230908/basin_rain.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/evap/prepared_forcing.csv"
+      ],
+      "id": "window-20230908/evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20230908/evap/result.json",
+          "target": "window-20230908/evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20230908/evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20230908/evap/result.json"
+      ],
+      "id": "window-20230908/evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "event_id"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/events/annotated_series.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/events/annotated_series.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/annotated_series.csv"
+      ],
+      "id": "window-20230908/events/annotated_series.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/events/event_files/event_0001.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/events/event_files/event_0001.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_files/event_0001.csv"
+      ],
+      "id": "window-20230908/events/event_files/event_0001.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/events/event_files/event_0002.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/events/event_files/event_0002.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_files/event_0002.csv"
+      ],
+      "id": "window-20230908/events/event_files/event_0002.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/events/event_process.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/events/event_process.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_process.csv"
+      ],
+      "id": "window-20230908/events/event_process.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "check",
+            "status",
+            "details"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/window-20230908/events/event_qc.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/events/event_qc.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_qc.csv"
+      ],
+      "id": "window-20230908/events/event_qc.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "warmup_start_time",
+            "start_time",
+            "peak_time",
+            "end_time",
+            "warmup_start_idx",
+            "start_idx",
+            "peak_idx",
+            "end_idx",
+            "start_flow_m3_s",
+            "peak_flow_m3_s",
+            "end_flow_m3_s",
+            "duration_hours",
+            "rise_time_hours",
+            "recession_time_hours",
+            "total_volume_m3",
+            "quickflow_volume_m3",
+            "baseflow_volume_m3",
+            "quickflow_fraction",
+            "n_local_peaks",
+            "rainfall_window_start",
+            "rainfall_window_end",
+            "expected_steps",
+            "valid_steps",
+            "missing_steps",
+            "has_missing_rainfall",
+            "observed_rainfall_mm",
+            "min_observed_rainfall_mm",
+            "retained",
+            "reason",
+            "rainfall_supported",
+            "rainfall_accepted",
+            "rainfall_reason",
+            "no_rainfall_policy",
+            "missing_rainfall_policy",
+            "shape_rejected",
+            "shape_reference_flow_m3_s",
+            "plateau_start_idx",
+            "plateau_end_idx",
+            "plateau_start_time",
+            "plateau_end_time",
+            "plateau_duration_hours",
+            "plateau_fraction",
+            "plateau_range_m3_s",
+            "max_jump_change_m3_s",
+            "max_jump_fraction",
+            "jump_window_steps"
+          ],
+          "datetime_columns": [
+            "warmup_start_time",
+            "start_time",
+            "peak_time",
+            "end_time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/events/event_summary.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/events/event_summary.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_summary.csv"
+      ],
+      "id": "window-20230908/events/event_summary.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "candidate_id",
+            "event_id",
+            "start_time",
+            "peak_time",
+            "end_time",
+            "start_idx",
+            "peak_idx",
+            "end_idx",
+            "rainfall_window_start",
+            "rainfall_window_end",
+            "expected_steps",
+            "valid_steps",
+            "missing_steps",
+            "has_missing_rainfall",
+            "observed_rainfall_mm",
+            "min_observed_rainfall_mm",
+            "retained",
+            "reason",
+            "rainfall_supported",
+            "rainfall_accepted",
+            "rainfall_reason",
+            "no_rainfall_policy",
+            "missing_rainfall_policy",
+            "shape_rejected",
+            "shape_reference_flow_m3_s",
+            "plateau_start_idx",
+            "plateau_end_idx",
+            "plateau_start_time",
+            "plateau_end_time",
+            "plateau_duration_hours",
+            "plateau_fraction",
+            "plateau_range_m3_s",
+            "max_jump_change_m3_s",
+            "max_jump_fraction",
+            "jump_window_steps"
+          ],
+          "datetime_columns": [
+            "start_time",
+            "peak_time",
+            "end_time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/events/rainfall_screening.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/events/rainfall_screening.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/rainfall_screening.csv"
+      ],
+      "id": "window-20230908/events/rainfall_screening.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20230908/events/result.json",
+          "target": "window-20230908/events/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20230908/events/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/result.json"
+      ],
+      "id": "window-20230908/events/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/flow/discharge_timeseries.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/flow/discharge_timeseries.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/flow/discharge_timeseries.csv"
+      ],
+      "id": "window-20230908/flow/discharge_timeseries.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20230908/flow/result.json",
+          "target": "window-20230908/flow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20230908/flow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20230908/flow/result.json"
+      ],
+      "id": "window-20230908/flow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20230908/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "window-20230908/rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20230908/rain/prepared_forcing.csv"
+      ],
+      "id": "window-20230908/rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20230908/rain/result.json",
+          "target": "window-20230908/rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20230908/rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20230908/rain/result.json"
+      ],
+      "id": "window-20230908/rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/baseflow/flow_components.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/baseflow/flow_components.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/baseflow/flow_components.csv"
+      ],
+      "id": "window-20241030/baseflow/flow_components.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20241030/baseflow/result.json",
+          "target": "window-20241030/baseflow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20241030/baseflow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20241030/baseflow/result.json"
+      ],
+      "id": "window-20241030/baseflow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/basin_rain.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/basin_rain.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/basin_rain.csv"
+      ],
+      "id": "window-20241030/basin_rain.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/evap/prepared_forcing.csv"
+      ],
+      "id": "window-20241030/evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20241030/evap/result.json",
+          "target": "window-20241030/evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20241030/evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20241030/evap/result.json"
+      ],
+      "id": "window-20241030/evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "event_id"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/events/annotated_series.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/events/annotated_series.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/annotated_series.csv"
+      ],
+      "id": "window-20241030/events/annotated_series.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/events/event_files/event_0001.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/events/event_files/event_0001.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/event_files/event_0001.csv"
+      ],
+      "id": "window-20241030/events/event_files/event_0001.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/events/event_process.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/events/event_process.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/event_process.csv"
+      ],
+      "id": "window-20241030/events/event_process.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "check",
+            "status",
+            "details"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/window-20241030/events/event_qc.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/events/event_qc.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/event_qc.csv"
+      ],
+      "id": "window-20241030/events/event_qc.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "warmup_start_time",
+            "start_time",
+            "peak_time",
+            "end_time",
+            "warmup_start_idx",
+            "start_idx",
+            "peak_idx",
+            "end_idx",
+            "start_flow_m3_s",
+            "peak_flow_m3_s",
+            "end_flow_m3_s",
+            "duration_hours",
+            "rise_time_hours",
+            "recession_time_hours",
+            "total_volume_m3",
+            "quickflow_volume_m3",
+            "baseflow_volume_m3",
+            "quickflow_fraction",
+            "n_local_peaks",
+            "rainfall_window_start",
+            "rainfall_window_end",
+            "expected_steps",
+            "valid_steps",
+            "missing_steps",
+            "has_missing_rainfall",
+            "observed_rainfall_mm",
+            "min_observed_rainfall_mm",
+            "retained",
+            "reason",
+            "rainfall_supported",
+            "rainfall_accepted",
+            "rainfall_reason",
+            "no_rainfall_policy",
+            "missing_rainfall_policy",
+            "shape_rejected",
+            "shape_reference_flow_m3_s",
+            "plateau_start_idx",
+            "plateau_end_idx",
+            "plateau_start_time",
+            "plateau_end_time",
+            "plateau_duration_hours",
+            "plateau_fraction",
+            "plateau_range_m3_s",
+            "max_jump_change_m3_s",
+            "max_jump_fraction",
+            "jump_window_steps"
+          ],
+          "datetime_columns": [
+            "warmup_start_time",
+            "start_time",
+            "peak_time",
+            "end_time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/events/event_summary.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/events/event_summary.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/event_summary.csv"
+      ],
+      "id": "window-20241030/events/event_summary.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "candidate_id",
+            "event_id",
+            "start_time",
+            "peak_time",
+            "end_time",
+            "start_idx",
+            "peak_idx",
+            "end_idx",
+            "rainfall_window_start",
+            "rainfall_window_end",
+            "expected_steps",
+            "valid_steps",
+            "missing_steps",
+            "has_missing_rainfall",
+            "observed_rainfall_mm",
+            "min_observed_rainfall_mm",
+            "retained",
+            "reason",
+            "rainfall_supported",
+            "rainfall_accepted",
+            "rainfall_reason",
+            "no_rainfall_policy",
+            "missing_rainfall_policy",
+            "shape_rejected",
+            "shape_reference_flow_m3_s",
+            "plateau_start_idx",
+            "plateau_end_idx",
+            "plateau_start_time",
+            "plateau_end_time",
+            "plateau_duration_hours",
+            "plateau_fraction",
+            "plateau_range_m3_s",
+            "max_jump_change_m3_s",
+            "max_jump_fraction",
+            "jump_window_steps"
+          ],
+          "datetime_columns": [
+            "start_time",
+            "peak_time",
+            "end_time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/events/rainfall_screening.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/events/rainfall_screening.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/rainfall_screening.csv"
+      ],
+      "id": "window-20241030/events/rainfall_screening.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20241030/events/result.json",
+          "target": "window-20241030/events/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20241030/events/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/result.json"
+      ],
+      "id": "window-20241030/events/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/flow/discharge_timeseries.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/flow/discharge_timeseries.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/flow/discharge_timeseries.csv"
+      ],
+      "id": "window-20241030/flow/discharge_timeseries.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20241030/flow/result.json",
+          "target": "window-20241030/flow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20241030/flow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20241030/flow/result.json"
+      ],
+      "id": "window-20241030/flow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20241030/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "window-20241030/rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20241030/rain/prepared_forcing.csv"
+      ],
+      "id": "window-20241030/rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20241030/rain/result.json",
+          "target": "window-20241030/rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20241030/rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20241030/rain/result.json"
+      ],
+      "id": "window-20241030/rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/baseflow/flow_components.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/baseflow/flow_components.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/baseflow/flow_components.csv"
+      ],
+      "id": "window-20250627/baseflow/flow_components.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20250627/baseflow/result.json",
+          "target": "window-20250627/baseflow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20250627/baseflow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20250627/baseflow/result.json"
+      ],
+      "id": "window-20250627/baseflow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/basin_rain.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/basin_rain.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/basin_rain.csv"
+      ],
+      "id": "window-20250627/basin_rain.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/evap/prepared_forcing.csv"
+      ],
+      "id": "window-20250627/evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20250627/evap/result.json",
+          "target": "window-20250627/evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20250627/evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20250627/evap/result.json"
+      ],
+      "id": "window-20250627/evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "event_id"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/events/annotated_series.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/events/annotated_series.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/annotated_series.csv"
+      ],
+      "id": "window-20250627/events/annotated_series.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/events/event_files/event_0001.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/events/event_files/event_0001.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_files/event_0001.csv"
+      ],
+      "id": "window-20250627/events/event_files/event_0001.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/events/event_files/event_0002.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/events/event_files/event_0002.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_files/event_0002.csv"
+      ],
+      "id": "window-20250627/events/event_files/event_0002.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0",
+            "baseflow_m3_s",
+            "quickflow_m3_s",
+            "quickflow_fraction",
+            "source_index",
+            "is_warmup",
+            "relative_step",
+            "hours_from_start"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/events/event_process.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/events/event_process.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_process.csv"
+      ],
+      "id": "window-20250627/events/event_process.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "check",
+            "status",
+            "details"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/window-20250627/events/event_qc.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/events/event_qc.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_qc.csv"
+      ],
+      "id": "window-20250627/events/event_qc.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "warmup_start_time",
+            "start_time",
+            "peak_time",
+            "end_time",
+            "warmup_start_idx",
+            "start_idx",
+            "peak_idx",
+            "end_idx",
+            "start_flow_m3_s",
+            "peak_flow_m3_s",
+            "end_flow_m3_s",
+            "duration_hours",
+            "rise_time_hours",
+            "recession_time_hours",
+            "total_volume_m3",
+            "quickflow_volume_m3",
+            "baseflow_volume_m3",
+            "quickflow_fraction",
+            "n_local_peaks",
+            "rainfall_window_start",
+            "rainfall_window_end",
+            "expected_steps",
+            "valid_steps",
+            "missing_steps",
+            "has_missing_rainfall",
+            "observed_rainfall_mm",
+            "min_observed_rainfall_mm",
+            "retained",
+            "reason",
+            "rainfall_supported",
+            "rainfall_accepted",
+            "rainfall_reason",
+            "no_rainfall_policy",
+            "missing_rainfall_policy",
+            "shape_rejected",
+            "shape_reference_flow_m3_s",
+            "plateau_start_idx",
+            "plateau_end_idx",
+            "plateau_start_time",
+            "plateau_end_time",
+            "plateau_duration_hours",
+            "plateau_fraction",
+            "plateau_range_m3_s",
+            "max_jump_change_m3_s",
+            "max_jump_fraction",
+            "jump_window_steps"
+          ],
+          "datetime_columns": [
+            "warmup_start_time",
+            "start_time",
+            "peak_time",
+            "end_time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/events/event_summary.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/events/event_summary.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_summary.csv"
+      ],
+      "id": "window-20250627/events/event_summary.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "candidate_id",
+            "event_id",
+            "start_time",
+            "peak_time",
+            "end_time",
+            "start_idx",
+            "peak_idx",
+            "end_idx",
+            "rainfall_window_start",
+            "rainfall_window_end",
+            "expected_steps",
+            "valid_steps",
+            "missing_steps",
+            "has_missing_rainfall",
+            "observed_rainfall_mm",
+            "min_observed_rainfall_mm",
+            "retained",
+            "reason",
+            "rainfall_supported",
+            "rainfall_accepted",
+            "rainfall_reason",
+            "no_rainfall_policy",
+            "missing_rainfall_policy",
+            "shape_rejected",
+            "shape_reference_flow_m3_s",
+            "plateau_start_idx",
+            "plateau_end_idx",
+            "plateau_start_time",
+            "plateau_end_time",
+            "plateau_duration_hours",
+            "plateau_fraction",
+            "plateau_range_m3_s",
+            "max_jump_change_m3_s",
+            "max_jump_fraction",
+            "jump_window_steps"
+          ],
+          "datetime_columns": [
+            "start_time",
+            "peak_time",
+            "end_time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/events/rainfall_screening.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/events/rainfall_screening.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/rainfall_screening.csv"
+      ],
+      "id": "window-20250627/events/rainfall_screening.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20250627/events/result.json",
+          "target": "window-20250627/events/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20250627/events/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/result.json"
+      ],
+      "id": "window-20250627/events/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/flow/discharge_timeseries.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/flow/discharge_timeseries.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/flow/discharge_timeseries.csv"
+      ],
+      "id": "window-20250627/flow/discharge_timeseries.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20250627/flow/result.json",
+          "target": "window-20250627/flow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20250627/flow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20250627/flow/result.json"
+      ],
+      "id": "window-20250627/flow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/window-20250627/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "window-20250627/rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "window-20250627/rain/prepared_forcing.csv"
+      ],
+      "id": "window-20250627/rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/window-20250627/rain/result.json",
+          "target": "window-20250627/rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "window-20250627/rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "window-20250627/rain/result.json"
+      ],
+      "id": "window-20250627/rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/decision.json",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "decision_evidence",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "decision.json"
+      ],
+      "id": "decision"
+    },
+    {
+      "id": "axis:window-20230908/baseflow/flow_components.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/baseflow/flow_components.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20230908/baseflow/flow_components.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/basin_rain.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/basin_rain.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20230908/basin_rain.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/evap/prepared_forcing.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/evap/prepared_forcing.csv",
+          "time_column": "time",
+          "group_columns": [
+            "source_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20230908/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/events/annotated_series.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/events/annotated_series.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/annotated_series.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/events/event_files/event_0001.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/events/event_files/event_0001.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_files/event_0001.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/events/event_files/event_0002.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/events/event_files/event_0002.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_files/event_0002.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/events/event_process.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/events/event_process.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20230908/events/event_process.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/flow/discharge_timeseries.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/flow/discharge_timeseries.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20230908/flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20230908/rain/prepared_forcing.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20230908/rain/prepared_forcing.csv",
+          "time_column": "time",
+          "group_columns": [
+            "source_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20230908/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/baseflow/flow_components.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/baseflow/flow_components.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20241030/baseflow/flow_components.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/basin_rain.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/basin_rain.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20241030/basin_rain.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/evap/prepared_forcing.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/evap/prepared_forcing.csv",
+          "time_column": "time",
+          "group_columns": [
+            "source_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20241030/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/events/annotated_series.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/events/annotated_series.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/annotated_series.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/events/event_files/event_0001.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/events/event_files/event_0001.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/event_files/event_0001.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/events/event_process.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/events/event_process.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20241030/events/event_process.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/flow/discharge_timeseries.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/flow/discharge_timeseries.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20241030/flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20241030/rain/prepared_forcing.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20241030/rain/prepared_forcing.csv",
+          "time_column": "time",
+          "group_columns": [
+            "source_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20241030/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/baseflow/flow_components.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/baseflow/flow_components.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20250627/baseflow/flow_components.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/basin_rain.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/basin_rain.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20250627/basin_rain.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/evap/prepared_forcing.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/evap/prepared_forcing.csv",
+          "time_column": "time",
+          "group_columns": [
+            "source_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20250627/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/events/annotated_series.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/events/annotated_series.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/annotated_series.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/events/event_files/event_0001.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/events/event_files/event_0001.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_files/event_0001.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/events/event_files/event_0002.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/events/event_files/event_0002.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_files/event_0002.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/events/event_process.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/events/event_process.csv",
+          "time_column": "time",
+          "group_columns": [
+            "event_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20250627/events/event_process.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/flow/discharge_timeseries.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/flow/discharge_timeseries.csv",
+          "time_column": "time",
+          "group_columns": []
+        }
+      ],
+      "evidence": [
+        "window-20250627/flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "id": "axis:window-20250627/rain/prepared_forcing.csv",
+      "criteria": [
+        {
+          "type": "scientific_invariant",
+          "check": "scientific_axis_integrity",
+          "target": "window-20250627/rain/prepared_forcing.csv",
+          "time_column": "time",
+          "group_columns": [
+            "source_id"
+          ]
+        }
+      ],
+      "evidence": [
+        "window-20250627/rain/prepared_forcing.csv"
+      ]
+    }
+  ],
+  "interaction_mode": "none",
+  "provided_settings": [
+    {
+      "bindings": [
+        {
+          "expected": "Asia/Shanghai",
+          "field": "parameters.timezone",
+          "target": "window-20230908/flow/result.json"
+        }
+      ],
+      "field": "timezone",
+      "key": "timezone",
+      "source": "scenario.json"
+    }
+  ],
+  "schema_version": "2.0",
+  "scientific_graph": {
+    "edges": [
+      {
+        "from": "discharge_standardization",
+        "to": "baseflow"
+      },
+      {
+        "from": "baseflow",
+        "to": "event_identification"
+      },
+      {
+        "from": "forcing_standardization",
+        "to": "event_identification"
+      }
+    ],
+    "nodes": [
+      {
+        "artifact": "window-20230908/flow/result.json",
+        "capability": "discharge_standardization",
+        "id": "discharge_standardization"
+      },
+      {
+        "artifact": "window-20230908/baseflow/result.json",
+        "capability": "baseflow",
+        "id": "baseflow"
+      },
+      {
+        "artifact": "window-20230908/events/result.json",
+        "capability": "event_identification",
+        "id": "event_identification"
+      },
+      {
+        "artifact": "window-20230908/rain/result.json",
+        "capability": "forcing_standardization",
+        "id": "forcing_standardization"
+      }
+    ],
+    "note": "Dependencies below bind actual files and hashes; transform tables are independently checked. Listed graph is developer metadata, never visible to candidates."
+  },
+  "severity_policy": "Missing evidence is unknown. Artifact tolerances 1e-6; a critical numerical error exceeds 1e-3 + 1% of reference magnitude. Critical categorical failures are explicitly enumerated.",
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5,
+  "scoring_version": "composite-scientific-v3",
+  "validation_status": "pending_reference_recomputation"
+}

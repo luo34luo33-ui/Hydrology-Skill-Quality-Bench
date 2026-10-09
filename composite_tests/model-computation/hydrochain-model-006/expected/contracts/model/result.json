@@ -1,0 +1,16 @@
+{
+  "parameters": {
+    "area_km2": 564.4784427125312,
+    "balance_tolerance_fraction": 0.05,
+    "carry_columns": [],
+    "mode": "continuous",
+    "parameter_set": {
+      "X1": 350.0,
+      "X2": 0.0,
+      "X3": 90.0,
+      "X4": 1.7
+    },
+    "timestep_hours": 24.0,
+    "warmup_steps": 2
+  }
+}

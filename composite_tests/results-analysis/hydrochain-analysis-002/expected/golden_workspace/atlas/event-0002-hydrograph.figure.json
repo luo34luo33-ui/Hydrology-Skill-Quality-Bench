@@ -1,0 +1,70 @@
+{
+  "event_id": 2,
+  "language": "zh",
+  "layers": [
+    {
+      "display_transform": "existing is_warmup; light gray warmup, white event background",
+      "id": "warmup",
+      "palette": "warmup-gray",
+      "source": "extract_result.artifacts.event_process"
+    },
+    {
+      "display_transform": "no value transform; black solid total flow, dark gray dashed baseflow",
+      "id": "discharge-baseflow",
+      "palette": "black-darkgray",
+      "source": "extract_result.artifacts.event_process"
+    },
+    {
+      "display_transform": "existing peak_time and peak_flow_m3_s",
+      "id": "event-peaks",
+      "palette": "red",
+      "source": "extract_result.artifacts.event_summary"
+    },
+    {
+      "display_transform": "peak_flow_m3_s=517.344; total_volume_m3=25703924.4; duration_hours=22.0; volume display=raw m3/100000000, rounded 2 decimals; other displays rounded 1 decimal; no recomputation",
+      "id": "event-metrics",
+      "palette": "black",
+      "source": "extract_result.artifacts.event_summary"
+    },
+    {
+      "display_transform": "basin mean depth mm/step; interval_end; step_seconds=3600.0; display bars sum observed values in 1 consecutive steps (last bin may be shorter); missing_steps=0; missing bars/bins omitted; partial bins show observed subtotal; no zero filling or interpolation",
+      "id": "basin-rainfall",
+      "palette": "light-blue",
+      "source": "rainfall"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "event-0002-hydrograph.png",
+      "sha256": "ed421e3e51d0276abc2600f2e95ca4d45ceeb8bee2e4d2a50adf86671c941aca"
+    },
+    "svg": {
+      "path": "event-0002-hydrograph.svg",
+      "sha256": "45f3174ea74ca31d3b814da30183682a19c1d047710b0bee8f1ff1103d17a94f"
+    }
+  },
+  "pixel_size": {
+    "height": 1200,
+    "width": 2400
+  },
+  "publication_ready": true,
+  "schema_version": "1.0",
+  "source_results": {
+    "extract_result": {
+      "path": "../observation/events/result.json",
+      "sha256": "d50cd217c25755625501e894d3fc1a6264015caf415b16676e4d2b820c2b287c"
+    },
+    "rainfall": {
+      "path": "../observation/basin_rain.csv",
+      "sha256": "cbe116616df85e5d1301694bef41406b793a9eaad648850156d3bb9a9eb3cd07"
+    },
+    "rainfall_metadata": {
+      "path": "../observation/rain_metadata.json",
+      "sha256": "21912cf4b99921a6e6d5d09533a8fa25973dd685b55d7b9234281d430aedd10f"
+    }
+  },
+  "template_id": "event-0002-hydrograph",
+  "template_version": "hydrotune.flood-event-atlas.v2",
+  "title": "洪水事件 0002",
+  "warnings": []
+}

@@ -1,0 +1,16 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "validation input build_result SHA-256 不匹配: C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-9p2iogfr\\build\\result.json",
+  "parameters": {
+    "language": "en"
+  },
+  "provenance": {
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-hydrobase-atlas",
+  "status": "error",
+  "warnings": []
+}

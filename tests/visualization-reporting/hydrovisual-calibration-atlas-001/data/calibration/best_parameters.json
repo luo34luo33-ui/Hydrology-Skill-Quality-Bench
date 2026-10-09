@@ -1,0 +1,22 @@
+{
+  "algorithm": "ga",
+  "parameters": {
+    "x": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": 0.0,
+      "relative_position": 0.1767727829392317,
+      "upper": 1.0,
+      "value": 0.1767727829392317
+    },
+    "y": {
+      "at_lower_bound": false,
+      "at_upper_bound": false,
+      "lower": 0.0,
+      "relative_position": 0.9267649888486018,
+      "upper": 1.0,
+      "value": 0.9267649888486018
+    }
+  },
+  "schema_version": "1.0"
+}

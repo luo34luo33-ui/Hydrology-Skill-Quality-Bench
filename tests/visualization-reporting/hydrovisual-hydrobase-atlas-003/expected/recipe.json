@@ -1,0 +1,22 @@
+{
+  "group": "hydrovisual-hydrobase-atlas",
+  "outputs": [
+    "atlas"
+  ],
+  "steps": [
+    {
+      "action": null,
+      "args": [
+        "--build-result",
+        "build/result.json",
+        "--validation-result",
+        "validate/result.json",
+        "--language",
+        "zh",
+        "--output-dir",
+        "atlas"
+      ],
+      "code": 2
+    }
+  ]
+}

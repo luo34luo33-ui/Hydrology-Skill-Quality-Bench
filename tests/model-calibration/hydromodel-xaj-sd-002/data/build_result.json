@@ -1,0 +1,26 @@
+{
+  "artifacts": {
+    "reaches_table": {
+      "path": "reaches_table.csv",
+      "sha256": "7403a7d02041d896fbeddeb23bce45a56c52322f5a1f08e6ea0f287aa8b516ab"
+    },
+    "subbasins_table": {
+      "path": "subbasins_table.csv",
+      "sha256": "233832508b18552c95464bc1f85511f966d7ac6f6e629d1bc79a97a50ff7e433"
+    },
+    "topology_table": {
+      "path": "topology_table.csv",
+      "sha256": "7403a7d02041d896fbeddeb23bce45a56c52322f5a1f08e6ea0f287aa8b516ab"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_upstream",
+      "details": "deterministic benchmark fixture",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/build-hydrological-topology",
+  "status": "success"
+}

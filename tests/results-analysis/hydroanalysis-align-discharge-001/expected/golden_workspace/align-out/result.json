@@ -1,0 +1,58 @@
+{
+  "artifacts": {
+    "aligned": {
+      "path": "aligned_discharge.csv",
+      "sha256": "85cc597a53227e46a2edc6b9c891600782f780c3fb63a3467bd03de29e54a000"
+    },
+    "evaluation": {
+      "path": "evaluation_discharge.csv",
+      "sha256": "16738c4ce8a40bef91a8ca0ee9c1ef8e9756d1eef288aa109e99649a7d79a98d"
+    },
+    "excluded_observations": {
+      "path": "excluded_observations.csv",
+      "sha256": "1908cf5dd501d4c0c3e93d170e72502ea7d157889bdd5902dc91bd4046e34d79"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "ba08e99478e23e9f15d5f05e959ca54f13c2d2a426bddf66d4891c650e808f55"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed artifacts resolved by hash",
+      "status": "PASS"
+    },
+    {
+      "check": "outlet_semantics",
+      "details": "run-lumped-hbv-model",
+      "status": "PASS"
+    },
+    {
+      "check": "exact_time_match",
+      "details": "evaluation_rows=4",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "observed_result": {
+      "path": "observed_result.json",
+      "sha256": "b7cf3e92b60525d108a554c1fefc91f06e7ecd74d3a379748d970624aa0f246e"
+    },
+    "simulation_result": {
+      "path": "simulation_result.json",
+      "sha256": "bbdb6d18dddda41c60543c7ab46e240d1aff9e2020c1397a2819514e00086ade"
+    }
+  },
+  "message": "Observed and outlet discharge aligned",
+  "parameters": {
+    "model": "run-lumped-hbv-model"
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/align-observed-simulated-discharge",
+  "status": "success",
+  "warnings": []
+}

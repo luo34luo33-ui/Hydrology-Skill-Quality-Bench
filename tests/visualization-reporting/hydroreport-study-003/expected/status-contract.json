@@ -1,0 +1,11 @@
+{
+  "files": {
+    "report/result.json": {
+      "error_reason_contains": "Narrative must be completed and attributed",
+      "skill": "visualization-reporting/generate-hydrological-study-report",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "review-final/result.json": {
+      "skill": "visualization-reporting/review-hydrological-study-report",
+      "status": "success",
+      "warnings": []
+    },
+    "review-initial/result.json": {
+      "skill": "visualization-reporting/review-hydrological-study-report",
+      "status": "warning",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

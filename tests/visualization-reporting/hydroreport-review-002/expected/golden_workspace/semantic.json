@@ -1,0 +1,23 @@
+{
+  "package_fingerprint": "0af476743016bfed3985275d6f7fc75ffffbcc7c29458621611aede2918d7556",
+  "paragraphs": [
+    {
+      "evidence_ids": [
+        "analysis-c97c400e2bd48699f77c"
+      ],
+      "id": "overview-count",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    },
+    {
+      "evidence_ids": [
+        "analysis-3b6367645c6e4ec3daa8"
+      ],
+      "id": "limitation-0",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    }
+  ],
+  "reviewer": "deterministic-fixture-reviewer",
+  "schema_version": "1.0"
+}

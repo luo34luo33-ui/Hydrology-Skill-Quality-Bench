@@ -71,6 +71,7 @@
   "id": "hydroanalysis-series-metrics-003",
   "primary_skill": "evaluation-diagnostics/compute-continuous-series-metrics",
   "prompt": "Use series.csv exactly as supplied to run evaluation-diagnostics/compute-continuous-series-metrics. The simulated column contains missing values; run the skill verbatim with --timestep-hours 1 and only the native result.json under series-metrics/. Do not fill, interpolate, or drop the missing values; the script must reject the input itself. No series_metrics.csv may remain in series-metrics/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "series-metrics/result.json"
   ],

@@ -11,7 +11,7 @@
   "message": "event 1 volume balance failed",
   "parameters": {},
   "provenance": {
-    "generator": "HSQB deterministic oracle"
+    "generator": "Frozen current native flood program; v2 rainfall interface"
   },
   "schema_version": "1.0",
   "skill": "data-processing/extract-flood-events",

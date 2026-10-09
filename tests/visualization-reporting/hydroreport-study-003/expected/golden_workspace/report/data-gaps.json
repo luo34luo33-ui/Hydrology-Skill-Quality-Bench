@@ -1,0 +1,9 @@
+[
+  {
+    "action": "Correct inputs and retry",
+    "reason": "Narrative must be completed and attributed",
+    "section": "all",
+    "severity": "error",
+    "source_id": "intake"
+  }
+]

@@ -1,0 +1,143 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "basin.gpkg",
+    "build/reaches.csv",
+    "build/reaches_clipped.gpkg",
+    "build/result.json",
+    "build/stream_links_clipped.tif",
+    "build/stream_order_clipped.tif",
+    "build/subbasins.csv",
+    "build/subbasins_clipped.tif",
+    "build/topology.csv",
+    "dem.tif",
+    "extract/d8_pointer.tif",
+    "extract/dem_filled.tif",
+    "extract/flow_accumulation_cells.tif",
+    "extract/result.json",
+    "extract/strahler_order.tif",
+    "extract/stream_links.tif",
+    "extract/streams.gpkg",
+    "extract/streams.tif",
+    "extract/subbasins.tif",
+    "manifest.json",
+    "prepare/basin_normalized.gpkg",
+    "prepare/dem_analysis_buffer.tif",
+    "prepare/dem_metric.tif",
+    "prepare/result.json",
+    "report/analysis-tables.json",
+    "report/data-gaps.csv",
+    "report/data-gaps.json",
+    "report/evidence-index.csv",
+    "report/evidence-index.json",
+    "report/figures/distribution-4.svg",
+    "report/figures/distribution-5.svg",
+    "report/figures/subbasin-areas.svg",
+    "report/figures/topology-connections.svg",
+    "report/reaches.csv",
+    "report/report.json",
+    "report/report.md",
+    "report/result.json",
+    "report/subbasins.csv",
+    "report/summary.csv",
+    "report/topology.csv",
+    "validate/network_topology_check.png",
+    "validate/result.json",
+    "validate/topology_check_report.txt",
+    "validate/topology_checks.csv"
+  ],
+  "difficulty": "advanced",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "review-final/result.json",
+        "review-final/review-checklist.csv",
+        "review-final/review.json",
+        "review-final/review.md",
+        "review-initial/result.json",
+        "review-initial/review-checklist.csv",
+        "review-initial/review.json",
+        "review-initial/review.md",
+        "semantic.json"
+      ],
+      "type": "file_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "review-initial_artifact_integrity",
+      "required_keys": [
+        "review-checklist.csv",
+        "review.json",
+        "review.md"
+      ],
+      "target": "review-initial/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "atol": 1e-05,
+      "columns": [
+        "category",
+        "actual",
+        "expected",
+        "severity",
+        "action",
+        "needs_human_judgment"
+      ],
+      "name": "review-initial_review-checklist",
+      "reference": "expected/golden_workspace/review-initial/review-checklist.csv",
+      "rtol": 1e-05,
+      "target": "review-initial/review-checklist.csv",
+      "type": "table_match",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "review-final_artifact_integrity",
+      "required_keys": [
+        "review-checklist.csv",
+        "review.json",
+        "review.md"
+      ],
+      "target": "review-final/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "evidence_and_scientific_contract",
+      "reference": "expected/report-contract.json",
+      "target": "review-final/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "review-final/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666674
+    }
+  ],
+  "id": "hydroreport-review-003",
+  "primary_skill": "visualization-reporting/review-hydrological-study-report",
+  "prompt": "Use the visualization-reporting/review-hydrological-study-report capability on the supplied synthetic artifacts. Scenario: spatial report passes. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --spatial-manifest manifest.json --report-dir report --output-dir review-initial\nStage 2: --spatial-manifest manifest.json --report-dir report --semantic-review semantic.json --output-dir review-final\n Before review, replace the administrative @WORKSPACE@ relocation marker in report JSON/CSV with the absolute current workspace path. For each ev-* evidence ID recompute ev- plus the first 20 hex characters of SHA256(source_id + \"|\" + artifact_absolute_path + \"|\" + locator), and replace its references throughout report JSON/CSV/Markdown. Refresh report/result.json artifact hashes. This restores native absolute evidence locators and administrative IDs; change no scientific value, paragraph text or upstream file. Independently read every report paragraph and its original evidence. After initial review, create semantic.json outside report and review folders using the current package_fingerprint, exactly one verdict per paragraph, all original evidence_ids and a substantive rationale. Determine supported/unsupported/uncertain from evidence, then rerun when requested. After relocation do not modify the supplied report or sources. Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "review-final/result.json",
+    "review-final/review-checklist.csv",
+    "review-final/review.json",
+    "review-final/review.md",
+    "review-initial/result.json",
+    "review-initial/review-checklist.csv",
+    "review-initial/review.json",
+    "review-initial/review.md",
+    "semantic.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "spatial report passes"
+}

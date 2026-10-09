@@ -1,7 +1,7 @@
 {
   "adapter": {
     "path": "synthetic_adapter.py",
-    "sha256": "e87fc6372e5eaf63c525daa0b033c8871dc3f705ae09b16d49dbe31f7a8c32f9"
+    "sha256": "7578df21ffaa78fb80794fcfb0bd56dc14bf8a598530822a02b4bf469d403d76"
   },
   "data_shape": "continuous",
   "inputs": [

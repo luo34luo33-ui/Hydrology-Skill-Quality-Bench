@@ -1,0 +1,17 @@
+{
+  "evidence": [
+    {
+      "path": "split_audit.json",
+      "sha256": "bc232bf8ee0ceaac70adeb2e75f473778d7dbbb12ec8cc22d1f1a3a45d6bea44"
+    },
+    {
+      "path": "approved_report.json",
+      "sha256": "8261f6d35f967d93e612007e91db6117151ded9d5727ce73919ee750c8e41a56"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

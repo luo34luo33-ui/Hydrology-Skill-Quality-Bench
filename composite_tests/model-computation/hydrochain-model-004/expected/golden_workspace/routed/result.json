@@ -1,0 +1,125 @@
+{
+  "artifacts": {
+    "route_coefficients": {
+      "path": "route_coefficients.json",
+      "sha256": "ebbbc00929bd5efc23202d9d7a647e4e8c2f58ed573a6dc5510fcc12e1ca8431"
+    },
+    "routed_table": {
+      "path": "routed_flow.csv",
+      "sha256": "59ddadb8931da86c3cb47118374b9af75de2f242b288e227ceb59c4230761a7d"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列无缺测",
+      "name": "no_missing_inflow",
+      "status": "PASS"
+    },
+    {
+      "message": "C0+C1+C2 等于 1",
+      "name": "local:coefficient_sum",
+      "status": "PASS"
+    },
+    {
+      "message": "X 等价取值 0.2 落在 [0, 0.5]",
+      "name": "local:stability_range",
+      "status": "PASS"
+    },
+    {
+      "message": "演进结果无负值",
+      "name": "local:negative_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "演进结果均为有限值",
+      "name": "local:finite_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "体积相对差 0.448%",
+      "name": "local:volume_difference",
+      "status": "PASS"
+    },
+    {
+      "message": "C0+C1+C2 等于 1",
+      "name": "reservoir:coefficient_sum",
+      "status": "PASS"
+    },
+    {
+      "message": "X 等价取值 0.2 落在 [0, 0.5]",
+      "name": "reservoir:stability_range",
+      "status": "PASS"
+    },
+    {
+      "message": "演进结果无负值",
+      "name": "reservoir:negative_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "演进结果均为有限值",
+      "name": "reservoir:finite_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "体积相对差 0.168%",
+      "name": "reservoir:volume_difference",
+      "status": "PASS"
+    },
+    {
+      "message": "2 条路由相加得到 Q_total",
+      "name": "multi_source_combination",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "inflow": {
+      "path": "../model/lumped_xaj_runoff.csv",
+      "sha256": "a8d314411c1b0794dd43bb62e9b65dd4255c134f88ca8074c8028407046cb19b"
+    },
+    "route_spec": {
+      "path": "../routes.json",
+      "sha256": "3e12c4e5c578ed80660ad549348187b3f63cde744c6147eb4a856b1730fe1d4e"
+    }
+  },
+  "message": "马斯京根演进完成：2 条路由，96 行",
+  "parameters": {
+    "combine": "sum",
+    "output_column": "Q_total",
+    "routes": [
+      {
+        "column": "Qt",
+        "id": "local",
+        "k": 1.0,
+        "layout": "single",
+        "output_level": "final",
+        "reaches": 1,
+        "x": 0.2
+      },
+      {
+        "column": "GB_out",
+        "id": "reservoir",
+        "k": 1.0,
+        "layout": "single",
+        "output_level": "final",
+        "reaches": 1,
+        "x": 0.2
+      }
+    ],
+    "timestep_hours": 1.0,
+    "volume_tolerance": 0.02
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/route-muskingum-channel",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "error",
+  "message": "missing or hash-mismatched artifact: C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-08w83thf\\HBV.csv",
+  "parameters": {},
+  "inputs": {},
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "status": "FAIL",
+      "details": "missing or hash-mismatched artifact: C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-08w83thf\\HBV.csv"
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "python": "3.11.16"
+  }
+}

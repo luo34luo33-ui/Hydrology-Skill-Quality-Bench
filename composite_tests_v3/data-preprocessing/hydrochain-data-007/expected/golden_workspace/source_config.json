@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "P": {
+      "kind": "station",
+      "result": "rain/result.json",
+      "station_crs": "EPSG:4326",
+      "stations": "stations.csv",
+      "variable": "P"
+    },
+    "evap": {
+      "kind": "station",
+      "result": "evap/result.json",
+      "station_crs": "EPSG:4326",
+      "stations": "stations.csv",
+      "variable": "PET"
+    }
+  },
+  "min_coverage_fraction": 1.0
+}

@@ -1,0 +1,432 @@
+{
+  "calibration_evidence": "Trace rows contain status, objective and param:NAME columns; at most 128 evaluations, objective independently replayable, best parameters locked before validation. No prescribed optimizer trajectory.",
+  "decision": {
+    "evidence": "nonempty list of {path, sha256}, relative to workspace root",
+    "limitations": "nonempty list including synthetic-data limitations and implementation choices",
+    "reason": "scientific_contracts_satisfied",
+    "status": "deliverable"
+  },
+  "interaction_mode": "none",
+  "numerical_tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "outputs": {
+    "aggregate/coverage.csv": {
+      "columns": [
+        "variable",
+        "unit_id",
+        "coverage_fraction",
+        "covered_area_m2",
+        "unit_area_m2"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aggregate/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "source_config"
+      ],
+      "structure": {
+        "artifacts": {
+          "coverage": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "weights": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "P_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "P_stations": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "evap_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "evap_stations": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "topology_qc_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "topology_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "layers": {
+            "P": {
+              "kind": "string",
+              "result": "string",
+              "station_crs": "string",
+              "stations": "string",
+              "variable": "string"
+            },
+            "evap": {
+              "kind": "string",
+              "result": "string",
+              "station_crs": "string",
+              "stations": "string",
+              "variable": "string"
+            }
+          },
+          "min_coverage_fraction": "number",
+          "target": "string"
+        },
+        "provenance": {
+          "python": "string",
+          "rasterio": "string",
+          "shapely": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "aggregate/subbasin_forcing.csv": {
+      "columns": [
+        "time",
+        "sub_id",
+        "P_mm",
+        "E0_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aggregate/weights.csv": {
+      "columns": [
+        "unit_id",
+        "source_id",
+        "weight",
+        "area_m2",
+        "variable"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "decision.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "evidence": [
+          {
+            "path": "string",
+            "sha256": "string"
+          }
+        ],
+        "limitations": [
+          "string"
+        ],
+        "reason": "string",
+        "status": "string"
+      }
+    },
+    "evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "model/outlet_flow.csv": {
+      "columns": [
+        "time",
+        "outlet_reach_id",
+        "is_warmup",
+        "QS_m3s",
+        "QI_m3s",
+        "QG_m3s",
+        "Q_m3s"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "model/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "params"
+      ],
+      "structure": {
+        "artifacts": {
+          "model_config": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "outlet_flow": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "topology_qc_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "topology_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "initial": {
+            "fr": "number",
+            "qg_cs_m3s": "number",
+            "qg_m3s": "number",
+            "qi_cs_m3s": "number",
+            "qi_m3s": "number",
+            "qs_cs_m3s": "number",
+            "s_mm": "number",
+            "soil_fraction": "number"
+          },
+          "muskingum_coefficients": [
+            "number"
+          ],
+          "output_detail": "string",
+          "routing": {
+            "dp_by_reach": {
+              "1": "number",
+              "2": "number",
+              "3": "number",
+              "5": "number",
+              "6": "number"
+            },
+            "lag_steps": "number"
+          },
+          "simulation": {
+            "end": "string",
+            "start": "string"
+          },
+          "time": {
+            "step_seconds": "number",
+            "timestamp_meaning": "string",
+            "timezone": "string"
+          },
+          "warmup_steps": "number",
+          "xaj": {
+            "B": "number",
+            "C": "number",
+            "CG": "number",
+            "CI": "number",
+            "CS": "number",
+            "EX": "number",
+            "IMP": "number",
+            "KC": "number",
+            "KE": "number",
+            "KG": "number",
+            "KI": "number",
+            "SM": "number",
+            "WLM": "number",
+            "WM": "number",
+            "WUM": "number",
+            "XE": "number"
+          }
+        },
+        "provenance": {
+          "PyYAML": "string",
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "source": "string",
+          "source_sha256": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    }
+  },
+  "provided_settings": [
+    {
+      "field": "timezone",
+      "key": "timezone",
+      "output_bindings": [
+        {
+          "field": "parameters.timezone",
+          "target": "rain/result.json"
+        }
+      ],
+      "source": "scenario.json"
+    }
+  ],
+  "result_manifest": "References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root. Optional implementation-only config and adapter references may be omitted; scientific evidence remains mandatory.",
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5,
+  "scoring_version": "composite-scientific-v3",
+  "source_reference_policy": "References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root."
+}

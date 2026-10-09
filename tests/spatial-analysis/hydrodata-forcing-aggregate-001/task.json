@@ -1,0 +1,160 @@
+{
+  "data_description": "A deterministic station-forcing aggregation fixture over a hash-checked two-subbasin HydroBase.",
+  "data_files": [
+    "build_result.json",
+    "topology_qc_result.json",
+    "subbasins_clipped.tif",
+    "subbasins_table.csv",
+    "stations.csv",
+    "p_result.json",
+    "p_forcing.csv",
+    "evap_result.json",
+    "evap_forcing.csv",
+    "source_config.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "aggregate-out/coverage.csv": [
+          "variable",
+          "unit_id",
+          "coverage_fraction",
+          "covered_area_m2",
+          "unit_area_m2"
+        ],
+        "aggregate-out/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ],
+        "aggregate-out/subbasin_forcing.csv": [
+          "time",
+          "sub_id",
+          "P_mm",
+          "E0_mm"
+        ],
+        "aggregate-out/weights.csv": [
+          "unit_id",
+          "source_id",
+          "weight",
+          "area_m2",
+          "variable"
+        ]
+      },
+      "targets": [
+        "aggregate-out/subbasin_forcing.csv",
+        "aggregate-out/weights.csv",
+        "aggregate-out/coverage.csv",
+        "aggregate-out/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "forcing_table",
+      "reference": "expected/golden_workspace/aggregate-out/subbasin_forcing.csv",
+      "rtol": 1e-09,
+      "target": "aggregate-out/subbasin_forcing.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "atol": 1e-09,
+      "name": "weights_table",
+      "reference": "expected/golden_workspace/aggregate-out/weights.csv",
+      "rtol": 1e-09,
+      "target": "aggregate-out/weights.csv",
+      "type": "table_match",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "coverage_table",
+      "reference": "expected/golden_workspace/aggregate-out/coverage.csv",
+      "rtol": 1e-09,
+      "target": "aggregate-out/coverage.csv",
+      "type": "table_match",
+      "weight": 0.1
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/aggregate-out/result.json",
+      "target": "aggregate-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/aggregate-out/result.json",
+      "target": "aggregate-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/aggregate-out/result.json",
+      "target": "aggregate-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/aggregate-out/result.json",
+      "target": "aggregate-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/aggregate-out/result.json",
+      "target": "aggregate-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "forcing",
+        "weights",
+        "coverage"
+      ],
+      "target": "aggregate-out/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydrodata-forcing-aggregate-001",
+  "primary_skill": "spatial-analysis/aggregate-forcing-to-model-units",
+  "prompt": "Use build_result.json, topology_qc_result.json, and source_config.json exactly as supplied to run spatial-analysis/aggregate-forcing-to-model-units with --target subbasin. The P layer comes from a prepare-model-forcing result and the E0 layer from a derive-potential-evapotranspiration result (both hash-checked); station coordinates are confirmed in EPSG:32649. Write the native outputs (subbasin_forcing.csv, weights.csv, coverage.csv, result.json) under aggregate-out/. Do not modify the upstream artifacts, redistribute weights, or fill missing values.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "aggregate-out/subbasin_forcing.csv",
+    "aggregate-out/weights.csv",
+    "aggregate-out/coverage.csv",
+    "aggregate-out/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The upstream results and the source config are consumed by native hash checks; they must not be altered.",
+    "Station coordinates are confirmed in EPSG:32649 and the Thiessen weights follow from them.",
+    "Do not install software or implement a replacement aggregation."
+  ],
+  "timeout_seconds": 300,
+  "title": "Aggregate station forcing to subbasin model units with Thiessen weights"
+}

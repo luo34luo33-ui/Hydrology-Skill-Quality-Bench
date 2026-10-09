@@ -1,0 +1,18 @@
+{
+  "data_sha256": {
+    "INPUT_GUIDE.md": "0c0889aba97c4c26bb920d337c462f2dccad3b83d13de9c73714a744db5269ee",
+    "OUTPUT_INTERFACES.md": "df3a60ba084c01a123cf8c995516cea8501cc99b0baa65d2fec46419f52d5eba",
+    "derivation.json": "274121b905c817c9ae636166b10ccf92a75f647b501020cd746f42f5bdcd06ab",
+    "input_inventory.json": "ec23302d73d69354361b4488ecc5df6710ffa417aaa873d090f5c88af4971d55",
+    "original.csv": "8aaa3b759c1532d27300aa377938c08a766071f00cf3b1ac011eee67b01d5d04",
+    "output_interfaces.json": "3c63de80acfcde86c1a4e4e0dbaf06476600e959424dbc6712bebc8ff410bd3e",
+    "raw.csv": "c8666b3565cc8f6d6f38acd2f4fc763f4f1b73f7e08dd1b00d5fbeecafef3762",
+    "scenario.json": "8c80bd60632b5b29a9d3c7f4e1c98fe57f38d9f75fce8833eb876afe8380d304",
+    "source_manifest.json": "196563eeae320263efd874f16c832f09e12a50b399af304f0c965d2562fee7ea",
+    "supplements.csv": "77206f1f1f4f764d6463a4d1867204f4e33c10f21785a50fb2feafbb0d62b2c8"
+  },
+  "family": "model",
+  "index": 3,
+  "source_manifest_sha256": "196563eeae320263efd874f16c832f09e12a50b399af304f0c965d2562fee7ea",
+  "supplement_notice": "Synthetic supplemental values; original known values preserved."
+}

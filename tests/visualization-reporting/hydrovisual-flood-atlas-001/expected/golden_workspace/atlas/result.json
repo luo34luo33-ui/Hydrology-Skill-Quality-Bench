@@ -1,0 +1,94 @@
+{
+  "artifacts": {
+    "event-0001-hydrograph_figure": {
+      "path": "event-0001-hydrograph.figure.json",
+      "sha256": "64b97061755444ed54f07a46d725662bef69628af1e8f7067d7c6df2c5bd6efc"
+    },
+    "event-0001-hydrograph_png": {
+      "path": "event-0001-hydrograph.png",
+      "sha256": "2c922ff2334b1ade5304eb01b0042a954c3230febfa6633410dfc817ceaea7d5"
+    },
+    "event-0001-hydrograph_svg": {
+      "path": "event-0001-hydrograph.svg",
+      "sha256": "6535c29babde7edc679dfde9ed98bddd8a62182d3ad7446b2ed2efbbcbb7f506"
+    },
+    "event-0002-hydrograph_figure": {
+      "path": "event-0002-hydrograph.figure.json",
+      "sha256": "7db1a4eb7a9527a5495eede6f70aff505d1b66624116dbb072dc35cc276d4f15"
+    },
+    "event-0002-hydrograph_png": {
+      "path": "event-0002-hydrograph.png",
+      "sha256": "ac768d9de7efa2741cdf597c1373b86a838a72cb2a6706c3d943d4b3f02af63f"
+    },
+    "event-0002-hydrograph_svg": {
+      "path": "event-0002-hydrograph.svg",
+      "sha256": "4776ab5d9e43a777a1b3cbc4af05ce27de8f2ca705cbe4f48b5105b1396bab88"
+    },
+    "flood-event-overview_figure": {
+      "path": "flood-event-overview.figure.json",
+      "sha256": "0541d8fe783886c30c1108489cd1889fcadb33d672aa991ba546d3aa45296dc0"
+    },
+    "flood-event-overview_png": {
+      "path": "flood-event-overview.png",
+      "sha256": "fbaddf87a66a6e38fef9e46802e1d2541f4bbfe956de7df50175568f3c314934"
+    },
+    "flood-event-overview_svg": {
+      "path": "flood-event-overview.svg",
+      "sha256": "bc4bb774b46d964af4dcac9265ea001dc053469062891dc498eec32028cb044b"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed event artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "event_table_consistency",
+      "details": "events=2",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-47lqkwv4\\events\\result.json",
+      "sha256": "5b402624747fcd99e020b0e15fd5dd403bba7acd34123d7ea9d8c6a59a601cb5"
+    },
+    "rainfall": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-47lqkwv4\\流域 雨量.csv",
+      "sha256": "07e3199dec37e6890797c3d90e611642a77e73c0bfee12a41473eae99e9624a1"
+    },
+    "rainfall_metadata": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-47lqkwv4\\雨量 元数据.json",
+      "sha256": "44e05b3510b1e8f7e81094fdd0085cadea634e0cfdc65f09d4d07672ec1db0f0"
+    }
+  },
+  "message": "rendered overview and 2 event hydrographs",
+  "parameters": {
+    "language": "zh",
+    "max_events": null,
+    "pixel_size": [
+      2400,
+      1200
+    ],
+    "rainfall_available": true,
+    "rainfall_step_seconds": 3600.0,
+    "rendered_event_ids": [
+      1,
+      2
+    ],
+    "selection": "all",
+    "total_volume_display_unit": "10^8 m3"
+  },
+  "provenance": {
+    "font": "Times New Roman, SimSun",
+    "matplotlib": "3.11.2",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "template_version": "hydrotune.flood-event-atlas.v2"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-flood-event-atlas",
+  "status": "success",
+  "warnings": []
+}

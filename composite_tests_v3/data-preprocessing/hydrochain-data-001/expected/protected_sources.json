@@ -1,0 +1,13 @@
+{
+  "INPUT_GUIDE.md": "598adba573f6905eba369a7d85a62daf7266562786af9562435f44d263b5ca94",
+  "OUTPUT_INTERFACES.md": "fcf7c23173affccf4cf6a28ddcfc3eb0ea1d44581998d3a1f82baefd8c182a9c",
+  "derivation.json": "10429e947b09b296278cbf81734158471e26b8481c8940da86eca6e4572ef256",
+  "input_inventory.json": "5644a564b5afc28dec2e03a85c5857ab354be3c72737cbbf689f1b1140e1e4ab",
+  "original.csv": "e0219610570b88e17b9396cab9be45c390f1321c883ed06cac5681ec44587a92",
+  "output_interfaces.json": "9c3e5d0200dfa89cb4d2c6dee9585408d5e4ac131a92ca6f9fd64676b91d7748",
+  "raw.csv": "0bc26621671645baa33197367c80ba53c8d1b533ffb81ef287051e99fa0f229d",
+  "scenario.json": "3138efe624336f1dbade26f70f5aaffb532c57b231c35c17c3de40c717c2f2cb",
+  "source_manifest.json": "196563eeae320263efd874f16c832f09e12a50b399af304f0c965d2562fee7ea",
+  "supplements.csv": "f046b78399adcd58e69889cb57dca68fdcdc6ca7d378cc918fc07c10de245999",
+  "workflow_requirements.json": "b46a7d437563fa05988c6399d21a4419b7e03885f632400a33226adce3ae8179"
+}

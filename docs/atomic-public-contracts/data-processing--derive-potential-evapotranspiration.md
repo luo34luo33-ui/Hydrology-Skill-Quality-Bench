@@ -1,0 +1,485 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "data-processing/derive-potential-evapotranspiration",
+  "source_contract_sha256": "faa3673c31cbd0815e259ed4e53e1c611fa6cfd86de12ae665f856ac3063173e",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "meteorology",
+        "description": "时间、站点、气温摄氏度、净辐射 MJ/m2/步、水汽压 kPa、2 m 风速 m/s；日尺度另有 Tmax/Tmin，小时尺度另有 G。",
+        "required": true,
+        "format": "CSV, XLSX or Parquet"
+      },
+      {
+        "id": "stations",
+        "description": "source_id,latitude_deg,elevation_m。",
+        "required": true,
+        "format": "CSV, XLSX or Parquet"
+      },
+      {
+        "id": "config",
+        "description": "尺度、时区、步长、列映射与可选 PET/E0 转换。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "eto",
+        "description": "每站每步 ETo_mm 原值。",
+        "required": true,
+        "format": "CSV"
+      },
+      {
+        "id": "mapped_evap",
+        "description": "显式映射后 time,source_id,variable,depth_mm。",
+        "required": false,
+        "format": "CSV"
+      },
+      {
+        "id": "result",
+        "description": "输入产物哈希和 QC。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "invariants": [
+      "ETo 与 PET/E0 不等同；转换需要显式配置。",
+      "不用缺项估算或自动填补。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "t_c": {
+          "type": "string"
+        },
+        "rn_mj_m2_step": {
+          "type": "string"
+        },
+        "ea_kpa": {
+          "type": "string"
+        },
+        "u2_m_s": {
+          "type": "string"
+        }
+      },
+      {
+        "eto": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "computed; see field semantics"
+        },
+        "inputs": {
+          "source": {
+            "type": "computed; see field semantics"
+          },
+          "stations": {
+            "type": "computed; see field semantics"
+          },
+          "config": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "string"
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "method": {
+            "type": "string"
+          },
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "source_id": {
+          "type": "computed; see field semantics"
+        },
+        "ETo_mm": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "source": {
+          "type": "computed; see field semantics"
+        },
+        "stations": {
+          "type": "computed; see field semantics"
+        },
+        "config": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "method": {
+          "type": "string"
+        },
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "source_id": {
+          "type": "computed; see field semantics"
+        },
+        "variable": {
+          "type": "computed; see field semantics"
+        },
+        "depth_mm": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "success",
+        "warning"
+      ],
+      [
+        "path",
+        "sha256"
+      ],
+      [
+        "eto.csv",
+        "mapped_evap.csv",
+        "result.json"
+      ],
+      [
+        "time",
+        "source_id",
+        "t_c",
+        "rn_mj_m2_step",
+        "ea_kpa",
+        "u2_m_s"
+      ],
+      [
+        "scale",
+        "timestep_seconds",
+        "timezone",
+        "source_timezone_mode",
+        "timestamp_semantics",
+        "columns",
+        "units"
+      ],
+      [
+        "source",
+        "stations",
+        "config",
+        "output-dir"
+      ],
+      [
+        "tmax_c",
+        "tmin_c"
+      ],
+      [
+        "g_mj_m2_step"
+      ],
+      [
+        "latitude_deg",
+        "elevation_m"
+      ],
+      [
+        "source_id",
+        "time"
+      ],
+      [
+        "daily",
+        "hourly"
+      ],
+      [
+        "source_id",
+        "latitude_deg",
+        "elevation_m"
+      ],
+      [
+        "aware",
+        "local_naive"
+      ],
+      [
+        "interval_start",
+        "interval_end"
+      ],
+      [
+        "PET",
+        "E0"
+      ],
+      [
+        "error",
+        "floor_zero"
+      ]
+    ],
+    "field_names": [
+      "E0",
+      "ETo_mm",
+      "PET",
+      "action",
+      "allow_nan",
+      "ambiguous",
+      "artifacts",
+      "aware",
+      "check",
+      "checks",
+      "columns",
+      "config",
+      "daily",
+      "depth_mm",
+      "description",
+      "details",
+      "dtype",
+      "ea_kpa",
+      "elevation_m",
+      "encoding",
+      "ensure_ascii",
+      "error",
+      "errors",
+      "eto",
+      "eto.csv",
+      "exist_ok",
+      "factor",
+      "file",
+      "floor_zero",
+      "g_mj_m2_step",
+      "hourly",
+      "indent",
+      "index",
+      "inplace",
+      "inputs",
+      "interval_end",
+      "interval_start",
+      "latitude_deg",
+      "local_naive",
+      "mapped_evap",
+      "mapped_evap.csv",
+      "message",
+      "method",
+      "negative_policy",
+      "nonexistent",
+      "on",
+      "output-dir",
+      "pandas",
+      "parameters",
+      "parents",
+      "path",
+      "provenance",
+      "python",
+      "required",
+      "result.json",
+      "rn_mj_m2_step",
+      "scale",
+      "schema_version",
+      "seconds",
+      "sha256",
+      "skill",
+      "source",
+      "source_id",
+      "source_timezone_mode",
+      "stations",
+      "status",
+      "success",
+      "t_c",
+      "target",
+      "time",
+      "timestamp_semantics",
+      "timestep_seconds",
+      "timezone",
+      "tmax_c",
+      "tmin_c",
+      "type",
+      "u2_m_s",
+      "units",
+      "validate",
+      "variable",
+      "warning",
+      "warnings"
+    ],
+    "literal_enum_values": {
+      "method": [
+        "FAO-56 Penman-Monteith"
+      ],
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "FAIL",
+        "PASS",
+        "error",
+        "success"
+      ]
+    },
+    "static_interface_values": {
+      "method": [
+        "FAO-56 Penman-Monteith"
+      ],
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^rows=.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "data-processing/derive-potential-evapotranspiration"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}
+```

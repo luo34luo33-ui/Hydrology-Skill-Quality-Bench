@@ -1,0 +1,14 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "comparison coverage does not exactly match validation events/time",
+  "parameters": {
+    "language": "zh"
+  },
+  "provenance": {},
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-model-calibration",
+  "status": "error",
+  "warnings": []
+}

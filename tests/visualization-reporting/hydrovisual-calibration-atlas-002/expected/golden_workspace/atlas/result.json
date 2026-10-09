@@ -1,0 +1,89 @@
+{
+  "artifacts": {
+    "overview_metadata": {
+      "path": "calibration_overview.json",
+      "sha256": "7505a09685185ade603dc79d236f8e9a32bccf11844c74d857ff238953e3e09c"
+    },
+    "overview_png": {
+      "path": "calibration_overview.png",
+      "sha256": "a8aa8e687b9a7bc58ca4cc469a683b98010b2c17fcf6c3f30231d31db703ad68"
+    },
+    "overview_svg": {
+      "path": "calibration_overview.svg",
+      "sha256": "ac0ba203a12e4d488fbc251954a6fd720e9f2cb8d7668c9b49254bb3ce9a2f16"
+    },
+    "process_001_metadata": {
+      "path": "validation_event_001.json",
+      "sha256": "35308db7c9550b3ca67f83ff5846ca5e554916c9ed397d22ccac9ce84f47acf8"
+    },
+    "process_001_png": {
+      "path": "validation_event_001.png",
+      "sha256": "43dceb0fed88f4a30cc2375ebed2890888f2350847831745177351d9ee1d024c"
+    },
+    "process_001_svg": {
+      "path": "validation_event_001.svg",
+      "sha256": "60d229cc538ebe38adca57aa9f3fe5439d05d0f0cb47cb2174bf2037af356516"
+    },
+    "process_002_metadata": {
+      "path": "validation_event_002.json",
+      "sha256": "fbc8a20f74f31ec91908c5e0a785f06dda173997d186dbe45e8557c5d260997b"
+    },
+    "process_002_png": {
+      "path": "validation_event_002.png",
+      "sha256": "efd2e5768b3d9c6cc2f1196f06bfe2844b71957cd0e2a560722105b61fc4c7de"
+    },
+    "process_002_svg": {
+      "path": "validation_event_002.svg",
+      "sha256": "9d8d396cfa0325db22d8f298cb7f296c55cef48fd05c6111112f53c2bf62a7df"
+    },
+    "scatter_metadata": {
+      "path": "validation_scatter.json",
+      "sha256": "6e5f8f340802648370fbfc8a3bf2b13721c98421bcd78e1b643e0eec72d3979b"
+    },
+    "scatter_png": {
+      "path": "validation_scatter.png",
+      "sha256": "05ceab77b42619aa2c8a4e1b602395c764c95fcbc80d8131b258a72d6993a5f9"
+    },
+    "scatter_svg": {
+      "path": "validation_scatter.svg",
+      "sha256": "5dacf671c87aaa88a1a8b15ee060bd3715d4a1d65dc3d898921d6a12f5c16187"
+    }
+  },
+  "checks": [
+    {
+      "check": "source_hashes",
+      "details": "verified=5",
+      "status": "PASS"
+    },
+    {
+      "check": "fixed_canvas",
+      "details": "all PNG figures are 2400x1600",
+      "status": "PASS"
+    },
+    {
+      "check": "validation_only_scatter",
+      "details": "scatter used validation scored rows only",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\result.json",
+      "sha256": "f1b59ef80d01093695410f1ba6587adb8c90b6cbf6f2021b34a7859c6a747125"
+    }
+  },
+  "message": "model calibration atlas rendered",
+  "parameters": {
+    "language": "en",
+    "max_events": null
+  },
+  "provenance": {
+    "matplotlib": "3.11.2",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-model-calibration",
+  "status": "success",
+  "warnings": []
+}

@@ -193,7 +193,8 @@
   ],
   "id": "hydromodel-ga-001",
   "primary_skill": "model-calibration/calibrate-model-ga",
-  "prompt": "Use calibration-problem.json and optimizer-config.json exactly as supplied to run model-calibration/calibrate-model-ga. All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. Use calibration only for search and evaluate validation only after parameters are locked. Do not repair the optimizer config, alter its seed or budget, switch optimizers, or use validation for selection. Write the native outputs under calibration-ga/. Complete the configured search and preserve the independent validation split.",
+  "prompt": "Use calibration-problem.json and optimizer-config.json exactly as supplied to run model-calibration/calibrate-model-ga. All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. The synthetic evaluator uses UTC timestamps (a declared test setting). Use calibration only for search and evaluate validation only after parameters are locked. Do not repair the optimizer config, alter its seed or budget, switch optimizers, or use validation for selection. Write the native outputs under calibration-ga/. Complete the configured search and preserve the independent validation split.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "calibration-ga/best_parameters.json",
     "calibration-ga/calibration_trace.csv",

@@ -1,0 +1,33 @@
+{
+  "display_transforms": [
+    "validation scored=true rows only; multiple explicitly aligned simulations; 1:1 display reference; no visible titles"
+  ],
+  "figure_type": "validation-scatter",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-2853jaoh\\calibration\\result.json",
+      "sha256": "029c5f9d1904047aa3bc0580310228beb98632d13eba70f31f4dab443d6376c8"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-2853jaoh\\calibration\\validation_series.csv",
+      "sha256": "1d7274491fe304067dbfae1804f1df04999d01e2b46a4583209fbbb799f01c54"
+    }
+  },
+  "language": "zh",
+  "outputs": {
+    "png": {
+      "path": "validation_scatter.png",
+      "sha256": "0b494c5c01308e86295e0be6df4f5f54667b196f55e2b33151cb8a5bbbe3062d"
+    },
+    "svg": {
+      "path": "validation_scatter.svg",
+      "sha256": "46d10fce305cf6b7ac363df03e22d5f1cfe0626b0d1afad110a0a936216813fc"
+    }
+  },
+  "schema_version": "1.0",
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "验证期观测—模拟散点",
+  "warnings": [],
+  "width_px": 2400
+}

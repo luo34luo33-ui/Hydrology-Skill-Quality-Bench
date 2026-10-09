@@ -13,8 +13,6 @@ from harness.agent_wrapper import generate_agents_md, install_skill_snapshot
 
 def build_codex_command(model: str | None, effort: str | None, use_skills: bool) -> list[str]:
     prompt = "Complete the task described in AGENTS.md and create every required artifact."
-    if use_skills:
-        prompt = "Read the relevant skill instructions, then complete the task in AGENTS.md and create every required artifact."
     command = [
         "codex",
         "exec",
@@ -38,7 +36,7 @@ def main() -> int:
     skills_source = os.environ.pop("BENCHMARK_SKILLS_PATH", None)
     skill_names = install_skill_snapshot(skills_source, workspace)
     use_skills = bool(skill_names)
-    (workspace / "AGENTS.md").write_text(generate_agents_md(task, use_skills), encoding="utf-8")
+    (workspace / "AGENTS.md").write_text(generate_agents_md(task, False), encoding="utf-8")
     command = build_codex_command(
         os.environ.get("BENCHMARK_MODEL"),
         os.environ.get("BENCHMARK_EFFORT"),

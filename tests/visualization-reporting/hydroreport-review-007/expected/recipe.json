@@ -1,0 +1,20 @@
+{
+  "group": "hydroreport-review",
+  "outputs": [
+    "review-initial"
+  ],
+  "steps": [
+    {
+      "action": "relocate-report",
+      "args": [
+        "--study-manifest",
+        "manifest.json",
+        "--report-dir",
+        "report",
+        "--output-dir",
+        "review-initial"
+      ],
+      "code": 1
+    }
+  ]
+}

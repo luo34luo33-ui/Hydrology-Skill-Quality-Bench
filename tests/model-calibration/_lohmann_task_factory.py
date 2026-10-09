@@ -53,6 +53,15 @@ def _write_bytes(path: Path, content: bytes) -> None:
 
 
 def _write_json(path: Path, value: Any) -> None:
+    # Retain the independently authored public interface when regenerating fixtures.
+    if path.name == "task.json" and isinstance(value, dict):
+        canonical = Path(__file__).resolve().parent / value["id"] / "public_contract.json"
+        if canonical.is_file():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            destination = path.parent / "public_contract.json"
+            if canonical.resolve() != destination.resolve():
+                destination.write_bytes(canonical.read_bytes())
+            value = dict(value, public_contract="public_contract.json")
     _write_bytes(path, _stable_json(value))
 
 

@@ -1,0 +1,78 @@
+{
+  "files": [
+    {
+      "path": "derivation.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "274121b905c817c9ae636166b10ccf92a75f647b501020cd746f42f5bdcd06ab"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out"
+      ],
+      "path": "original.csv",
+      "role": "original observations; preserve all values and missing entries",
+      "sha256": "8aaa3b759c1532d27300aa377938c08a766071f00cf3b1ac011eee67b01d5d04"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out",
+        "E0"
+      ],
+      "path": "raw.csv",
+      "role": "authorised calculation input, with labelled synthetic supplements",
+      "sha256": "c8666b3565cc8f6d6f38acd2f4fc763f4f1b73f7e08dd1b00d5fbeecafef3762"
+    },
+    {
+      "path": "scenario.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "f7d09fe4fc3639978144977f86ada99e94af2afb71bd35b395384b5e84d4090d"
+    },
+    {
+      "path": "source_manifest.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "196563eeae320263efd874f16c832f09e12a50b399af304f0c965d2562fee7ea"
+    },
+    {
+      "columns": [
+        "time",
+        "column",
+        "value",
+        "basis"
+      ],
+      "path": "supplements.csv",
+      "role": "synthetic supplement provenance; not repaired observations",
+      "sha256": "77206f1f1f4f764d6463a4d1867204f4e33c10f21785a50fb2feafbb0d62b2c8"
+    }
+  ],
+  "task_version": "composite-unattended-v2"
+}

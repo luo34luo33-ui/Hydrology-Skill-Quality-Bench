@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "variable": "P",
+  "unit": "mm/step",
+  "timestamp_semantics": "interval_end",
+  "timezone": "Asia/Shanghai",
+  "timestep_seconds": 3600,
+  "source_count": 2,
+  "steps": 47,
+  "source_semantics": "running_cumulative"
+}

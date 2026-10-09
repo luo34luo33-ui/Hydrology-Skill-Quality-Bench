@@ -1,0 +1,23 @@
+HydroBase 拓扑检查报告
+========================================
+河段数: 39
+子流域数: 39
+出口河段: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 59]
+FAIL: 1
+WARN: 0
+
+[PASS] unique_reach_id: count=0; 
+[PASS] topology_table_consistency: count=0; topology.csv matches reaches.csv
+[PASS] downstream_references: count=0; 
+[PASS] self_loop: count=0; 
+[PASS] reach_cycle: count=0; 
+[PASS] upstream_downstream_reciprocity: count=0; 
+[PASS] topological_levels: count=0; 
+[FAIL] expected_outlets: count=30; expected=31; actual=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 59]
+[PASS] subbasin_mapping: count=0; 
+[PASS] positive_reach_length: count=0; 
+[PASS] reach_geometry: count=0; 
+[PASS] artifact_grid_and_crs: count=0; 
+[PASS] reach_count_matches_links: count=0; table=39; raster=39
+[PASS] subbasin_area_consistency: count=0; 
+[PASS] negative_elevation_steps: count=0; count=0

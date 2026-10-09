@@ -1,0 +1,66 @@
+{
+  "crs": "EPSG:32650",
+  "extent": [
+    499967.0,
+    500993.0,
+    4099007.0,
+    4100033.0
+  ],
+  "language": "zh",
+  "layers": [
+    {
+      "display_transform": "fixed hillshade; display clipped to true basin polygon",
+      "id": "filled-dem-hillshade",
+      "palette": "grayscale",
+      "source": "extract_result.artifacts.filled_dem"
+    },
+    {
+      "display_transform": "log1p then 2-98 percentile stretch; vmin=1.09861; vmax=3.70274; display clipped to true basin polygon",
+      "id": "flow-accumulation",
+      "palette": "water",
+      "source": "extract_result.artifacts.flow_accumulation"
+    },
+    {
+      "display_transform": "positive-cell mask; display clipped to true basin polygon",
+      "id": "streams",
+      "palette": "deep-water",
+      "source": "extract_result.artifacts.streams"
+    },
+    {
+      "display_transform": "boundary stroke; display clipped to true basin polygon",
+      "id": "basin-boundary",
+      "palette": "boundary",
+      "source": "prepare_result.artifacts.normalized_basin"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "flow-accumulation-network.png",
+      "sha256": "051c1973f781b4c4987ef8c556fcb9e872b9ad865a4a105770aeeee5d1a6a9ea"
+    },
+    "svg": {
+      "path": "flow-accumulation-network.svg",
+      "sha256": "934f573066dc23fcfa73111cc0c3eedf43d1e95279c1b98215b1d39f33806182"
+    }
+  },
+  "pixel_size": {
+    "height": 2400,
+    "width": 2375
+  },
+  "publication_ready": true,
+  "schema_version": "1.0",
+  "source_results": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-5fuakybt\\extract\\result.json",
+      "sha256": "534545a6fa1ecc770d794b40c14c8f1f0e35c9caa6395ff8460ccf87872d774d"
+    },
+    "prepare_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-5fuakybt\\prepare\\result.json",
+      "sha256": "fb4420d6a32c3c037a323bc2c566be936f795db6d04cd4db9d5b232d6f11933f"
+    }
+  },
+  "template_id": "flow-accumulation-network",
+  "template_version": "hydrotune.dem-hydrology-atlas.v2",
+  "title": "汇流累积与提取河网",
+  "warnings": []
+}

@@ -90,6 +90,7 @@
   "id": "hydrodata-dem-grid-002",
   "primary_skill": "spatial-analysis/prepare-dem-analysis-grid",
   "prompt": "Prepare source_dem.tif and basin.gpkg using the confirmed options: --analysis-buffer-km 0.2 --vertical-unit m --auto-utm. Write all outputs under prepared/. Do not infer missing CRS, change units, or relax coverage checks. If validation rejects the input, preserve result.json but remove partial declared artifacts.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "prepared/dem_metric.tif",
     "prepared/dem_analysis_buffer.tif",

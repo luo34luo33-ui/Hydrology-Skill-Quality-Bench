@@ -1,0 +1,101 @@
+{
+  "artifacts": {
+    "distance_area.csv": {
+      "path": "distance_area.csv",
+      "sha256": "6e53438ec8d5cecaa5313e102782294183cd8692121c66c7506a7755e23e7821"
+    },
+    "topographic_index.tif": {
+      "path": "topographic_index.tif",
+      "sha256": "486239a7c3dd42c3f1ab5f5be3d7ee60b05856526fda1c876451d619e80467d8"
+    },
+    "topographic_index_classes.csv": {
+      "path": "topographic_index_classes.csv",
+      "sha256": "6ada2f85c8b3ff44b871891b255487c233d16834fe08e2a282cd79f645b9f7d0"
+    }
+  },
+  "checks": [
+    {
+      "check": "upstream_hashes",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "single_outlet",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "same_grid",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "d8_paths",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "finite_index",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "distribution_weights",
+      "details": "validated",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "d8_pointer": {
+      "path": "d8_pointer.tif",
+      "sha256": "0f730afded51b93b1cd6dc72d221dbb4272e1e3dfdcc7ae22a41549a84b15db2"
+    },
+    "filled_dem": {
+      "path": "filled_dem.tif",
+      "sha256": "330246ff885412342948d5eb276381df01b10bd6cdc7b2d594c1c71211f7e9d0"
+    },
+    "flow_accumulation": {
+      "path": "flow_accumulation_cells.tif",
+      "sha256": "7d98b48453a33e9c233a2c44b4cfa2aff4d7d060f8dc9178208158e7200e5940"
+    },
+    "stream_result": {
+      "path": "stream_result.json",
+      "sha256": "4eb51f54ffb7b56c9040b23587c3ee07463f2beb0d1d2b20f309ae619f9c4ef0"
+    },
+    "subbasins_clipped": {
+      "path": "subbasins_clipped.tif",
+      "sha256": "d71da7ff67925a73906f1c84826b5e69a53638903160c06677bc55317cfc67b5"
+    },
+    "topology_qc_result": {
+      "path": "topology_qc_result.json",
+      "sha256": "b28401ef16ad40ff78455716a7b2057c076b865dfb7875b67f4ae55b3dad46c0"
+    },
+    "topology_result": {
+      "path": "build_result.json",
+      "sha256": "47dbaa1d28cd4179a0a9514969b4f07aa1e225a41048605329c8bc648cbccc07"
+    }
+  },
+  "message": "TOPMODEL terrain inputs derived from validated single-outlet basin",
+  "parameters": {
+    "basin_area_m2": 96.0,
+    "cell_area_m2": 1.0,
+    "classes": 10,
+    "d8_encoding": "whitebox-default-non-esri",
+    "distance_bins": 10,
+    "exit_cell": [
+      11,
+      7
+    ],
+    "minimum_slope": 0.0001,
+    "slope_clipped_cells": 25,
+    "slope_method": "D8 centre drop; clipped at minimum_slope",
+    "specific_area": "accumulation_cells * cell_area / D8 contour_width"
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/derive-topmodel-terrain-inputs",
+  "status": "success",
+  "warnings": []
+}

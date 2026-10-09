@@ -1,0 +1,2215 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydromodel-swat-sd-001",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "hydrological-modeling/run-semi-distributed-swat-model",
+    "source_contract_sha256": "2501f063179b0d7cffb752cc96005293c3b499c3d91f0ea39d819a8277e70cfa",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "topology_result",
+          "description": "build-hydrological-topology 的 result.json，引用带 SHA-256 的子流域、河段和拓扑表。",
+          "required": true,
+          "format": "JSON"
+        },
+        {
+          "id": "topology_qc_result",
+          "description": "validate-hydrological-topology 的 result.json，必须引用同一构建结果且 expected_outlets 为 1。",
+          "required": true,
+          "format": "JSON"
+        },
+        {
+          "id": "hru_table",
+          "description": "显式 HRU 属性表；每行一个 HRU，必须给出面积、CN2、逐层土壤水参数与含水层参数。",
+          "required": true,
+          "format": "UTF-8 CSV（# 开头为注释行）",
+          "variables": [
+            {
+              "name": "hru_id",
+              "semantics": "HRU 标识符，必须唯一；仅用于结果与溯源标签。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失或重复。"
+            },
+            {
+              "name": "sub_id",
+              "semantics": "所属 HydroBase 子流域正整数标识，用于把 HRU 面积汇到一处局地产流。",
+              "units": "dimensionless",
+              "spatial_unit": "subbasin",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；必须存在于 subbasins.csv。"
+            },
+            {
+              "name": "area_km2",
+              "semantics": "HRU 面积，同一子流域内之和必须等于 subbasins.csv 的 area_km2。",
+              "units": "km2",
+              "spatial_unit": "hru",
+              "state_or_flux": "state",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "不允许缺失、零或负值。"
+            },
+            {
+              "name": "cn2",
+              "semantics": "常态土壤水分条件下的 SCS 曲线数 II。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "time_step": "static",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；必须显式给出。"
+            },
+            {
+              "name": "soil_%i_thickness_mm",
+              "semantics": "第 i 层土层厚度（mm），土层储量字段均为扣除凋萎点后的水量。",
+              "units": "mm",
+              "spatial_unit": "hru",
+              "state_or_flux": "state",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "每层五个字段必须齐备；土层索引自 1 连续编号。"
+            },
+            {
+              "name": "soil_%i_fc_mm",
+              "semantics": "第 i 层田间持水量（mm H2O）。",
+              "units": "mm",
+              "spatial_unit": "hru",
+              "state_or_flux": "state",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "同 soil_%i_thickness_mm。"
+            },
+            {
+              "name": "soil_%i_ul_mm",
+              "semantics": "第 i 层饱和储水量（mm H2O），必须不小于 fc。",
+              "units": "mm",
+              "spatial_unit": "hru",
+              "state_or_flux": "state",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "同 soil_%i_thickness_mm。"
+            },
+            {
+              "name": "soil_%i_wp_mm_per_mm",
+              "semantics": "第 i 层凋萎点含水量（mm H2O / mm 土层），V1 仅参与记录。",
+              "units": "mm/mm",
+              "spatial_unit": "hru",
+              "state_or_flux": "state",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "同 soil_%i_thickness_mm。"
+            },
+            {
+              "name": "soil_%i_ksat_mm_hr",
+              "semantics": "第 i 层饱和导水率，用于渗漏与侧向流。",
+              "units": "mm/hr",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "同 soil_%i_thickness_mm；必须为正。"
+            },
+            {
+              "name": "aquifer_alpha",
+              "semantics": "含水层基流退水系数（`alpha_bf`）。",
+              "units": "1/day",
+              "spatial_unit": "hru",
+              "time_step": "daily",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；必须为正。"
+            },
+            {
+              "name": "aquifer_seep_frac",
+              "semantics": "含水层补给中漏失到深层的比例（`gw_seep_frac`）。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失，取值范围 [0,1]；默认 0 表示无深部漏失。"
+            },
+            {
+              "name": "aquifer_specific_yield",
+              "semantics": "给水度，用于把含水层储量换算为地下水位埋深。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；必须为正。"
+            },
+            {
+              "name": "aquifer_dep_bot_m",
+              "semantics": "含水层底板埋深（m）。",
+              "units": "m",
+              "spatial_unit": "hru",
+              "state_or_flux": "state",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "不允许缺失；必须为正。"
+            },
+            {
+              "name": "aquifer_flo_min_m",
+              "semantics": "基流触发的最大允许水位埋深（m），水位更深时停止出流。",
+              "units": "m",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值非负。"
+            },
+            {
+              "name": "aquifer_revap_co",
+              "semantics": "地下水再蒸发系数（V1 实现：水位浅于 revap_min_m 时按 PET 比例抽取）。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；默认 0 表示无再蒸发。"
+            },
+            {
+              "name": "aquifer_revap_min_m",
+              "semantics": "再蒸发允许的含水层最大水位埋深（m）。",
+              "units": "m",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值非负。"
+            },
+            {
+              "name": "canmx_mm",
+              "semantics": "日最大冠层截留容量（mm）；adapted，无叶面积动态。",
+              "units": "mm",
+              "spatial_unit": "hru",
+              "time_step": "daily",
+              "state_or_flux": "state",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "不允许缺失；取值非负。"
+            },
+            {
+              "name": "brt",
+              "semantics": "坡面滞后储库的日出流比例。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "time_step": "daily",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值范围 [0,1]。"
+            },
+            {
+              "name": "latq_co",
+              "semantics": "侧向流系数，与导水率、坡度、坡长共同决定侧向流出流。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "time_step": "daily",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值范围 [0,1]。"
+            },
+            {
+              "name": "lat_ttime_days",
+              "semantics": "侧向流传播时间（day），换算为指数出流系数。",
+              "units": "day",
+              "spatial_unit": "hru",
+              "time_step": "daily",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；必须为正。"
+            },
+            {
+              "name": "slope_m_m",
+              "semantics": "HRU 平均坡度（m/m），仅用于侧向流计算。",
+              "units": "m/m",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；必须为正。"
+            },
+            {
+              "name": "lat_len_m",
+              "semantics": "侧向流坡长（m）。",
+              "units": "m",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；必须为正。"
+            },
+            {
+              "name": "perco_lim",
+              "semantics": "最底层渗漏折减系数。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值范围 [0,1]。"
+            },
+            {
+              "name": "cn3_swf",
+              "semantics": "SCS 形状系数调整量，把 CN-I 含水率拉向 CN-III。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值范围 [0,1]。"
+            },
+            {
+              "name": "esco",
+              "semantics": "土壤蒸发补偿因子。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值范围 [0,1]。"
+            },
+            {
+              "name": "ep_frac",
+              "semantics": "再蒸发后剩余 PET 分配给植物蒸腾的比例；率定键为 `simplified_ep_frac`。",
+              "units": "dimensionless",
+              "spatial_unit": "hru",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失；取值范围 [0,1]；该分量是 replaced 实现，不是 SWAT+ 原始 LAI 分配。"
+            }
+          ]
+        },
+        {
+          "id": "forcing",
+          "description": "每个 time/sub_id 恰好一行的逐步降雨和蒸发能力长表；本 Skill 仅接受日尺度，亚日尺度必须先显式聚合。",
+          "required": true,
+          "format": "UTF-8 CSV",
+          "variables": [
+            {
+              "name": "P_mm",
+              "semantics": "对应子流域和时间间隔的累计降雨深度。",
+              "units": "mm/step",
+              "spatial_unit": "subbasin",
+              "time_step": "config.time.step_seconds 显式指定",
+              "timezone": "config.time.timezone 显式指定",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "accumulated",
+              "missing_value_semantics": "不允许缺失、重复或隐式填零。"
+            },
+            {
+              "name": "E0_mm",
+              "semantics": "对应子流域和时间间隔的累计蒸发能力深度。",
+              "units": "mm/step",
+              "spatial_unit": "subbasin",
+              "time_step": "config.time.step_seconds 显式指定",
+              "timezone": "config.time.timezone 显式指定",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "accumulated",
+              "missing_value_semantics": "不允许缺失、重复或隐式填零。"
+            },
+            {
+              "name": "time",
+              "semantics": "带 UTC 偏移的区间末端时间戳。",
+              "units": "datetime",
+              "time_step": "config.time.step_seconds 显式指定",
+              "timezone": "config.time.timezone 显式指定",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失或重复。"
+            }
+          ]
+        },
+        {
+          "id": "parameter_set",
+          "description": "时间、SWAT 忠实度开关、逐河段河道参数、初始状态、参数覆盖、预热期与模拟期间的完整配置。",
+          "required": true,
+          "format": "JSON or YAML"
+        },
+        {
+          "id": "boundary_inflow",
+          "description": "可选 time/reach_id/Q_m3s 长表；只能注入承接本地产流的河段，在到达该河段演算之前加入。",
+          "required": false,
+          "format": "UTF-8 CSV",
+          "variables": [
+            {
+              "name": "Q_m3s",
+              "semantics": "指定河段在区间末端的外部边界入流率。",
+              "units": "m3/s",
+              "spatial_unit": "reach",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "提供的行不允许缺失；未列出的时段/河段视为无入流。"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "id": "hru_process",
+          "description": "每个 HRU 逐时步降雨、实际 ET、地表/侧向/基流水源深度、土壤水与含水层状态，以及该 HRU 的逐步水量平衡残差。",
+          "required": true,
+          "format": "UTF-8 CSV",
+          "variables": [
+            {
+              "name": "P_mm",
+              "semantics": "HRU 所在子流域的日降雨深度。",
+              "units": "mm/step",
+              "spatial_unit": "hru",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "accumulated",
+              "missing_value_semantics": "科学 QC 失败时不生成有效序列。"
+            },
+            {
+              "name": "AET_mm",
+              "semantics": "实际蒸散发（冠层蒸发 + 土壤蒸发 + 植物蒸腾）。",
+              "units": "mm/step",
+              "spatial_unit": "hru",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "accumulated",
+              "missing_value_semantics": "科学 QC 失败时不生成有效序列。"
+            },
+            {
+              "name": "baseflow_mm",
+              "semantics": "含水层基流出流深度。",
+              "units": "mm/step",
+              "spatial_unit": "hru",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "accumulated",
+              "missing_value_semantics": "科学 QC 失败时不生成有效序列。"
+            },
+            {
+              "name": "residual_mm",
+              "semantics": "HRU 控制体逐步水盆残差（初始储量+降雨-出流-终储量）。",
+              "units": "mm",
+              "spatial_unit": "hru",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "accumulated",
+              "missing_value_semantics": "超容差时整个运行判为失败。"
+            }
+          ]
+        },
+        {
+          "id": "subbasin_process",
+          "description": "每个子流域逐时步三水源体积、本地入河流量、边界入流、上游入流、出流与子流域控制体残差。",
+          "required": true,
+          "format": "UTF-8 CSV"
+        },
+        {
+          "id": "reach_process",
+          "description": "每个河段逐时步本地与边界入流、上游入流、总入流、出流、河道损失和末端储量。",
+          "required": true,
+          "format": "UTF-8 CSV"
+        },
+        {
+          "id": "outlet_flow",
+          "description": "唯一流域出口的逐时步出流体积与日均流量，含 is_warmup 标记。",
+          "required": true,
+          "format": "UTF-8 CSV",
+          "variables": [
+            {
+              "name": "Q_m3s",
+              "semantics": "拓扑驱动后的唯一出口总流量（当日出流体积 / 86400 s）。",
+              "units": "m3/s",
+              "spatial_unit": "outlet_reach",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "科学 QC 失败时不生成有效模拟序列。"
+            }
+          ]
+        },
+        {
+          "id": "water_balance",
+          "description": "HRU / 河段 / 子流域 / 流域四级残差、阈值、最大残差与流域记账量。",
+          "required": true,
+          "format": "JSON"
+        },
+        {
+          "id": "model_config",
+          "description": "运行时完整配置快照。",
+          "required": true,
+          "format": "JSON"
+        },
+        {
+          "id": "run_result",
+          "description": "参数、输入输出哈希、QC、预警与 provenance（含 NOT VERIFIED 与 LGPL 溯源）。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "warmup_period": {
+        "required": true,
+        "semantics": "config.warmup_steps 指定前 N 个时步；保留在输出并标记，不属于模拟期间。注意源工程的 warmup_days 是整段重复运行，本 Skill 采用前 N 步语义。"
+      },
+      "simulation_period": {
+        "required": true,
+        "semantics": "config.simulation.start/end 必须等于预热后首步和序列末步，均为带偏移区间末端时间。"
+      },
+      "invariants": [
+        "每个子流域面积只用于一次局地产流，且必须来自经验证 HydroBase。",
+        "每个子流域恰有一个承接河段；整个流域恰有一个最终出口。",
+        "同一子流域内 HRU 面积之和必须等于 subbasins.csv 的 area_km2（相对容差 1e-6）。",
+        "每个 time/sub_id 恰有一条 forcing，时间轴严格等间隔日序列。",
+        "仅支持 step_seconds=86400；亚日尺度必须先在上游处理或显式 opt-in 聚合。",
+        "河道出流体积与末端储量差不得解释为损失，已单独给出 loss_m3_day 与 storage_m3。",
+        "参数、状态、输入和输出均有限；缺失或非法数值不静默修复。",
+        "parameter_overrides 是全局广播，逐个 HRU/河段微调不在 V1 范围内。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "hru_mm": {
+            "type": "number"
+          },
+          "reach_m3": {
+            "type": "number"
+          },
+          "subbasin_m3": {
+            "type": "number"
+          },
+          "basin_relative": {
+            "type": "number"
+          }
+        },
+        {
+          "cn2": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "canmx_mm": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "brt": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "latq_co": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "lat_ttime_days": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "perco_lim": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "cn3_swf": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "esco": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "simplified_ep_frac": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "alpha_bf": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "gw_seep_frac": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "musk_k_hr": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "musk_x": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "cn_froz": {
+            "target": {
+              "type": "string"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "fixed": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "target": {
+            "type": "string"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "fixed": {
+            "type": "boolean"
+          },
+          "source": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        {
+          "canev_mm": {
+            "type": "computed; see field semantics"
+          },
+          "es_day_mm": {
+            "type": "computed; see field semantics"
+          },
+          "ep_day_mm": {
+            "type": "computed; see field semantics"
+          },
+          "aet_mm": {
+            "type": "computed; see field semantics"
+          },
+          "canstor_new_mm": {
+            "type": "computed; see field semantics"
+          },
+          "soil_st_new_mm": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "baseflow_mm": {
+            "type": "computed; see field semantics"
+          },
+          "seep_mm": {
+            "type": "computed; see field semantics"
+          },
+          "revap_mm": {
+            "type": "computed; see field semantics"
+          },
+          "stor_new_mm": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "thickness_mm": {
+            "type": "computed; see field semantics"
+          },
+          "fc_mm": {
+            "type": "computed; see field semantics"
+          },
+          "ul_mm": {
+            "type": "computed; see field semantics"
+          },
+          "ksat_mm_hr": {
+            "type": "computed; see field semantics"
+          },
+          "bottom_depth_mm": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "outflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "upstream_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "loss_m3_day": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "max_abs_residual_mm": {
+            "type": "computed; see field semantics"
+          },
+          "tolerance_mm": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "max_abs_residual_m3": {
+            "type": "computed; see field semantics"
+          },
+          "tolerance_m3": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "relative_residual": {
+            "type": "computed; see field semantics"
+          },
+          "residual_m3": {
+            "type": "computed; see field semantics"
+          },
+          "tolerance_relative": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "precip_mm": {
+            "type": "computed; see field semantics"
+          },
+          "aet_mm": {
+            "type": "computed; see field semantics"
+          },
+          "surface_gen_mm": {
+            "type": "computed; see field semantics"
+          },
+          "surface_mm": {
+            "type": "computed; see field semantics"
+          },
+          "lateral_mm": {
+            "type": "computed; see field semantics"
+          },
+          "baseflow_mm": {
+            "type": "computed; see field semantics"
+          },
+          "percolation_mm": {
+            "type": "computed; see field semantics"
+          },
+          "deep_seepage_mm": {
+            "type": "computed; see field semantics"
+          },
+          "revap_mm": {
+            "type": "computed; see field semantics"
+          },
+          "soil_water_mm": {
+            "type": "computed; see field semantics"
+          },
+          "canopy_mm": {
+            "type": "computed; see field semantics"
+          },
+          "aquifer_mm": {
+            "type": "computed; see field semantics"
+          },
+          "cnday": {
+            "type": "computed; see field semantics"
+          },
+          "storage_mm": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "local_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "boundary_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "upstream_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "outflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "loss_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "storage_m3": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "precip_m3": {
+            "type": "computed; see field semantics"
+          },
+          "boundary_inflow_m3": {
+            "type": "computed; see field semantics"
+          },
+          "actual_et_m3": {
+            "type": "computed; see field semantics"
+          },
+          "deep_seepage_m3": {
+            "type": "computed; see field semantics"
+          },
+          "revap_m3": {
+            "type": "computed; see field semantics"
+          },
+          "outlet_outflow_m3": {
+            "type": "computed; see field semantics"
+          },
+          "channel_loss_m3": {
+            "type": "computed; see field semantics"
+          },
+          "delta_storage_m3": {
+            "type": "computed; see field semantics"
+          },
+          "residual_m3": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "areas": {
+            "type": "computed; see field semantics"
+          },
+          "sub_ids": {
+            "type": "computed; see field semantics"
+          },
+          "reach_ids": {
+            "type": "computed; see field semantics"
+          },
+          "downstream": {
+            "type": "computed; see field semantics"
+          },
+          "incoming": {
+            "type": "computed; see field semantics"
+          },
+          "order": {
+            "type": "computed; see field semantics"
+          },
+          "injection": {
+            "type": "computed; see field semantics"
+          },
+          "outlet": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "control_volumes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tolerances": {
+            "type": "computed; see field semantics"
+          },
+          "max_abs_residual": {
+            "hru_mm": {
+              "type": "computed; see field semantics"
+            },
+            "reach_m3": {
+              "type": "computed; see field semantics"
+            },
+            "subbasin_m3": {
+              "type": "computed; see field semantics"
+            },
+            "basin_residual_m3": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "basin_fluxes_m3": {
+            "type": "computed; see field semantics"
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        {
+          "topology_result": {
+            "type": "computed; see field semantics"
+          },
+          "topology_qc_result": {
+            "type": "computed; see field semantics"
+          },
+          "hru_table": {
+            "type": "computed; see field semantics"
+          },
+          "forcing": {
+            "type": "computed; see field semantics"
+          },
+          "params": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "string"
+          },
+          "parameters": {
+            "time": {
+              "type": "computed; see field semantics"
+            },
+            "swat": {
+              "type": "computed; see field semantics"
+            },
+            "initial": {
+              "type": "computed; see field semantics"
+            },
+            "reach_params_by_id": {
+              "type": "computed; see field semantics"
+            },
+            "parameter_overrides": {
+              "type": "computed; see field semantics"
+            },
+            "warmup_steps": {
+              "type": "computed; see field semantics"
+            },
+            "simulation": {
+              "type": "computed; see field semantics"
+            },
+            "aggregate_to_daily": {
+              "type": "computed; see field semantics"
+            },
+            "n_steps": {
+              "type": "computed; see field semantics"
+            },
+            "n_hru": {
+              "type": "computed; see field semantics"
+            },
+            "n_subbasin": {
+              "type": "computed; see field semantics"
+            },
+            "n_reach": {
+              "type": "computed; see field semantics"
+            },
+            "outlet_reach_id": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "inputs": {
+            "type": "computed; see field semantics"
+          },
+          "artifacts": {
+            "type": "computed; see field semantics"
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            },
+            "numpy": {
+              "type": "computed; see field semantics"
+            },
+            "pandas": {
+              "type": "computed; see field semantics"
+            },
+            "PyYAML": {
+              "type": "computed; see field semantics"
+            },
+            "jsonschema": {
+              "type": "computed; see field semantics"
+            },
+            "source_project": {
+              "type": "string"
+            },
+            "source_upstream": {
+              "type": "computed; see field semantics"
+            },
+            "source_license": {
+              "type": "string"
+            },
+            "source_verification": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "aggregate_to_daily": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "inputs": {
+            "type": "computed; see field semantics"
+          },
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "check": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "details": {
+                "type": "computed; see field semantics"
+              }
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            },
+            "source_verification": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "hru_mm": {
+            "type": "computed; see field semantics"
+          },
+          "reach_m3": {
+            "type": "computed; see field semantics"
+          },
+          "subbasin_m3": {
+            "type": "computed; see field semantics"
+          },
+          "basin_residual_m3": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "time": {
+            "type": "computed; see field semantics"
+          },
+          "swat": {
+            "type": "computed; see field semantics"
+          },
+          "initial": {
+            "type": "computed; see field semantics"
+          },
+          "reach_params_by_id": {
+            "type": "computed; see field semantics"
+          },
+          "parameter_overrides": {
+            "type": "computed; see field semantics"
+          },
+          "warmup_steps": {
+            "type": "computed; see field semantics"
+          },
+          "simulation": {
+            "type": "computed; see field semantics"
+          },
+          "aggregate_to_daily": {
+            "type": "computed; see field semantics"
+          },
+          "n_steps": {
+            "type": "computed; see field semantics"
+          },
+          "n_hru": {
+            "type": "computed; see field semantics"
+          },
+          "n_subbasin": {
+            "type": "computed; see field semantics"
+          },
+          "n_reach": {
+            "type": "computed; see field semantics"
+          },
+          "outlet_reach_id": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          },
+          "PyYAML": {
+            "type": "computed; see field semantics"
+          },
+          "jsonschema": {
+            "type": "computed; see field semantics"
+          },
+          "source_project": {
+            "type": "string"
+          },
+          "source_upstream": {
+            "type": "computed; see field semantics"
+          },
+          "source_license": {
+            "type": "string"
+          },
+          "source_verification": {
+            "type": "string"
+          }
+        },
+        {
+          "aggregate_to_daily": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "source_verification": {
+            "type": "string"
+          }
+        },
+        {
+          "time": {
+            "type": "computed; see field semantics"
+          },
+          "outlet_reach_id": {
+            "type": "computed; see field semantics"
+          },
+          "is_warmup": {
+            "type": "computed; see field semantics"
+          },
+          "outflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "Q_m3s": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "time": {
+            "type": "computed; see field semantics"
+          },
+          "hru_id": {
+            "type": "computed; see field semantics"
+          },
+          "sub_id": {
+            "type": "computed; see field semantics"
+          },
+          "is_warmup": {
+            "type": "computed; see field semantics"
+          },
+          "P_mm": {
+            "type": "computed; see field semantics"
+          },
+          "AET_mm": {
+            "type": "computed; see field semantics"
+          },
+          "surface_gen_mm": {
+            "type": "computed; see field semantics"
+          },
+          "surface_mm": {
+            "type": "computed; see field semantics"
+          },
+          "lateral_mm": {
+            "type": "computed; see field semantics"
+          },
+          "baseflow_mm": {
+            "type": "computed; see field semantics"
+          },
+          "percolation_mm": {
+            "type": "computed; see field semantics"
+          },
+          "deep_seepage_mm": {
+            "type": "computed; see field semantics"
+          },
+          "revap_mm": {
+            "type": "computed; see field semantics"
+          },
+          "soil_water_mm": {
+            "type": "computed; see field semantics"
+          },
+          "canopy_mm": {
+            "type": "computed; see field semantics"
+          },
+          "aquifer_mm": {
+            "type": "computed; see field semantics"
+          },
+          "cnday": {
+            "type": "computed; see field semantics"
+          },
+          "storage_mm": {
+            "type": "computed; see field semantics"
+          },
+          "residual_mm": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "time": {
+            "type": "computed; see field semantics"
+          },
+          "sub_id": {
+            "type": "computed; see field semantics"
+          },
+          "is_warmup": {
+            "type": "computed; see field semantics"
+          },
+          "surface_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "lateral_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "baseflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "local_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "boundary_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "upstream_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "outflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "residual_m3": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "time": {
+            "type": "computed; see field semantics"
+          },
+          "reach_id": {
+            "type": "computed; see field semantics"
+          },
+          "is_warmup": {
+            "type": "computed; see field semantics"
+          },
+          "local_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "boundary_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "upstream_inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "inflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "outflow_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "loss_m3_day": {
+            "type": "computed; see field semantics"
+          },
+          "storage_m3": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "UPSTREAM_URL",
+          "UPSTREAM_TAG",
+          "UPSTREAM_COMMIT",
+          "SUPPORTED_DT_S",
+          "MM_KM2_TO_M3",
+          "MM_HA_TO_M3",
+          "SEC_PER_DAY",
+          "DAILY_DT_HR",
+          "PRECIP_GATE_MM",
+          "SW_EXCESS_TOL_MM",
+          "DEFAULT_ETCO",
+          "DEFAULT_ESD_MM",
+          "DEFAULT_CNFROZ",
+          "DEFAULT_SOIL_SLUG_MM",
+          "DEFAULT_MSK_X",
+          "NO_DOWNSTREAM",
+          "VALID_PROFILES",
+          "VALID_CN_MODES",
+          "VALID_CHANNEL_PROFILES",
+          "WATER_BALANCE_TOLERANCES",
+          "PARAMETER_SCHEMA",
+          "validate_parameter_overrides",
+          "SoilLayer",
+          "AquiferParams",
+          "HRU",
+          "Subbasin",
+          "Reach",
+          "BasinConfig",
+          "ModelState",
+          "initial_state",
+          "canopy_capacity",
+          "canopy_interception",
+          "ascrv",
+          "curno",
+          "curve_number_daily",
+          "surface_runoff_cn",
+          "canopy_evaporation",
+          "soil_evaporation",
+          "plant_transpiration",
+          "actual_et",
+          "soil_water_routing",
+          "lat_ttime_factor",
+          "lateral_flow_lag",
+          "surface_runoff_lag",
+          "groundwater_depth",
+          "aquifer_step",
+          "muskingum_coefficients",
+          "variable_storage_coefficient",
+          "ChannelRouter",
+          "topological_order",
+          "build_upstream_lists",
+          "has_cycle",
+          "assert_acyclic",
+          "RunResult",
+          "SWATSimulator",
+          "evaluate_water_balance"
+        ],
+        [
+          "source_port",
+          "simplified"
+        ],
+        [
+          "static",
+          "dynamic"
+        ],
+        [
+          "linear_storage",
+          "muskingum"
+        ],
+        [
+          "canopy_mm",
+          "soil_st_mm",
+          "surf_lag_mm",
+          "lat_lag_mm",
+          "aqu_stor_mm",
+          "aqu_flo_mm",
+          "ch_storage_m3",
+          "ch_in1_m3",
+          "ch_out1_m3"
+        ],
+        [
+          "hru_process.csv",
+          "subbasin_process.csv",
+          "reach_process.csv",
+          "outlet_flow.csv",
+          "water_balance.json",
+          "model_config.json",
+          "result.json"
+        ],
+        [
+          "hru_id",
+          "sub_id",
+          "area_km2",
+          "cn2",
+          "canmx_mm",
+          "brt",
+          "latq_co",
+          "lat_ttime_days",
+          "slope_m_m",
+          "lat_len_m",
+          "perco_lim",
+          "cn3_swf",
+          "esco",
+          "ep_frac",
+          "aquifer_alpha",
+          "aquifer_seep_frac",
+          "aquifer_specific_yield",
+          "aquifer_dep_bot_m",
+          "aquifer_flo_min_m",
+          "aquifer_revap_co",
+          "aquifer_revap_min_m"
+        ],
+        [
+          "thickness_mm",
+          "fc_mm",
+          "ul_mm",
+          "wp_mm_per_mm",
+          "ksat_mm_hr"
+        ],
+        [
+          "schema_version",
+          "time",
+          "swat",
+          "initial",
+          "reach_params_by_id",
+          "parameter_overrides",
+          "warmup_steps",
+          "simulation"
+        ],
+        [
+          "subbasins_table",
+          "reaches_table",
+          "topology_table"
+        ],
+        [
+          "reach_id",
+          "sub_id",
+          "downstream_reach_id"
+        ],
+        [
+          "P_mm",
+          "E0_mm"
+        ],
+        [
+          "topology-result",
+          "topology-qc-result",
+          "hru-table",
+          "forcing",
+          "params",
+          "output-dir"
+        ],
+        [
+          "topology_result",
+          "topology_qc_result",
+          "hru_table",
+          "forcing",
+          "params",
+          "boundary_inflow"
+        ],
+        [
+          "step_seconds",
+          "timezone",
+          "timestamp_meaning"
+        ],
+        [
+          "start",
+          "end"
+        ],
+        [
+          "time",
+          "sub_id",
+          "P_mm",
+          "E0_mm"
+        ],
+        [
+          "day",
+          "sub_id"
+        ],
+        [
+          "time",
+          "reach_id",
+          "Q_m3s"
+        ],
+        [
+          "hru",
+          "reach",
+          "subbasin",
+          "basin"
+        ],
+        [
+          "path",
+          "sha256"
+        ],
+        [
+          "success",
+          "warning"
+        ],
+        [
+          "sum",
+          "mean"
+        ],
+        [
+          ".yaml",
+          ".yml"
+        ],
+        [
+          "sub_id",
+          "area_km2",
+          "outlet_reach_ids"
+        ],
+        [
+          "time",
+          "sub_id"
+        ],
+        [
+          "P_mm",
+          "sum"
+        ],
+        [
+          "E0_mm",
+          "sum"
+        ],
+        [
+          "P_mm",
+          "mean"
+        ],
+        [
+          "E0_mm",
+          "mean"
+        ],
+        [
+          "time",
+          "reach_id"
+        ]
+      ],
+      "field_names": [
+        ".yaml",
+        ".yml",
+        "AET_mm",
+        "AquiferParams",
+        "BasinConfig",
+        "ChannelRouter",
+        "DAILY_DT_HR",
+        "DEFAULT_CNFROZ",
+        "DEFAULT_ESD_MM",
+        "DEFAULT_ETCO",
+        "DEFAULT_MSK_X",
+        "DEFAULT_SOIL_SLUG_MM",
+        "E0_mm",
+        "HRU",
+        "MM_HA_TO_M3",
+        "MM_KM2_TO_M3",
+        "ModelState",
+        "NO_DOWNSTREAM",
+        "PARAMETER_SCHEMA",
+        "PRECIP_GATE_MM",
+        "P_mm",
+        "PyYAML",
+        "Q_m3s",
+        "Reach",
+        "RunResult",
+        "SEC_PER_DAY",
+        "SUPPORTED_DT_S",
+        "SWATSimulator",
+        "SW_EXCESS_TOL_MM",
+        "SoilLayer",
+        "Subbasin",
+        "UPSTREAM_COMMIT",
+        "UPSTREAM_TAG",
+        "UPSTREAM_URL",
+        "VALID_CHANNEL_PROFILES",
+        "VALID_CN_MODES",
+        "VALID_PROFILES",
+        "WATER_BALANCE_TOLERANCES",
+        "action",
+        "active_mask",
+        "actual_et",
+        "actual_et_m3",
+        "aet_mm",
+        "aggregate_to_daily",
+        "alpha",
+        "alpha_bf",
+        "aqu_flo_mm",
+        "aqu_stor_mm",
+        "aquifer",
+        "aquifer_alpha",
+        "aquifer_baseflow_mm",
+        "aquifer_dep_bot_m",
+        "aquifer_flo_min_m",
+        "aquifer_mm",
+        "aquifer_revap_co",
+        "aquifer_revap_min_m",
+        "aquifer_seep_frac",
+        "aquifer_specific_yield",
+        "aquifer_step",
+        "aquifer_storage_mm",
+        "area_km2",
+        "areas",
+        "artifacts",
+        "as_index",
+        "ascrv",
+        "assert_acyclic",
+        "axis",
+        "baseflow_m3_day",
+        "baseflow_mm",
+        "basin",
+        "basin_balance",
+        "basin_fluxes_m3",
+        "basin_relative",
+        "basin_residual_m3",
+        "bottom_depth_mm",
+        "boundary_inflow",
+        "boundary_inflow_m3",
+        "boundary_inflow_m3_day",
+        "boundary_m3",
+        "brt",
+        "build_result",
+        "build_upstream_lists",
+        "canev_mm",
+        "canmx_mm",
+        "canopy_capacity",
+        "canopy_evaporation",
+        "canopy_interception",
+        "canopy_mm",
+        "canstor_mm",
+        "canstor_new_mm",
+        "ch_in1_m3",
+        "ch_out1_m3",
+        "ch_storage_m3",
+        "channel_loss_m3",
+        "channel_profile",
+        "channel_storage_m3",
+        "check",
+        "checks",
+        "choices",
+        "cn2",
+        "cn3_swf",
+        "cn_froz",
+        "cn_mode",
+        "cnday",
+        "comment",
+        "control_volumes",
+        "copy",
+        "curno",
+        "curve_number_daily",
+        "day",
+        "days",
+        "deep_seepage_m3",
+        "deep_seepage_mm",
+        "default",
+        "default_factory",
+        "delta_storage_m3",
+        "dep_bot_m",
+        "description",
+        "details",
+        "divide",
+        "downstream",
+        "downstream_id",
+        "downstream_reach_id",
+        "dt",
+        "dt_hr",
+        "dtype",
+        "dynamic",
+        "encoding",
+        "end",
+        "ensure_ascii",
+        "ep_day_mm",
+        "ep_frac",
+        "errors",
+        "es_day_mm",
+        "esco",
+        "esd_mm",
+        "etco",
+        "evaluate_water_balance",
+        "evap_m3_day",
+        "exist_ok",
+        "fc_mm",
+        "file",
+        "final_state",
+        "fixed",
+        "flo_min_m",
+        "flo_prev_mm",
+        "forcing",
+        "frozen",
+        "groundwater_depth",
+        "gw_seep_frac",
+        "has_cycle",
+        "help",
+        "hru",
+        "hru-table",
+        "hru_id",
+        "hru_mm",
+        "hru_process.csv",
+        "hru_residual_mm",
+        "hru_table",
+        "hrus",
+        "id",
+        "incoming",
+        "indent",
+        "index",
+        "inflow_m3_day",
+        "initial",
+        "initial_state",
+        "initial_state_obj",
+        "injection",
+        "inputs",
+        "invalid",
+        "is_warmup",
+        "jsonschema",
+        "ksat_mm_hr",
+        "lat_lag_mm",
+        "lat_len_m",
+        "lat_ttime",
+        "lat_ttime_days",
+        "lat_ttime_factor",
+        "lateral_flow_lag",
+        "lateral_lag_mm",
+        "lateral_m3_day",
+        "lateral_mm",
+        "latq_co",
+        "linear_storage",
+        "local_inflow_m3_day",
+        "loss_m3_day",
+        "max",
+        "max_abs_residual",
+        "max_abs_residual_m3",
+        "max_abs_residual_mm",
+        "mean",
+        "message",
+        "min",
+        "model_config.json",
+        "musk_k_hr",
+        "musk_x",
+        "muskingum",
+        "muskingum_coefficients",
+        "n_hru",
+        "n_reach",
+        "n_steps",
+        "n_subbasin",
+        "note",
+        "numpy",
+        "order",
+        "outflow_m3_day",
+        "outlet",
+        "outlet_Q_m3s",
+        "outlet_flow.csv",
+        "outlet_index",
+        "outlet_outflow_m3",
+        "outlet_reach_id",
+        "outlet_reach_ids",
+        "output-dir",
+        "over",
+        "overrides",
+        "pandas",
+        "parameter_overrides",
+        "parameters",
+        "params",
+        "parents",
+        "path",
+        "perco_lim",
+        "percolation_mm",
+        "pet_mm",
+        "plant_transpiration",
+        "precip_m3",
+        "precip_mm",
+        "profile",
+        "provenance",
+        "python",
+        "reach",
+        "reach_id",
+        "reach_ids",
+        "reach_m3",
+        "reach_params_by_id",
+        "reach_process.csv",
+        "reach_residual_m3",
+        "reaches",
+        "reaches_table",
+        "recharge_mm",
+        "relative_residual",
+        "required",
+        "residual_m3",
+        "residual_mm",
+        "result.json",
+        "revap_co",
+        "revap_m3",
+        "revap_min_m",
+        "revap_mm",
+        "schema_version",
+        "scoef",
+        "seconds",
+        "seep_frac",
+        "seep_mm",
+        "sha256",
+        "simplified",
+        "simplified_ep_frac",
+        "simulation",
+        "skill",
+        "slope_m_m",
+        "slug_mm",
+        "smx",
+        "soil_evaporation",
+        "soil_fraction",
+        "soil_layers",
+        "soil_slug_mm",
+        "soil_st_mm",
+        "soil_st_new_mm",
+        "soil_water_mm",
+        "soil_water_routing",
+        "sort",
+        "sort_keys",
+        "source",
+        "source_license",
+        "source_port",
+        "source_project",
+        "source_upstream",
+        "source_verification",
+        "specific_yield",
+        "spyld",
+        "start",
+        "static",
+        "status",
+        "step_seconds",
+        "stor_mm",
+        "stor_new_mm",
+        "storage_m3",
+        "storage_mm",
+        "sub_id",
+        "sub_ids",
+        "subbasin",
+        "subbasin_id",
+        "subbasin_m3",
+        "subbasin_process.csv",
+        "subbasin_residual_m3",
+        "subbasins",
+        "subbasins_table",
+        "success",
+        "sum",
+        "surf_lag_mm",
+        "surface_gen_mm",
+        "surface_lag_mm",
+        "surface_m3_day",
+        "surface_mm",
+        "surface_runoff_cn",
+        "surface_runoff_lag",
+        "swat",
+        "target",
+        "thickness_mm",
+        "time",
+        "timestamp_meaning",
+        "timezone",
+        "tolerance_m3",
+        "tolerance_mm",
+        "tolerance_relative",
+        "tolerances",
+        "topological_order",
+        "topology-qc-result",
+        "topology-result",
+        "topology_qc_result",
+        "topology_result",
+        "topology_table",
+        "trans_loss_m3_day",
+        "ttime_hr",
+        "type",
+        "ul_mm",
+        "upstream_inflow_m3_day",
+        "validate_parameter_overrides",
+        "variable_storage_coefficient",
+        "warmup_steps",
+        "warning",
+        "warnings",
+        "water_balance.json",
+        "wp_mm_per_mm",
+        "wrt1",
+        "wrt2"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "FAIL",
+          "PASS",
+          "WARN",
+          "adapted",
+          "basin_relative",
+          "error",
+          "faithful",
+          "hru_mm",
+          "reach_m3",
+          "replaced",
+          "subbasin_m3"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^\\.6f$",
+        "^g$",
+        "^soil_.+_.+$",
+        "^soil_.+_fc_mm$",
+        "^soil_.+_ksat_mm_hr$",
+        "^soil_.+_thickness_mm$",
+        "^soil_.+_ul_mm$",
+        "^soil_.+_wp_mm_per_mm$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "hydrological-modeling/run-semi-distributed-swat-model"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "build_result.json",
+    "topology_qc_result.json",
+    "hru_table.csv",
+    "forcing.csv",
+    "params.json"
+  ],
+  "outputs": [
+    "swat-sd-run/hru_process.csv",
+    "swat-sd-run/subbasin_process.csv",
+    "swat-sd-run/reach_process.csv",
+    "swat-sd-run/outlet_flow.csv",
+    "swat-sd-run/water_balance.json",
+    "swat-sd-run/model_config.json",
+    "swat-sd-run/result.json"
+  ],
+  "input_field_names": [
+    "1",
+    "2",
+    "E0_mm",
+    "PASS",
+    "P_mm",
+    "aquifer_alpha",
+    "aquifer_dep_bot_m",
+    "aquifer_flo_min_m",
+    "aquifer_revap_co",
+    "aquifer_revap_min_m",
+    "aquifer_seep_frac",
+    "aquifer_specific_yield",
+    "area_km2",
+    "artifacts",
+    "brt",
+    "build_result",
+    "canmx_mm",
+    "channel_profile",
+    "check",
+    "checks",
+    "cn2",
+    "cn3_swf",
+    "cn_mode",
+    "details",
+    "end",
+    "ep_frac",
+    "esco",
+    "evap_m3_day",
+    "expected_outlets",
+    "hru_id",
+    "initial",
+    "inputs",
+    "interval_end",
+    "lat_len_m",
+    "lat_ttime_days",
+    "latq_co",
+    "linear_storage",
+    "musk_k_hr",
+    "musk_x",
+    "parameter_overrides",
+    "parameters",
+    "path",
+    "perco_lim",
+    "profile",
+    "reach_params_by_id",
+    "reaches_table",
+    "schema_version",
+    "scoef",
+    "sha256",
+    "simplified",
+    "simulation",
+    "skill",
+    "slope_m_m",
+    "soil_1_fc_mm",
+    "soil_1_ksat_mm_hr",
+    "soil_1_thickness_mm",
+    "soil_1_ul_mm",
+    "soil_1_wp_mm_per_mm",
+    "soil_fraction",
+    "start",
+    "static",
+    "status",
+    "step_seconds",
+    "sub_id",
+    "subbasins_table",
+    "success",
+    "swat",
+    "synthetic_upstream",
+    "time",
+    "timestamp_meaning",
+    "timezone",
+    "topology_table",
+    "trans_loss_m3_day",
+    "ttime_hr",
+    "warmup_steps"
+  ],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

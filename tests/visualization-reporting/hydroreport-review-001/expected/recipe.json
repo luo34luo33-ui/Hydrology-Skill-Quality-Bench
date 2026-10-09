@@ -1,0 +1,35 @@
+{
+  "group": "hydroreport-review",
+  "outputs": [
+    "review-initial",
+    "review-final"
+  ],
+  "steps": [
+    {
+      "action": "relocate-report",
+      "args": [
+        "--study-manifest",
+        "manifest.json",
+        "--report-dir",
+        "report",
+        "--output-dir",
+        "review-initial"
+      ],
+      "code": 2
+    },
+    {
+      "action": "semantic",
+      "args": [
+        "--study-manifest",
+        "manifest.json",
+        "--report-dir",
+        "report",
+        "--semantic-review",
+        "semantic.json",
+        "--output-dir",
+        "review-final"
+      ],
+      "code": 0
+    }
+  ]
+}

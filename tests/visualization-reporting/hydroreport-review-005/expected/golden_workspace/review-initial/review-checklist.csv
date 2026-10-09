@@ -1,0 +1,4 @@
+﻿category,report_location,evidence_location,actual,expected,severity,action,needs_human_judgment
+value,/evidence/13/value,C:\Users\DELL\AppData\Local\Temp\hsqb-atomic-6uye6nun\eval\event_metrics.csv#/rows/0/nse,-0.25,-0.5,error,Inspect evidence and revise; finalize again without changing upstream data.,False
+narrative_binding,/sections,/sections,Original facts differ: evidence,Valid evidence and numeric bindings,error,Inspect evidence and revise; finalize again without changing upstream data.,False
+semantic_review,/sections,/sections,not completed,Independent Agent evidence assessment,warning,Inspect evidence and revise; finalize again without changing upstream data.,True

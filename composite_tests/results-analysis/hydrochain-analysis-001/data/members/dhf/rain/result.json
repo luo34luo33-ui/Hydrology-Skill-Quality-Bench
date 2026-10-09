@@ -1,0 +1,70 @@
+{
+  "artifacts": {
+    "forcing": {
+      "path": "prepared_forcing.csv",
+      "sha256": "e4c0636fb20de061ee2f6cff58b83b92632fd1e8368ae471afaca4f6223bbdd3"
+    },
+    "metadata": {
+      "path": "series_metadata.json",
+      "sha256": "a4757b2f65c8075a944c097c6c203f4670dc11689d7d3e30b425e77e3ddabe1a"
+    }
+  },
+  "checks": [
+    {
+      "check": "time_axis",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "units",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "missing_values",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "source_coverage",
+      "details": "validated",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "config": {
+      "path": "../rain_config.json",
+      "sha256": "be45237d58597d983be9d5644e014c3ebbe84c43bb937854262934b6fa0b6312"
+    },
+    "source": {
+      "path": "../rain_source.csv",
+      "sha256": "49a8068d9011dda6cbe97ccecd44bd25a5b2959107640299a905ee322d411962"
+    }
+  },
+  "message": "Forcing series standardized",
+  "parameters": {
+    "columns": {
+      "source_id": "source_id",
+      "time": "time",
+      "value": "value"
+    },
+    "schema_version": "1.0",
+    "source_timezone_mode": "local_naive",
+    "timestamp_semantics": "interval_end",
+    "timestep_seconds": 3600,
+    "timezone": "Asia/Shanghai",
+    "unit": "mm/step",
+    "value_semantics": "step_depth",
+    "variable": "P"
+  },
+  "provenance": {
+    "jsonschema": "4.26.0",
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-model-forcing-timeseries",
+  "status": "success",
+  "warnings": []
+}

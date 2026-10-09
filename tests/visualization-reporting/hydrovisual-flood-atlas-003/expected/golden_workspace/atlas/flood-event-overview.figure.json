@@ -1,0 +1,60 @@
+{
+  "event_id": null,
+  "language": "zh",
+  "layers": [
+    {
+      "display_transform": "none; points=240",
+      "id": "discharge-baseflow",
+      "palette": "black-darkgray",
+      "source": "extract_result.artifacts.annotated_series"
+    },
+    {
+      "display_transform": "existing peak_time and peak_flow_m3_s",
+      "id": "event-peaks",
+      "palette": "red",
+      "source": "extract_result.artifacts.event_summary"
+    },
+    {
+      "display_transform": "basin mean depth mm/step; interval_end; step_seconds=3600.0; display bars sum observed values in 1 consecutive steps (last bin may be shorter); missing_steps=0; missing bars/bins omitted; partial bins show observed subtotal; no zero filling or interpolation",
+      "id": "basin-rainfall",
+      "palette": "light-blue",
+      "source": "rainfall"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "flood-event-overview.png",
+      "sha256": "dc0251e50c9ca7b69d2407bf7e0cc0fcfabea2b9ccabc826b7ec73e2b9b18871"
+    },
+    "svg": {
+      "path": "flood-event-overview.svg",
+      "sha256": "d9aba080b6eb3d7230be59a780916a2a2b883d55cf30c6dd74e146179909f051"
+    }
+  },
+  "pixel_size": {
+    "height": 1200,
+    "width": 2400
+  },
+  "publication_ready": false,
+  "schema_version": "1.0",
+  "source_results": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vaik5jre\\events\\result.json",
+      "sha256": "64c346c417d324e4014b31315f8f4d457248ee7caa56c752c2555ea46f9dd115"
+    },
+    "rainfall": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vaik5jre\\流域 雨量.csv",
+      "sha256": "07e3199dec37e6890797c3d90e611642a77e73c0bfee12a41473eae99e9624a1"
+    },
+    "rainfall_metadata": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vaik5jre\\雨量 元数据.json",
+      "sha256": "44e05b3510b1e8f7e81094fdd0085cadea634e0cfdc65f09d4d07672ec1db0f0"
+    }
+  },
+  "template_id": "flood-event-overview",
+  "template_version": "hydrotune.flood-event-atlas.v2",
+  "title": "洪水事件总览",
+  "warnings": [
+    "no flood events satisfied the explicit configuration"
+  ]
+}

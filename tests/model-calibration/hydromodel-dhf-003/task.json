@@ -72,6 +72,7 @@
   "id": "hydromodel-dhf-003",
   "primary_skill": "hydrological-modeling/run-lumped-dhf-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-dhf-model. The forcing table is hourly and contains at least one missing value in the evaporation column (pass --pet-column E0). Run the simulation verbatim with area 640 km2, river length 20 km, timestep 1 h, mode continuous, warm-up 12 steps, balance tolerance 0.05, and only the native result.json under dhf-run/. Do not fill, interpolate, or drop the missing value; do not rerun with repaired data; the script must reject the input itself. No lumped_dhf_runoff.csv may remain in dhf-run/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "dhf-run/result.json"
   ],

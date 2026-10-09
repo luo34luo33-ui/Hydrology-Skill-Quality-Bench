@@ -1,0 +1,66 @@
+{
+  "display_transforms": [
+    "NSE = 1 - sum((sim-obs)^2)/sum((obs-mean(obs))^2), scored=true samples within this figure only; display diagnostic, upstream metrics unchanged",
+    "unscored samples shaded; explicit comparison keys; no visible titles"
+  ],
+  "figure_type": "validation-process",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\calibration\\result.json",
+      "sha256": "029c5f9d1904047aa3bc0580310228beb98632d13eba70f31f4dab443d6376c8"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\calibration\\validation_series.csv",
+      "sha256": "1d7274491fe304067dbfae1804f1df04999d01e2b46a4583209fbbb799f01c54"
+    },
+    "source_1_comparisons": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\comparisons.json",
+      "sha256": "f66b523f5aea072177b3fdc97ac4513d669ab8aebc42de8506440302b0f3ccbd"
+    },
+    "source_2_comparison": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-lwim7ht4\\comparison.csv",
+      "sha256": "1beb0351b2803f5b720eab068c12f73afbc49318283aec33cb3b826a7afb45c1"
+    }
+  },
+  "language": "zh",
+  "outputs": {
+    "png": {
+      "path": "validation_process.png",
+      "sha256": "9b20512e1259babc9f915985c4166311cea924427da958d8b7a5393f6ca48e35"
+    },
+    "svg": {
+      "path": "validation_process.svg",
+      "sha256": "aa9e23954737b751f182ef50ad2ee1a5a789b3ed7eaf89d86dde1d3c1db825a4"
+    }
+  },
+  "schema_version": "1.0",
+  "scope": {
+    "event_ids": [],
+    "scored_only": true,
+    "split": "validation"
+  },
+  "simulation_metrics": [
+    {
+      "color": "#0072B2",
+      "column": "simulated",
+      "label": "模拟",
+      "nse": 0.8427723039270872,
+      "scored_samples": 10,
+      "unavailable_reason": null
+    },
+    {
+      "color": "#D55E00",
+      "column": "comparison_1",
+      "label": "Corrected",
+      "nse": 1.0,
+      "scored_samples": 10,
+      "unavailable_reason": null
+    }
+  ],
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "验证期观测—模拟过程",
+  "unit": "m3/s",
+  "warnings": [],
+  "width_px": 2400
+}

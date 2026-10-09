@@ -1,0 +1,56 @@
+{
+  "files": {
+    "fit/alignment_qc.json": {
+      "member_count": 2,
+      "mode": "continuous",
+      "rows": 237,
+      "selected_rows_per_member": {
+        "HBV": 240,
+        "Tank": 240
+      },
+      "warmup_union_rows": 3
+    },
+    "fit/bma_model.json": {
+      "distribution": "censored_gaussian",
+      "model_ids": [
+        "HBV",
+        "Tank"
+      ],
+      "outlet_id": "synthetic-outlet",
+      "random_state": 2026,
+      "schema_version": "1.0",
+      "series_mode": "continuous",
+      "timestep_hours": 1,
+      "timezone": "Asia/Shanghai",
+      "training_end": "2020-01-10T15:00:00+00:00",
+      "training_events": [],
+      "training_start": "2019-12-31T19:00:00+00:00",
+      "unit": "m3/s"
+    },
+    "fit/fit_diagnostics.json": {},
+    "fit/model_card.json": {
+      "distribution": "censored_gaussian",
+      "estimator": "generalized_EM_maximum_likelihood",
+      "interpretation": "conditional predictive uncertainty; no parameter posterior sampling or trajectory dependence",
+      "parameter_units": {
+        "theta_a": "normalized discharge",
+        "theta_b": "dimensionless",
+        "theta_sigma": "normalized discharge"
+      },
+      "row_weighting": "equal_per_timestep",
+      "training_rows": 237,
+      "warnings": [
+        "duplicate member predictions: individual weights are not identifiable"
+      ]
+    },
+    "fit/result.json": {
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "warning",
+      "warnings": [
+        "duplicate member predictions: individual weights are not identifiable"
+      ]
+    }
+  },
+  "kind": "bma",
+  "markdown": {}
+}

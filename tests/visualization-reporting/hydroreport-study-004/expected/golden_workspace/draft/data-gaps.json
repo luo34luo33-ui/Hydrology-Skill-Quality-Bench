@@ -1,0 +1,9 @@
+[
+  {
+    "action": "Correct inputs and retry",
+    "reason": "calibration/validation periods overlap",
+    "section": "all",
+    "severity": "error",
+    "source_id": "intake"
+  }
+]

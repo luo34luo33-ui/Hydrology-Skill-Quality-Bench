@@ -74,6 +74,7 @@
   "id": "hydroanalysis-ml-correct-003",
   "primary_skill": "post-processing/correct-residual-with-ml",
   "prompt": "Use train_table.csv and hyperparameters.json exactly as supplied to run post-processing/correct-residual-with-ml in train mode with --base-column Q_total, --observed-column Q_obs, --feature-columns P,Qt, backend ridge, and the confirmed hyperparameters. No random state is provided anywhere in the task, and none may be invented. Run the skill verbatim; it must reject the training request itself and write only the native result.json under ml-train/. No corrected_series.csv, model_card.json, or model.joblib may remain in ml-train/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "ml-train/result.json"
   ],

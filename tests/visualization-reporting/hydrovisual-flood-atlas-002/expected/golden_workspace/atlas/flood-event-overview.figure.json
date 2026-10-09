@@ -1,0 +1,60 @@
+{
+  "event_id": null,
+  "language": "en",
+  "layers": [
+    {
+      "display_transform": "none; points=240",
+      "id": "discharge-baseflow",
+      "palette": "black-darkgray",
+      "source": "extract_result.artifacts.annotated_series"
+    },
+    {
+      "display_transform": "existing peak_time and peak_flow_m3_s",
+      "id": "event-peaks",
+      "palette": "red",
+      "source": "extract_result.artifacts.event_summary"
+    },
+    {
+      "display_transform": "basin mean depth mm/step; interval_end; step_seconds=3600.0; display bars sum observed values in 1 consecutive steps (last bin may be shorter); missing_steps=236; missing bars/bins omitted; partial bins show observed subtotal; no zero filling or interpolation",
+      "id": "basin-rainfall",
+      "palette": "light-blue",
+      "source": "rainfall"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "flood-event-overview.png",
+      "sha256": "50edb3db19aec717c83b5931817041ac0af5fe56114b6bab30e090c9d2767e03"
+    },
+    "svg": {
+      "path": "flood-event-overview.svg",
+      "sha256": "aa1eebd56ed70155fc064dd35ad58dafe2d8d2624d7c5a8564b2387d0d6d16a8"
+    }
+  },
+  "pixel_size": {
+    "height": 1200,
+    "width": 2400
+  },
+  "publication_ready": false,
+  "schema_version": "1.0",
+  "source_results": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\events\\result.json",
+      "sha256": "24c5cb2ac3d53ac669b964897d3980aee4f936da4fd865773514e432b7967b70"
+    },
+    "rainfall": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\流域 雨量.csv",
+      "sha256": "96e296d5ef677dad81c9bf790ba0cf30dfc0d6dc72bbf84704b9a28f290d08f6"
+    },
+    "rainfall_metadata": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\雨量 元数据.json",
+      "sha256": "44e05b3510b1e8f7e81094fdd0085cadea634e0cfdc65f09d4d07672ec1db0f0"
+    }
+  },
+  "template_id": "flood-event-overview",
+  "template_version": "hydrotune.flood-event-atlas.v2",
+  "title": "Flood-event overview",
+  "warnings": [
+    "Rainfall missing at 236 display steps; only observed rainfall is plotted, without zero filling or interpolation"
+  ]
+}

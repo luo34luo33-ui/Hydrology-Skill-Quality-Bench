@@ -1,0 +1,865 @@
+time,column,value,basis
+2023-08-15 00:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,GB_rain,1.31231898408,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,GB_rain,3.18590198518,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,GB_rain,1.76300476031,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,GB_rain,2.49172473368,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,GB_rain,4.85870592213,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,GB_rain,1.50050669525,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,GB_rain,0.909175183939,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,GB_rain,5.83863921619,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,GB_rain,5.85829607347,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,GB_rain,3.97211133674,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,GB_rain,3.9353745844,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,GB_rain,2.00897715357,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,GB_rain,0.483805401434,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,GB_rain,0.554679296476,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,GB_rain,0.662789382856,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,GB_rain,3.82672958319,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,GB_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,DF_rain,5.60929499569,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,DF_rain,2.2137782523,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,DF_rain,7.95595402638,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,DF_rain,6.98400250033,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,DF_rain,2.73133093,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,DF_rain,11.3977133749,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,DF_rain,5.7627310379,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,DF_rain,0.913427320411,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,DF_rain,2.08353762808,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,DF_rain,8.07810235746,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,DF_rain,1.78904109753,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,DF_rain,7.72287783678,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,DF_rain,1.45620494133,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,DF_rain,1.1140901188,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,DF_rain,0.946380466053,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,DF_rain,0.408819415256,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,DF_rain,2.5318417119,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,DF_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,QC_rain,8.92368091179,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,QC_rain,4.96816600781,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,QC_rain,1.80958474437,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,QC_rain,2.09451108821,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,QC_rain,0.6712726713,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,QC_rain,6.0361989616,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,QC_rain,7.67218817827,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,QC_rain,4.19471459762,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,QC_rain,1.51151693706,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,QC_rain,0.470469010061,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,QC_rain,0.680778418997,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,QC_rain,1.07548390427,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,QC_rain,1.48689595922,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,QC_rain,1.84641897353,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,QC_rain,3.78213623517,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,QC_rain,0.985483776707,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,QC_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,BJ_rain,0.932691307942,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,BJ_rain,2.49063668438,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,BJ_rain,1.94486992596,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,BJ_rain,0.724930780468,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,BJ_rain,4.4980844705,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,BJ_rain,0.914275462705,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,BJ_rain,3.15755989631,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,BJ_rain,4.89690780925,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,BJ_rain,6.17366910079,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,BJ_rain,1.48343458588,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,BJ_rain,1.35420384487,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,BJ_rain,9.57716150179,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,BJ_rain,4.82669312842,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,BJ_rain,1.93875634221,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,BJ_rain,4.13780052821,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,BJ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,GA_rain,5.91188569228,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,GA_rain,3.15786150522,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,GA_rain,3.01363420883,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,GA_rain,4.59273173849,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,GA_rain,3.60632631831,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,GA_rain,0.799130336423,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,GA_rain,6.26616160835,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,GA_rain,1.14693662671,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,GA_rain,7.32053876437,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,GA_rain,0.811811483435,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,GA_rain,5.03503205523,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,GA_rain,1.72195923699,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,GA_rain,11.3142361104,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,GA_rain,6.26293595494,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,GA_rain,1.04696976395,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,GA_rain,2.04367227369,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,GA_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,WL_rain,2.06233815806,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,WL_rain,0.681910743097,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,WL_rain,1.57375358416,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,WL_rain,0.228579721169,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,WL_rain,6.04031230321,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,WL_rain,4.1181205192,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,WL_rain,1.99423351632,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,WL_rain,1.08837296967,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,WL_rain,0.954856888737,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,WL_rain,0.666508593629,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,WL_rain,4.41709869196,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,WL_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,GZ_rain,11.820848331,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,GZ_rain,2.30834094601,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,GZ_rain,3.0633556458,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,GZ_rain,4.4217359401,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,GZ_rain,2.67842768341,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,GZ_rain,1.41585449164,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,GZ_rain,6.15665187295,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,GZ_rain,1.27209001665,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,GZ_rain,4.67281384117,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,GZ_rain,2.8640602415,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,GZ_rain,0.323334046289,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,GZ_rain,1.30425098687,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,GZ_rain,2.54041856025,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,GZ_rain,10.9022910007,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,GZ_rain,0.14358566777,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,GZ_rain,0.415922935089,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,GZ_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 01:00:00,avg_rain,4.68192529629,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 02:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 03:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 04:00:00,avg_rain,2.30216438717,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 05:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 06:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 07:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 08:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 09:00:00,avg_rain,2.47216053489,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 10:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 11:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 12:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 13:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 14:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 15:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 16:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 17:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 18:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 19:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 20:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 21:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 22:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 23:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 00:00:00,avg_rain,4.18967232326,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 01:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 02:00:00,avg_rain,6.95453261913,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 03:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 04:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 05:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 06:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 07:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 08:00:00,avg_rain,5.38680523278,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 09:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 10:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 11:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 12:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 13:00:00,avg_rain,2.36291961642,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 14:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 15:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 16:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 17:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 18:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 19:00:00,avg_rain,0.750940462679,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 20:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 21:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 22:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-16 23:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 00:00:00,avg_rain,0.725997682064,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 01:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 02:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 03:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 04:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 05:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 06:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 07:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 08:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 09:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 10:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 11:00:00,avg_rain,2.28389839495,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 12:00:00,avg_rain,7.07138586257,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 13:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 14:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 15:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 16:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 17:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 18:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 19:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 20:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 21:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 22:00:00,avg_rain,0.143012303038,synthetic benchmark supplement; original blank remains unknown
+2023-08-17 23:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 00:00:00,avg_rain,2.76343773463,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 01:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 02:00:00,avg_rain,1.79921201613,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 03:00:00,avg_rain,2.69228798191,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 04:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 05:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 06:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 07:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 08:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 09:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 10:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 11:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 12:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 13:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 14:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 15:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 16:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 17:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 18:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 19:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 20:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 21:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 22:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-18 23:00:00,avg_rain,0,synthetic benchmark supplement; original blank remains unknown
+2023-08-15 00:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 01:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 02:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 03:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 04:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 05:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 06:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 07:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 08:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 09:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 10:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 11:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 12:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 13:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 14:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 15:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 16:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 17:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 18:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 19:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 20:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 21:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 22:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-15 23:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 00:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 01:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 02:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 03:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 04:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 05:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 06:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 07:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 08:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 09:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 10:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 11:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 12:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 13:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 14:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 15:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 16:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 17:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 18:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 19:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 20:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 21:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 22:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-16 23:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 00:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 01:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 02:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 03:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 04:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 05:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 06:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 07:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 08:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 09:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 10:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 11:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 12:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 13:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 14:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 15:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 16:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 17:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 18:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 19:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 20:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 21:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 22:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-17 23:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 00:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 01:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 02:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 03:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 04:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 05:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 06:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 07:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 08:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 09:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 10:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 11:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 12:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 13:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 14:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 15:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 16:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 17:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 18:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 19:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 20:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 21:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 22:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"
+2023-08-18 23:00:00,E0,0.16,"provided monthly table, explicitly assumed E0 for this benchmark scenario"

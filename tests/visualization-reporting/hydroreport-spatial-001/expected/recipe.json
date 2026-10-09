@@ -1,0 +1,18 @@
+{
+  "group": "hydroreport-spatial",
+  "outputs": [
+    "report"
+  ],
+  "steps": [
+    {
+      "action": null,
+      "args": [
+        "--spatial-manifest",
+        "manifest.json",
+        "--output-dir",
+        "report"
+      ],
+      "code": 0
+    }
+  ]
+}

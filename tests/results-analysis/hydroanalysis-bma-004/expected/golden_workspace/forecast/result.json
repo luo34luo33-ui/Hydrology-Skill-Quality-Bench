@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "error",
+  "message": "application must be entirely later than training",
+  "parameters": {},
+  "inputs": {},
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "status": "FAIL",
+      "details": "application must be entirely later than training"
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "python": "3.11.16"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "simulated.csv",
+      "sha256": "0a2a1a085f68872cc81062c87bde8ea36f458d3f99acca597f2fece667801c18"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_upstream",
+      "details": "deterministic benchmark fixture",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-hbv-model",
+  "status": "success"
+}

@@ -1,0 +1,3 @@
+variable,unit_id,coverage_fraction,covered_area_m2,unit_area_m2
+P,basin,1.0,562570000.0,562570000.0
+PET,basin,1.0,562570000.0,562570000.0

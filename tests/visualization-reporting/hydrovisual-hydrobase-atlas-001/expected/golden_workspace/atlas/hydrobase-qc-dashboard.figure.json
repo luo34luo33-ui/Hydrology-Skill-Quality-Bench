@@ -1,0 +1,58 @@
+{
+  "crs": "EPSG:32650",
+  "extent": [
+    499958.0,
+    501002.0,
+    4098998.0,
+    4100042.0
+  ],
+  "language": "zh",
+  "layers": [
+    {
+      "display_transform": "existing topology context, real basin and pale-gray subbasin boundaries",
+      "id": "topology-context",
+      "palette": "subbasins-water",
+      "source": "build_result.artifacts.reaches_vector and subbasins_clipped"
+    },
+    {
+      "display_transform": "existing check counts PASS=15, WARN=0, FAIL=0; inset in map",
+      "id": "qc-summary",
+      "palette": "qc-status",
+      "source": "validation_result.checks"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "hydrobase-qc-dashboard.png",
+      "sha256": "7551a62847cd2853b4821cf70d1ae65f069e1aca0194a3582992ccbb4fdaeccc"
+    },
+    "svg": {
+      "path": "hydrobase-qc-dashboard.svg",
+      "sha256": "92f99bf7f0dda42fd29657032856455cae096c3ffc2363eb07e3197bc30e3483"
+    }
+  },
+  "pixel_size": {
+    "height": 2366,
+    "width": 2400
+  },
+  "publication_ready": true,
+  "schema_version": "1.0",
+  "source_results": {
+    "basin_boundary": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\prepare\\basin_normalized.gpkg",
+      "sha256": "d6bab5a8448645a0818b29cecd7b6fa375189706b1b3eb2a3c94c147ca9f0af6"
+    },
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\validate\\result.json",
+      "sha256": "1506cb4d73c0f2c413e9256860a86bfb03a13d1926b091db05159dadb3aa62c7"
+    }
+  },
+  "template_id": "hydrobase-qc-dashboard",
+  "template_version": "hydrotune.hydrobase-qc-dashboard.v2",
+  "title": "HydroBase 质量控制看板",
+  "warnings": []
+}

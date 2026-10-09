@@ -1,0 +1,96 @@
+{
+  "artifacts": {
+    "event-0001-hydrograph_figure": {
+      "path": "event-0001-hydrograph.figure.json",
+      "sha256": "ea7e568bfc4c3f1aa79cd11d800b5469c027cdd800b140fdfab34d8b82c50d12"
+    },
+    "event-0001-hydrograph_png": {
+      "path": "event-0001-hydrograph.png",
+      "sha256": "4cd76a32997a5271bf006eee99363a6888368481dc1e421fd831aeb28aff41fd"
+    },
+    "event-0001-hydrograph_svg": {
+      "path": "event-0001-hydrograph.svg",
+      "sha256": "52c2894941e90f9490bca2527f95f8919fe2bc0f86b6d5ad34e1b419081a0c7b"
+    },
+    "event-0002-hydrograph_figure": {
+      "path": "event-0002-hydrograph.figure.json",
+      "sha256": "317a1e87aae646cba82ccf0937b3593eca7f31afa3658b4ac184e41a5cd1a176"
+    },
+    "event-0002-hydrograph_png": {
+      "path": "event-0002-hydrograph.png",
+      "sha256": "f49156f77abdee7067dd78d646f2e2ee5a2bbee9e9fb42cc865dbdfe1b3e8cf3"
+    },
+    "event-0002-hydrograph_svg": {
+      "path": "event-0002-hydrograph.svg",
+      "sha256": "b76a6d0c9e2892ea077dd22e142ebc9c2c8f0754cda9d5234bda65f7940ca588"
+    },
+    "flood-event-overview_figure": {
+      "path": "flood-event-overview.figure.json",
+      "sha256": "f3ab1f42bbabdae01619afe44ed5515aa6551b5c8ca19c261a560d866f19ccca"
+    },
+    "flood-event-overview_png": {
+      "path": "flood-event-overview.png",
+      "sha256": "50edb3db19aec717c83b5931817041ac0af5fe56114b6bab30e090c9d2767e03"
+    },
+    "flood-event-overview_svg": {
+      "path": "flood-event-overview.svg",
+      "sha256": "aa1eebd56ed70155fc064dd35ad58dafe2d8d2624d7c5a8564b2387d0d6d16a8"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed event artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "event_table_consistency",
+      "details": "events=2",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\events\\result.json",
+      "sha256": "24c5cb2ac3d53ac669b964897d3980aee4f936da4fd865773514e432b7967b70"
+    },
+    "rainfall": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\流域 雨量.csv",
+      "sha256": "96e296d5ef677dad81c9bf790ba0cf30dfc0d6dc72bbf84704b9a28f290d08f6"
+    },
+    "rainfall_metadata": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\雨量 元数据.json",
+      "sha256": "44e05b3510b1e8f7e81094fdd0085cadea634e0cfdc65f09d4d07672ec1db0f0"
+    }
+  },
+  "message": "rendered overview and 2 event hydrographs",
+  "parameters": {
+    "language": "en",
+    "max_events": null,
+    "pixel_size": [
+      2400,
+      1200
+    ],
+    "rainfall_available": true,
+    "rainfall_step_seconds": 3600.0,
+    "rendered_event_ids": [
+      1,
+      2
+    ],
+    "selection": "all",
+    "total_volume_display_unit": "10^8 m3"
+  },
+  "provenance": {
+    "font": "Times New Roman",
+    "matplotlib": "3.11.2",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "template_version": "hydrotune.flood-event-atlas.v2"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-flood-event-atlas",
+  "status": "warning",
+  "warnings": [
+    "Rainfall missing at 236 display steps; only observed rainfall is plotted, without zero filling or interpolation"
+  ]
+}

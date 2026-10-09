@@ -1,0 +1,3154 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "visualization-reporting/review-hydrological-study-report",
+  "source_contract_sha256": "f6dd6f1db433c7a44895669c5599ee2e037cc24681185162b1553c6e6522b4ce",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "report_package",
+        "description": "生成器正式输出或经用户修订的 Markdown、JSON、CSV 与图件报告包。",
+        "required": true,
+        "format": "directory"
+      },
+      {
+        "id": "report_manifest",
+        "description": "与报告类型一致的 study、processing 或 spatial-processing 显式清单。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "semantic_review",
+        "description": "绑定当前包 fingerprint、覆盖全部段落的独立 Agent 证据支持度审查。",
+        "required": false,
+        "format": "JSON"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "review_package",
+        "description": "review.md、review.json 与 review-checklist.csv 问题及审查状态。",
+        "required": true,
+        "format": "Markdown, JSON and CSV"
+      },
+      {
+        "id": "run_result",
+        "description": "运行状态、产物哈希与 provenance。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "invariants": [
+      "独立读取原始成果，不信任生成器自报的检查结果。",
+      "未完成全部语义审查不得给出整体 pass。",
+      "审查只输出意见，不修改报告和上游数据。",
+      "报告或来源改变后既有语义判定失效，须重新审查。",
+      "研究清单版本为 2.0；运行序列和评价输入均须哈希绑定，评分时段和运行身份必须可核验。",
+      "校正与基准具有独立运行身份；直接对比必须采用相同观测与评分时间。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "run_name": {
+          "type": "string"
+        },
+        "item": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "count": {
+          "type": "string"
+        },
+        "percent": {
+          "type": "string"
+        },
+        "denominator": {
+          "type": "string"
+        },
+        "missing": {
+          "type": "string"
+        },
+        "lower_threshold": {
+          "type": "string"
+        },
+        "upper_threshold": {
+          "type": "string"
+        },
+        "shape": {
+          "type": "string"
+        },
+        "metric": {
+          "type": "string"
+        },
+        "mean": {
+          "type": "string"
+        },
+        "median": {
+          "type": "string"
+        },
+        "p10": {
+          "type": "string"
+        },
+        "p90": {
+          "type": "string"
+        },
+        "min": {
+          "type": "string"
+        },
+        "max": {
+          "type": "string"
+        },
+        "month": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "run": {
+          "type": "string"
+        },
+        "evaluation": {
+          "type": "string"
+        },
+        "split": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "unavailable": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "nse": {
+          "type": "string"
+        },
+        "peak_error_relative": {
+          "type": "string"
+        },
+        "volume_error_relative": {
+          "type": "string"
+        },
+        "peak_time_error_hours": {
+          "type": "string"
+        },
+        "subbasin": {
+          "type": "string"
+        },
+        "reach_count": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "string"
+        }
+      },
+      {
+        "small": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "large": {
+          "type": "string"
+        },
+        "single": {
+          "type": "string"
+        },
+        "multiple": {
+          "type": "string"
+        },
+        "unclassified": {
+          "type": "string"
+        },
+        "calibration": {
+          "type": "string"
+        },
+        "validation": {
+          "type": "string"
+        },
+        "continuous": {
+          "type": "string"
+        },
+        "event_collection": {
+          "type": "string"
+        },
+        "events": {
+          "type": "string"
+        },
+        "subbasin_count": {
+          "type": "string"
+        },
+        "raster_subbasin_area_sum": {
+          "type": "string"
+        },
+        "total_length": {
+          "type": "string"
+        },
+        "headwater_count": {
+          "type": "string"
+        },
+        "outlet_count": {
+          "type": "string"
+        },
+        "confluence_nodes": {
+          "type": "string"
+        },
+        "outlet_reach": {
+          "type": "string"
+        },
+        "peak_flow_m3_s": {
+          "type": "string"
+        },
+        "total_volume_m3": {
+          "type": "string"
+        },
+        "duration_hours": {
+          "type": "string"
+        },
+        "area_km2": {
+          "type": "string"
+        },
+        "length_m": {
+          "type": "string"
+        },
+        "prominence_m3_s": {
+          "type": "string"
+        },
+        "minimum_spacing_hours": {
+          "type": "string"
+        },
+        "mean_residual": {
+          "type": "string"
+        },
+        "peak_residual": {
+          "type": "string"
+        },
+        "rising_mean_residual": {
+          "type": "string"
+        },
+        "recession_mean_residual": {
+          "type": "string"
+        },
+        "warmup_rows": {
+          "type": "string"
+        },
+        "excluded_unscored_rows": {
+          "type": "string"
+        },
+        "scored_rows": {
+          "type": "string"
+        }
+      },
+      {
+        "study": {
+          "type": "string"
+        },
+        "timeseries": {
+          "type": "string"
+        },
+        "data-processing": {
+          "type": "string"
+        },
+        "spatial": {
+          "type": "string"
+        }
+      },
+      {
+        "title": {
+          "type": "computed; see field semantics"
+        },
+        "section": {
+          "type": "string"
+        },
+        "attachment_only": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "source_ids": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "table": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "svg.hashsalt": {
+          "type": "string"
+        },
+        "font.family": {
+          "type": "string"
+        }
+      },
+      {
+        "source": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "area_percent": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "Date": {
+          "type": "null"
+        }
+      },
+      {
+        "event_id": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "run": {
+          "type": "computed; see field semantics"
+        },
+        "evaluation": {
+          "type": "computed; see field semantics"
+        },
+        "split": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "qualified_volume": {
+          "type": "string"
+        },
+        "qualified_peak": {
+          "type": "string"
+        },
+        "qualified_peak_time": {
+          "type": "string"
+        }
+      },
+      {
+        "zh": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "en": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "source_id": {
+          "type": "computed; see field semantics"
+        },
+        "severity": {
+          "type": "computed; see field semantics"
+        },
+        "reason": {
+          "type": "computed; see field semantics"
+        },
+        "section": {
+          "type": "computed; see field semantics"
+        },
+        "action": {
+          "type": "string"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "study": {
+          "title": {
+            "type": "computed; see field semantics"
+          },
+          "language": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "manifest": {
+          "type": "computed; see field semantics"
+        },
+        "runs": {
+          "type": "computed; see field semantics"
+        },
+        "sources": {
+          "type": "computed; see field semantics"
+        },
+        "evidence": {
+          "type": "computed; see field semantics"
+        },
+        "figures": {
+          "type": "computed; see field semantics"
+        },
+        "gaps": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "rounding": {
+          "decimal_places": {
+            "type": "number"
+          }
+        },
+        "sections": {
+          "type": "computed; see field semantics"
+        },
+        "narrative_provenance": {
+          "author": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "boolean"
+          }
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "runtime": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "title": {
+          "type": "computed; see field semantics"
+        },
+        "language": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "decimal_places": {
+          "type": "number"
+        }
+      },
+      {
+        "author": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        }
+      },
+      {
+        "evidence_id": {
+          "type": "computed; see field semantics"
+        },
+        "source_id": {
+          "type": "computed; see field semantics"
+        },
+        "run_id": {
+          "type": "computed; see field semantics"
+        },
+        "model": {
+          "type": "computed; see field semantics"
+        },
+        "source_skill": {
+          "type": "computed; see field semantics"
+        },
+        "kind": {
+          "type": "computed; see field semantics"
+        },
+        "locator": {
+          "type": "computed; see field semantics"
+        },
+        "value": {
+          "type": "computed; see field semantics"
+        },
+        "display_value": {
+          "type": "computed; see field semantics"
+        },
+        "unit": {
+          "type": "computed; see field semantics"
+        },
+        "definition": {
+          "type": "computed; see field semantics"
+        },
+        "context": {
+          "type": "computed; see field semantics"
+        },
+        "availability": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "runtime": {
+          "type": "string"
+        }
+      },
+      {
+        "": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "id": {
+          "type": "computed; see field semantics"
+        },
+        "source_id": {
+          "type": "computed; see field semantics"
+        },
+        "run_id": {
+          "type": "computed; see field semantics"
+        },
+        "stage": {
+          "type": "computed; see field semantics"
+        },
+        "source_result": {
+          "type": "computed; see field semantics"
+        },
+        "artifact": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        },
+        "locator": {
+          "type": "computed; see field semantics"
+        },
+        "kind": {
+          "type": "computed; see field semantics"
+        },
+        "value": {
+          "type": "computed; see field semantics"
+        },
+        "unit": {
+          "type": "computed; see field semantics"
+        },
+        "definition": {
+          "type": "computed; see field semantics"
+        },
+        "context": {
+          "type": "computed; see field semantics"
+        },
+        "availability": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "id": {
+          "type": "computed; see field semantics"
+        },
+        "paragraphs": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        }
+      },
+      {
+        "id": {
+          "type": "computed; see field semantics"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "result": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "context": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "preprocessing": {
+          "type": "string"
+        },
+        "spatial": {
+          "type": "string"
+        },
+        "simulation": {
+          "type": "string"
+        },
+        "calibration": {
+          "type": "string"
+        },
+        "evaluation": {
+          "type": "string"
+        }
+      },
+      {
+        "referenced_by": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "id": {
+          "type": "computed; see field semantics"
+        },
+        "source": {
+          "type": "computed; see field semantics"
+        },
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        },
+        "context": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "type": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "category": {
+          "type": "computed; see field semantics"
+        },
+        "report_location": {
+          "type": "computed; see field semantics"
+        },
+        "evidence_location": {
+          "type": "computed; see field semantics"
+        },
+        "actual": {
+          "type": "computed; see field semantics"
+        },
+        "expected": {
+          "type": "computed; see field semantics"
+        },
+        "severity": {
+          "type": "computed; see field semantics"
+        },
+        "action": {
+          "type": "string"
+        },
+        "needs_human_judgment": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "package_fingerprint": {
+          "type": "computed; see field semantics"
+        },
+        "semantic_review_completed": {
+          "type": "computed; see field semantics"
+        },
+        "findings": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "timeseries": {
+          "type": "string"
+        },
+        "spatial": {
+          "type": "string"
+        },
+        "simulation": {
+          "type": "string"
+        },
+        "data-processing": {
+          "type": "string"
+        }
+      },
+      {
+        "sections": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "files": {
+          "type": "computed; see field semantics"
+        },
+        "sources": {
+          "type": "computed; see field semantics"
+        },
+        "manifest": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "nse",
+        "r2",
+        "rmse",
+        "mae",
+        "volume_error_relative",
+        "peak_error_relative",
+        "peak_time_error_hours",
+        "volume_bias",
+        "relative_volume_bias"
+      ],
+      [
+        "schema_version",
+        "report_type",
+        "study",
+        "manifest",
+        "runs",
+        "sources",
+        "evidence",
+        "figures",
+        "gaps",
+        "warnings",
+        "rounding",
+        "analysis"
+      ],
+      [
+        "true",
+        "1",
+        "1.0",
+        "yes",
+        "是"
+      ],
+      [
+        "peak_flow_m3_s",
+        "peak_thresholds_m3_s",
+        "m3/s"
+      ],
+      [
+        "total_volume_m3",
+        "volume_thresholds_m3",
+        "m3"
+      ],
+      [
+        "subbasins",
+        "subbasin_table"
+      ],
+      [
+        "reaches_table",
+        "reaches_csv"
+      ],
+      [
+        "topology"
+      ],
+      [
+        "downstream_reach_id",
+        "sub_id",
+        "topo_level"
+      ],
+      [
+        "strahler_order",
+        "reaches"
+      ],
+      [
+        "topo_level",
+        "topology"
+      ],
+      [
+        "overview",
+        "evaluation",
+        "discussion",
+        "limitations"
+      ],
+      [
+        "table",
+        "value"
+      ],
+      [
+        "events",
+        "events.csv"
+      ],
+      [
+        "subbasins",
+        "subbasins.csv"
+      ],
+      [
+        "reaches",
+        "reaches.csv"
+      ],
+      [
+        "topology",
+        "topology.csv"
+      ],
+      [
+        "worst_events",
+        "worst-events.csv"
+      ],
+      [
+        "event_summary"
+      ],
+      [
+        "event_process"
+      ],
+      [
+        "reaches"
+      ],
+      [
+        "crs",
+        "target_crs",
+        "resolution_m",
+        "grid_spacing_m",
+        "cell_area_m2",
+        "basin_area_km2",
+        "boundary_area_km2",
+        "elevation_min_m",
+        "elevation_max_m",
+        "mean_slope",
+        "mean_elevation_m"
+      ],
+      [
+        "count",
+        "total",
+        "unavailable",
+        "missing",
+        "denominator",
+        "warmup_rows"
+      ],
+      [
+        "subbasin_count",
+        "reach_count",
+        "outlet_count"
+      ],
+      [
+        "event_id",
+        "reach_id",
+        "sub_id",
+        "subbasin",
+        "start",
+        "end",
+        "start_time",
+        "end_time",
+        "level",
+        "month"
+      ],
+      [
+        ""
+      ],
+      [
+        "peak_flow_m3_s",
+        "peak_thresholds_m3_s"
+      ],
+      [
+        "total_volume_m3",
+        "volume_thresholds_m3"
+      ],
+      [
+        "single",
+        "multiple",
+        "unclassified"
+      ],
+      [
+        "metric"
+      ],
+      [
+        "qualified_volume",
+        "qualified_peak",
+        "qualified_peak_time"
+      ],
+      [
+        "artifact",
+        "table_value"
+      ],
+      [
+        "percent",
+        "area_percent"
+      ],
+      [
+        "evaluation",
+        "calibration"
+      ],
+      [
+        "sizes",
+        "shapes",
+        "events"
+      ],
+      [
+        "timezone",
+        "standard_flow_unit",
+        "row_count",
+        "timestep_seconds",
+        "start",
+        "end",
+        "start_time",
+        "end_time"
+      ],
+      [
+        "small",
+        "medium",
+        "large"
+      ],
+      [
+        "peak_flow_m3_s",
+        "m3/s"
+      ],
+      [
+        "total_volume_m3",
+        "m3"
+      ],
+      [
+        "duration_hours",
+        "hours"
+      ],
+      [
+        "value",
+        "mean",
+        "median",
+        "p10",
+        "p90",
+        "min",
+        "max",
+        "lower_threshold",
+        "upper_threshold"
+      ],
+      [
+        "count",
+        "total",
+        "missing",
+        "unavailable",
+        "denominator",
+        "warmup_rows"
+      ],
+      [
+        "event_id"
+      ],
+      [
+        "analysis_dem",
+        "dem_clipped"
+      ],
+      [
+        "mean_residual",
+        "peak_residual",
+        "rising_mean_residual",
+        "recession_mean_residual",
+        "warmup_rows",
+        "excluded_unscored_rows",
+        "scored_rows"
+      ],
+      [
+        "run_name",
+        "evaluation",
+        "event_id",
+        "start",
+        "end",
+        "nse",
+        "volume_error_relative",
+        "peak_error_relative",
+        "peak_time_error_hours"
+      ],
+      [
+        "run_name",
+        "evaluation",
+        "split",
+        "period",
+        "metric",
+        "value",
+        "mean",
+        "median",
+        "count",
+        "unavailable",
+        "unit"
+      ],
+      [
+        "size",
+        "shape",
+        "month"
+      ],
+      [
+        "unspecified",
+        ""
+      ],
+      [
+        "visualize-dem-hydrology-atlas",
+        "visualize-hydrobase-atlas"
+      ],
+      [
+        "/percent",
+        "/area_percent"
+      ],
+      [
+        "true",
+        "false",
+        "1",
+        "0",
+        "1.0",
+        "0.0",
+        "是",
+        "否"
+      ],
+      [
+        "candidate",
+        "support",
+        "limitations",
+        "validation"
+      ],
+      [
+        "overview",
+        "preprocessing",
+        "spatial",
+        "simulation",
+        "calibration",
+        "evaluation",
+        "discussion",
+        "limitations",
+        "attachments"
+      ],
+      [
+        "report.md",
+        "report.json",
+        "summary.csv",
+        "evidence-index.json",
+        "evidence-index.csv",
+        "data-gaps.json",
+        "data-gaps.csv",
+        "result.json",
+        "review.md",
+        "review.json",
+        "review-checklist.csv",
+        "source-inventory.csv",
+        "qc-checklist.csv",
+        "events.csv",
+        "subbasins.csv",
+        "reaches.csv",
+        "topology.csv",
+        "worst-events.csv",
+        "analysis-tables.json"
+      ],
+      [
+        "overview",
+        "source-inventory",
+        "timeseries",
+        "events",
+        "spatial",
+        "qc",
+        "limitations",
+        "attachments"
+      ],
+      [
+        "研究概况",
+        "资料与预处理",
+        "空间基础",
+        "模型与模拟",
+        "率定",
+        "验证评价",
+        "综合讨论",
+        "限制与建议",
+        "证据与附件"
+      ],
+      [
+        "Study overview",
+        "Data and preprocessing",
+        "Spatial foundation",
+        "Model and simulation",
+        "Calibration",
+        "Evaluation",
+        "Discussion",
+        "Limitations and recommendations",
+        "Evidence and attachments"
+      ],
+      [
+        "study",
+        "manifest",
+        "runs",
+        "sources",
+        "evidence",
+        "figures",
+        "gaps",
+        "warnings",
+        "rounding"
+      ],
+      [
+        ".xlsx",
+        ".parquet"
+      ],
+      [
+        "data-processing",
+        "timeseries",
+        "spatial"
+      ],
+      [
+        "study",
+        "data-processing",
+        "timeseries",
+        "spatial"
+      ],
+      [
+        "spatial",
+        "calibration",
+        "atlas"
+      ],
+      [
+        "evidence_id",
+        "source_id",
+        "run_id",
+        "model",
+        "source_skill",
+        "kind",
+        "locator",
+        "value",
+        "display_value",
+        "unit",
+        "definition",
+        "context",
+        "availability"
+      ],
+      [
+        "artifacts",
+        "inputs"
+      ],
+      [
+        "calibration",
+        "validation"
+      ],
+      [
+        "timestep_hours",
+        "warmup_steps"
+      ],
+      [
+        "parameters",
+        "checks",
+        "warnings"
+      ],
+      [
+        "| Source | Skill | Status | Context |",
+        "|---|---|---|---|"
+      ],
+      [
+        "[Evidence index](evidence-index.csv)",
+        "",
+        "[Summary](summary.csv)",
+        ""
+      ],
+      [
+        "id",
+        "source_id",
+        "run_id",
+        "stage",
+        "source_result",
+        "artifact",
+        "sha256",
+        "locator",
+        "kind",
+        "value",
+        "unit",
+        "definition",
+        "context",
+        "availability",
+        "referenced_by"
+      ],
+      [
+        "source_id",
+        "severity",
+        "reason",
+        "section",
+        "action"
+      ],
+      [
+        "simulation",
+        "postprocessing",
+        "evaluation",
+        "calibration"
+      ],
+      [
+        "success",
+        "warning",
+        "error"
+      ],
+      [
+        "parameters",
+        "table_value",
+        "artifact",
+        "table_metadata"
+      ],
+      [
+        "Not provided / 未提供",
+        ""
+      ],
+      [
+        ".png",
+        ".svg"
+      ],
+      [
+        "event_id",
+        "time",
+        "start_time",
+        "end_time",
+        "metric",
+        "split"
+      ],
+      [
+        "mode",
+        "split"
+      ],
+      [
+        "preprocessing",
+        "spatial"
+      ],
+      [
+        "path",
+        "sha256"
+      ],
+      [
+        ".csv",
+        ".xlsx",
+        ".parquet"
+      ],
+      [
+        "FeatureCollection",
+        "Feature"
+      ],
+      [
+        "scored",
+        "is_warmup"
+      ],
+      [
+        "id",
+        "skill",
+        "status",
+        "context"
+      ],
+      [
+        "evidence_id",
+        "run_id",
+        "locator",
+        "display_value",
+        "unit",
+        "definition",
+        "context",
+        "availability"
+      ],
+      [
+        "observed_volume",
+        "simulated_volume"
+      ],
+      [
+        "event_id",
+        "split",
+        "start_time",
+        "end_time",
+        "rows",
+        "scored",
+        "is_warmup"
+      ],
+      [
+        "true",
+        "false",
+        "1",
+        "0"
+      ],
+      [
+        "true",
+        "1"
+      ],
+      [
+        "start",
+        "end"
+      ],
+      [
+        "analysis",
+        "report_type"
+      ],
+      [
+        "original_sources",
+        "report_values_units_context",
+        "markdown",
+        "tables",
+        "figures",
+        "narrative_bindings"
+      ],
+      [
+        "category",
+        "report_location",
+        "evidence_location",
+        "actual",
+        "expected",
+        "severity",
+        "action",
+        "needs_human_judgment"
+      ],
+      [
+        "timeseries",
+        "spatial",
+        "data-processing"
+      ],
+      [
+        "unit",
+        "context",
+        "definition",
+        "sha256",
+        "value",
+        "split"
+      ]
+    ],
+    "field_names": [
+      "",
+      ".csv",
+      ".parquet",
+      ".png",
+      ".svg",
+      ".xlsx",
+      "/area_percent",
+      "/percent",
+      "0",
+      "0.0",
+      "1",
+      "1.0",
+      "Calibration",
+      "Data and preprocessing",
+      "Date",
+      "Discussion",
+      "Evaluation",
+      "Evidence and attachments",
+      "Feature",
+      "FeatureCollection",
+      "Limitations and recommendations",
+      "Model and simulation",
+      "Not provided / 未提供",
+      "Spatial foundation",
+      "Study overview",
+      "[Evidence index](evidence-index.csv)",
+      "[Summary](summary.csv)",
+      "_baseline_value",
+      "action",
+      "actual",
+      "allow_nan",
+      "alpha",
+      "analysis",
+      "analysis-tables.json",
+      "analysis_dem",
+      "area_km2",
+      "area_percent",
+      "arrowprops",
+      "arrowstyle",
+      "artifact",
+      "artifacts",
+      "atlas",
+      "attachment_only",
+      "attachments",
+      "author",
+      "availability",
+      "available",
+      "basin_area_km2",
+      "basis",
+      "bins",
+      "boundary_area_km2",
+      "calibration",
+      "candidate",
+      "category",
+      "cell_area_m2",
+      "checks",
+      "color",
+      "completed",
+      "confluence_nodes",
+      "context",
+      "continuous",
+      "count",
+      "counts",
+      "crs",
+      "data-gaps.csv",
+      "data-gaps.json",
+      "data-processing",
+      "data_shape",
+      "date_format",
+      "decimal_places",
+      "definition",
+      "dem_clipped",
+      "denominator",
+      "description",
+      "details",
+      "diagnosis",
+      "diagnostics",
+      "discussion",
+      "display_value",
+      "distance",
+      "downstream_reach_id",
+      "duration_hours",
+      "elevation_max_m",
+      "elevation_min_m",
+      "en",
+      "encoding",
+      "end",
+      "end_time",
+      "ensure_ascii",
+      "error",
+      "evaluation",
+      "evaluation_source",
+      "evaluations",
+      "event_collection",
+      "event_id",
+      "event_ids",
+      "event_process",
+      "event_summary",
+      "events",
+      "events.csv",
+      "evidence",
+      "evidence-index.csv",
+      "evidence-index.json",
+      "evidence_id",
+      "evidence_ids",
+      "evidence_location",
+      "excluded_unscored_rows",
+      "exist_ok",
+      "expected",
+      "extrasaction",
+      "false",
+      "fieldnames",
+      "figsize",
+      "figures",
+      "file",
+      "files",
+      "findings",
+      "font.family",
+      "fontsize",
+      "gaps",
+      "generated",
+      "grid_spacing_m",
+      "ha",
+      "headwater_count",
+      "help",
+      "hours",
+      "id",
+      "indent",
+      "inputs",
+      "is_warmup",
+      "item",
+      "key",
+      "kind",
+      "label",
+      "labels",
+      "language",
+      "large",
+      "large_network_node_limit",
+      "legacy_report",
+      "length_m",
+      "level",
+      "limitations",
+      "loc",
+      "locator",
+      "lower_threshold",
+      "lw",
+      "m3",
+      "m3/s",
+      "mae",
+      "manifest",
+      "markdown",
+      "max",
+      "mean",
+      "mean_elevation_m",
+      "mean_residual",
+      "mean_slope",
+      "median",
+      "medium",
+      "message",
+      "metadata",
+      "method",
+      "metric",
+      "metrics",
+      "min",
+      "minimum_spacing_hours",
+      "missing",
+      "mode",
+      "model",
+      "month",
+      "multiple",
+      "name",
+      "narrative_bindings",
+      "narrative_provenance",
+      "needs_human_judgment",
+      "newline",
+      "notes",
+      "nse",
+      "numeric_bindings",
+      "observed",
+      "observed_column",
+      "observed_volume",
+      "orient",
+      "original_sources",
+      "original_values_preserved",
+      "outlet_count",
+      "outlet_reach",
+      "overview",
+      "p10",
+      "p90",
+      "package_fingerprint",
+      "paragraphs",
+      "parameters",
+      "parent_run",
+      "parents",
+      "parse_constant",
+      "path",
+      "peak_error_relative",
+      "peak_flow_m3_s",
+      "peak_residual",
+      "peak_shape",
+      "peak_thresholds_m3_s",
+      "peak_time_error_hours",
+      "percent",
+      "period",
+      "postprocessing",
+      "precipitation",
+      "precipitation_column",
+      "preprocessing",
+      "prominence",
+      "prominence_m3_s",
+      "provenance",
+      "python",
+      "qc",
+      "qc-checklist.csv",
+      "qualified_peak",
+      "qualified_peak_time",
+      "qualified_volume",
+      "r2",
+      "raster_subbasin_area_sum",
+      "rationale",
+      "reach_count",
+      "reach_id",
+      "reaches",
+      "reaches.csv",
+      "reaches_csv",
+      "reaches_table",
+      "reason",
+      "recession_mean_residual",
+      "referenced_by",
+      "relative_volume_bias",
+      "report.json",
+      "report.md",
+      "report_location",
+      "report_type",
+      "report_values_units_context",
+      "required",
+      "required_sources",
+      "resolution_m",
+      "result",
+      "result.json",
+      "review-checklist.csv",
+      "review.json",
+      "review.md",
+      "reviewer",
+      "rising_mean_residual",
+      "rmse",
+      "rounding",
+      "row_count",
+      "rows",
+      "run",
+      "run_id",
+      "run_name",
+      "runs",
+      "runtime",
+      "s",
+      "schema_version",
+      "scored",
+      "scored_column",
+      "scored_rows",
+      "section",
+      "sections",
+      "semantic_review_completed",
+      "series",
+      "severity",
+      "sha256",
+      "shape",
+      "shape_reason",
+      "shapes",
+      "sheet",
+      "sheet_name",
+      "significant_peak_count",
+      "significant_peaks",
+      "simulated",
+      "simulated_column",
+      "simulated_volume",
+      "simulation",
+      "single",
+      "size",
+      "sizes",
+      "skill",
+      "small",
+      "sort_keys",
+      "source",
+      "source-inventory",
+      "source-inventory.csv",
+      "source_id",
+      "source_ids",
+      "source_result",
+      "source_skill",
+      "sources",
+      "spatial",
+      "split",
+      "split_periods",
+      "stage",
+      "standard_flow_unit",
+      "start",
+      "start_time",
+      "status",
+      "strahler_order",
+      "study",
+      "sub_id",
+      "subbasin",
+      "subbasin_count",
+      "subbasin_table",
+      "subbasins",
+      "subbasins.csv",
+      "success",
+      "summary.csv",
+      "support",
+      "svg.hashsalt",
+      "table",
+      "table_metadata",
+      "table_value",
+      "tables",
+      "target_crs",
+      "text",
+      "time",
+      "time_column",
+      "timeseries",
+      "timestep_hours",
+      "timestep_seconds",
+      "timezone",
+      "title",
+      "topo_level",
+      "topology",
+      "topology.csv",
+      "total",
+      "total_length",
+      "total_volume_m3",
+      "true",
+      "type",
+      "unavailable",
+      "unclassified",
+      "unit",
+      "units",
+      "unspecified",
+      "upper_threshold",
+      "validation",
+      "value",
+      "variables",
+      "verdict",
+      "visualize-dem-hydrology-atlas",
+      "visualize-hydrobase-atlas",
+      "volume_bias",
+      "volume_error_relative",
+      "volume_thresholds_m3",
+      "warmup_rows",
+      "warmup_steps",
+      "warning",
+      "warnings",
+      "width",
+      "worst-events.csv",
+      "worst_events",
+      "xy",
+      "xytext",
+      "yes",
+      "zh",
+      "| Source | Skill | Status | Context |",
+      "|---|---|---|---|",
+      "否",
+      "是",
+      "模型与模拟",
+      "率定",
+      "研究概况",
+      "空间基础",
+      "综合讨论",
+      "证据与附件",
+      "资料与预处理",
+      "限制与建议",
+      "验证评价"
+    ],
+    "literal_enum_values": {
+      "language": [
+        "language",
+        "zh"
+      ],
+      "method": [
+        "agent",
+        "template"
+      ],
+      "mode": [
+        "评价模式"
+      ],
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "status"
+      ],
+      "unit": [
+        "unit",
+        "单位"
+      ]
+    },
+    "static_interface_values": {
+      "method": [
+        "agent",
+        "template"
+      ],
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^.+_class$",
+      "^.+_time$",
+      "^/analysis/notes/.+/.+$",
+      "^/analysis/tables/.+/rows/.+/value$",
+      "^/rows/.+/.+$",
+      "^\\..+f$",
+      "^limitation\\-.+$",
+      "^report\\.md:.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "visualization-reporting/review-hydrological-study-report"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations.",
+  "presentation_interface": {
+    "schemas_and_layouts": {
+      "study-report.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "enum": [
+              "1.0",
+              "2.0"
+            ]
+          },
+          "study": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "language": {
+                "enum": [
+                  "zh",
+                  "en"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "language"
+            ]
+          },
+          "manifest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ]
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "simulation": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "evaluations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "minItems": 1
+                },
+                "calibration": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "kind": {
+                  "enum": [
+                    "baseline",
+                    "corrected"
+                  ]
+                },
+                "series": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "time_column": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "simulated_column": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sheet": {
+                      "type": "string"
+                    },
+                    "unit": {
+                      "const": "m3/s"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256",
+                    "time_column",
+                    "simulated_column",
+                    "unit"
+                  ]
+                },
+                "parent_run": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "postprocessing": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "simulation",
+                "evaluations",
+                "name",
+                "kind",
+                "series"
+              ],
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "kind": {
+                        "const": "corrected"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "parent_run",
+                      "postprocessing"
+                    ]
+                  }
+                }
+              ]
+            },
+            "minItems": 1
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "skill": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "result": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "success",
+                    "warning"
+                  ]
+                },
+                "context": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "skill",
+                "result",
+                "status",
+                "context"
+              ]
+            },
+            "minItems": 2
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "run_id": {
+                  "type": "string"
+                },
+                "stage": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_result": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "artifact": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "locator": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {},
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "definition": {
+                  "type": "string"
+                },
+                "context": {
+                  "type": "object"
+                },
+                "availability": {
+                  "enum": [
+                    "available",
+                    "unavailable"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "source_id",
+                "run_id",
+                "stage",
+                "source_result",
+                "artifact",
+                "sha256",
+                "locator",
+                "kind",
+                "value",
+                "unit",
+                "definition",
+                "context",
+                "availability"
+              ]
+            },
+            "minItems": 0
+          },
+          "figures": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "path": {
+                  "type": "string",
+                  "pattern": "^figures/[a-zA-Z0-9_.-]+$"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "context": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "source",
+                "path",
+                "sha256",
+                "context"
+              ]
+            },
+            "minItems": 0
+          },
+          "gaps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "severity": {
+                  "enum": [
+                    "warning",
+                    "error"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "section": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "action": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_id",
+                "severity",
+                "reason",
+                "section",
+                "action"
+              ]
+            },
+            "minItems": 0
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "rounding": {
+            "type": "object"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "paragraphs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]*$"
+                      },
+                      "kind": {
+                        "enum": [
+                          "fact",
+                          "inference",
+                          "recommendation",
+                          "pending"
+                        ]
+                      },
+                      "text": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "evidence_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 0
+                      },
+                      "numeric_bindings": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "evidence_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "text": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "evidence_id",
+                            "text"
+                          ]
+                        },
+                        "minItems": 0
+                      },
+                      "hypotheses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "candidate",
+                            "support",
+                            "limitations",
+                            "validation"
+                          ],
+                          "properties": {
+                            "candidate": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "support": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "limitations": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "validation": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "diagnosis": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "run",
+                          "evaluation",
+                          "event_id"
+                        ],
+                        "properties": {
+                          "run": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "evaluation": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "event_id": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "kind",
+                      "text",
+                      "evidence_ids",
+                      "numeric_bindings"
+                    ]
+                  },
+                  "minItems": 0
+                }
+              },
+              "required": [
+                "id",
+                "paragraphs"
+              ]
+            },
+            "minItems": 1
+          },
+          "narrative_provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "author": {
+                "type": "string"
+              },
+              "method": {
+                "enum": [
+                  "agent",
+                  "template"
+                ]
+              },
+              "completed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "author",
+              "method",
+              "completed"
+            ]
+          },
+          "report_type": {
+            "enum": [
+              "data-processing",
+              "timeseries",
+              "spatial",
+              "simulation"
+            ]
+          },
+          "analysis": {
+            "type": "object",
+            "required": [
+              "tables",
+              "details",
+              "notes"
+            ],
+            "properties": {
+              "tables": {
+                "type": "array"
+              },
+              "details": {
+                "type": "object"
+              },
+              "notes": {
+                "type": "array"
+              }
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "study",
+          "manifest",
+          "runs",
+          "sources",
+          "evidence",
+          "figures",
+          "gaps",
+          "warnings",
+          "rounding",
+          "sections",
+          "narrative_provenance"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "schema_version": {
+                  "const": "2.0"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "analysis",
+                "report_type"
+              ]
+            }
+          }
+        ]
+      },
+      "processing-report.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "enum": [
+              "1.0",
+              "2.0"
+            ]
+          },
+          "study": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "language": {
+                "enum": [
+                  "zh",
+                  "en"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "language"
+            ]
+          },
+          "manifest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ]
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "simulation": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "evaluations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "minItems": 1
+                },
+                "calibration": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                }
+              },
+              "required": [
+                "id",
+                "simulation",
+                "evaluations"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 0
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "skill": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "result": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "success",
+                    "warning"
+                  ]
+                },
+                "context": {
+                  "type": "object"
+                },
+                "inputs": {
+                  "type": "object"
+                },
+                "parameters": {
+                  "type": "object"
+                },
+                "artifacts": {
+                  "type": "object"
+                },
+                "provenance": {
+                  "type": "object"
+                },
+                "checks": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "check",
+                      "status",
+                      "details"
+                    ],
+                    "properties": {
+                      "check": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "enum": [
+                          "PASS",
+                          "WARN"
+                        ]
+                      },
+                      "details": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "warnings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "skill",
+                "result",
+                "status",
+                "context",
+                "inputs",
+                "parameters",
+                "artifacts",
+                "provenance",
+                "checks",
+                "warnings"
+              ]
+            },
+            "minItems": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "run_id": {
+                  "type": "string"
+                },
+                "stage": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_result": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "artifact": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "locator": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {},
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "definition": {
+                  "type": "string"
+                },
+                "context": {
+                  "type": "object"
+                },
+                "availability": {
+                  "enum": [
+                    "available",
+                    "unavailable"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "source_id",
+                "run_id",
+                "stage",
+                "source_result",
+                "artifact",
+                "sha256",
+                "locator",
+                "kind",
+                "value",
+                "unit",
+                "definition",
+                "context",
+                "availability"
+              ]
+            },
+            "minItems": 0
+          },
+          "figures": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "path": {
+                  "type": "string",
+                  "pattern": "^figures/[a-zA-Z0-9_.-]+$"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "context": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "source",
+                "path",
+                "sha256",
+                "context"
+              ]
+            },
+            "minItems": 0
+          },
+          "gaps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "severity": {
+                  "enum": [
+                    "warning",
+                    "error"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "section": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "action": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_id",
+                "severity",
+                "reason",
+                "section",
+                "action"
+              ]
+            },
+            "minItems": 0
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "rounding": {
+            "type": "object"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "paragraphs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]*$"
+                      },
+                      "kind": {
+                        "enum": [
+                          "fact",
+                          "inference",
+                          "recommendation",
+                          "pending"
+                        ]
+                      },
+                      "text": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "evidence_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 0
+                      },
+                      "numeric_bindings": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "evidence_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "text": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "evidence_id",
+                            "text"
+                          ]
+                        },
+                        "minItems": 0
+                      },
+                      "hypotheses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "candidate",
+                            "support",
+                            "limitations",
+                            "validation"
+                          ],
+                          "properties": {
+                            "candidate": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "support": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "limitations": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "validation": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "diagnosis": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "run",
+                          "evaluation",
+                          "event_id"
+                        ],
+                        "properties": {
+                          "run": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "evaluation": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "event_id": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "kind",
+                      "text",
+                      "evidence_ids",
+                      "numeric_bindings"
+                    ]
+                  },
+                  "minItems": 0
+                }
+              },
+              "required": [
+                "id",
+                "paragraphs"
+              ]
+            },
+            "minItems": 1
+          },
+          "narrative_provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "author": {
+                "type": "string"
+              },
+              "method": {
+                "enum": [
+                  "agent",
+                  "template"
+                ]
+              },
+              "completed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "author",
+              "method",
+              "completed"
+            ]
+          },
+          "report_type": {
+            "enum": [
+              "data-processing",
+              "timeseries",
+              "spatial",
+              "simulation"
+            ]
+          },
+          "analysis": {
+            "type": "object",
+            "required": [
+              "tables",
+              "details",
+              "notes"
+            ],
+            "properties": {
+              "tables": {
+                "type": "array"
+              },
+              "details": {
+                "type": "object"
+              },
+              "notes": {
+                "type": "array"
+              }
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "study",
+          "manifest",
+          "runs",
+          "sources",
+          "evidence",
+          "figures",
+          "gaps",
+          "warnings",
+          "rounding",
+          "sections",
+          "narrative_provenance",
+          "report_type"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "schema_version": {
+                  "const": "2.0"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "analysis",
+                "report_type"
+              ]
+            }
+          }
+        ]
+      },
+      "study-review.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "needs_revision",
+              "needs_human_review"
+            ]
+          },
+          "package_fingerprint": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "semantic_review_completed": {
+            "type": "boolean"
+          },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "report_location": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence_location": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "actual": {},
+                "expected": {},
+                "severity": {
+                  "enum": [
+                    "error",
+                    "warning"
+                  ]
+                },
+                "action": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "needs_human_judgment": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "category",
+                "report_location",
+                "evidence_location",
+                "actual",
+                "expected",
+                "severity",
+                "action",
+                "needs_human_judgment"
+              ]
+            },
+            "minItems": 0
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "schema_version",
+          "status",
+          "package_fingerprint",
+          "semantic_review_completed",
+          "findings",
+          "checks"
+        ]
+      },
+      "study-semantic-review.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "package_fingerprint": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "reviewer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paragraphs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "evidence_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 0
+                },
+                "verdict": {
+                  "enum": [
+                    "supported",
+                    "unsupported",
+                    "uncertain"
+                  ]
+                },
+                "rationale": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "evidence_ids",
+                "verdict",
+                "rationale"
+              ]
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "schema_version",
+          "package_fingerprint",
+          "reviewer",
+          "paragraphs"
+        ]
+      }
+    }
+  }
+}
+```

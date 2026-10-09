@@ -1,0 +1,312 @@
+{
+  "alignment": {
+    "observed_column": "GZ_in",
+    "outlet_id": "benchmark_outlet",
+    "time_matching": "exact timestamps; compare the same scored samples",
+    "unit": "m3/s",
+    "warmup_policy": "exclude warmup from scoring"
+  },
+  "alpha": 0.95,
+  "area_km2": 564.4784427125312,
+  "baseflow_initialization": {
+    "bounds": "clip each filtered baseflow to [0, observed discharge]",
+    "initial_baseflow": "first observed discharge in each independent input series",
+    "method": "Eckhardt, one forward pass"
+  },
+  "bfi_max": 0.5,
+  "dhf_parameters": {
+    "A": 0.5,
+    "B": 1.5,
+    "B0": 1.0,
+    "CC": 2.0,
+    "CCL": 2.0,
+    "COE": 0.4,
+    "D0": 100.0,
+    "DD": 1.2,
+    "DDL": 1.0,
+    "G": 0.1,
+    "K0": 0.3,
+    "K2": 0.4,
+    "KA": 0.7,
+    "KC": 0.8,
+    "KW": 0.5,
+    "N": 3,
+    "S0": 50.0,
+    "U0": 90.0
+  },
+  "evaluation": {
+    "causality": "Performance metrics do not establish causal attribution",
+    "event_segmentation": "For analysis-001/002, use the supplied event_parameters on observed discharge and basin rainfall, not arbitrary calendar windows.",
+    "event_summary_columns": [
+      "nse",
+      "rmse",
+      "mae",
+      "volume_error_relative",
+      "peak_error_relative",
+      "peak_time_error_hours"
+    ],
+    "event_summary_statistics": [
+      "mean",
+      "median",
+      "min",
+      "max",
+      "count",
+      "p10",
+      "p90"
+    ],
+    "metric_step_hours": 1,
+    "volume_unit": "m3"
+  },
+  "evaporation_mapping": {
+    "factor": 1.0,
+    "source": "E0",
+    "target": "PET"
+  },
+  "event_parameters": {
+    "boundary_fraction": 0.1,
+    "boundary_persistence_steps": 3,
+    "max_search_days": 5,
+    "merge_gap_hours": 6,
+    "min_event_duration_hours": 1,
+    "min_event_volume_m3": null,
+    "min_observed_rainfall_mm": 1,
+    "min_peak_distance_hours": 12,
+    "min_peak_flow_m3_s": null,
+    "missing_rainfall_policy": "keep",
+    "no_rainfall_policy": "exclude",
+    "peak_quantile": 0.8,
+    "prominence_factor": 0.15,
+    "rainfall_lookback_hours": 24,
+    "shape_filter": {
+      "jump_window_steps": 2,
+      "min_jump_fraction": 0.1,
+      "min_plateau_duration_hours": 24.0,
+      "min_plateau_fraction": 0.5,
+      "plateau_range_fraction": 0.005
+    },
+    "valley_ratio_threshold": 0.6,
+    "warmup_steps": 12
+  },
+  "expected_outlets": 1,
+  "extracted_event_ids": "Integer IDs 1,2,... in chronological extracted-event order, independently within each observation window.",
+  "figure": {
+    "language": "zh",
+    "pixel_size": [
+      2400,
+      1200
+    ],
+    "selection": "all",
+    "style": "/public/programs/visualization-reporting/assets/atlas-style-v1.json",
+    "total_volume_display_unit": "10^8 m3"
+  },
+  "flow_column": "GZ_in",
+  "flow_unit": "m3/s",
+  "forcing_selection": {
+    "evaporation_output_variable": "E0",
+    "evaporation_rule": "retain E0 as E0; the authorised PET mapping is not used by this task",
+    "evaporation_source_column": "E0",
+    "model_forcing_schema": "time,P,E0",
+    "rainfall_columns": "avg_rain",
+    "rainfall_scope": "supplied basin mean",
+    "rainfall_variable": "P",
+    "source_ids": [
+      "basin"
+    ],
+    "standardised_forcing_schema": "time,source_id,variable,depth_mm; emit only the declared source IDs, not other available stations",
+    "station_evaporation_rule": "single basin source_id=basin"
+  },
+  "gr4j_parameters": {
+    "X1": 350.0,
+    "X2": 0.0,
+    "X3": 90.0,
+    "X4": 1.7
+  },
+  "grid_resolution_m": 100,
+  "implementation_choices": [
+    "tools",
+    "programming language",
+    "execution order",
+    "equivalent implementation",
+    "diagnosis and retry within the resource budget"
+  ],
+  "interaction_mode": "none",
+  "lumped_parameters": {
+    "B": 0.3,
+    "C": 0.12,
+    "CG": 0.95,
+    "CI": 0.6,
+    "CS": 0.2,
+    "EX": 1.2,
+    "FR1": 0.4,
+    "IM": 0.02,
+    "K": 0.5,
+    "KG": 0.35,
+    "KI": 0.3,
+    "L": 2,
+    "Q": 15.0,
+    "S1": 5.0,
+    "SM": 4.0,
+    "WDM_init": 30.0,
+    "WLM": 60.0,
+    "WLM_init": 45.0,
+    "WM": 120.0,
+    "WUM": 20.0,
+    "WUM_init": 15.0
+  },
+  "model_initialization": {
+    "dhf": {
+      "balance_tolerance_fraction": 0.01,
+      "semantics": "Run the first 12 forcing rows from these states, then propagate the resulting states over the remaining rows; exclude warmup rows from scoring, with no post-warmup override.",
+      "warmup_initial_states": {
+        "sa0": 0.0,
+        "ua0": 0.0,
+        "ya0": 0.5
+      },
+      "warmup_steps": 12
+    },
+    "gr4j": {
+      "balance_tolerance_fraction": 0.05,
+      "production_store": 0.0,
+      "routing_store": 0.0,
+      "semantics": "Propagate states over all daily forcing rows; exclude the first two days from scoring.",
+      "unit_hydrograph_registers": "all zeros",
+      "warmup_days": 2
+    },
+    "lumped_xaj": "Use WUM_init/WLM_init/WDM_init/S1/FR1/Q in lumped_parameters; propagate continuous states, reset to those values for each independent event.",
+    "semi_xaj": "Use semi_parameters.initial, semi_parameters.warmup_steps and semi_parameters.simulation; only that supplied initial-state block selects the semi model states."
+  },
+  "notice": "明确声明的测试场景设定，补充数据不是实测修复。来源清单中的原始空白始终保留；supplements 逐项标注合成值。",
+  "optimizer": {
+    "algorithm": "de",
+    "crossover_probability": 0.7,
+    "max_evaluations": 128,
+    "max_failed_evaluations": 2,
+    "max_generations": 3,
+    "mutation_factor": 0.8,
+    "polish": false,
+    "population_multiplier": 3,
+    "schema_version": "1.0",
+    "seed": 20261004,
+    "tolerance": 1e-09
+  },
+  "organization_mode": "continuous",
+  "outlet_semantics": "basin_outlet",
+  "parameter_change_authorized": false,
+  "quality_control": {
+    "balance_tolerance_fraction": 0.001,
+    "flow_duplicate_policy": "error",
+    "flow_edge_missing": "error",
+    "flow_missing_policy": "error",
+    "routing_volume_tolerance": 0.02
+  },
+  "repair_authorized": false,
+  "review": {
+    "calibration_samples": "calibration_scored.csv",
+    "excluded_warmup_steps": 12,
+    "independence_rule": "nonempty disjoint scored timestamps",
+    "limitations": "Independent scoring does not establish model accuracy or causality",
+    "scope": "scored sample independence only",
+    "scoring_mask": "only rows where scored=true",
+    "validation_samples": "validation_scored.csv"
+  },
+  "river_length_km": 40,
+  "route_k_hours": 1.0,
+  "route_x": 0.2,
+  "routing": {
+    "combine": "sum",
+    "external_route_id": "reservoir",
+    "layout": "single",
+    "local_inflow_column": "Qt",
+    "local_route_id": "local",
+    "output_column": "Q_total",
+    "reaches": 1
+  },
+  "routing_initialization": "For each independent input series, initial routed flow equals its first inflow value; no state carryover between events.",
+  "scientific_constraints": [
+    "specified models and parameters",
+    "original observations remain unchanged",
+    "declared state organization",
+    "declared scoring samples",
+    "provenance and units"
+  ],
+  "search_parameters": [
+    {
+      "lower": 0.3,
+      "name": "K",
+      "upper": 0.9
+    },
+    {
+      "lower": 0.15,
+      "name": "B",
+      "upper": 0.45
+    }
+  ],
+  "spatial_processing": {
+    "analysis_buffer_km": 3,
+    "cell_inclusion": "center",
+    "coordinate_units": "metres in the analysis grid",
+    "d8_convention": "Whitebox",
+    "depression_treatment": "fill",
+    "min_coverage_fraction": 1.0,
+    "station_aggregation": "Thiessen polygon area weights clipped to each target unit",
+    "stream_burning": false,
+    "vertical_unit": "m"
+  },
+  "station_crs": "EPSG:4326",
+  "stream_init_area_km2": 100,
+  "synthetic_supplements_authorized": true,
+  "task_revision": 4,
+  "task_science": {
+    "active_forward_model": "none; preprocessing or existing-result analysis only",
+    "analysis_members": [],
+    "external_inflow": "Only use external inflow when this task has an external_inflow declaration; other available release columns do not authorize injection.",
+    "parameter_scope": "Use only the model named here. Other supplied model parameter blocks are contextual and do not select an additional model.",
+    "semi_model_parameters": "semi_parameters; internal channel routing uses xaj.KE, xaj.XE and time.step_seconds inside this block",
+    "standalone_channel_parameters": {
+      "K": "route_k_hours",
+      "X": "route_x",
+      "applies_to_model_tasks": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ]
+    }
+  },
+  "task_version": "composite-unattended-v2",
+  "time": {
+    "output_rule": "Localise naive source timestamps to Asia/Shanghai; every output time/start/end/peak timestamp must include an explicit offset. UTC Z and +08:00 denote equivalent instants.",
+    "output_timezone_mode": "offset_aware",
+    "source_timezone_mode": "local_naive",
+    "timestamp_semantics": "interval_end",
+    "timestep_seconds": 3600,
+    "timezone": "Asia/Shanghai"
+  },
+  "timezone": "Asia/Shanghai",
+  "variables": {
+    "*_rain": {
+      "semantics": "station precipitation depth; source IDs match stations.csv",
+      "unit": "mm/step"
+    },
+    "E0": {
+      "semantics": "benchmark-declared evaporation forcing; PET mapping above is explicitly authorised",
+      "unit": "mm/step"
+    },
+    "GB_out": {
+      "semantics": "upstream reservoir release; used only where external_inflow is specified",
+      "unit": "m3/s"
+    },
+    "GZ_in": {
+      "semantics": "observed basin outlet discharge",
+      "unit": "m3/s"
+    },
+    "avg_rain": {
+      "semantics": "supplied basin mean precipitation depth",
+      "unit": "mm/step"
+    }
+  },
+  "vertical_unit": "m",
+  "warmup_steps": 12
+}

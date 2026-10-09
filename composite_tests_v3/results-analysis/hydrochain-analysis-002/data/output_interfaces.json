@@ -1,0 +1,1530 @@
+{
+  "calibration_evidence": "Trace rows contain status, objective and param:NAME columns; at most 128 evaluations, objective independently replayable, best parameters locked before validation. No prescribed optimizer trajectory.",
+  "decision": {
+    "evidence": "nonempty list of {path, sha256}, relative to workspace root",
+    "limitations": "nonempty list including synthetic-data limitations and implementation choices",
+    "reason": "scientific_contracts_satisfied",
+    "status": "deliverable"
+  },
+  "interaction_mode": "none",
+  "numerical_tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "outputs": {
+    "aligned/aligned_discharge.csv": {
+      "columns": [
+        "time",
+        "simulated_m3_s",
+        "is_warmup",
+        "observed_m3_s",
+        "matched",
+        "excluded_reason"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aligned/evaluation_discharge.csv": {
+      "columns": [
+        "time",
+        "observed_m3_s",
+        "simulated_m3_s"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aligned/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "aligned": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "evaluation": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "excluded_observations": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "qc": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "observed_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "simulation_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "model": "string"
+        },
+        "provenance": {
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "atlas/event-0001-hydrograph.figure.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "event_id": "number",
+        "language": "string",
+        "layers": [
+          {
+            "display_transform": "string",
+            "id": "string",
+            "palette": "string",
+            "source": "string"
+          }
+        ],
+        "outputs": {
+          "png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "svg": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "pixel_size": {
+          "height": "number",
+          "width": "number"
+        },
+        "publication_ready": "boolean",
+        "schema_version": "string",
+        "source_results": {
+          "extract_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "template_id": "string",
+        "template_version": "string",
+        "title": "string",
+        "warnings": []
+      }
+    },
+    "atlas/event-0001-hydrograph.png": {
+      "format": "png",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/event-0001-hydrograph.svg": {
+      "format": "svg",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/event-0002-hydrograph.figure.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "event_id": "number",
+        "language": "string",
+        "layers": [
+          {
+            "display_transform": "string",
+            "id": "string",
+            "palette": "string",
+            "source": "string"
+          }
+        ],
+        "outputs": {
+          "png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "svg": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "pixel_size": {
+          "height": "number",
+          "width": "number"
+        },
+        "publication_ready": "boolean",
+        "schema_version": "string",
+        "source_results": {
+          "extract_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "template_id": "string",
+        "template_version": "string",
+        "title": "string",
+        "warnings": []
+      }
+    },
+    "atlas/event-0002-hydrograph.png": {
+      "format": "png",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/event-0002-hydrograph.svg": {
+      "format": "svg",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/event-0003-hydrograph.figure.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "event_id": "number",
+        "language": "string",
+        "layers": [
+          {
+            "display_transform": "string",
+            "id": "string",
+            "palette": "string",
+            "source": "string"
+          }
+        ],
+        "outputs": {
+          "png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "svg": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "pixel_size": {
+          "height": "number",
+          "width": "number"
+        },
+        "publication_ready": "boolean",
+        "schema_version": "string",
+        "source_results": {
+          "extract_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "template_id": "string",
+        "template_version": "string",
+        "title": "string",
+        "warnings": []
+      }
+    },
+    "atlas/event-0003-hydrograph.png": {
+      "format": "png",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/event-0003-hydrograph.svg": {
+      "format": "svg",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/event-0004-hydrograph.figure.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "event_id": "number",
+        "language": "string",
+        "layers": [
+          {
+            "display_transform": "string",
+            "id": "string",
+            "palette": "string",
+            "source": "string"
+          }
+        ],
+        "outputs": {
+          "png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "svg": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "pixel_size": {
+          "height": "number",
+          "width": "number"
+        },
+        "publication_ready": "boolean",
+        "schema_version": "string",
+        "source_results": {
+          "extract_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "template_id": "string",
+        "template_version": "string",
+        "title": "string",
+        "warnings": []
+      }
+    },
+    "atlas/event-0004-hydrograph.png": {
+      "format": "png",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/event-0004-hydrograph.svg": {
+      "format": "svg",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/flood-event-overview.figure.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "event_id": "nullable",
+        "language": "string",
+        "layers": [
+          {
+            "display_transform": "string",
+            "id": "string",
+            "palette": "string",
+            "source": "string"
+          }
+        ],
+        "outputs": {
+          "png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "svg": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "pixel_size": {
+          "height": "number",
+          "width": "number"
+        },
+        "publication_ready": "boolean",
+        "schema_version": "string",
+        "source_results": {
+          "extract_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "template_id": "string",
+        "template_version": "string",
+        "title": "string",
+        "warnings": []
+      }
+    },
+    "atlas/flood-event-overview.png": {
+      "format": "png",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/flood-event-overview.svg": {
+      "format": "svg",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "atlas/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "rainfall_metadata"
+      ],
+      "structure": {
+        "artifacts": {
+          "event-0001-hydrograph_figure": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0001-hydrograph_png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0001-hydrograph_svg": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0002-hydrograph_figure": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0002-hydrograph_png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0002-hydrograph_svg": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0003-hydrograph_figure": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0003-hydrograph_png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0003-hydrograph_svg": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0004-hydrograph_figure": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0004-hydrograph_png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event-0004-hydrograph_svg": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "flood-event-overview_figure": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "flood-event-overview_png": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "flood-event-overview_svg": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "extract_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "language": "string",
+          "max_events": "nullable",
+          "pixel_size": [
+            "number"
+          ],
+          "rainfall_available": "boolean",
+          "rainfall_step_seconds": "number",
+          "rendered_event_ids": [
+            "number"
+          ],
+          "selection": "string",
+          "total_volume_display_unit": "string"
+        },
+        "provenance": {
+          "font": "string",
+          "matplotlib": "string",
+          "pandas": "string",
+          "python": "string",
+          "template_version": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "conclusions.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "causality": "string",
+        "independent_prediction": "boolean",
+        "scoring": "string",
+        "units": "string"
+      }
+    },
+    "decision.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "evidence": [
+          {
+            "path": "string",
+            "sha256": "string"
+          }
+        ],
+        "limitations": [
+          "string"
+        ],
+        "reason": "string",
+        "status": "string"
+      }
+    },
+    "evaluation_events.csv": {
+      "columns": [
+        "time",
+        "observed_m3_s",
+        "simulated_m3_s",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "flow/discharge_timeseries.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "flow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "discharge_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "series_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "duplicate_policy": "string",
+          "edge_missing": "string",
+          "flow_column": "string",
+          "flow_unit": "string",
+          "input_format": "string",
+          "max_interpolation_gap_hours": "nullable",
+          "missing_policy": "string",
+          "output_format": "string",
+          "overwrite": "boolean",
+          "sheet": "nullable",
+          "time_column": "string",
+          "timezone": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "metrics/event_metrics.csv": {
+      "columns": [
+        "event_id",
+        "rows",
+        "start",
+        "end",
+        "observed_volume",
+        "simulated_volume",
+        "volume_error_relative",
+        "observed_peak",
+        "simulated_peak",
+        "peak_error_relative",
+        "peak_time_error_hours",
+        "peak_tie_count",
+        "nse",
+        "r2",
+        "rmse",
+        "mae",
+        "qualified_volume",
+        "qualified_peak",
+        "qualified_peak_time"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "metrics/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "events_dir"
+      ],
+      "structure": {
+        "artifacts": {
+          "event_metrics": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "message": "string",
+            "name": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "event_file_0000": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_file_0001": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_file_0002": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_file_0003": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "event_id_column": "string",
+          "observed_column": "string",
+          "scoring_policy": "string",
+          "simulated_column": "string",
+          "thresholds": {},
+          "time_column": "string",
+          "timestep_hours": "number",
+          "volume_unit": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": [
+          "string"
+        ]
+      }
+    },
+    "observation/baseflow/flow_components.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/baseflow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "baseflow_metadata": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "flow_components": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "prepare_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "alpha": "number",
+          "alpha_decision": "string",
+          "bfi_max": "number",
+          "output_format": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "observation/basin_rain.csv": {
+      "columns": [
+        "time",
+        "P_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/evap/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/evap/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "observation/events/annotated_series.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "event_id"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/event_files/event_0001.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/event_files/event_0002.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/event_files/event_0003.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/event_files/event_0004.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/event_process.csv": {
+      "columns": [
+        "event_id",
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0",
+        "baseflow_m3_s",
+        "quickflow_m3_s",
+        "quickflow_fraction",
+        "source_index",
+        "is_warmup",
+        "relative_step",
+        "hours_from_start"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/event_qc.csv": {
+      "columns": [
+        "check",
+        "status",
+        "details"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/event_summary.csv": {
+      "columns": [
+        "event_id",
+        "warmup_start_time",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "warmup_start_idx",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "start_flow_m3_s",
+        "peak_flow_m3_s",
+        "end_flow_m3_s",
+        "duration_hours",
+        "rise_time_hours",
+        "recession_time_hours",
+        "total_volume_m3",
+        "quickflow_volume_m3",
+        "baseflow_volume_m3",
+        "quickflow_fraction",
+        "n_local_peaks",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/rainfall_screening.csv": {
+      "columns": [
+        "candidate_id",
+        "event_id",
+        "start_time",
+        "peak_time",
+        "end_time",
+        "start_idx",
+        "peak_idx",
+        "end_idx",
+        "rainfall_window_start",
+        "rainfall_window_end",
+        "expected_steps",
+        "valid_steps",
+        "missing_steps",
+        "has_missing_rainfall",
+        "observed_rainfall_mm",
+        "min_observed_rainfall_mm",
+        "retained",
+        "reason",
+        "rainfall_supported",
+        "rainfall_accepted",
+        "rainfall_reason",
+        "no_rainfall_policy",
+        "missing_rainfall_policy",
+        "shape_rejected",
+        "shape_reference_flow_m3_s",
+        "plateau_start_idx",
+        "plateau_end_idx",
+        "plateau_start_time",
+        "plateau_end_time",
+        "plateau_duration_hours",
+        "plateau_fraction",
+        "plateau_range_m3_s",
+        "max_jump_change_m3_s",
+        "max_jump_fraction",
+        "jump_window_steps"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/events/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "event_config",
+        "rainfall_metadata"
+      ],
+      "structure": {
+        "artifacts": {
+          "annotated_series": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_config": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_manifest": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_process": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_qc": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "event_summary": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall_screening": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "baseflow_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "rainfall": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "candidate_peak_count": "number",
+          "event_config_schema_version": "string",
+          "event_filename_by": "string",
+          "final_event_count": "number",
+          "merged_event_count": "number",
+          "missing_rainfall_policy": "string",
+          "no_rainfall_policy": "string",
+          "output_format": "string",
+          "partial_rainfall_event_count": "number",
+          "per_event_format": "string",
+          "policy_retained_event_count": "number",
+          "rainfall_rejected_event_count": "number",
+          "rainfall_support": {
+            "lookback_hours": "number",
+            "min_observed_rainfall_mm": "number",
+            "missing_rainfall_policy": "string",
+            "no_rainfall_policy": "string"
+          },
+          "raw_event_count": "number",
+          "refined_event_count": "number",
+          "scale_filtered_event_count": "number",
+          "shape_filter": {
+            "jump_window_steps": "number",
+            "min_jump_fraction": "number",
+            "min_plateau_duration_hours": "number",
+            "min_plateau_fraction": "number",
+            "plateau_range_fraction": "number"
+          },
+          "shape_rejected_event_count": "number",
+          "timestep_seconds": "number"
+        },
+        "provenance": {
+          "event_method": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "scipy": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "observation/flow/discharge_timeseries.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/flow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "discharge_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "series_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "duplicate_policy": "string",
+          "edge_missing": "string",
+          "flow_column": "string",
+          "flow_unit": "string",
+          "input_format": "string",
+          "max_interpolation_gap_hours": "nullable",
+          "missing_policy": "string",
+          "output_format": "string",
+          "overwrite": "boolean",
+          "sheet": "nullable",
+          "time_column": "string",
+          "timezone": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "observation/rain/prepared_forcing.csv": {
+      "columns": [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "observation/rain/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [
+        "config"
+      ],
+      "structure": {
+        "artifacts": {
+          "forcing": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "columns": {
+            "source_id": "string",
+            "time": "string",
+            "value": "string"
+          },
+          "schema_version": "string",
+          "source_timezone_mode": "string",
+          "timestamp_semantics": "string",
+          "timestep_seconds": "number",
+          "timezone": "string",
+          "unit": "string",
+          "value_semantics": "string",
+          "variable": "string"
+        },
+        "provenance": {
+          "jsonschema": "string",
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "report.md": {
+      "format": "md",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "resolved_information.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "structure": {
+        "outlet_semantics": "string"
+      }
+    },
+    "summary/aggregate_metrics.csv": {
+      "columns": [
+        "group",
+        "events",
+        "nse_mean",
+        "nse_median",
+        "nse_p10",
+        "nse_p90",
+        "nse_min",
+        "nse_max",
+        "nse_count",
+        "rmse_mean",
+        "rmse_median",
+        "rmse_p10",
+        "rmse_p90",
+        "rmse_min",
+        "rmse_max",
+        "rmse_count",
+        "mae_mean",
+        "mae_median",
+        "mae_p10",
+        "mae_p90",
+        "mae_min",
+        "mae_max",
+        "mae_count",
+        "volume_error_relative_mean",
+        "volume_error_relative_median",
+        "volume_error_relative_p10",
+        "volume_error_relative_p90",
+        "volume_error_relative_min",
+        "volume_error_relative_max",
+        "volume_error_relative_count",
+        "peak_error_relative_mean",
+        "peak_error_relative_median",
+        "peak_error_relative_p10",
+        "peak_error_relative_p90",
+        "peak_error_relative_min",
+        "peak_error_relative_max",
+        "peak_error_relative_count",
+        "peak_time_error_hours_mean",
+        "peak_time_error_hours_median",
+        "peak_time_error_hours_p10",
+        "peak_time_error_hours_p90",
+        "peak_time_error_hours_min",
+        "peak_time_error_hours_max",
+        "peak_time_error_hours_count"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "summary/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "aggregate_metrics": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "message": "string",
+            "name": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "metrics_table": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "group_by": "nullable",
+          "pass_columns": [],
+          "pass_thresholds": {},
+          "statistics": [
+            "string"
+          ],
+          "value_columns": [
+            "string"
+          ]
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    }
+  },
+  "provided_settings": [
+    {
+      "field": "outlet_semantics",
+      "key": "outlet_semantics",
+      "output_bindings": [
+        {
+          "field": "outlet_semantics",
+          "target": "resolved_information.json"
+        }
+      ],
+      "source": "scenario.json"
+    }
+  ],
+  "result_manifest": "References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root. Optional implementation-only config and adapter references may be omitted; scientific evidence remains mandatory.",
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5,
+  "scoring_version": "composite-scientific-v3",
+  "source_reference_policy": "References may be relative to the declaring manifest, or use /work/ for the task workspace. /public/ references must name frozen public files. Unknown absolute paths, parent traversal, cross-task references and incorrect SHA-256 are rejected. decision.json references are relative to the workspace root."
+}

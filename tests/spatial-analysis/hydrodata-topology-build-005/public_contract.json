@@ -1,0 +1,574 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydrodata-topology-build-005",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "spatial-analysis/build-hydrological-topology",
+    "source_contract_sha256": "c7847146f4af749f24871199cd53c5f6f9b083aaefdf759f108074c10a7dd775",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "basin_boundary",
+          "description": "用于最终筛选和像元面积统计的真实流域多边形。",
+          "required": true,
+          "format": "GDAL-readable vector"
+        },
+        {
+          "id": "aligned_hydrology_rasters",
+          "description": "filled DEM、D8、汇流累积、河段编号、Strahler 和子流域栅格。",
+          "required": true,
+          "format": "GeoTIFF collection"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "subbasin_table",
+          "description": "子流域面积、像元数、河段集合和出口河段表。",
+          "required": true,
+          "format": "UTF-8 CSV",
+          "variables": [
+            {
+              "name": "area_km2",
+              "semantics": "真实流域掩膜内子流域有效像元数乘像元面积。",
+              "units": "km2",
+              "spatial_unit": "subbasin",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失。"
+            }
+          ]
+        },
+        {
+          "id": "reach_table",
+          "description": "河段属性、上下游、长度、高程和坡度表。",
+          "required": true,
+          "format": "UTF-8 CSV",
+          "variables": [
+            {
+              "name": "length_m",
+              "semantics": "D8 像元中心连线与真实流域多边形相交部分的累计长度。",
+              "units": "m",
+              "spatial_unit": "reach",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失或零长度。"
+            },
+            {
+              "name": "downstream_reach_id",
+              "semantics": "筛选后直接下游河段；0 表示离开真实流域。",
+              "units": "identifier",
+              "spatial_unit": "reach",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "0 是明确出口，不是缺失值。"
+            }
+          ]
+        },
+        {
+          "id": "topology_artifacts",
+          "description": "拓扑表、河段 GeoPackage 和三个真实边界裁切栅格。",
+          "required": true,
+          "format": "CSV, GeoPackage and GeoTIFF"
+        },
+        {
+          "id": "run_result",
+          "description": "构建参数、输入输出哈希、检查和 provenance。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "invariants": [
+        "上下游关系必须来自完整 buffer 范围的 D8 追踪。",
+        "所有保留河段必须映射到正子流域编号并具有有效几何。",
+        "拓扑必须无环、无自环且层级覆盖全部河段。",
+        "下游离开真实流域的河段必须使用 0 表示出口。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "subbasins_table": {
+            "type": "string"
+          },
+          "reaches_table": {
+            "type": "string"
+          },
+          "topology_table": {
+            "type": "string"
+          },
+          "reaches_vector": {
+            "type": "string"
+          },
+          "stream_links_clipped": {
+            "type": "string"
+          },
+          "stream_order_clipped": {
+            "type": "string"
+          },
+          "subbasins_clipped": {
+            "type": "string"
+          }
+        },
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "length_m": {
+            "type": "computed; see field semantics"
+          },
+          "elev_up_m": {
+            "type": "computed; see field semantics"
+          },
+          "elev_down_m": {
+            "type": "computed; see field semantics"
+          },
+          "drop_m": {
+            "type": "computed; see field semantics"
+          },
+          "slope_m_m": {
+            "type": "computed; see field semantics"
+          },
+          "slope_percent": {
+            "type": "computed; see field semantics"
+          },
+          "elevation_step_count": {
+            "type": "computed; see field semantics"
+          },
+          "negative_elevation_step_count": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "basin_boundary": {
+            "type": "computed; see field semantics"
+          },
+          "filled_dem": {
+            "type": "computed; see field semantics"
+          },
+          "d8_pointer": {
+            "type": "computed; see field semantics"
+          },
+          "flow_accumulation": {
+            "type": "computed; see field semantics"
+          },
+          "stream_links": {
+            "type": "computed; see field semantics"
+          },
+          "stream_order": {
+            "type": "computed; see field semantics"
+          },
+          "subbasins": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "cell_inclusion": {
+              "type": "computed; see field semantics"
+            },
+            "d8_encoding": {
+              "type": "string"
+            },
+            "cell_area_m2": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "inputs": {
+            "type": "computed; see field semantics"
+          },
+          "artifacts": {
+            "type": "computed; see field semantics"
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            },
+            "rasterio": {
+              "type": "computed; see field semantics"
+            },
+            "geopandas": {
+              "type": "computed; see field semantics"
+            },
+            "pandas": {
+              "type": "computed; see field semantics"
+            },
+            "numpy": {
+              "type": "computed; see field semantics"
+            },
+            "shapely": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "basin_id": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "cell_inclusion": {
+            "type": "computed; see field semantics"
+          },
+          "d8_encoding": {
+            "type": "string"
+          },
+          "cell_area_m2": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "rasterio": {
+            "type": "computed; see field semantics"
+          },
+          "geopandas": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "shapely": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "sub_id": {
+            "type": "computed; see field semantics"
+          },
+          "area_km2": {
+            "type": "computed; see field semantics"
+          },
+          "cell_count": {
+            "type": "computed; see field semantics"
+          },
+          "reach_count": {
+            "type": "computed; see field semantics"
+          },
+          "reach_ids": {
+            "type": "computed; see field semantics"
+          },
+          "outlet_reach_ids": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "reach_id": {
+            "type": "computed; see field semantics"
+          },
+          "sub_id": {
+            "type": "computed; see field semantics"
+          },
+          "strahler_order": {
+            "type": "computed; see field semantics"
+          },
+          "upstream_count": {
+            "type": "computed; see field semantics"
+          },
+          "upstream_reach_ids": {
+            "type": "computed; see field semantics"
+          },
+          "downstream_reach_id": {
+            "type": "computed; see field semantics"
+          },
+          "downstream_sub_id": {
+            "type": "computed; see field semantics"
+          },
+          "topo_level": {
+            "type": "computed; see field semantics"
+          },
+          "is_headwater": {
+            "type": "computed; see field semantics"
+          },
+          "is_outlet": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "type": "computed; see field semantics"
+          },
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "result.json"
+        ],
+        [
+          "center",
+          "all-touched"
+        ],
+        [
+          "sub_id",
+          "reach_id",
+          "upstream_count",
+          "upstream_reach_ids",
+          "downstream_sub_id",
+          "downstream_reach_id",
+          "topo_level",
+          "is_headwater",
+          "is_outlet"
+        ]
+      ],
+      "field_names": [
+        "abs_tol",
+        "action",
+        "all-touched",
+        "all_touched",
+        "area_km2",
+        "artifacts",
+        "basin_boundary",
+        "basin_id",
+        "cell_area_m2",
+        "cell_count",
+        "cell_inclusion",
+        "center",
+        "check",
+        "checks",
+        "choices",
+        "compress",
+        "copy",
+        "crs",
+        "d8_encoding",
+        "d8_pointer",
+        "default",
+        "description",
+        "details",
+        "downstream_reach_id",
+        "downstream_sub_id",
+        "driver",
+        "drop",
+        "drop_m",
+        "elev_down_m",
+        "elev_up_m",
+        "elevation_step_count",
+        "encoding",
+        "ensure_ascii",
+        "exist_ok",
+        "file",
+        "filled_dem",
+        "flow_accumulation",
+        "geometry",
+        "geopandas",
+        "indent",
+        "index",
+        "inputs",
+        "invert",
+        "is_headwater",
+        "is_outlet",
+        "key",
+        "kind",
+        "layer",
+        "length_m",
+        "message",
+        "negative_elevation_step_count",
+        "nodata",
+        "numpy",
+        "offset",
+        "out_shape",
+        "outlet_reach_ids",
+        "pandas",
+        "parameters",
+        "parents",
+        "path",
+        "provenance",
+        "python",
+        "rasterio",
+        "reach_count",
+        "reach_id",
+        "reach_ids",
+        "reaches_table",
+        "reaches_vector",
+        "rel_tol",
+        "required",
+        "result.json",
+        "return_counts",
+        "schema_version",
+        "sha256",
+        "shapely",
+        "skill",
+        "slope_m_m",
+        "slope_percent",
+        "sort_keys",
+        "start",
+        "status",
+        "strahler_order",
+        "stream_links",
+        "stream_links_clipped",
+        "stream_order",
+        "stream_order_clipped",
+        "sub_id",
+        "subbasins",
+        "subbasins_clipped",
+        "subbasins_table",
+        "topo_level",
+        "topology_table",
+        "transform",
+        "type",
+        "upstream_count",
+        "upstream_reach_ids",
+        "warnings"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "PASS",
+          "WARN",
+          "error",
+          "success",
+          "warning"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^reaches=.+$",
+        "^subbasins=.+$",
+        "^upstream_result_.+$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "spatial-analysis/build-hydrological-topology"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "basin.gpkg",
+    "d8_pointer.tif",
+    "dem_filled.tif",
+    "flow_accumulation_cells.tif",
+    "strahler_order.tif",
+    "stream_links.tif",
+    "subbasins.tif"
+  ],
+  "outputs": [
+    "hydrobase/subbasins.csv",
+    "hydrobase/reaches.csv",
+    "hydrobase/topology.csv",
+    "hydrobase/reaches_clipped.gpkg",
+    "hydrobase/stream_links_clipped.tif",
+    "hydrobase/stream_order_clipped.tif",
+    "hydrobase/subbasins_clipped.tif",
+    "hydrobase/result.json"
+  ],
+  "input_field_names": [],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

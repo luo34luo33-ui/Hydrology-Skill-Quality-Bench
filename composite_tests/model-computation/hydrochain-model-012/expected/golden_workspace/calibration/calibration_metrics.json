@@ -1,0 +1,9 @@
+{
+  "metrics": {
+    "nse": -0.7401142214103582,
+    "rmse": 99.46690101389241
+  },
+  "objective": 99.46690101389241,
+  "schema_version": "1.0",
+  "split": "calibration"
+}

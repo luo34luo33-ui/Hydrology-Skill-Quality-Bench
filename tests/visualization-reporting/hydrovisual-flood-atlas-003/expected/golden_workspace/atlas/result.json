@@ -1,0 +1,69 @@
+{
+  "artifacts": {
+    "flood-event-overview_figure": {
+      "path": "flood-event-overview.figure.json",
+      "sha256": "fa6ad04e7646bd504c08e3129ca7a1636874d334dc4cc5051d6edd53ce7fbfd0"
+    },
+    "flood-event-overview_png": {
+      "path": "flood-event-overview.png",
+      "sha256": "dc0251e50c9ca7b69d2407bf7e0cc0fcfabea2b9ccabc826b7ec73e2b9b18871"
+    },
+    "flood-event-overview_svg": {
+      "path": "flood-event-overview.svg",
+      "sha256": "d9aba080b6eb3d7230be59a780916a2a2b883d55cf30c6dd74e146179909f051"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed event artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "event_table_consistency",
+      "details": "events=0",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vaik5jre\\events\\result.json",
+      "sha256": "64c346c417d324e4014b31315f8f4d457248ee7caa56c752c2555ea46f9dd115"
+    },
+    "rainfall": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vaik5jre\\流域 雨量.csv",
+      "sha256": "07e3199dec37e6890797c3d90e611642a77e73c0bfee12a41473eae99e9624a1"
+    },
+    "rainfall_metadata": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-vaik5jre\\雨量 元数据.json",
+      "sha256": "44e05b3510b1e8f7e81094fdd0085cadea634e0cfdc65f09d4d07672ec1db0f0"
+    }
+  },
+  "message": "rendered overview and 0 event hydrographs",
+  "parameters": {
+    "language": "zh",
+    "max_events": null,
+    "pixel_size": [
+      2400,
+      1200
+    ],
+    "rainfall_available": true,
+    "rainfall_step_seconds": 3600.0,
+    "rendered_event_ids": [],
+    "selection": "all",
+    "total_volume_display_unit": "10^8 m3"
+  },
+  "provenance": {
+    "font": "Times New Roman, SimSun",
+    "matplotlib": "3.11.2",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "template_version": "hydrotune.flood-event-atlas.v2"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-flood-event-atlas",
+  "status": "warning",
+  "warnings": [
+    "no flood events satisfied the explicit configuration"
+  ]
+}

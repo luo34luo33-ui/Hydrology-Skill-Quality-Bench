@@ -1,0 +1,1604 @@
+{
+  "core_capabilities": [
+    "event_collection",
+    "de_calibration",
+    "event_metrics",
+    "event_aggregation"
+  ],
+  "critical_rules": [
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e0/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e0/evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e0/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e0/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e0/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "e0/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/e0/forcing.csv",
+        "rtol": 0.01,
+        "target": "e0/forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/forcing.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e0/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e0/rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e0/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e0/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e0/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "e0/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/rain/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e1/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e1/evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e1/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e1/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e1/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "e1/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/e1/forcing.csv",
+        "rtol": 0.01,
+        "target": "e1/forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/forcing.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e1/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e1/rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e1/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e1/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e1/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "e1/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/rain/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e2/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e2/evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e2/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e2/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e2/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "e2/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/e2/forcing.csv",
+        "rtol": 0.01,
+        "target": "e2/forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/forcing.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e2/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e2/rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e2/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e2/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e2/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "e2/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/rain/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e3/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e3/evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e3/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e3/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e3/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "E0",
+        "field": "parameters.variable",
+        "target": "e3/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/e3/forcing.csv",
+        "rtol": 0.01,
+        "target": "e3/forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/forcing.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/e3/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "e3/rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "e3/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "e3/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "e3/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "e3/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 1.0,
+        "field": "parameters.timestep_hours",
+        "target": "metrics/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "metrics/result.json"
+      ]
+    },
+    {
+      "code": "physical_state_or_split_error",
+      "criterion": {
+        "check": "calibration_replay",
+        "input_base": "expected/replay_inputs",
+        "target": "calibration/best_parameters.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "calibration/best_parameters.json",
+        "calibration/validation_series.csv"
+      ]
+    },
+    {
+      "code": "wrong_independent_metric",
+      "criterion": {
+        "check": "event_metrics_recompute",
+        "series": "validation_aligned.csv",
+        "target": "metrics/event_metrics.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "metrics/event_metrics.csv",
+        "validation_aligned.csv"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e0/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e0/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e0/rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e1/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e1/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e1/rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e2/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e2/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e2/rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e3/evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "e3/rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "e3/rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "calibration/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "calibration/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": "event_collection",
+        "field": "data_shape",
+        "target": "problem.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "problem.json"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "downstream": "calibration/result.json",
+      "field": "inputs.adapter",
+      "id": "calibration/result.json:inputs.adapter",
+      "upstream": "physical_calibration.py"
+    },
+    {
+      "downstream": "e0/evap/result.json",
+      "field": "inputs.source",
+      "id": "e0/evap/result.json:inputs.source",
+      "upstream": "e0/evap_source.csv"
+    },
+    {
+      "downstream": "e0/rain/result.json",
+      "field": "inputs.source",
+      "id": "e0/rain/result.json:inputs.source",
+      "upstream": "e0/rain_source.csv"
+    },
+    {
+      "downstream": "e1/evap/result.json",
+      "field": "inputs.source",
+      "id": "e1/evap/result.json:inputs.source",
+      "upstream": "e1/evap_source.csv"
+    },
+    {
+      "downstream": "e1/rain/result.json",
+      "field": "inputs.source",
+      "id": "e1/rain/result.json:inputs.source",
+      "upstream": "e1/rain_source.csv"
+    },
+    {
+      "downstream": "e2/evap/result.json",
+      "field": "inputs.source",
+      "id": "e2/evap/result.json:inputs.source",
+      "upstream": "e2/evap_source.csv"
+    },
+    {
+      "downstream": "e2/rain/result.json",
+      "field": "inputs.source",
+      "id": "e2/rain/result.json:inputs.source",
+      "upstream": "e2/rain_source.csv"
+    },
+    {
+      "downstream": "e3/evap/result.json",
+      "field": "inputs.source",
+      "id": "e3/evap/result.json:inputs.source",
+      "upstream": "e3/evap_source.csv"
+    },
+    {
+      "downstream": "e3/rain/result.json",
+      "field": "inputs.source",
+      "id": "e3/rain/result.json:inputs.source",
+      "upstream": "e3/rain_source.csv"
+    },
+    {
+      "downstream": "metrics/result.json",
+      "field": "inputs.event_file_0000",
+      "id": "metrics/result.json:inputs.event_file_0000",
+      "upstream": "scoring_events/20241030.csv"
+    },
+    {
+      "downstream": "metrics/result.json",
+      "field": "inputs.event_file_0001",
+      "id": "metrics/result.json:inputs.event_file_0001",
+      "upstream": "scoring_events/20250627.csv"
+    },
+    {
+      "downstream": "summary/result.json",
+      "field": "inputs.metrics_table",
+      "id": "summary/result.json:inputs.metrics_table",
+      "upstream": "metrics/event_metrics.csv"
+    }
+  ],
+  "forbidden_outputs": [],
+  "gates": [
+    {
+      "criteria": [
+        {
+          "check": "protected_sources",
+          "reference": "expected/protected_sources.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "scenario.json"
+      ],
+      "id": "protected_sources"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e0/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e0/evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e0/evap/prepared_forcing.csv"
+      ],
+      "id": "e0/evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e0/evap/result.json",
+          "target": "e0/evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e0/evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e0/evap/result.json"
+      ],
+      "id": "e0/evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e0/forcing.csv",
+          "rtol": 1e-06,
+          "target": "e0/forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e0/forcing.csv"
+      ],
+      "id": "e0/forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e0/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e0/rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e0/rain/prepared_forcing.csv"
+      ],
+      "id": "e0/rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e0/rain/result.json",
+          "target": "e0/rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e0/rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e0/rain/result.json"
+      ],
+      "id": "e0/rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e1/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e1/evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e1/evap/prepared_forcing.csv"
+      ],
+      "id": "e1/evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e1/evap/result.json",
+          "target": "e1/evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e1/evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e1/evap/result.json"
+      ],
+      "id": "e1/evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e1/forcing.csv",
+          "rtol": 1e-06,
+          "target": "e1/forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e1/forcing.csv"
+      ],
+      "id": "e1/forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e1/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e1/rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e1/rain/prepared_forcing.csv"
+      ],
+      "id": "e1/rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e1/rain/result.json",
+          "target": "e1/rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e1/rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e1/rain/result.json"
+      ],
+      "id": "e1/rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e2/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e2/evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e2/evap/prepared_forcing.csv"
+      ],
+      "id": "e2/evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e2/evap/result.json",
+          "target": "e2/evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e2/evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e2/evap/result.json"
+      ],
+      "id": "e2/evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e2/forcing.csv",
+          "rtol": 1e-06,
+          "target": "e2/forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e2/forcing.csv"
+      ],
+      "id": "e2/forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e2/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e2/rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e2/rain/prepared_forcing.csv"
+      ],
+      "id": "e2/rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e2/rain/result.json",
+          "target": "e2/rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e2/rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e2/rain/result.json"
+      ],
+      "id": "e2/rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e3/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e3/evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e3/evap/prepared_forcing.csv"
+      ],
+      "id": "e3/evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e3/evap/result.json",
+          "target": "e3/evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e3/evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e3/evap/result.json"
+      ],
+      "id": "e3/evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e3/forcing.csv",
+          "rtol": 1e-06,
+          "target": "e3/forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e3/forcing.csv"
+      ],
+      "id": "e3/forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/e3/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "e3/rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "e3/rain/prepared_forcing.csv"
+      ],
+      "id": "e3/rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/e3/rain/result.json",
+          "target": "e3/rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "e3/rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "e3/rain/result.json"
+      ],
+      "id": "e3/rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/decision.json",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "decision_evidence",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "decision.json"
+      ],
+      "id": "decision"
+    },
+    {
+      "criteria": [
+        {
+          "check": "calibration_replay",
+          "input_base": "expected/replay_inputs",
+          "target": "calibration/best_parameters.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "split_disjoint",
+          "targets": [
+            "calibration/calibration_series.csv",
+            "calibration/validation_series.csv"
+          ],
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "calibration/best_parameters.json"
+      ],
+      "id": "physical_calibration"
+    },
+    {
+      "criteria": [
+        {
+          "check": "event_metrics_recompute",
+          "series": "validation_aligned.csv",
+          "target": "metrics/event_metrics.csv",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "calibration/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "metrics/event_metrics.csv"
+      ],
+      "id": "independent_metrics"
+    },
+    {
+      "criteria": [
+        {
+          "check": "event_summary_recompute",
+          "series": "metrics/event_metrics.csv",
+          "target": "summary/aggregate_metrics.csv",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "summary/aggregate_metrics.csv"
+      ],
+      "id": "independent_event_aggregation"
+    }
+  ],
+  "interaction_mode": "none",
+  "provided_settings": [
+    {
+      "bindings": [
+        {
+          "expected": "event_collection",
+          "field": "data_shape",
+          "target": "problem.json"
+        }
+      ],
+      "field": "organization_mode",
+      "key": "organization_mode",
+      "source": "scenario.json"
+    }
+  ],
+  "reference_execution": [
+    {
+      "arguments": [
+        "--source",
+        "e0/rain_source.csv",
+        "--config",
+        "e0/rain_config.json",
+        "--output-dir",
+        "e0/rain"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "e0/evap_source.csv",
+        "--config",
+        "e0/evap_config.json",
+        "--output-dir",
+        "e0/evap"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "e1/rain_source.csv",
+        "--config",
+        "e1/rain_config.json",
+        "--output-dir",
+        "e1/rain"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "e1/evap_source.csv",
+        "--config",
+        "e1/evap_config.json",
+        "--output-dir",
+        "e1/evap"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "e2/rain_source.csv",
+        "--config",
+        "e2/rain_config.json",
+        "--output-dir",
+        "e2/rain"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "e2/evap_source.csv",
+        "--config",
+        "e2/evap_config.json",
+        "--output-dir",
+        "e2/evap"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "e3/rain_source.csv",
+        "--config",
+        "e3/rain_config.json",
+        "--output-dir",
+        "e3/rain"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "e3/evap_source.csv",
+        "--config",
+        "e3/evap_config.json",
+        "--output-dir",
+        "e3/evap"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--problem",
+        "problem.json",
+        "--optimizer-config",
+        "optimizer.json",
+        "--output-dir",
+        "calibration"
+      ],
+      "exit_code": 0,
+      "program": "model-calibration/calibrate-model-de",
+      "stderr": "",
+      "stdout": "success: de calibration completed\n"
+    },
+    {
+      "arguments": [
+        "--events-dir",
+        "scoring_events",
+        "--observed-column",
+        "observed_m3_s",
+        "--simulated-column",
+        "simulated_m3_s",
+        "--timestep-hours",
+        "1",
+        "--volume-unit",
+        "m3",
+        "--output-dir",
+        "metrics"
+      ],
+      "exit_code": 0,
+      "program": "evaluation-diagnostics/compute-event-flood-metrics",
+      "stderr": "",
+      "stdout": "warning: ����ָ�������ɣ�2 ��\n"
+    },
+    {
+      "arguments": [
+        "--metrics-table",
+        "metrics/event_metrics.csv",
+        "--value-columns",
+        "nse,rmse,mae,volume_error_relative,peak_error_relative,peak_time_error_hours",
+        "--output-dir",
+        "summary"
+      ],
+      "exit_code": 0,
+      "program": "evaluation-diagnostics/aggregate-event-metrics",
+      "stderr": "",
+      "stdout": "success: ����ָ�������ɣ�1 �����飬2 ��\n"
+    }
+  ],
+  "schema_version": "2.0",
+  "scientific_graph": {
+    "edges": [
+      {
+        "from": "event_collection",
+        "to": "de_calibration"
+      },
+      {
+        "from": "de_calibration",
+        "to": "event_metrics"
+      },
+      {
+        "from": "event_metrics",
+        "to": "event_aggregation"
+      }
+    ],
+    "nodes": [
+      {
+        "artifact": "calibration_inputs/20150509.csv",
+        "capability": "event_collection",
+        "id": "event_collection"
+      },
+      {
+        "artifact": "calibration/result.json",
+        "capability": "de_calibration",
+        "id": "de_calibration"
+      },
+      {
+        "artifact": "metrics/result.json",
+        "capability": "event_metrics",
+        "id": "event_metrics"
+      },
+      {
+        "artifact": "summary/result.json",
+        "capability": "event_aggregation",
+        "id": "event_aggregation"
+      }
+    ],
+    "note": "Dependencies below bind actual files and hashes; transform tables are independently checked. Listed graph is developer metadata, never visible to candidates."
+  },
+  "severity_policy": "Missing evidence is unknown. Artifact tolerances 1e-6; a critical numerical error exceeds 1e-3 + 1% of reference magnitude. Critical categorical failures are explicitly enumerated.",
+  "task_version": "composite-unattended-v2"
+}

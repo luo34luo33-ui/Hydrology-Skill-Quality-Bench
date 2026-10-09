@@ -32,7 +32,8 @@ def test_opencode_wrapper_is_noninteractive_isolated_and_maps_model_options() ->
     assert command[1:4] == ["--pure", "run", "--auto"]
     assert command[command.index("--model") + 1] == "provider/model"
     assert command[command.index("--variant") + 1] == "high"
-    assert "skill instructions" in command[-1]
+    assert "skill instructions" not in command[-1]
+    assert command == module.build_opencode_command("provider/model", "high", False)
 
     config = module.build_opencode_config(["hydrology-skill"])
     permissions = config["permission"]
@@ -126,7 +127,7 @@ def test_discovery_filters_domain_and_skill() -> None:
     by_ml_correct = runner.discover_tasks("tests", skill="post-processing/correct-residual-with-ml")
     expected_calibration = [
         f"hydromodel-{algorithm}-{index:03d}"
-        for algorithm in ("de", "dhf", "ga", "gr4j", "hbv", "lohmann", "muskingum", "pso", "sacsma", "sce-ua", "tank", "two-stage", "xaj")
+        for algorithm in ("de", "dhf", "ga", "gr4j", "hbv", "lohmann", "muskingum", "pso", "sacsma", "sce-ua", "swat-sd", "tank", "topmodel", "two-stage", "xaj", "xaj-sd")
         for index in range(1, 4)
     ]
     assert [item["task"]["id"] for item in by_domain] == sorted(expected_calibration)
@@ -175,12 +176,14 @@ def test_discovery_filters_domain_and_skill() -> None:
     assert [item["task"]["id"] for item in by_events] == [
         f"hydrodata-flood-events-{index:03d}" for index in range(1, 11)
     ]
-    assert len(by_spatial) == 35
+    assert len(by_spatial) == 41
     assert {item["task"]["primary_skill"] for item in by_spatial} == {
         "spatial-analysis/prepare-dem-analysis-grid",
         "spatial-analysis/extract-dem-stream-network",
         "spatial-analysis/build-hydrological-topology",
         "spatial-analysis/validate-hydrological-topology",
+        "spatial-analysis/derive-topmodel-terrain-inputs",
+        "spatial-analysis/aggregate-forcing-to-model-units",
     }
 
 

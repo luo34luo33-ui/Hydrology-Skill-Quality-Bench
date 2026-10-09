@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "event_metrics": {
+      "path": "event_metrics.csv",
+      "sha256": "2a530b1086bc06a2fed603eba21e24fbf2b2ba0037b1d7cfff98bc350cbf9882"
+    }
+  },
+  "checks": [
+    {
+      "message": "观测与模拟均为 732 行",
+      "name": "evaluation_events:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "evaluation_events:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "evaluation_events:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "evaluation_events:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "evaluation_events:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "未提供合格阈值，不判定合格",
+      "name": "thresholds_provided",
+      "status": "WARN"
+    },
+    {
+      "message": "洪量单位为 m3",
+      "name": "volume_unit_recorded",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "events": {
+      "path": "../evaluation_events.csv",
+      "sha256": "fce0e9b4e4141e6086248d3589004ebafac760c855bc2b5f650b53ab816d01d6"
+    }
+  },
+  "message": "场次指标计算完成：1 场",
+  "parameters": {
+    "event_id_column": "event_id",
+    "observed_column": "observed_m3_s",
+    "scoring_policy": "exclude_unscored_and_warmup",
+    "simulated_column": "simulated_m3_s",
+    "thresholds": {},
+    "time_column": "time",
+    "timestep_hours": 1.0,
+    "volume_unit": "m3"
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-event-flood-metrics",
+  "status": "warning",
+  "warnings": [
+    "未提供 --thresholds，合格判定列记为 unavailable；合格阈值必须由使用者显式给出"
+  ]
+}

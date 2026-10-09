@@ -1,0 +1,43 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "details": "subbasin 1: HRU area sum 1.200000 km2 does not equal HydroBase area_km2 1.000000 km2",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "forcing.csv",
+      "sha256": "ef47fa65cd12285bf9f60d884828fe2e1f490106fe5cd691bb82aacb5babad98"
+    },
+    "hru_table": {
+      "path": "hru_table.csv",
+      "sha256": "134ef9c190de02829d6e28ba39eb479df4a1942bfcea9560e4ef09e56aa2394a"
+    },
+    "params": {
+      "path": "params.json",
+      "sha256": "812deaf6ff49bf2a7ca31524c0a9cbdc853a749cadf0723007187b81fd782d78"
+    },
+    "topology_qc_result": {
+      "path": "topology_qc_result.json",
+      "sha256": "5fff9551151840bd3c752d14e3c5d27df5bf18f0a455385bc2a553bea6b746e2"
+    },
+    "topology_result": {
+      "path": "build_result.json",
+      "sha256": "08f707fdf264aa5020e238cc72581de2a7687e7398555825443864e688eedb9c"
+    }
+  },
+  "message": "subbasin 1: HRU area sum 1.200000 km2 does not equal HydroBase area_km2 1.000000 km2",
+  "parameters": {
+    "aggregate_to_daily": null
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-semi-distributed-swat-model",
+  "status": "error",
+  "warnings": []
+}

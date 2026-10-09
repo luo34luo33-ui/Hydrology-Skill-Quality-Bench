@@ -1,0 +1,33 @@
+{
+  "evidence": [
+    {
+      "path": "aligned/result.json",
+      "sha256": "ab5b6e99c2b536ba166d49718cab97cee063a5839fd376096abce82c8539e8c9"
+    },
+    {
+      "path": "evap/result.json",
+      "sha256": "188b6b1f1ebced08d3d4d2c688ef9bf41c1d42e3537e33f1aeb8a31c43b62f3d"
+    },
+    {
+      "path": "flow/result.json",
+      "sha256": "75d3a33d672ddc178cd548188bf215d83c041106b935bcf8c246312c033f8af5"
+    },
+    {
+      "path": "metrics/result.json",
+      "sha256": "055a6f6348b41c66e0ed3e6256a445447b51d8009403cdf2f9e44e39a9c2a9da"
+    },
+    {
+      "path": "model/result.json",
+      "sha256": "b70cb165b1223bcd19dbd6101470636a43321954a02b2a52b158aa9c020bc84d"
+    },
+    {
+      "path": "rain/result.json",
+      "sha256": "dcd0a9302e4963c554d107babe50c75823c4795bd0c672ee5f625fa25b155ded"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

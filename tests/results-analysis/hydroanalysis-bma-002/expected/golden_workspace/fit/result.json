@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "success",
+  "parameters": {
+    "mode": "train",
+    "distribution": "censored_gaussian",
+    "random_state": 2026,
+    "n_starts": 5,
+    "max_iter": 500,
+    "tol": 1e-08,
+    "quantiles": [
+      0.05,
+      0.5,
+      0.95
+    ],
+    "selection": {
+      "start": null,
+      "end": null,
+      "events": [
+        "flood-001",
+        "flood-002"
+      ]
+    }
+  },
+  "inputs": {
+    "members": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\members.json",
+      "sha256": "a4302ecc0adc8201e5ee75afe3fe6d5fb7d5520cc755653c9647d319a14f3be9"
+    },
+    "event_manifest_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-events.json",
+      "sha256": "c80cfe86fb1a1b1f1cc089a7d1c9d7995d3bc4defdff1ce6e79ee44bd102a144"
+    },
+    "simulation_0_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-001-result.json",
+      "sha256": "cf06cf825b990390c9bff41066ae713df258deefc7a260ab83b0271a0241a245"
+    },
+    "table_0_0_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-001.csv",
+      "sha256": "01ed43fb253f26b1e4dc4fa49d3279944da19cf7f4a98b7d18fb310bc196bc36"
+    },
+    "simulation_0_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-002-result.json",
+      "sha256": "2e8e3409ea07ef31be6b59cb9f5957f5dd0df287fc2de1740cab374016773cfa"
+    },
+    "table_0_1_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-002.csv",
+      "sha256": "0a647c4658cf3059aaf7e44d579ad47e35defcc9aedd0b4f54bf7942ea374ff6"
+    },
+    "event_manifest_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-events.json",
+      "sha256": "03b807a46b091cca91f02537812a4b2ed1704ecc97696884172b4ca002647270"
+    },
+    "simulation_1_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-001-result.json",
+      "sha256": "611580a4e4a6891e9284103e01522c38146c0e11da38617a43f1a6404ea7edb2"
+    },
+    "table_1_0_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-001.csv",
+      "sha256": "d7cb067b7b1ad5b0006b83d9eda49f4f1b22a4baddd0d8e7d8344f8eaac5e605"
+    },
+    "simulation_1_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-002-result.json",
+      "sha256": "f0052e1d0c9808b067a330cc18465b17989b0c748445be0f62051af5b5f9c9a1"
+    },
+    "table_1_1_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-002.csv",
+      "sha256": "ce77ec3a3f32a53d0b4f8bf072d63928bd0832dad22fa474a42834a2e4131a65"
+    },
+    "observed_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\observed-result.json",
+      "sha256": "0b028ba07d4d3eea67457a751b7c00911d72d6d148ca1093dbd18a11168dd7a0"
+    },
+    "observations": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\observed.csv",
+      "sha256": "6f9cc62bfbf1f955729a4a418cdf9f5b6b44feb748aa0e3be24a9abcc1a38b4a"
+    }
+  },
+  "artifacts": {
+    "model": {
+      "path": "bma_model.json",
+      "sha256": "e4208b51bb0bbd893c97855a8cac9dc46422d0b14b6348e342fe4318b2cef437"
+    },
+    "model_card": {
+      "path": "model_card.json",
+      "sha256": "96ec4cc290089dbfb9b96ad334fcc1297783d50e669d7db2b5131c8f748702b9"
+    },
+    "fit_diagnostics": {
+      "path": "fit_diagnostics.json",
+      "sha256": "af87b8ab22cd6ed494dd629ee8a9fa1e970c9a8c5e8b6b32f40c1a245eaf82ef"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "2a3ee0380a4d31c79a21ae556cd027bf0b0cc5bf129f97ea51d83c1d17c7af54"
+    }
+  },
+  "checks": [
+    {
+      "check": "alignment_and_probability",
+      "status": "PASS",
+      "details": {
+        "mode": "event",
+        "rows": 234,
+        "member_count": 2,
+        "warmup_union_rows": 6,
+        "selected_rows_per_member": {
+          "HBV": 240,
+          "Tank": 240
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "python": "3.11.16",
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "scipy": "1.17.1"
+  }
+}

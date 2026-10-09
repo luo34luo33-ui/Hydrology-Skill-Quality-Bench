@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "hydrobase-morphometry_figure": {
+      "path": "hydrobase-morphometry.figure.json",
+      "sha256": "a526dad9f3a2b01cc149b5e25b57d7b2740548daf3325a4233fe130ee17de2e4"
+    },
+    "hydrobase-morphometry_png": {
+      "path": "hydrobase-morphometry.png",
+      "sha256": "f4bfc009cbbb7f775a1b9740647eee25196cee582cbe507606557e670c8988f2"
+    },
+    "hydrobase-morphometry_svg": {
+      "path": "hydrobase-morphometry.svg",
+      "sha256": "f42cfb022516ddebf6923539fb7b046a5983d3dde01103ab2990e11ed14ff7b9"
+    },
+    "hydrobase-qc-dashboard_figure": {
+      "path": "hydrobase-qc-dashboard.figure.json",
+      "sha256": "736a6afb30fd071b8339360377d2acf4fa641ebf023168a134d3037c7e9bae21"
+    },
+    "hydrobase-qc-dashboard_png": {
+      "path": "hydrobase-qc-dashboard.png",
+      "sha256": "7551a62847cd2853b4821cf70d1ae65f069e1aca0194a3582992ccbb4fdaeccc"
+    },
+    "hydrobase-qc-dashboard_svg": {
+      "path": "hydrobase-qc-dashboard.svg",
+      "sha256": "92f99bf7f0dda42fd29657032856455cae096c3ffc2363eb07e3197bc30e3483"
+    },
+    "hydrobase-topology_figure": {
+      "path": "HydroBase 水文拓扑.figure.json",
+      "sha256": "aa0d2ea260b327605c4fcf1fb3138405671c41ccccf168d4f962618a655c6b72"
+    },
+    "hydrobase-topology_png": {
+      "path": "HydroBase 水文拓扑.png",
+      "sha256": "0e8f5152ec7c21ca3938c84eee1d63a33b66ad52535fc116f6636c3b2b9a74c0"
+    },
+    "hydrobase-topology_svg": {
+      "path": "HydroBase 水文拓扑.svg",
+      "sha256": "3dfc9eb33e6ef7ad48b6972acef4affca1043281086ce555ed512186b564e88b"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed build and validation artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "build_grid_alignment",
+      "details": "three clipped rasters share CRS, transform and shape",
+      "status": "PASS"
+    },
+    {
+      "check": "upstream_scientific_qc",
+      "details": "validation status=success",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\validate\\result.json",
+      "sha256": "1506cb4d73c0f2c413e9256860a86bfb03a13d1926b091db05159dadb3aa62c7"
+    }
+  },
+  "message": "rendered 3 fixed atlas templates",
+  "parameters": {
+    "language": "zh",
+    "pixel_sizes": {
+      "hydrobase-morphometry": {
+        "height": 884,
+        "width": 2400
+      },
+      "hydrobase-qc-dashboard": {
+        "height": 2366,
+        "width": 2400
+      },
+      "hydrobase-topology": {
+        "height": 2366,
+        "width": 2400
+      }
+    },
+    "templates": [
+      "hydrobase-topology",
+      "hydrobase-morphometry",
+      "hydrobase-qc-dashboard"
+    ]
+  },
+  "provenance": {
+    "font": "Microsoft YaHei",
+    "geopandas": "1.1.4",
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "template_version": "hydrotune.spatial-atlas.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-hydrobase-atlas",
+  "status": "success",
+  "warnings": []
+}

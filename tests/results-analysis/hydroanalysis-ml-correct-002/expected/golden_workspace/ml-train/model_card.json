@@ -11,6 +11,16 @@
   },
   "lag_spec": [
     {
+      "column": "residual",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
       "column": "Qt",
       "steps": [
         1
@@ -23,11 +33,11 @@
   "residual_definition": "observed - base",
   "skill": "post-processing/correct-residual-with-ml",
   "split": "chronological",
-  "test_r2": 0.1347517931435287,
-  "test_rmse": 2.7102122791089114,
-  "test_rows": 30,
+  "test_r2": 0.9997328010572806,
+  "test_rmse": 0.04719752674463647,
+  "test_rows": 29,
   "test_size": 0.25,
-  "train_r2": 0.273801383847885,
-  "train_rmse": 2.717066128653291,
-  "train_rows": 89
+  "train_r2": 0.9999231445424419,
+  "train_rmse": 0.028727447649609356,
+  "train_rows": 86
 }

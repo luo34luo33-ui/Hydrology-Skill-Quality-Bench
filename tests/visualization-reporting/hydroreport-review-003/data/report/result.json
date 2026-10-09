@@ -1,0 +1,95 @@
+{
+  "artifacts": {
+    "analysis-tables.json": {
+      "path": "analysis-tables.json",
+      "sha256": "67feda8f7909bfc00c4e6b89111868bfc96e5cc0adcba3a25e8ef3a7de0cbc96"
+    },
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "ca1c58e9f1026d2336803d1412055ea0db91c70620b30064f0fac0ae0359eca3"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "evidence-index.csv": {
+      "path": "evidence-index.csv",
+      "sha256": "504376f0b302ad84fcdcdcbc35617caf5caa63085551b27447c438ecae83f338"
+    },
+    "evidence-index.json": {
+      "path": "evidence-index.json",
+      "sha256": "32795c74bd5097af8acda9eab3d0ca44c56326035660cc60b5a99ffd444c4339"
+    },
+    "figures/distribution-4.svg": {
+      "path": "figures/distribution-4.svg",
+      "sha256": "ca089502e9e605f76bec98ec232c1cbf97e7448ee7cfd2a5146c27db131fcbfb"
+    },
+    "figures/distribution-5.svg": {
+      "path": "figures/distribution-5.svg",
+      "sha256": "923eb9f15101e7b0067b48c58df63f67079462ecc7f8a9415107550469d72196"
+    },
+    "figures/subbasin-areas.svg": {
+      "path": "figures/subbasin-areas.svg",
+      "sha256": "c19aefe389f19377e5a1fb8efeb43f00a055da147e8c060f6b7fb9b96212d03e"
+    },
+    "figures/topology-connections.svg": {
+      "path": "figures/topology-connections.svg",
+      "sha256": "c6dc6bf02b3860afee93d33a9972b443ab0cc8211e1ec1ab80cf21ed802f1367"
+    },
+    "reaches.csv": {
+      "path": "reaches.csv",
+      "sha256": "c72eb53ce5ed60398706895b2125573a8d61d88d9a08b261585a8eb0d3767431"
+    },
+    "report.json": {
+      "path": "report.json",
+      "sha256": "16e8a55ddb9b4e254e7e3cbebd959fe459a4c52eeef3c7cc6b8aa8986db6a99c"
+    },
+    "report.md": {
+      "path": "report.md",
+      "sha256": "6363718ba83d7257d56971e15d96f5c2e35931604a5047bee4f679217d496062"
+    },
+    "subbasins.csv": {
+      "path": "subbasins.csv",
+      "sha256": "769950fcb95d4e2673064cd3df3e7d468b2ec744c8097a231e0e1a8788c759f8"
+    },
+    "summary.csv": {
+      "path": "summary.csv",
+      "sha256": "a0ed639f53536714dc6519c50320d0ad3594da7e954da942982e8e845257f4cc"
+    },
+    "topology.csv": {
+      "path": "topology.csv",
+      "sha256": "507bf20bcc44198238028cdcb0386910ac0f61c1d0ed3c596b421c6ac37dc187"
+    }
+  },
+  "checks": [
+    {
+      "check": "source_integrity",
+      "details": "Declared outputs and results verified",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "processing_manifest": {
+      "path": "@WORKSPACE@\\manifest.json",
+      "sha256": "4327a2b152252f18b55290413fd07a1a2d43fdd92af17075b4ab48654f138192"
+    },
+    "qc": {
+      "path": "@WORKSPACE@\\validate\\result.json",
+      "sha256": "1506cb4d73c0f2c413e9256860a86bfb03a13d1926b091db05159dadb3aa62c7"
+    },
+    "topo": {
+      "path": "@WORKSPACE@\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    }
+  },
+  "message": "Data-processing report generated from verified upstream outputs",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-spatial-data-processing-report",
+  "status": "success",
+  "warnings": []
+}

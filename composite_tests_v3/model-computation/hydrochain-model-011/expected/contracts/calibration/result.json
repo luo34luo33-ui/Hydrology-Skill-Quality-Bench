@@ -1,0 +1,19 @@
+{
+  "data_shape": "continuous",
+  "parameters": {
+    "max_evaluations": 128,
+    "optimizer_config": {
+      "algorithm": "de",
+      "crossover_probability": 0.7,
+      "max_evaluations": 128,
+      "max_failed_evaluations": 2,
+      "max_generations": 3,
+      "mutation_factor": 0.8,
+      "polish": false,
+      "population_multiplier": 3,
+      "seed": 20261004,
+      "tolerance": 1e-09
+    },
+    "seed": 20261004
+  }
+}

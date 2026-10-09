@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "hru_process": {
+      "path": "hru_process.csv",
+      "sha256": "0b9779917127f8b400343f578a9ebac4e85e06a936f319b9b48bcfd5f0ce9968"
+    },
+    "model_config": {
+      "path": "model_config.json",
+      "sha256": "1b09c6a7e828b892d7f051a1f58274165d152cc29e2ea49b474b062c07fabf50"
+    },
+    "outlet_flow": {
+      "path": "outlet_flow.csv",
+      "sha256": "3a1d7c50d5f0c295fa601aa4ac84556a32b72eba90dcc286f398313ceeee6680"
+    },
+    "reach_process": {
+      "path": "reach_process.csv",
+      "sha256": "a3fa47f3f4f992de455ed079d22a7f7b99dfd892c7383331ed331cd0d206c395"
+    },
+    "subbasin_process": {
+      "path": "subbasin_process.csv",
+      "sha256": "bc3476f4c367104658bcdfef41109cb1dfa7ef2fad5ffa15a44ce10935f00867"
+    },
+    "water_balance": {
+      "path": "water_balance.json",
+      "sha256": "e7efe07f1fd8c7196a2cefa0ea5e42626a7014e227d6c4f8b9728f1d53e45c77"
+    }
+  },
+  "checks": [
+    {
+      "check": "hydrobase_qc",
+      "details": "independent validation, hashes and single-outlet constraint verified",
+      "status": "PASS"
+    },
+    {
+      "check": "finite_outputs",
+      "details": "all simulated flows are finite and nonnegative",
+      "status": "PASS"
+    },
+    {
+      "check": "water_balance",
+      "details": "HRU / reach / subbasin / basin residuals within tolerance",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "forcing.csv",
+      "sha256": "ef47fa65cd12285bf9f60d884828fe2e1f490106fe5cd691bb82aacb5babad98"
+    },
+    "hru_table": {
+      "path": "hru_table.csv",
+      "sha256": "ee9fdb1a17eb1506f2eb146e24a2287c736c287dcd0eedd6f3094152f0a70964"
+    },
+    "params": {
+      "path": "params.json",
+      "sha256": "812deaf6ff49bf2a7ca31524c0a9cbdc853a749cadf0723007187b81fd782d78"
+    },
+    "topology_qc_result": {
+      "path": "topology_qc_result.json",
+      "sha256": "5fff9551151840bd3c752d14e3c5d27df5bf18f0a455385bc2a553bea6b746e2"
+    },
+    "topology_result": {
+      "path": "build_result.json",
+      "sha256": "08f707fdf264aa5020e238cc72581de2a7687e7398555825443864e688eedb9c"
+    }
+  },
+  "message": "Semi-distributed SWAT daily simulation completed",
+  "parameters": {
+    "aggregate_to_daily": null,
+    "initial": {
+      "soil_fraction": 0.4
+    },
+    "n_hru": 2,
+    "n_reach": 2,
+    "n_steps": 30,
+    "n_subbasin": 2,
+    "outlet_reach_id": 2,
+    "parameter_overrides": {},
+    "reach_params_by_id": {
+      "1": {
+        "evap_m3_day": 0.0,
+        "musk_k_hr": 18.0,
+        "musk_x": 0.2,
+        "scoef": 1.0,
+        "trans_loss_m3_day": 0.0,
+        "ttime_hr": 4.0
+      },
+      "2": {
+        "evap_m3_day": 0.0,
+        "musk_k_hr": 18.0,
+        "musk_x": 0.2,
+        "scoef": 1.0,
+        "trans_loss_m3_day": 0.0,
+        "ttime_hr": 4.0
+      }
+    },
+    "simulation": {
+      "end": "2020-07-30T00:00:00+08:00",
+      "start": "2020-07-06T00:00:00+08:00"
+    },
+    "swat": {
+      "channel_profile": "linear_storage",
+      "cn_mode": "static",
+      "profile": "simplified"
+    },
+    "time": {
+      "step_seconds": 86400,
+      "timestamp_meaning": "interval_end",
+      "timezone": "Asia/Shanghai"
+    },
+    "warmup_steps": 5
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-semi-distributed-swat-model",
+  "status": "success",
+  "warnings": []
+}

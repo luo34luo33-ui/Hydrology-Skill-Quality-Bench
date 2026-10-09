@@ -1,0 +1,7 @@
+time,simulated_m3_s,is_warmup,observed_m3_s,matched,excluded_reason
+2019-12-31T17:00:00+00:00,1.1,True,1.0,True,warmup
+2019-12-31T18:00:00+00:00,1.8,True,2.0,True,warmup
+2019-12-31T19:00:00+00:00,1.6,False,1.5,True,
+2019-12-31T20:00:00+00:00,1.3,False,1.2,True,
+2019-12-31T21:00:00+00:00,1.9,False,1.8,True,
+2019-12-31T22:00:00+00:00,1.0,False,0.9,True,

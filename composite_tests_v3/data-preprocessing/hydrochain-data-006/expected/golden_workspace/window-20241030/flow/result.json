@@ -1,0 +1,69 @@
+{
+  "artifacts": {
+    "discharge_timeseries": {
+      "path": "discharge_timeseries.csv",
+      "sha256": "eb9b6be517248381d023915af0e367256ac6ad53e5d15fde80e423ec74f1638a"
+    },
+    "series_metadata": {
+      "path": "series_metadata.json",
+      "sha256": "1cad8f8f1109638ef7f0f8df9db30b4b8e28a8e854c346cc3942642b7e0b7308"
+    }
+  },
+  "checks": [
+    {
+      "check": "duplicate_timestamps",
+      "details": "count=0",
+      "status": "PASS"
+    },
+    {
+      "check": "edge_missing",
+      "details": "count=0",
+      "status": "PASS"
+    },
+    {
+      "check": "interior_missing",
+      "details": "count=0",
+      "status": "PASS"
+    },
+    {
+      "check": "regular_timestep",
+      "details": "seconds=3600",
+      "status": "PASS"
+    },
+    {
+      "check": "nonnegative_discharge",
+      "details": "rows=104",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "source_timeseries": {
+      "path": "../../raw_events/20241030.csv",
+      "sha256": "3ab33026b2758d402002df6ae39c0f70919d562f2d0ab0be8cc135a61e752a22"
+    }
+  },
+  "message": "discharge time series prepared",
+  "parameters": {
+    "duplicate_policy": "error",
+    "edge_missing": "error",
+    "flow_column": "GZ_in",
+    "flow_unit": "m3/s",
+    "input_format": "auto",
+    "max_interpolation_gap_hours": null,
+    "missing_policy": "error",
+    "output_format": "csv",
+    "overwrite": false,
+    "sheet": null,
+    "time_column": "time",
+    "timezone": "Asia/Shanghai"
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-discharge-timeseries",
+  "status": "success",
+  "warnings": []
+}

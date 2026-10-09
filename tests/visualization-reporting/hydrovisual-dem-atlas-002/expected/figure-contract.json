@@ -1,0 +1,147 @@
+{
+  "figures": [
+    {
+      "geometry": [
+        "M 0 864  L 855 864  L 855 0  L 0 0  z ",
+        "M 29.97 825.12  L 842.13 825.12  L 842.13 12.96  L 29.97 12.96  z ",
+        "M 0 0  L 0 -6  ",
+        "M 0 0  L 6 0  ",
+        "M 29.97 825.12  L 29.97 12.96  ",
+        "M 842.13 825.12  L 842.13 12.96  ",
+        "M 29.97 825.12  L 842.13 825.12  ",
+        "M 29.97 12.96  L 842.13 12.96  ",
+        "M 79.839474 775.250526  L 79.839474 62.829474  L 792.260526 62.829474  L 792.260526 775.250526  L 79.839474 775.250526  ",
+        "M 50.274 155.088  L 375.138 155.088  L 375.138 33.264  L 50.274 33.264  z ",
+        "M 89.25768 110.01312  L 336.15432 110.01312  L 336.15432 90.52128  L 89.25768 90.52128  z ",
+        "M 0 0  L 0 3.5  ",
+        "M 89.25768 110.01312  L 89.25768 100.2672  L 89.25768 90.52128  L 336.15432 90.52128  L 336.15432 100.2672  L 336.15432 110.01312  L 89.25768 110.01312  z ",
+        "M 629.8285 804.816  L 819.2735 804.816  Q 822.4735 804.816 822.4735 801.616  L 822.4735 751.02975  Q 822.4735 747.82975 819.2735 747.82975  L 629.8285 747.82975  Q 626.6285 747.82975 626.6285 751.02975  L 626.6285 801.616  Q 626.6285 804.816 629.8285 804.816  z ",
+        "M 633.0285 768.54975  L 671.4285 768.54975  L 671.4285 754.22975  L 633.0285 754.22975  z ",
+        "M 633.0285 788.642875  L 652.2285 788.642875  L 671.4285 788.642875  ",
+        "M 74.6388 780.4512  L 232.954589 780.4512  ",
+        "M 74.6388 786.94848  L 74.6388 773.95392  ",
+        "M 232.954589 786.94848  L 232.954589 773.95392  ",
+        "M 137.66982 766.79232  L 169.92357 766.79232  L 169.92357 753.962164  L 137.66982 753.962164  z "
+      ],
+      "metadata": "atlas/dem-basin-context.figure.json",
+      "metadata_contract": {
+        "crs": "EPSG:32650",
+        "extent": [
+          499967.0,
+          500993.0,
+          4099007.0,
+          4100033.0
+        ],
+        "language": "en",
+        "layers": [
+          {
+            "display_transform": "2-98 percentile linear stretch; vmin=1061; vmax=1214; display clipped to true basin polygon",
+            "id": "metric-dem",
+            "palette": "terrain",
+            "source": "prepare_result.artifacts.metric_dem"
+          },
+          {
+            "display_transform": "boundary stroke; display clipped to true basin polygon",
+            "id": "basin-boundary",
+            "palette": "boundary",
+            "source": "prepare_result.artifacts.normalized_basin"
+          }
+        ],
+        "outputs": {
+          "png": {},
+          "svg": {}
+        },
+        "pixel_size": {
+          "height": 2400,
+          "width": 2375
+        },
+        "publication_ready": false,
+        "schema_version": "1.0",
+        "template_id": "dem-basin-context",
+        "template_version": "hydrotune.dem-hydrology-atlas.v2",
+        "title": "Basin and DEM analysis extent",
+        "warnings": [
+          "No extract result supplied; network and subbasin templates were skipped"
+        ]
+      },
+      "minimum_graphics": 28,
+      "png": "atlas/dem-basin-context.png",
+      "size": [
+        2375,
+        2400
+      ],
+      "svg": "atlas/dem-basin-context.svg"
+    },
+    {
+      "geometry": [
+        "M 0 864  L 855 864  L 855 0  L 0 0  z ",
+        "M 29.97 825.12  L 842.13 825.12  L 842.13 12.96  L 29.97 12.96  z ",
+        "M 0 0  L 0 -6  ",
+        "M 0 0  L 6 0  ",
+        "M 29.97 825.12  L 29.97 12.96  ",
+        "M 842.13 825.12  L 842.13 12.96  ",
+        "M 29.97 825.12  L 842.13 825.12  ",
+        "M 29.97 12.96  L 842.13 12.96  ",
+        "M 79.839474 775.250526  L 79.839474 62.829474  L 792.260526 62.829474  L 792.260526 775.250526  L 79.839474 775.250526  ",
+        "M 50.274 155.088  L 375.138 155.088  L 375.138 33.264  L 50.274 33.264  z ",
+        "M 89.25768 110.01312  L 336.15432 110.01312  L 336.15432 90.52128  L 89.25768 90.52128  z ",
+        "M 0 0  L 0 3.5  ",
+        "M 89.25768 110.01312  L 89.25768 100.2672  L 89.25768 90.52128  L 336.15432 90.52128  L 336.15432 100.2672  L 336.15432 110.01312  L 89.25768 110.01312  z ",
+        "M 341.65125 804.816  L 531.09625 804.816  Q 534.29625 804.816 534.29625 801.616  L 534.29625 779.122875  Q 534.29625 775.922875 531.09625 775.922875  L 341.65125 775.922875  Q 338.45125 775.922875 338.45125 779.122875  L 338.45125 801.616  Q 338.45125 804.816 341.65125 804.816  z ",
+        "M 344.85125 788.642875  L 364.05125 788.642875  L 383.25125 788.642875  ",
+        "M 74.6388 780.4512  L 232.954589 780.4512  ",
+        "M 74.6388 786.94848  L 74.6388 773.95392  ",
+        "M 232.954589 786.94848  L 232.954589 773.95392  ",
+        "M 137.66982 766.79232  L 169.92357 766.79232  L 169.92357 753.962164  L 137.66982 753.962164  z "
+      ],
+      "metadata": "atlas/dem-terrain.figure.json",
+      "metadata_contract": {
+        "crs": "EPSG:32650",
+        "extent": [
+          499967.0,
+          500993.0,
+          4099007.0,
+          4100033.0
+        ],
+        "language": "en",
+        "layers": [
+          {
+            "display_transform": "2-98 percentile terrain tint plus fixed hillshade; vmin=1061; vmax=1214; display clipped to true basin polygon",
+            "id": "analysis-dem",
+            "palette": "terrain",
+            "source": "prepare_result.artifacts.analysis_dem"
+          },
+          {
+            "display_transform": "boundary stroke; display clipped to true basin polygon",
+            "id": "basin-boundary",
+            "palette": "boundary",
+            "source": "prepare_result.artifacts.normalized_basin"
+          }
+        ],
+        "outputs": {
+          "png": {},
+          "svg": {}
+        },
+        "pixel_size": {
+          "height": 2400,
+          "width": 2375
+        },
+        "publication_ready": false,
+        "schema_version": "1.0",
+        "template_id": "dem-terrain",
+        "template_version": "hydrotune.dem-hydrology-atlas.v2",
+        "title": "Terrain within the analysis extent",
+        "warnings": [
+          "No extract result supplied; network and subbasin templates were skipped"
+        ]
+      },
+      "minimum_graphics": 29,
+      "png": "atlas/dem-terrain.png",
+      "size": [
+        2375,
+        2400
+      ],
+      "svg": "atlas/dem-terrain.svg"
+    }
+  ]
+}

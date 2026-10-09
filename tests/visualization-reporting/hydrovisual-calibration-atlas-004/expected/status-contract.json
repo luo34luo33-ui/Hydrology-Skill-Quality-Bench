@@ -1,0 +1,12 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "skill": "visualization-reporting/visualize-model-calibration",
+      "status": "warning",
+      "warnings": [
+        "validation series 未提供 precipitation；过程图省略降水面板"
+      ]
+    }
+  },
+  "kind": "status"
+}

@@ -1,0 +1,10 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "skill": "visualization-reporting/visualize-model-calibration",
+      "status": "success",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

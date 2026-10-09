@@ -1,0 +1,20 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "details": "meteorology has missing values",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "meteorology has missing values",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/derive-potential-evapotranspiration",
+  "status": "error",
+  "warnings": []
+}

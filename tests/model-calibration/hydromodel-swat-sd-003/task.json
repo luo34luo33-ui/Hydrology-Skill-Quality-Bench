@@ -1,0 +1,93 @@
+{
+  "data_description": "A deterministic semi-distributed SWAT fixture over a hash-checked two-reach HydroBase network.",
+  "data_files": [
+    "build_result.json",
+    "topology_qc_result.json",
+    "hru_table.csv",
+    "forcing.csv",
+    "params.json"
+  ],
+  "difficulty": "basic",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "expected_rows": {
+        "swat-sd-run/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "target": "swat-sd-run/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "swat-sd-run/hru_process.csv",
+        "swat-sd-run/subbasin_process.csv",
+        "swat-sd-run/reach_process.csv",
+        "swat-sd-run/outlet_flow.csv"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydromodel-swat-sd-003",
+  "primary_skill": "hydrological-modeling/run-semi-distributed-swat-model",
+  "prompt": "Use build_result.json, topology_qc_result.json, hru_table.csv, forcing.csv, and params.json exactly as supplied to run hydrological-modeling/run-semi-distributed-swat-model. The HRU table deliberately disagrees with the subbasin areas (HRU 1 area 1.2 km2 vs subbasin 1.0 km2); run the skill verbatim and only the native result.json under swat-sd-run/. Do not rebalance the areas; the script must reject the input itself. No hru_process.csv, subbasin_process.csv, reach_process.csv, or outlet_flow.csv may remain in swat-sd-run/.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "swat-sd-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The HydroBase chain, HRU table, and SWAT configuration are confirmed by the user and must not be altered.",
+    "The SWAT core is an LGPL-2.1-derived simplification; provenance in result.json records NOT VERIFIED by design.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject a SWAT run whose HRU areas disagree with the subbasin table"
+}

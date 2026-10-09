@@ -1,0 +1,8 @@
+{
+  "events": {
+    "path": "validation-events.csv",
+    "sha256": "fa323d685860a80afba693a39268f620db96225aac21ea0b9642f95dfec419a7"
+  },
+  "schema_version": "1.0",
+  "step_seconds": 86400
+}

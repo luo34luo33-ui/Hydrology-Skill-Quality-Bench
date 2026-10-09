@@ -1,0 +1,227 @@
+{
+  "artifacts": {
+    "event_index": {
+      "path": "event_index.csv",
+      "sha256": "2487ce79e576c08da616013a8d93c14d2a1aeb8249c20be3c02ad837aa27fac1"
+    },
+    "simulation_table": {
+      "path": "lumped_xaj_runoff.csv",
+      "sha256": "ac5b8f04560de4989427c7539f8e2064256dcd67e4fa3e389743d1e91249da68"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "20150509:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "20150509:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 82 步",
+      "name": "20150509:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "20150509:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "分层土壤含水量在容量范围内",
+      "name": "20150509:soil_moisture_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差 3.55e-14 mm，占可渗透区降雨 0.000%",
+      "name": "20150509:water_balance",
+      "status": "PASS"
+    },
+    {
+      "message": "数值裁剪 16 次",
+      "name": "20150509:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "不透水面积比例 IM=0.02，不透水区产流直接进入 QS",
+      "name": "20150509:impervious_fraction",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "20191031:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "20191031:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 85 步",
+      "name": "20191031:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "20191031:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "分层土壤含水量在容量范围内",
+      "name": "20191031:soil_moisture_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差 0.0006 mm，占可渗透区降雨 0.001%",
+      "name": "20191031:water_balance",
+      "status": "PASS"
+    },
+    {
+      "message": "数值裁剪 33 次",
+      "name": "20191031:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "不透水面积比例 IM=0.02，不透水区产流直接进入 QS",
+      "name": "20191031:impervious_fraction",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "20241030:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "20241030:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 92 步",
+      "name": "20241030:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "20241030:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "分层土壤含水量在容量范围内",
+      "name": "20241030:soil_moisture_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差 2.84e-14 mm，占可渗透区降雨 0.000%",
+      "name": "20241030:water_balance",
+      "status": "PASS"
+    },
+    {
+      "message": "数值裁剪 64 次",
+      "name": "20241030:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "不透水面积比例 IM=0.02，不透水区产流直接进入 QS",
+      "name": "20241030:impervious_fraction",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "20250627:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "20250627:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 84 步",
+      "name": "20250627:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "20250627:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "分层土壤含水量在容量范围内",
+      "name": "20250627:soil_moisture_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差 4.26e-14 mm，占可渗透区降雨 0.000%",
+      "name": "20250627:water_balance",
+      "status": "PASS"
+    },
+    {
+      "message": "数值裁剪 21 次",
+      "name": "20250627:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "不透水面积比例 IM=0.02，不透水区产流直接进入 QS",
+      "name": "20250627:impervious_fraction",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "events_dir": "event_forcing",
+    "params": {
+      "path": "../params.json",
+      "sha256": "ffa3565b6cbd756767e3ecc744f2446ac6a48623875605a7439350afb941a44a"
+    }
+  },
+  "message": "集总式新安江前向模拟完成：4 场（或段），391 行",
+  "parameters": {
+    "area_km2": 564.4784427125312,
+    "balance_tolerance_fraction": 0.001,
+    "carry_columns": [],
+    "mode": "event",
+    "parameter_set": {
+      "B": 0.3,
+      "C": 0.12,
+      "CG": 0.95,
+      "CI": 0.6,
+      "CS": 0.2,
+      "EX": 1.2,
+      "FR1": 0.4,
+      "IM": 0.02,
+      "K": 0.5,
+      "KG": 0.35,
+      "KI": 0.3,
+      "L": 2,
+      "Q": 15.0,
+      "S1": 5.0,
+      "SM": 4.0,
+      "WDM_init": 30.0,
+      "WLM": 60.0,
+      "WLM_init": 45.0,
+      "WM": 120.0,
+      "WUM": 20.0,
+      "WUM_init": 15.0
+    },
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-xaj-model",
+  "status": "warning",
+  "warnings": [
+    "20150509 发生 16 次数值裁剪（比率钳制或地面径流钳制），说明参数或 forcing 使公式越过定义域，请检查 WM/SM 与降雨量级",
+    "20191031 发生 33 次数值裁剪（比率钳制或地面径流钳制），说明参数或 forcing 使公式越过定义域，请检查 WM/SM 与降雨量级",
+    "20241030 发生 64 次数值裁剪（比率钳制或地面径流钳制），说明参数或 forcing 使公式越过定义域，请检查 WM/SM 与降雨量级",
+    "20250627 发生 21 次数值裁剪（比率钳制或地面径流钳制），说明参数或 forcing 使公式越过定义域，请检查 WM/SM 与降雨量级"
+  ]
+}

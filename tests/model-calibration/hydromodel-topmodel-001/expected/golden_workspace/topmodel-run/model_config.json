@@ -1,0 +1,22 @@
+{
+  "forcing_unit": "mm/step",
+  "parameters": {
+    "Sr0": 0.05,
+    "Srmax": 0.2,
+    "infiltration_excess": false,
+    "lnTe": 2.0,
+    "m": 0.02,
+    "qs0": 0.05,
+    "td": 10.0,
+    "vch": 2000.0,
+    "vr": 5000.0
+  },
+  "schema_version": "1.0",
+  "simulation_end": "2020-08-08T00:00:00+08:00",
+  "simulation_start": "2020-08-03T00:00:00+08:00",
+  "timestamp_semantics": "interval_end",
+  "timestep_hours": 24,
+  "timezone": "Asia/Shanghai",
+  "warmup_steps": 2,
+  "water_balance_tolerance_m": 1e-06
+}

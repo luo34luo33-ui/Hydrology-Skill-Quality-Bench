@@ -1,0 +1,9 @@
+{
+  "model": "run-lumped-hbv-model",
+  "simulation_rows": 6,
+  "matched_rows": 6,
+  "warmup_excluded": 2,
+  "observation_missing": 0,
+  "simulation_missing": 0,
+  "evaluation_rows": 4
+}

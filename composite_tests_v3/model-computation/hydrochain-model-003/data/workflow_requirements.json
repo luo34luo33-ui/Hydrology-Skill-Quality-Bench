@@ -1,0 +1,71 @@
+{
+  "task_revision": 5,
+  "measured_capabilities": [
+    "forcing_standardization",
+    "xaj",
+    "muskingum"
+  ],
+  "state": "Use scenario.json organization mode and initial states; independent events reset state, continuous runs retain state.",
+  "warmup": "Preserve model warm-up execution, exclude declared warm-up samples from scoring, and disclose the actual scored sample set.",
+  "aggregation": "Use the supplied timestep, units, forcing selection and spatial representativeness; rainfall/evaporation depths sum and discharge follows the declared aggregation.",
+  "external_inflow": "Where supplied, distinguish incremental local inflow and external contributions; inject and route each external contribution exactly once.",
+  "stability": "Where routing is used, use the supplied routing parameters and actual integration step; do not silently change them.",
+  "independence": "Where calibration or comparisons are used, respect the supplied train/validation split and independently recompute scored metrics.",
+  "applicability": "Apply each requirement only to capabilities and processes requested in this task; no extra model or scientific decision is required.",
+  "axis_checks": [
+    {
+      "path": "evap/prepared_forcing.csv",
+      "time_column": "time",
+      "group_columns": [
+        "source_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "forcing.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "model/lumped_xaj_runoff.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "rain/prepared_forcing.csv",
+      "time_column": "time",
+      "group_columns": [
+        "source_id"
+      ],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    },
+    {
+      "path": "routed/routed_flow.csv",
+      "time_column": "time",
+      "group_columns": [],
+      "requirements": [
+        "explicit timezone",
+        "unique time within declared group",
+        "chronological order"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "evidence": [
+    {
+      "path": "hydrobase/result.json",
+      "sha256": "edeb04e3d6e5762eba61f33002a7ed7eb593517eec3bcec7d90d5efacd036466"
+    },
+    {
+      "path": "hydrology/result.json",
+      "sha256": "ff1cf7963faf56cbb69aecd147afc77b2174487d285194c9dde9f8714c66fd68"
+    },
+    {
+      "path": "prepared/result.json",
+      "sha256": "22ea9e91e342d1b268c607e0df4b214e6c29d5f88fb171f6f9721473dc34f0a0"
+    },
+    {
+      "path": "topology-qc/result.json",
+      "sha256": "159f1397d187512226f1a1dc02959d291d94740233cd3c16e784adf7d1c0dee3"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

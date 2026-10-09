@@ -1,0 +1,20 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "details": "XAJ Qt is channel entry, not outlet flow; supply routed result",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "XAJ Qt is channel entry, not outlet flow; supply routed result",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "post-processing/align-observed-simulated-discharge",
+  "status": "error",
+  "warnings": []
+}

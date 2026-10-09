@@ -1,0 +1,191 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "events/event_process.csv",
+    "events/event_summary.csv",
+    "events/result.json",
+    "flow/result.json",
+    "flow/series_metadata.json",
+    "manifest.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "report/analysis-tables.json",
+        "report/data-gaps.csv",
+        "report/data-gaps.json",
+        "report/events.csv",
+        "report/evidence-index.csv",
+        "report/evidence-index.json",
+        "report/figures/distribution-2.svg",
+        "report/figures/distribution-3.svg",
+        "report/figures/distribution-4.svg",
+        "report/figures/distribution-7.svg",
+        "report/report.json",
+        "report/report.md",
+        "report/result.json",
+        "report/summary.csv"
+      ],
+      "type": "file_check",
+      "weight": 0.125
+    },
+    {
+      "name": "report_artifact_integrity",
+      "required_keys": [
+        "analysis-tables.json",
+        "data-gaps.csv",
+        "data-gaps.json",
+        "events.csv",
+        "evidence-index.csv",
+        "evidence-index.json",
+        "figures/distribution-2.svg",
+        "figures/distribution-3.svg",
+        "figures/distribution-4.svg",
+        "figures/distribution-7.svg",
+        "report.json",
+        "report.md",
+        "summary.csv"
+      ],
+      "target": "report/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.125
+    },
+    {
+      "atol": 1e-05,
+      "columns": [
+        "source_id",
+        "severity",
+        "reason",
+        "section",
+        "action"
+      ],
+      "name": "report_data-gaps",
+      "reference": "expected/golden_workspace/report/data-gaps.csv",
+      "rtol": 1e-05,
+      "target": "report/data-gaps.csv",
+      "type": "table_match",
+      "weight": 0.125
+    },
+    {
+      "atol": 1e-05,
+      "columns": [
+        "duration_hours",
+        "end_time",
+        "event_id",
+        "n_local_peaks",
+        "peak_flow_m3_s",
+        "peak_flow_m3_s_class",
+        "peak_shape",
+        "shape_reason",
+        "significant_peak_count",
+        "source",
+        "start_time",
+        "total_volume_m3",
+        "total_volume_m3_class"
+      ],
+      "name": "report_events",
+      "reference": "expected/golden_workspace/report/events.csv",
+      "rtol": 1e-05,
+      "target": "report/events.csv",
+      "type": "table_match",
+      "weight": 0.125
+    },
+    {
+      "atol": 1e-05,
+      "columns": [
+        "source_id",
+        "run_id",
+        "stage",
+        "locator",
+        "kind",
+        "value",
+        "unit",
+        "definition",
+        "context",
+        "availability"
+      ],
+      "name": "report_evidence-index",
+      "reference": "expected/golden_workspace/report/evidence-index.csv",
+      "rtol": 1e-05,
+      "target": "report/evidence-index.csv",
+      "type": "table_match",
+      "weight": 0.125
+    },
+    {
+      "atol": 1e-05,
+      "columns": [
+        "basis",
+        "count",
+        "denominator",
+        "item",
+        "lower_threshold",
+        "max",
+        "mean",
+        "median",
+        "metric",
+        "min",
+        "missing",
+        "month",
+        "p10",
+        "p90",
+        "percent",
+        "shape",
+        "size",
+        "source",
+        "table",
+        "unit",
+        "upper_threshold",
+        "value"
+      ],
+      "name": "report_summary",
+      "reference": "expected/golden_workspace/report/summary.csv",
+      "rtol": 1e-05,
+      "target": "report/summary.csv",
+      "type": "table_match",
+      "weight": 0.125
+    },
+    {
+      "name": "evidence_and_scientific_contract",
+      "reference": "expected/report-contract.json",
+      "target": "report/result.json",
+      "type": "report_contract_check",
+      "weight": 0.125
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "report/result.json",
+      "type": "report_contract_check",
+      "weight": 0.125
+    }
+  ],
+  "id": "hydroreport-timeseries-001",
+  "primary_skill": "visualization-reporting/generate-timeseries-data-processing-report",
+  "prompt": "Use the visualization-reporting/generate-timeseries-data-processing-report capability on the supplied synthetic artifacts. Scenario: explicit classes and significant peaks. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --processing-manifest manifest.json --output-dir report\n Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "report/analysis-tables.json",
+    "report/data-gaps.csv",
+    "report/data-gaps.json",
+    "report/events.csv",
+    "report/evidence-index.csv",
+    "report/evidence-index.json",
+    "report/figures/distribution-2.svg",
+    "report/figures/distribution-3.svg",
+    "report/figures/distribution-4.svg",
+    "report/figures/distribution-7.svg",
+    "report/report.json",
+    "report/report.md",
+    "report/result.json",
+    "report/summary.csv"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "explicit classes and significant peaks"
+}

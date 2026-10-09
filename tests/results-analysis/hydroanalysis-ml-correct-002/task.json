@@ -159,7 +159,8 @@
   ],
   "id": "hydroanalysis-ml-correct-002",
   "primary_skill": "post-processing/correct-residual-with-ml",
-  "prompt": "Use train_table.csv and hyperparameters.json exactly as supplied to run post-processing/correct-residual-with-ml in train mode with --base-column Q_total, --observed-column Q_obs, --feature-columns P,Qt, --lag-spec Qt:1 (drop policy), backend ridge, the confirmed hyperparameters, random-state 20260928, split chronological, and test-size 0.25. The lag configuration necessarily discards the first rows; keep the native lag_rows_dropped warning in result.json. Write the native outputs (corrected_series.csv, model_card.json, model.joblib, result.json) under ml-train/. Do not switch to a fill policy, trim the series yourself, or suppress the warning.",
+  "prompt": "Use train_table.csv and hyperparameters.json exactly as supplied to run post-processing/correct-residual-with-ml in train mode with --base-column Q_total, --observed-column Q_obs, --feature-columns P,Qt, --lag-spec Qt:1 (drop policy), backend ridge, the confirmed hyperparameters, random-state 20260928, split chronological, and test-size 0.25. Also use residual lags 1,2,3,4,5 with drop policy. The lag configuration necessarily discards the first five rows; keep the native lag_rows_dropped warning in result.json. Write the native outputs (corrected_series.csv, model_card.json, model.joblib, result.json) under ml-train/. Do not switch to a fill policy, trim the series yourself, or suppress the warning.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "ml-train/corrected_series.csv",
     "ml-train/model_card.json",

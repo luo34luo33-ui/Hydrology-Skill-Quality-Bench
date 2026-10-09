@@ -43,7 +43,21 @@ def _write_bytes(path: Path, content: bytes) -> None:
 
 
 def _write_json(path: Path, value: Any) -> None:
-    _write_bytes(path, _stable_json(value))
+    # Retain the independently authored public interface when regenerating fixtures.
+    if path.name == "task.json" and isinstance(value, dict):
+        canonical = Path(__file__).resolve().parent / value["id"] / "public_contract.json"
+        if canonical.is_file():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            destination = path.parent / "public_contract.json"
+            if canonical.resolve() != destination.resolve():
+                destination.write_bytes(canonical.read_bytes())
+            value = dict(value, public_contract="public_contract.json")
+    content = _stable_json(value)
+    if path.name == "task.json" and isinstance(value, dict):
+        original = Path(__file__).resolve().parent / value["id"] / "task.json"
+        if original.is_file() and b"\r\n" in original.read_bytes():
+            content = content.replace(b"\n", b"\r\n")
+    _write_bytes(path, content)
 
 
 def _write_csv(path: Path, frame: pd.DataFrame) -> None:
@@ -99,6 +113,7 @@ def _predict_table() -> pd.DataFrame:
             "P": precipitation,
             "Qt": qt,
             "Q_total": qt,
+            "residual": 1.5 + 0.06 * qt + 4.0 * np.sin(2.0 * np.pi * t / 24.0),
         }
     )
 
@@ -143,6 +158,7 @@ def _train_command(task_id: str, work: Path) -> list[str]:
     ]
     if index < 3:
         args += ["--random-state", str(RANDOM_STATE)]
+        args += ["--lag-spec", "residual:1,2,3,4,5", "--lag-policy", "drop"]
     if index == 2:
         args += ["--lag-spec", "Qt:1"]
     args += ["--output-format", "csv", "--output-dir", str(work / TRAIN_OUTPUT)]
@@ -193,13 +209,13 @@ def _prompts() -> dict[int, str]:
             "predict_table.csv with --model-in pointing at the trained model.joblib. "
             "Write the native train outputs (corrected_series.csv, model_card.json, model.joblib, result.json) under ml-train/ and the "
             "native predict outputs (corrected_series.csv, result.json) under ml-predict/. "
-            "Do not change the residual definition, flip its sign, alter lag configuration, or invent hyperparameters."
+            "Use residual lags 1,2,3,4,5 and drop incomplete lag rows. The supplied residual column is explicitly synthetic historical observed-minus-base discharge, available after each step; only preceding steps may be consumed in rolling one-step prediction. Preserve lag_rows_dropped warnings. Do not change the residual definition, flip its sign, alter lag configuration, or invent hyperparameters."
         ),
         2: (
             "Use train_table.csv and hyperparameters.json exactly as supplied to run post-processing/correct-residual-with-ml in train "
             "mode with --base-column Q_total, --observed-column Q_obs, --feature-columns P,Qt, --lag-spec Qt:1 (drop policy), backend "
             "ridge, the confirmed hyperparameters, random-state 20260928, split chronological, and test-size 0.25. "
-            "The lag configuration necessarily discards the first rows; keep the native lag_rows_dropped warning in result.json. "
+            "Also use residual lags 1,2,3,4,5 with drop policy. The lag configuration necessarily discards the first five rows; keep the native lag_rows_dropped warning in result.json. "
             "Write the native outputs (corrected_series.csv, model_card.json, model.joblib, result.json) under ml-train/. "
             "Do not switch to a fill policy, trim the series yourself, or suppress the warning."
         ),

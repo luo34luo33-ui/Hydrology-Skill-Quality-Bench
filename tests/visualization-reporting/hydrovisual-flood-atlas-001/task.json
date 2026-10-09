@@ -1,0 +1,99 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "baseflow/baseflow_metadata.json",
+    "baseflow/flow_components.csv",
+    "baseflow/result.json",
+    "events/annotated_series.csv",
+    "events/event_config.yaml",
+    "events/event_files/event_0001.csv",
+    "events/event_files/event_0002.csv",
+    "events/event_manifest.json",
+    "events/event_process.csv",
+    "events/event_qc.csv",
+    "events/event_summary.csv",
+    "events/rainfall_screening.csv",
+    "events/result.json",
+    "prepare/discharge_timeseries.csv",
+    "prepare/result.json",
+    "prepare/series_metadata.json",
+    "事件 参数（显式）.yaml",
+    "流域 雨量.csv",
+    "输入 时序（合成）.csv",
+    "雨量 元数据.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "atlas/event-0001-hydrograph.figure.json",
+        "atlas/event-0001-hydrograph.png",
+        "atlas/event-0001-hydrograph.svg",
+        "atlas/event-0002-hydrograph.figure.json",
+        "atlas/event-0002-hydrograph.png",
+        "atlas/event-0002-hydrograph.svg",
+        "atlas/flood-event-overview.figure.json",
+        "atlas/flood-event-overview.png",
+        "atlas/flood-event-overview.svg",
+        "atlas/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.25
+    },
+    {
+      "name": "atlas_artifact_integrity",
+      "required_keys": [
+        "event-0001-hydrograph_figure",
+        "event-0001-hydrograph_png",
+        "event-0001-hydrograph_svg",
+        "event-0002-hydrograph_figure",
+        "event-0002-hydrograph_png",
+        "event-0002-hydrograph_svg",
+        "flood-event-overview_figure",
+        "flood-event-overview_png",
+        "flood-event-overview_svg"
+      ],
+      "target": "atlas/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.25
+    },
+    {
+      "name": "rendered_figure_contract",
+      "reference": "expected/figure-contract.json",
+      "target": "atlas/result.json",
+      "type": "figure_contract_check",
+      "weight": 0.25
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "atlas/result.json",
+      "type": "report_contract_check",
+      "weight": 0.25
+    }
+  ],
+  "id": "hydrovisual-flood-atlas-001",
+  "primary_skill": "visualization-reporting/visualize-flood-event-atlas",
+  "prompt": "Use the visualization-reporting/visualize-flood-event-atlas capability on the supplied synthetic artifacts. Scenario: confirmed basin rainfall. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --extract-result events/result.json --rainfall 流域 雨量.csv --rainfall-metadata 雨量 元数据.json --language zh --output-dir atlas\n Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "atlas/event-0001-hydrograph.figure.json",
+    "atlas/event-0001-hydrograph.png",
+    "atlas/event-0001-hydrograph.svg",
+    "atlas/event-0002-hydrograph.figure.json",
+    "atlas/event-0002-hydrograph.png",
+    "atlas/event-0002-hydrograph.svg",
+    "atlas/flood-event-overview.figure.json",
+    "atlas/flood-event-overview.png",
+    "atlas/flood-event-overview.svg",
+    "atlas/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "confirmed basin rainfall"
+}

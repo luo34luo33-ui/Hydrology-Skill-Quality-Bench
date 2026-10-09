@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "event_metrics_csv": {
+      "path": "event_metrics.csv",
+      "sha256": "49ffab5b6df50679b313f9f01587592137ce7fa81f3cef581744c4b7fef1fe5c"
+    }
+  },
+  "checks": [],
+  "inputs": {
+    "series": {
+      "path": "scored-input.csv",
+      "sha256": "1cb0f4354473f45825a86c14215bd88096c59c88b986428eec4b8b8ff589c5e6"
+    }
+  },
+  "message": "Synthetic benchmark evidence",
+  "parameters": {
+    "timestep_hours": 1,
+    "volume_unit": "m3"
+  },
+  "provenance": {
+    "fixture": true
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-event-flood-metrics",
+  "status": "success",
+  "warnings": []
+}

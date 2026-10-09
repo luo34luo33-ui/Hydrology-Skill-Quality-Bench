@@ -1,0 +1,24 @@
+{
+  "continuous_window": [
+    "2023-08-01",
+    "2023-09-01"
+  ],
+  "dem": {
+    "boundary": "unaltered real geometry",
+    "crs": "EPSG:32649",
+    "resampling": "bilinear",
+    "resolution_m": 100,
+    "source": "four supplied ASTER tiles"
+  },
+  "events": [
+    "20140409",
+    "20150509",
+    "20191031",
+    "20230908",
+    "20241030",
+    "20250627"
+  ],
+  "flow_semantics": "benchmark assumptions require explicit confirmation, not inferred original facts",
+  "seed": 20261004,
+  "supplement_semantics": "hybrid benchmark, not recovered observations"
+}

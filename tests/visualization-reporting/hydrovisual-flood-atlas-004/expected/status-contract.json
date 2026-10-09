@@ -1,0 +1,11 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "error_reason_contains": "artifact 不存在或 SHA-256 不匹配: annotated_series",
+      "skill": "visualization-reporting/visualize-flood-event-atlas",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

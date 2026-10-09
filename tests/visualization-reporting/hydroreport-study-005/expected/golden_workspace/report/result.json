@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "53c41a06b345f08232ffbc510e5694d8c6655988e9726e9d6368326a9420fa9f"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "05544e4a2f1853d91331bdc21825476a29f5986685c564bf52d26b0ee058bf1b"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Original facts differ: evidence",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-hydrological-study-report",
+  "status": "error",
+  "warnings": []
+}

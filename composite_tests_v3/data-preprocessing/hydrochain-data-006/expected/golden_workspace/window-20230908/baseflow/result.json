@@ -1,0 +1,51 @@
+{
+  "artifacts": {
+    "baseflow_metadata": {
+      "path": "baseflow_metadata.json",
+      "sha256": "ba12f352f86eee59d31dfbcb1835e6e65d96ad3c953443b399d6f857ed28eb2b"
+    },
+    "flow_components": {
+      "path": "flow_components.csv",
+      "sha256": "706eebc21620cc4b2c4c700326469633afa1212c27f5d9af070a15887ca0e041"
+    }
+  },
+  "checks": [
+    {
+      "check": "component_bounds",
+      "details": "0 <= baseflow <= discharge and quickflow >= 0",
+      "status": "PASS"
+    },
+    {
+      "check": "component_balance",
+      "details": "max_absolute_error=0",
+      "status": "PASS"
+    },
+    {
+      "check": "finite_components",
+      "details": "rows=97",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "prepare_result": {
+      "path": "../flow/result.json",
+      "sha256": "26fba94acc3f819dc633ac46cdf252123c851254e39b803fabc7e86293929e4e"
+    }
+  },
+  "message": "Eckhardt baseflow separated",
+  "parameters": {
+    "alpha": 0.95,
+    "alpha_decision": "user-provided",
+    "bfi_max": 0.5,
+    "output_format": "csv"
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/separate-baseflow-eckhardt",
+  "status": "success",
+  "warnings": []
+}

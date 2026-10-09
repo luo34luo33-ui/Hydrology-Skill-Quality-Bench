@@ -1,0 +1,11 @@
+﻿count,definition,end,evaluation,event_id,max,mean,median,metric,min,mode,nse,p10,p90,peak_error_relative,peak_time_error_hours,period,run,run_name,split,start,table,total,unavailable,unit,volume_error_relative
+,,2020-01-01T02:00:00Z,eval,e1,,,,,,,-2,,,-0.1,1,,run,HBV,validation,2020-01-01T00:00:00Z,run / validation / eval,,,,0.2
+,,2020-01-01T02:00:00Z,eval,e3,,,,,,,-2,,,-0.1,1,,run,HBV,validation,2020-01-01T00:00:00Z,run / validation / eval,,,,0.2
+,,2020-01-01T02:00:00Z,eval,e0,,,,,,,-0.5,,,-0.1,1,,run,HBV,validation,2020-01-01T00:00:00Z,run / validation / eval,,,,0.2
+,,2020-01-01T02:00:00Z,eval,e6,,,,,,,0.1,,,-0.1,1,,run,HBV,validation,2020-01-01T00:00:00Z,run / validation / eval,,,,0.2
+,,2020-01-01T02:00:00Z,eval,e2,,,,,,,0.3,,,-0.1,1,,run,HBV,validation,2020-01-01T00:00:00Z,run / validation / eval,,,,0.2
+6,标准纳什效率系数；观测方差为 0 时记为 unavailable。,,eval,,0.8,-0.55,-0.2,nse,-2.0,event_collection,,-2.0,0.55,,,"{""end"": ""2020-01-01T02:00:00Z"", ""start"": ""2020-01-01T00:00:00Z""}",run,HBV,validation,,总体指标 / Overall metrics,7,1,dimensionless,
+7,,,eval,,-0.1,-0.1,-0.1,peak_error_relative,-0.1,event_collection,,-0.1,-0.1,,,"{""end"": ""2020-01-01T02:00:00Z"", ""start"": ""2020-01-01T00:00:00Z""}",run,HBV,validation,,总体指标 / Overall metrics,7,0,unspecified,
+7,峰现时间误差，定义为模拟峰时刻减观测峰时刻，正值为模拟峰现偏晚。,,eval,,1.0,1.0,1.0,peak_time_error_hours,1.0,event_collection,,1.0,1.0,,,"{""end"": ""2020-01-01T02:00:00Z"", ""start"": ""2020-01-01T00:00:00Z""}",run,HBV,validation,,总体指标 / Overall metrics,7,0,h,
+7,洪量相对误差，定义为 (观测洪量 - 模拟洪量) / 观测洪量。,,eval,,0.2,0.2,0.2,volume_error_relative,0.2,event_collection,,0.2,0.2,,,"{""end"": ""2020-01-01T02:00:00Z"", ""start"": ""2020-01-01T00:00:00Z""}",run,HBV,validation,,总体指标 / Overall metrics,7,0,dimensionless,
+,,,eval,,,,,,,event_collection,,,,,,"{""end"": ""2020-01-01T02:00:00Z"", ""start"": ""2020-01-01T00:00:00Z""}",run,HBV,validation,,评价分组 / Evaluation groups,,,,

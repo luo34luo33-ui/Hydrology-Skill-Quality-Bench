@@ -1,0 +1,5339 @@
+{
+  "files": {
+    "report/analysis-tables.json": [
+      {
+        "rows": [
+          {
+            "item": "standard_flow_unit",
+            "source": "flow",
+            "unit": "unspecified",
+            "value": "m3/s"
+          },
+          {
+            "item": "timestep_seconds",
+            "source": "flow",
+            "unit": "unspecified",
+            "value": 3600
+          },
+          {
+            "item": "timezone",
+            "source": "flow",
+            "unit": "unspecified",
+            "value": "Asia/Shanghai"
+          },
+          {
+            "item": "row_count",
+            "source": "events",
+            "unit": "count",
+            "value": 24
+          },
+          {
+            "item": "start",
+            "source": "events",
+            "unit": "unspecified",
+            "value": "2019-12-31T23:00:00"
+          },
+          {
+            "item": "end",
+            "source": "events",
+            "unit": "unspecified",
+            "value": "2020-01-01T04:00:00"
+          },
+          {
+            "item": "row_count",
+            "source": "events",
+            "unit": "count",
+            "value": 4
+          }
+        ],
+        "section": "overview",
+        "title": "资料概况 / Data coverage"
+      },
+      {
+        "rows": [
+          {
+            "item": "events",
+            "unit": "count",
+            "value": 4
+          }
+        ],
+        "section": "overview",
+        "title": "洪水总数 / Event count"
+      },
+      {
+        "rows": [
+          {
+            "basis": "peak_flow_m3_s",
+            "count": 1,
+            "denominator": 4,
+            "lower_threshold": 10,
+            "missing": 0,
+            "percent": 25.0,
+            "size": "small",
+            "unit": "m3/s",
+            "upper_threshold": 20
+          },
+          {
+            "basis": "peak_flow_m3_s",
+            "count": 1,
+            "denominator": 4,
+            "lower_threshold": 10,
+            "missing": 0,
+            "percent": 25.0,
+            "size": "medium",
+            "unit": "m3/s",
+            "upper_threshold": 20
+          },
+          {
+            "basis": "peak_flow_m3_s",
+            "count": 2,
+            "denominator": 4,
+            "lower_threshold": 10,
+            "missing": 0,
+            "percent": 50.0,
+            "size": "large",
+            "unit": "m3/s",
+            "upper_threshold": 20
+          }
+        ],
+        "section": "sizes",
+        "title": "peak_flow_m3_s"
+      },
+      {
+        "rows": [
+          {
+            "basis": "total_volume_m3",
+            "count": 1,
+            "denominator": 4,
+            "lower_threshold": 100,
+            "missing": 0,
+            "percent": 25.0,
+            "size": "small",
+            "unit": "m3",
+            "upper_threshold": 200
+          },
+          {
+            "basis": "total_volume_m3",
+            "count": 1,
+            "denominator": 4,
+            "lower_threshold": 100,
+            "missing": 0,
+            "percent": 25.0,
+            "size": "medium",
+            "unit": "m3",
+            "upper_threshold": 200
+          },
+          {
+            "basis": "total_volume_m3",
+            "count": 2,
+            "denominator": 4,
+            "lower_threshold": 100,
+            "missing": 0,
+            "percent": 50.0,
+            "size": "large",
+            "unit": "m3",
+            "upper_threshold": 200
+          }
+        ],
+        "section": "sizes",
+        "title": "total_volume_m3"
+      },
+      {
+        "rows": [
+          {
+            "count": 2,
+            "denominator": 3,
+            "percent": 66.66666666666667,
+            "shape": "single"
+          },
+          {
+            "count": 1,
+            "denominator": 3,
+            "percent": 33.333333333333336,
+            "shape": "multiple"
+          },
+          {
+            "count": 1,
+            "denominator": 3,
+            "percent": null,
+            "shape": "unclassified"
+          }
+        ],
+        "section": "shapes",
+        "title": "显著峰型 / Significant peaks"
+      },
+      {
+        "rows": [
+          {
+            "item": "minimum_spacing_hours",
+            "unit": "hours",
+            "value": 1
+          },
+          {
+            "item": "prominence_m3_s",
+            "unit": "m3/s",
+            "value": 0.5
+          }
+        ],
+        "section": "shapes",
+        "title": "显著峰口径 / Peak criteria"
+      },
+      {
+        "rows": [
+          {
+            "count": 4,
+            "max": 30.0,
+            "mean": 17.25,
+            "median": 15.0,
+            "metric": "peak_flow_m3_s",
+            "min": 9.0,
+            "p10": 9.3,
+            "p90": 27.0,
+            "unit": "m3/s"
+          },
+          {
+            "count": 4,
+            "max": 300.0,
+            "mean": 174.75,
+            "median": 150.0,
+            "metric": "total_volume_m3",
+            "min": 99.0,
+            "p10": 99.3,
+            "p90": 270.0,
+            "unit": "m3"
+          },
+          {
+            "count": 4,
+            "max": 4.0,
+            "mean": 4.0,
+            "median": 4.0,
+            "metric": "duration_hours",
+            "min": 4.0,
+            "p10": 4.0,
+            "p90": 4.0,
+            "unit": "hours"
+          }
+        ],
+        "section": "events",
+        "title": "事件分布 / Event distributions"
+      },
+      {
+        "rows": [
+          {
+            "count": 4,
+            "month": "01"
+          }
+        ],
+        "section": "events",
+        "title": "月份分布 / Months"
+      }
+    ],
+    "report/report.json": {
+      "analysis": {
+        "details": {
+          "events": [
+            {
+              "duration_hours": "4",
+              "end_time": "2020-01-01T04:00:00",
+              "event_id": "0000",
+              "n_local_peaks": "99",
+              "peak_flow_m3_s": "9",
+              "peak_flow_m3_s_class": "small",
+              "peak_shape": "single",
+              "shape_reason": "",
+              "significant_peak_count": 1,
+              "source": "events",
+              "start_time": "2020-01-01T00:00:00",
+              "total_volume_m3": "100",
+              "total_volume_m3_class": "medium"
+            },
+            {
+              "duration_hours": "4",
+              "end_time": "2020-01-01T04:00:00",
+              "event_id": "0001",
+              "n_local_peaks": "99",
+              "peak_flow_m3_s": "10",
+              "peak_flow_m3_s_class": "medium",
+              "peak_shape": "multiple",
+              "shape_reason": "",
+              "significant_peak_count": 2,
+              "source": "events",
+              "start_time": "2020-01-01T00:00:00",
+              "total_volume_m3": "99",
+              "total_volume_m3_class": "small"
+            },
+            {
+              "duration_hours": "4",
+              "end_time": "2020-01-01T04:00:00",
+              "event_id": "0002",
+              "n_local_peaks": "99",
+              "peak_flow_m3_s": "20",
+              "peak_flow_m3_s_class": "large",
+              "peak_shape": "unclassified",
+              "shape_reason": "Boundary peak",
+              "significant_peak_count": null,
+              "source": "events",
+              "start_time": "2020-01-01T00:00:00",
+              "total_volume_m3": "200",
+              "total_volume_m3_class": "large"
+            },
+            {
+              "duration_hours": "4",
+              "end_time": "2020-01-01T04:00:00",
+              "event_id": "0003",
+              "n_local_peaks": "99",
+              "peak_flow_m3_s": "30",
+              "peak_flow_m3_s_class": "large",
+              "peak_shape": "single",
+              "shape_reason": "",
+              "significant_peak_count": 1,
+              "source": "events",
+              "start_time": "2020-01-01T00:00:00",
+              "total_volume_m3": "300",
+              "total_volume_m3_class": "large"
+            }
+          ]
+        },
+        "notes": [
+          {
+            "en": "Size classes use caller thresholds, not engineering standards. Month counts describe the available period, not long-term climate.",
+            "zh": "分级仅表示调用方阈值下的相对规模，不是工程等级。月份分布仅描述现有时段，不代表长期气候规律。"
+          }
+        ],
+        "tables": [
+          {
+            "rows": [
+              {
+                "item": "standard_flow_unit",
+                "source": "flow",
+                "unit": "unspecified",
+                "value": "m3/s"
+              },
+              {
+                "item": "timestep_seconds",
+                "source": "flow",
+                "unit": "unspecified",
+                "value": 3600
+              },
+              {
+                "item": "timezone",
+                "source": "flow",
+                "unit": "unspecified",
+                "value": "Asia/Shanghai"
+              },
+              {
+                "item": "row_count",
+                "source": "events",
+                "unit": "count",
+                "value": 24
+              },
+              {
+                "item": "start",
+                "source": "events",
+                "unit": "unspecified",
+                "value": "2019-12-31T23:00:00"
+              },
+              {
+                "item": "end",
+                "source": "events",
+                "unit": "unspecified",
+                "value": "2020-01-01T04:00:00"
+              },
+              {
+                "item": "row_count",
+                "source": "events",
+                "unit": "count",
+                "value": 4
+              }
+            ],
+            "section": "overview",
+            "title": "资料概况 / Data coverage"
+          },
+          {
+            "rows": [
+              {
+                "item": "events",
+                "unit": "count",
+                "value": 4
+              }
+            ],
+            "section": "overview",
+            "title": "洪水总数 / Event count"
+          },
+          {
+            "rows": [
+              {
+                "basis": "peak_flow_m3_s",
+                "count": 1,
+                "denominator": 4,
+                "lower_threshold": 10,
+                "missing": 0,
+                "percent": 25.0,
+                "size": "small",
+                "unit": "m3/s",
+                "upper_threshold": 20
+              },
+              {
+                "basis": "peak_flow_m3_s",
+                "count": 1,
+                "denominator": 4,
+                "lower_threshold": 10,
+                "missing": 0,
+                "percent": 25.0,
+                "size": "medium",
+                "unit": "m3/s",
+                "upper_threshold": 20
+              },
+              {
+                "basis": "peak_flow_m3_s",
+                "count": 2,
+                "denominator": 4,
+                "lower_threshold": 10,
+                "missing": 0,
+                "percent": 50.0,
+                "size": "large",
+                "unit": "m3/s",
+                "upper_threshold": 20
+              }
+            ],
+            "section": "sizes",
+            "title": "peak_flow_m3_s"
+          },
+          {
+            "rows": [
+              {
+                "basis": "total_volume_m3",
+                "count": 1,
+                "denominator": 4,
+                "lower_threshold": 100,
+                "missing": 0,
+                "percent": 25.0,
+                "size": "small",
+                "unit": "m3",
+                "upper_threshold": 200
+              },
+              {
+                "basis": "total_volume_m3",
+                "count": 1,
+                "denominator": 4,
+                "lower_threshold": 100,
+                "missing": 0,
+                "percent": 25.0,
+                "size": "medium",
+                "unit": "m3",
+                "upper_threshold": 200
+              },
+              {
+                "basis": "total_volume_m3",
+                "count": 2,
+                "denominator": 4,
+                "lower_threshold": 100,
+                "missing": 0,
+                "percent": 50.0,
+                "size": "large",
+                "unit": "m3",
+                "upper_threshold": 200
+              }
+            ],
+            "section": "sizes",
+            "title": "total_volume_m3"
+          },
+          {
+            "rows": [
+              {
+                "count": 2,
+                "denominator": 3,
+                "percent": 66.66666666666667,
+                "shape": "single"
+              },
+              {
+                "count": 1,
+                "denominator": 3,
+                "percent": 33.333333333333336,
+                "shape": "multiple"
+              },
+              {
+                "count": 1,
+                "denominator": 3,
+                "percent": null,
+                "shape": "unclassified"
+              }
+            ],
+            "section": "shapes",
+            "title": "显著峰型 / Significant peaks"
+          },
+          {
+            "rows": [
+              {
+                "item": "minimum_spacing_hours",
+                "unit": "hours",
+                "value": 1
+              },
+              {
+                "item": "prominence_m3_s",
+                "unit": "m3/s",
+                "value": 0.5
+              }
+            ],
+            "section": "shapes",
+            "title": "显著峰口径 / Peak criteria"
+          },
+          {
+            "rows": [
+              {
+                "count": 4,
+                "max": 30.0,
+                "mean": 17.25,
+                "median": 15.0,
+                "metric": "peak_flow_m3_s",
+                "min": 9.0,
+                "p10": 9.3,
+                "p90": 27.0,
+                "unit": "m3/s"
+              },
+              {
+                "count": 4,
+                "max": 300.0,
+                "mean": 174.75,
+                "median": 150.0,
+                "metric": "total_volume_m3",
+                "min": 99.0,
+                "p10": 99.3,
+                "p90": 270.0,
+                "unit": "m3"
+              },
+              {
+                "count": 4,
+                "max": 4.0,
+                "mean": 4.0,
+                "median": 4.0,
+                "metric": "duration_hours",
+                "min": 4.0,
+                "p10": 4.0,
+                "p90": 4.0,
+                "unit": "hours"
+              }
+            ],
+            "section": "events",
+            "title": "事件分布 / Event distributions"
+          },
+          {
+            "rows": [
+              {
+                "count": 4,
+                "month": "01"
+              }
+            ],
+            "section": "events",
+            "title": "月份分布 / Months"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "artifact": "series_metadata.json",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "artifact",
+          "locator": "/standard_flow_unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3/s"
+        },
+        {
+          "artifact": "series_metadata.json",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "artifact",
+          "locator": "/timestep_seconds",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": 3600
+        },
+        {
+          "artifact": "series_metadata.json",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "artifact",
+          "locator": "/timezone",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "Asia/Shanghai"
+        },
+        {
+          "artifact": "event_process.csv",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_metadata",
+          "locator": "/row_count",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 24
+        },
+        {
+          "artifact": "event_process.csv",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_metadata",
+          "locator": "/columns",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": [
+            "event_id",
+            "time",
+            "discharge_m3_s",
+            "is_warmup"
+          ]
+        },
+        {
+          "artifact": "event_process.csv",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_metadata",
+          "locator": "/start",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2019-12-31T23:00:00"
+        },
+        {
+          "artifact": "event_process.csv",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_metadata",
+          "locator": "/end",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "event_process.csv",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_metadata",
+          "locator": "/is_warmup",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": {
+            "false": 20,
+            "true": 4
+          }
+        },
+        {
+          "artifact": "event_process.csv",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_metadata",
+          "locator": "/event_ids",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": [
+            "0000",
+            "0001",
+            "0002",
+            "0003"
+          ]
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {},
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_metadata",
+          "locator": "/row_count",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0000",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/0/event_id",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0000"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0000",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/0/start_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0000",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/0/end_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0000",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/0/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "9"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0000",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/0/total_volume_m3",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "100"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0000",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/0/duration_hours",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0000",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/0/n_local_peaks",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0001",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/1/event_id",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0001"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0001",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/1/start_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0001",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/1/end_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0001",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/1/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "10"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0001",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/1/total_volume_m3",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0001",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/1/duration_hours",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0001",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/1/n_local_peaks",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0002",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/2/event_id",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0002"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0002",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/2/start_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0002",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/2/end_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0002",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/2/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "20"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0002",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/2/total_volume_m3",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "200"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0002",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/2/duration_hours",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0002",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/2/n_local_peaks",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0003",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/3/event_id",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0003"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0003",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/3/start_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0003",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/3/end_time",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0003",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/3/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "30"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0003",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/3/total_volume_m3",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "300"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0003",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/3/duration_hours",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "event_summary.csv",
+          "availability": "available",
+          "context": {
+            "end_time": "2020-01-01T04:00:00",
+            "event_id": "0003",
+            "start_time": "2020-01-01T00:00:00"
+          },
+          "definition": "",
+          "id": "ev-location-id",
+          "kind": "table_value",
+          "locator": "/rows/3/n_local_peaks",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0bbbc3e7a111824dcb8e",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/duration_hours",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f758fb048946b95a9488",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/end_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c5cc3e4817ea37058fa5",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/event_id",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0000"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ca42f091a9b8d859c8f8",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/n_local_peaks",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-1c70b2b04c434a57f053",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "9"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-868432ac0cfcba62a915",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/peak_flow_m3_s_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "small"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-3356ea4f6eaa15d91bd0",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/peak_shape",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "single"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0b0116528f1b6c78c21a",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/shape_reason",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": ""
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dc48600cf36013975419",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/significant_peak_count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-98b5ecc965894cabeb08",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/source",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-59a07781b17c85ad850f",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/start_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-85f8ea7b49d75ad56924",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/total_volume_m3",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "100"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b9f896e4ba7313d4b96c",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/0/total_volume_m3_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "medium"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d296111f1732fc546a20",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/duration_hours",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-7cda90f681083e078229",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/end_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b7eab0a9037dc72e721d",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/event_id",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0001"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-033c1835fdafb486262d",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/n_local_peaks",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f132e30954d6a20d1b99",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "10"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-9088741e0f48c2d5b835",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/peak_flow_m3_s_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "medium"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0481cd82c772845e4c46",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/peak_shape",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "multiple"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2a1ae9c9f3cb7d8c62de",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/shape_reason",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": ""
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-446fe78f3ffa61a8957f",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/significant_peak_count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": 2
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ec82ed90e300702ba1ba",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/source",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dbdddfe1057e60951c37",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/start_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-19d5adddc36f1e383416",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/total_volume_m3",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-98390d1d8f6ed26b69d6",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/1/total_volume_m3_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "small"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-739dc321d65e2c3c33b0",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/duration_hours",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-cb4ef54e4fcfeb1e3e20",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/end_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-5a7a913bcd5c583f88e1",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/event_id",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0002"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b47839a4528c1d3e6d53",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/n_local_peaks",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-5ec09155a92471acc39a",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "20"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-e8e2d2b78d78c5e70de1",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/peak_flow_m3_s_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "large"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0c1e65b9b6febdc92037",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/peak_shape",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "unclassified"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-063788163999e79834cf",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/shape_reason",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "Boundary peak"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "unavailable",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-bc6362f764281c08fd4c",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/significant_peak_count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": null
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-8a45a78da345d2a26bd6",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/source",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-09748c7fc8e774d50829",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/start_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d6535912e3b1aa7755f4",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/total_volume_m3",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "200"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-9cf3c4bdc0f8dadb78ec",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/2/total_volume_m3_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "large"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-18d4751292e054b63b6d",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/duration_hours",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "4"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-5de65e716f562e6e775c",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/end_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ad6c1368d73219ca7299",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/event_id",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "0003"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-8595fff0805dcbe4a27e",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/n_local_peaks",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "99"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d53397d76bdc5eee1341",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/peak_flow_m3_s",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "30"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b688708dd501bd09f2cf",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/peak_flow_m3_s_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "large"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ef50e61e98ea64fe8e9d",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/peak_shape",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "single"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-4a71ba6693a58a66f076",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/shape_reason",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": ""
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-75214b3748062b4d821f",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/significant_peak_count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-a89338d267273ed5c93d",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/source",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ee7bcfe9cb0eb5c6a6f5",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/start_time",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T00:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-450db52c1a640ffa51ce",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/total_volume_m3",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "300"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-668f9fc8ea11e245f57d",
+          "kind": "derived_summary",
+          "locator": "/analysis/details/events/3/total_volume_m3_class",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "large"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d99c6b291f26c7fda796",
+          "kind": "derived_summary",
+          "locator": "/analysis/notes/0/en",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "Size classes use caller thresholds, not engineering standards. Month counts describe the available period, not long-term climate."
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-3b6367645c6e4ec3daa8",
+          "kind": "derived_summary",
+          "locator": "/analysis/notes/0/zh",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "分级仅表示调用方阈值下的相对规模，不是工程等级。月份分布仅描述现有时段，不代表长期气候规律。"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-1bf6c988a52947c04d14",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/0/item",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "standard_flow_unit"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2dfcfe56b027db2bad72",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/0/source",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "flow"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-1afaca3bfe23797a597e",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/0/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "unspecified"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-251506b04cfaac6bb6d3",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/0/value",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3/s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-802320d98b880a37b6b8",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/1/item",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "timestep_seconds"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dba72780a5734f645c7c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/1/source",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "flow"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-10e7868e86cc0e5c32f1",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/1/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "unspecified"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-9344dd9c75b8aa028aec",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/1/value",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": 3600
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-bea99562a7f1fdf2fefd",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/2/item",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "timezone"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-86e55884b6b7d4ada8e3",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/2/source",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "flow"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-6a97f95b81d5963aad54",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/2/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "unspecified"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-72d7ede1e129ff2afc92",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/2/value",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "Asia/Shanghai"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-75db20b6649b72fa7743",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/3/item",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "row_count"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-081480cc419ca369ab0d",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/3/source",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-fb42e599a49245093ed4",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/3/unit",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "count"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-852df874002eaf68f5a4",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/3/value",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 24
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d82c329fa8e6e58461b6",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/4/item",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "start"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ee826f5ba597847db937",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/4/source",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-a50c04c7467acd78fb99",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/4/unit",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "unspecified"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-9e08dccbb3de3d223012",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/4/value",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2019-12-31T23:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-96c8caedbee149edce19",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/5/item",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "end"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-a8859bd1a7ea1a3eb769",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/5/source",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-61fc4c4748e831ffc610",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/5/unit",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "unspecified"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-56117493378c803ef5c1",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/5/value",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "2020-01-01T04:00:00"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d939caeea753ea2e5464",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/6/item",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "row_count"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-380b226cfef353ff67e1",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/6/source",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-fbf2b91097447ed0dd42",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/6/unit",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "count"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-8a2573342f6f5f00782a",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/rows/6/value",
+          "run_id": "",
+          "source_id": "events",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-70cf5fb73da182de60c5",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "overview"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-24979c03e79ee9cd7bc5",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/0/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "资料概况 / Data coverage"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dc17a6f14746ebff330d",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/1/rows/0/item",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-295944d506e91e9b2832",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/1/rows/0/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "count"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c97c400e2bd48699f77c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/1/rows/0/value",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d76e7912fc4defc6212b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/1/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "overview"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2c46d1eea874fd41101a",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/1/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "洪水总数 / Event count"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-19b8d405ba5fde019bca",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/basis",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "peak_flow_m3_s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-bb39b0ca9b25e21b1d89",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c8632c97a7139f4dc6ba",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c503b128a5a1fd432b4c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/lower_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 10
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-28b6614814444e63753c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/missing",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-22cfa4b171cf093c4ef8",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 25.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-127ef76a5913f7811c33",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/size",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "small"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0b9ad04eca1642c8d433",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3/s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f817ffc0f1cfe4b46246",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/0/upper_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 20
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f5860f8c374cc3c7c368",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/basis",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "peak_flow_m3_s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-96bd8c8333cde5a786d0",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-53cab93561a2c0423079",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-4cc5967bbb74dbe01d70",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/lower_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 10
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-618e2a3f421ef23a117c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/missing",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-9b864c5034f8046a1ddc",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 25.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-cfa1585dac8d14503626",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/size",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "medium"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-36c2cb9cca7f278cd0e8",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3/s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-8c8bd1c6968cc6ce5309",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/1/upper_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 20
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2ab5818f2bfa7e65c3ac",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/basis",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "peak_flow_m3_s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-5545f79fc3d0856bc927",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 2
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b8c81f8ca485bb3cc434",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-50b31441271be2101436",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/lower_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 10
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-3b83691cd72f13a39518",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/missing",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-cc251bd4b2de0814c35c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 50.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2a7488d3e0e4317ec00c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/size",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "large"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-6b24d16762911f3646de",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3/s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-1f3da03682dc5f5cd3d3",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/rows/2/upper_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 20
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-9f38f9281dd6df35b51c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "sizes"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-551508e22c4afcf9794f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/2/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "peak_flow_m3_s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-073becd70555852232fb",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/basis",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "total_volume_m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-15a0a9fc59dc71cca935",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-961f34d62d0a0173f70f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-48c23ce4193ada599cd3",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/lower_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 100
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-49f4744a0a59e7342b3e",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/missing",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0fe7ac93c3fd9b54ef8f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 25.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f5af067dd1b66b3b27e9",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/size",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "small"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-abc31cadc6a840daf849",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d8466a09c250b42d0a77",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/0/upper_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 200
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2b20dfc7f2d1066c122a",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/basis",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "total_volume_m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0c8ef6a47d735a0a354d",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dcc5b90e726f08b3b199",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-64bc19c39e07c9dc2e6b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/lower_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 100
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d626396ef121d0e0159b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/missing",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-6b220a4ac0d1c11b6eec",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 25.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-89ca3468a798af937d59",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/size",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "medium"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-373ff0165afb8a4af821",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dbfdcb4be77d976e9db5",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/1/upper_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 200
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-27cbb09cf7c19e45603d",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/basis",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "total_volume_m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-248c8ed65993ee5df1f1",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 2
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c98dd8b68e5db90fee71",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-02c0f95c7a58bc08e60f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/lower_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 100
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f8fe83199ca626e7b84a",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/missing",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-af29ca62ea07d86df824",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 50.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-77ee01bccd9fb0d64e12",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/size",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "large"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-a3cf53841ed432705d28",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0264ff76f21a249cf3bf",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/rows/2/upper_threshold",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 200
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-63c3334be8169acb44c8",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "sizes"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-670aaeb88ae0ce9c9981",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/3/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "total_volume_m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-1b766e8cfb4e8cd15fc5",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/0/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 2
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-615cbb893ff41859b21a",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/0/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 3
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-af3c519e78bf25470466",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/0/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 66.66666666666667
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b80d746361980756167e",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/0/shape",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "single"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ddd9ab84e1bdbf8e544b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/1/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-4c604766fe94f9f3783f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/1/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 3
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c235f21a03f77bd83b6c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/1/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": 33.333333333333336
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-81725ea0c53f87f206b6",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/1/shape",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "multiple"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-243d06b4cc2f34711340",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/2/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f8ca17f17bdcbf02329e",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/2/denominator",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 3
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "unavailable",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-1a71e24567173b18fdb4",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/2/percent",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "percent",
+          "value": null
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-150cc8f2f92a841be3cf",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/rows/2/shape",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "unclassified"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-41cdc58d50dee9d8780f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "shapes"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0993537cd0e2b4fb319e",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/4/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "显著峰型 / Significant peaks"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f09d6a6a0b6cb04e8d46",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/rows/0/item",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "minimum_spacing_hours"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-4c2d67c5eb6e94b2f7ee",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/rows/0/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "hours"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-cbb9a687156b12691635",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/rows/0/value",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "hours",
+          "value": 1
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-4cd75baef79e684ebf27",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/rows/1/item",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "prominence_m3_s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-7c26ac851b8dfe23d075",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/rows/1/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3/s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0efbc40285408cec13b9",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/rows/1/value",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 0.5
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-80736dacb3f62104dcfa",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "shapes"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ed8cad23b54bfa9f243f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/5/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "显著峰口径 / Peak criteria"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-a68ada0f9e7830972a43",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-1a7af346a9ff5867200d",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/max",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 30.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-6fe1940dcbadda863c14",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/mean",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 17.25
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2a584e04276e8c70004c",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/median",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 15.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ab581f83703a188da4ce",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/metric",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "peak_flow_m3_s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-10d65943efbf53cad78b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/min",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 9.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-5c075ac963357c34f87e",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/p10",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 9.3
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c2d45eafbdf6c9486d0b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/p90",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3/s",
+          "value": 27.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-537f0695494d6cfce49b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/0/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3/s"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dc38a9cf1969a8328bf3",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-ed491c8fe40e37ade1d5",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/max",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 300.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b4e4de250807d0f77cf9",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/mean",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 174.75
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-84f7c0258204dcab6e36",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/median",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 150.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f9f64b59bc8b37ab663d",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/metric",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "total_volume_m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-9f4e9b3358508d49712d",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/min",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 99.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-8515ccb645b3dac9199b",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/p10",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 99.3
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-eb273a8ca14d770c75a9",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/p90",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "m3",
+          "value": 270.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-32cb658362a5af1decee",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/1/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "m3"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-307f4a19db8434acf6ea",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-75453f3ab5d6820173fc",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/max",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "hours",
+          "value": 4.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-def06ce3c212e4a21272",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/mean",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "hours",
+          "value": 4.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-5561d068e71db24b8b48",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/median",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "hours",
+          "value": 4.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-cc38c25c71107ac544f4",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/metric",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "duration_hours"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-77bed51c3047b3b68271",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/min",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "hours",
+          "value": 4.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-f221d70685a6d2da4eca",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/p10",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "hours",
+          "value": 4.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-dd0b933eb1d4226b0719",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/p90",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "hours",
+          "value": 4.0
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-d1720ae22d71b030b9eb",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/rows/2/unit",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "hours"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-348aed532b22ce016085",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-2004a56f9cf47c45c9ad",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/6/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "事件分布 / Event distributions"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-b3a7d94deebd603c1fc3",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/7/rows/0/count",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "count",
+          "value": 4
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-c641e3276ed4b11cd921",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/7/rows/0/month",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "01"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-0eec57ee251be196ccdb",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/7/section",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "events"
+        },
+        {
+          "artifact": "manifest.json",
+          "availability": "available",
+          "context": {
+            "source_ids": [
+              "flow",
+              "events"
+            ]
+          },
+          "definition": "Descriptive summary; see analysis and original sources",
+          "id": "analysis-4fc6d8b618043f192b3f",
+          "kind": "derived_summary",
+          "locator": "/analysis/tables/7/title",
+          "run_id": "",
+          "source_id": "flow",
+          "source_result": "result.json",
+          "stage": "preprocessing",
+          "unit": "unspecified",
+          "value": "月份分布 / Months"
+        }
+      ],
+      "gaps": [
+        {
+          "action": "Provide or correct the upstream evidence; regenerate and review.",
+          "reason": "Upstream QC checks not provided / 未提供上游 QC 检查证据",
+          "section": "flow",
+          "severity": "warning",
+          "source_id": "flow"
+        },
+        {
+          "action": "Provide or correct the upstream evidence; regenerate and review.",
+          "reason": "Upstream QC checks not provided / 未提供上游 QC 检查证据",
+          "section": "events",
+          "severity": "warning",
+          "source_id": "events"
+        }
+      ],
+      "narrative_required": false,
+      "report_type": "timeseries",
+      "schema_version": "2.0",
+      "sections": [
+        {
+          "id": "overview"
+        },
+        {
+          "id": "sizes"
+        },
+        {
+          "id": "shapes"
+        },
+        {
+          "id": "events"
+        },
+        {
+          "id": "limitations"
+        }
+      ],
+      "warnings": []
+    },
+    "report/result.json": {
+      "skill": "visualization-reporting/generate-timeseries-data-processing-report",
+      "status": "warning",
+      "warnings": []
+    }
+  },
+  "kind": "report",
+  "markdown": {
+    "report/report.md": [
+      "# 预分析",
+      "## 资料与时段概况",
+      "| 项目 | 数值 | 单位 | 资料集合 |",
+      "| --- | --- | --- | --- |",
+      "| standard_flow_unit | m3/s | unspecified | flow |",
+      "| timestep_seconds | 3600 | unspecified | flow |",
+      "| timezone | Asia/Shanghai | unspecified | flow |",
+      "| row_count | 24 | count | 洪水场次数 |",
+      "| start | 2019-12-31T23:00:00 | unspecified | 洪水场次数 |",
+      "| end | 2020-01-01T04:00:00 | unspecified | 洪水场次数 |",
+      "| row_count | 4 | count | 洪水场次数 |",
+      "| 项目 | 数值 | 单位 |",
+      "| --- | --- | --- |",
+      "| 洪水场次数 | 4 | count |",
+      "## 洪水规模分布",
+      "| 单位 | 分级依据 | 规模 | 有效数量 | 比例（%） | 比例分母 | 缺失数量 | 下阈值 | 上阈值 |",
+      "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+      "| m3/s | 洪峰流量 | 小洪水 | 1 | 25.0 | 4 | 0 | 10 | 20 |",
+      "| m3/s | 洪峰流量 | 中洪水 | 1 | 25.0 | 4 | 0 | 10 | 20 |",
+      "| m3/s | 洪峰流量 | 大洪水 | 2 | 50.0 | 4 | 0 | 10 | 20 |",
+      "| 单位 | 分级依据 | 规模 | 有效数量 | 比例（%） | 比例分母 | 缺失数量 | 下阈值 | 上阈值 |",
+      "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+      "| m3 | 总洪量 | 小洪水 | 1 | 25.0 | 4 | 0 | 100 | 200 |",
+      "| m3 | 总洪量 | 中洪水 | 1 | 25.0 | 4 | 0 | 100 | 200 |",
+      "| m3 | 总洪量 | 大洪水 | 2 | 50.0 | 4 | 0 | 100 | 200 |",
+      "![peak_flow_m3_s](figures/distribution-2.svg)",
+      "![total_volume_m3](figures/distribution-3.svg)",
+      "## 洪峰形态",
+      "| 有效数量 | 比例（%） | 比例分母 | 峰型 |",
+      "| --- | --- | --- | --- |",
+      "| 2 | 66.7 | 3 | 单峰 |",
+      "| 1 | 33.3 | 3 | 多峰 |",
+      "| 1 | 不可用 / unavailable | 3 | 无法分类 |",
+      "| 项目 | 数值 | 单位 |",
+      "| --- | --- | --- |",
+      "| 最小峰间隔 | 1 | hours |",
+      "| 洪峰突出度 | 0.500 | m3/s |",
+      "![显著峰型 / Significant peaks](figures/distribution-4.svg)",
+      "## 事件总体特征",
+      "| 单位 | 有效数量 | 指标 | 均值 | 中位数 | P10 | P90 | 最小值 | 最大值 |",
+      "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+      "| m3/s | 4 | 洪峰流量 | 17.250 | 15.000 | 9.300 | 27.000 | 9.000 | 30.000 |",
+      "| m3 | 4 | 总洪量 | 174.750 | 150.000 | 99.300 | 270.000 | 99.000 | 300.000 |",
+      "| hours | 4 | 历时 | 4.000 | 4.000 | 4.000 | 4.000 | 4.000 | 4.000 |",
+      "| 有效数量 | 月份 |",
+      "| --- | --- |",
+      "| 4 | 01 |",
+      "![月份分布 / Months](figures/distribution-7.svg)",
+      "## 限制与建议"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "members": [
+    {
+      "model_id": "HBV",
+      "outlet_id": "synthetic-outlet",
+      "simulation_result": "HBV-result.json"
+    },
+    {
+      "model_id": "Tank",
+      "outlet_id": "synthetic-outlet",
+      "simulation_result": "Tank-result.json"
+    },
+    {
+      "model_id": "HBV-alt",
+      "outlet_id": "synthetic-outlet",
+      "simulation_result": "Alt-result.json"
+    }
+  ],
+  "outlet_id": "synthetic-outlet",
+  "schema_version": "1.0",
+  "timestep_hours": 1,
+  "timezone": "Asia/Shanghai",
+  "unit": "m3/s"
+}

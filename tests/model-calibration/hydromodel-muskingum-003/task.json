@@ -73,6 +73,7 @@
   "id": "hydromodel-muskingum-003",
   "primary_skill": "hydrological-modeling/route-muskingum-channel",
   "prompt": "Use inflow.csv and route_spec.json exactly as supplied to run hydrological-modeling/route-muskingum-channel. The inflow table is hourly discharge in m3/s and contains at least one missing value in an inflow column. Run the routing verbatim with --timestep-hours 1 and only the native result.json under routed/. Do not fill, interpolate, or drop the missing value; do not rerun with repaired data; the script must reject the input itself. No routed_flow.csv or route_coefficients.json may remain in routed/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "routed/result.json"
   ],

@@ -1,0 +1,52 @@
+{
+  "display_transforms": [
+    "NSE = 1 - sum((sim-obs)^2)/sum((obs-mean(obs))^2), scored=true samples within this figure only; display diagnostic, upstream metrics unchanged",
+    "unscored samples shaded; explicit comparison keys; no visible titles"
+  ],
+  "figure_type": "validation-process",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-tilq2wv8\\calibration\\result.json",
+      "sha256": "32a5477595c6a6126192455a46375c31561e97de2c9ce6d88487e32afa030c5e"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-tilq2wv8\\calibration\\validation_series.csv",
+      "sha256": "27c81c3d2e6757d2db8be643ef5f992fc42e86d550e3b27b2fd1f4cd3e7e3cb9"
+    }
+  },
+  "language": "en",
+  "outputs": {
+    "png": {
+      "path": "validation_process.png",
+      "sha256": "049acf13552251e566336f6907448a72b3d84057c5e5a3137775571901ccfc1f"
+    },
+    "svg": {
+      "path": "validation_process.svg",
+      "sha256": "36058c304b3a1c55e6994369cad2ec9fb862e3fdc3363f1bc6595e9e79502446"
+    }
+  },
+  "schema_version": "1.0",
+  "scope": {
+    "event_ids": [],
+    "scored_only": true,
+    "split": "validation"
+  },
+  "simulation_metrics": [
+    {
+      "color": "#0072B2",
+      "column": "simulated",
+      "label": "Simulated",
+      "nse": 0.8427723039270872,
+      "scored_samples": 10,
+      "unavailable_reason": null
+    }
+  ],
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "Validation observed–simulated process",
+  "unit": "m3/s",
+  "warnings": [
+    "validation series 未提供 precipitation；过程图省略降水面板"
+  ],
+  "width_px": 2400
+}

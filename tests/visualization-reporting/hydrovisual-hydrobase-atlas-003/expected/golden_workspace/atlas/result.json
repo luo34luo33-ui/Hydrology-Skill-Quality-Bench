@@ -1,0 +1,69 @@
+{
+  "artifacts": {
+    "hydrobase-qc-dashboard_figure": {
+      "path": "hydrobase-qc-dashboard.figure.json",
+      "sha256": "d4d731bf6d20e31d8e32f148de1defb9c241dabe788c62cd826513654e9deb65"
+    },
+    "hydrobase-qc-dashboard_png": {
+      "path": "hydrobase-qc-dashboard.png",
+      "sha256": "a290df3add41c94483cb4cfccd0f5e8a88f37bbf51c09cc64127593fc6f2dfe5"
+    },
+    "hydrobase-qc-dashboard_svg": {
+      "path": "hydrobase-qc-dashboard.svg",
+      "sha256": "ab2071e97148556b85e7ab49195a79ef10a38073709d98b0921fbcac62cc6005"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed build and validation artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "build_grid_alignment",
+      "details": "three clipped rasters share CRS, transform and shape",
+      "status": "PASS"
+    },
+    {
+      "check": "upstream_scientific_qc",
+      "details": "validation status=error",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-oqow1m90\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-oqow1m90\\validate\\result.json",
+      "sha256": "e8b226530222bfd6753029cf731b0c0ebef43e17ecdf4dfd98830c674da219c5"
+    }
+  },
+  "message": "scientific QC failed; rendered failure dashboard only",
+  "parameters": {
+    "language": "zh",
+    "pixel_sizes": {
+      "hydrobase-qc-dashboard": {
+        "height": 2366,
+        "width": 2400
+      }
+    },
+    "templates": [
+      "hydrobase-qc-dashboard"
+    ]
+  },
+  "provenance": {
+    "font": "Microsoft YaHei",
+    "geopandas": "1.1.4",
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "template_version": "hydrotune.spatial-atlas.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-hydrobase-atlas",
+  "status": "error",
+  "warnings": []
+}

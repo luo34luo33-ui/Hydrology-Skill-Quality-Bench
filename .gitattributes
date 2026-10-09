@@ -1,0 +1,3 @@
+# Scientific fixtures and manifests bind exact file bytes by SHA-256.
+# Preserve bytes on every platform, including CSV/JSON and reference outputs.
+* -text whitespace=cr-at-eol

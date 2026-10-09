@@ -1,0 +1,1 @@
+﻿event_id,time,discharge_m3_s,is_imputed,station_note,baseflow_m3_s,quickflow_m3_s,quickflow_fraction,source_index,is_warmup,relative_step,hours_from_start

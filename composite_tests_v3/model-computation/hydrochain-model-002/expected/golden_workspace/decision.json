@@ -1,0 +1,61 @@
+{
+  "evidence": [
+    {
+      "path": "e0/evap/result.json",
+      "sha256": "608ac338022c0ab8431d99a2416294bcecf6ce820cdc4da43ef3f8dc4cc5794a"
+    },
+    {
+      "path": "e0/rain/result.json",
+      "sha256": "e469e52ae55619015be7e0262aaf1eba964f9678793036c8494095535be2ef85"
+    },
+    {
+      "path": "e1/evap/result.json",
+      "sha256": "55666590efcdc051d1208018707ee1ab54650b99dd481ffd7e93bb6187b8ae29"
+    },
+    {
+      "path": "e1/rain/result.json",
+      "sha256": "627cac153f24165f88cde4d6bf7bc36d641cf4fec800366c56548b9298d3c7c6"
+    },
+    {
+      "path": "e2/evap/result.json",
+      "sha256": "16f790de85be60d72f19df9741439463b9adabd3ecc3226555879d0347f393c5"
+    },
+    {
+      "path": "e2/rain/result.json",
+      "sha256": "0f067cd2d342046b581dcb89a1cf60233e9ab687c4151642dd930cfc8ac36dbc"
+    },
+    {
+      "path": "e3/evap/result.json",
+      "sha256": "c4bb0728b748130ca1cb4c638f8a55fe09beea382a1a407803589849ccb64e53"
+    },
+    {
+      "path": "e3/rain/result.json",
+      "sha256": "ad8fbedb9eca43730acda716a4cf3b3a76415df8e575d6f45e6726e4796123ae"
+    },
+    {
+      "path": "model/result.json",
+      "sha256": "b3bbc4b527e38a7a301f3a0bcb60aba8e68703b3d2a1241f9d20d0321722400d"
+    },
+    {
+      "path": "routed/20150509/result.json",
+      "sha256": "dcd5f595ca2496855d97d4f8622b216d6fc29581bd91077971090188d0f2d5f4"
+    },
+    {
+      "path": "routed/20191031/result.json",
+      "sha256": "1d2cd023829dc8ded991eababdd0e74de9192b6476f141e70c5de0c7fe0d2df4"
+    },
+    {
+      "path": "routed/20241030/result.json",
+      "sha256": "24f5de706f255ccfff26d5e9ef0f5832c1d3152834a1b1e4ef10f800b6c06b7e"
+    },
+    {
+      "path": "routed/20250627/result.json",
+      "sha256": "c511327b7486a03cfd80f242a64f014753e5e2b0ebaf412e641db8050f363871"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

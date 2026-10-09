@@ -1,0 +1,623 @@
+{
+  "datasets": [
+    {
+      "dataset": "lumped",
+      "path": "ASTGTMV003_N18E108_dem.tif",
+      "sha256": "92dabbc8a53eabcb60fe59c1d3116d715b13325f1a4f2e1fccf50521300c0051",
+      "size_bytes": 4001901
+    },
+    {
+      "dataset": "lumped",
+      "path": "ASTGTMV003_N18E109_dem.tif",
+      "sha256": "8e77d2cce945fb160b473c42364df9ce17d385d950396b2b37f8104597825eee",
+      "size_bytes": 17354320
+    },
+    {
+      "dataset": "lumped",
+      "path": "ASTGTMV003_N19E108_dem.tif",
+      "sha256": "3053b23a7e83a1bd50ab17895852851475b9da651fa2bf44783050787bd821eb",
+      "size_bytes": 2878448
+    },
+    {
+      "dataset": "lumped",
+      "path": "ASTGTMV003_N19E109_dem.tif",
+      "sha256": "9ba5fa90c7a8c46debfad52d5c81ea52318af8b4594ad76fc1f500dc28dda644",
+      "size_bytes": 18158091
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "size_bytes": 5
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.dbf",
+      "sha256": "722f71f6eefe9b1eab964deba74380feb7fd05d8283de9bd60e73339973a1469",
+      "size_bytes": 362
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.png",
+      "sha256": "b9cec90c75a4cc92421aaf594d5d680a659211d5e02da7c9591ed24c2218b6bc",
+      "size_bytes": 119781
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "size_bytes": 145
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.sbn",
+      "sha256": "5bb6deb54558b83c7abbd9f2d8941330f62b91fc05ef570200bc93fc7029fe41",
+      "size_bytes": 132
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.sbx",
+      "sha256": "1d6c9317347b2694c310141507b53b97607ae4ce59ff6e5121b5dd226f849778",
+      "size_bytes": 116
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.shp",
+      "sha256": "0a1f72fd6824f338eb35138e2f27f22626d940b6df7b21d15ebf206ed689132a",
+      "size_bytes": 56520
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.shp.xml",
+      "sha256": "998360cdd25e9cf7932e31aae66dbbe07c4ab3ab7f880d4c8905020f697f2575",
+      "size_bytes": 5764
+    },
+    {
+      "dataset": "lumped",
+      "path": "boundary.shx",
+      "sha256": "fec6d883b548963a0310df8f5e785ac9874da486e1e5bd93c3072cc4e4bfae19",
+      "size_bytes": 108
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "size_bytes": 5
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations.dbf",
+      "sha256": "07e91210eee00535303c4c86f9252873523115c0e782bf8b4a2298fa12f2ae3c",
+      "size_bytes": 1528
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "size_bytes": 145
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations.shp",
+      "sha256": "cf79c1d51669137af0ab5da91275510b4af39e2baa62556b9ea38a49b865fd70",
+      "size_bytes": 296
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations.shx",
+      "sha256": "1ec58540783251e8e064eb071961be35b995000d8d666696d5b48f91e55549e5",
+      "size_bytes": 156
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations_map.png",
+      "sha256": "5341afcadad564565e862b7d1a4cd01c71fe23aa55eebe31c25c3fa494dc3c19",
+      "size_bytes": 290524
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations_WGS84.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "size_bytes": 5
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations_WGS84.dbf",
+      "sha256": "88b7d928bb9716c83832d6958c23ce4a02f96bf20bcb62bcbf59fcb7cc3be4fa",
+      "size_bytes": 1033
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations_WGS84.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "size_bytes": 145
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations_WGS84.shp",
+      "sha256": "cf79c1d51669137af0ab5da91275510b4af39e2baa62556b9ea38a49b865fd70",
+      "size_bytes": 296
+    },
+    {
+      "dataset": "lumped",
+      "path": "rainfall_stations_WGS84.shx",
+      "sha256": "1ec58540783251e8e064eb071961be35b995000d8d666696d5b48f91e55549e5",
+      "size_bytes": 156
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20100806.csv",
+      "sha256": "5e67ca2b5dde82f73514e785b8a6ab70a582a2fa2357690e2e568ed30c0787ab",
+      "size_bytes": 5280
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20100809.csv",
+      "sha256": "b176bcd632d0d47929585e61d2af0b4044d5e4fbae745dbbda62a4cdda8fcd20",
+      "size_bytes": 5562
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20100811.csv",
+      "sha256": "c37a4d0b0fc2e1e7432dc953d3f6be688ffe005e3a86913f381c472ff77ae4fb",
+      "size_bytes": 5696
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20100812.csv",
+      "sha256": "78c5b96c4b40e9b8197c91618497f5c86dc2d9956bdb0421ecd7c4b00bcd613f",
+      "size_bytes": 5807
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20100830.csv",
+      "sha256": "8d3eb143cf7d3b7f92c058b124caaa0c279018be5b3527c5aa7a6f2f0e7a3065",
+      "size_bytes": 5545
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20100923.csv",
+      "sha256": "4bf6fa3db0965cc7a6643f1d0be58a92538c5c75ce215fb4305efae8d94c7509",
+      "size_bytes": 5511
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20101005.csv",
+      "sha256": "32f58a15af4a021e7c78b721ece6a24da76619ac51058c61b56cc8976e8fe16c",
+      "size_bytes": 6902
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20120817.csv",
+      "sha256": "2477c1fc626d0c2f16b787bb3b38fbc294bfdb37de9397e04986a60bdd78804d",
+      "size_bytes": 7245
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20140409.csv",
+      "sha256": "142bf23577a490066064db558337054ddd94989d7dc412e7274d3e55b4285bb0",
+      "size_bytes": 5315
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20140428.csv",
+      "sha256": "fe814e490319d80d303c74f776944d3be7d65c18c80669d417c071503196afdb",
+      "size_bytes": 5756
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20140628.csv",
+      "sha256": "bbfa9a3490b1b62982f2ac563729e440c0dedd3bc180ea15d3fb2da8eb80c19f",
+      "size_bytes": 6152
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20140718.csv",
+      "sha256": "6babb9b847ab3da1f4aa843dbf3858c4b790dcdc5039ec039871b40edfe25d72",
+      "size_bytes": 7241
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20140904.csv",
+      "sha256": "a5d742b404467e18de428a8cfdf352d7851dfa55b4895075439cc41a9c9eaf7a",
+      "size_bytes": 9373
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20140916.csv",
+      "sha256": "6a82daf7368e39a94c92fea37d3484631e896f231134860e4c2db9a4e585dc04",
+      "size_bytes": 7176
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20141021.csv",
+      "sha256": "2356d6eb46957cfc3a410dd96f173653f237c8766d51188eaa78168b92eb91e8",
+      "size_bytes": 5883
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20150509.csv",
+      "sha256": "5f3da586f746e9e2e6aae213c936f8a3fcf9349be52f42f92cc7348d51f342e4",
+      "size_bytes": 5463
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20150826.csv",
+      "sha256": "10729bd21a7557b3eb0424e6bef1fda9b75fc83b6f40885fb963adf2feb5a4d6",
+      "size_bytes": 5542
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20150907.csv",
+      "sha256": "dc62cb5527119eae60859f59759d546a155bf9b28b6d56ddd01b5ee755fa3729",
+      "size_bytes": 5314
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20150918.csv",
+      "sha256": "de640d887e7878e0417e9a2860e9483a56d4eee889fb399112c801734d73121a",
+      "size_bytes": 6206
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20151105.csv",
+      "sha256": "a463be409d6b15d27c1e6df219f7e5189464215b899d5b959a68e3928debbca2",
+      "size_bytes": 5596
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20160624.csv",
+      "sha256": "a8bc8a5bef5510856c664f601def236cc34db9024d4cb47205ce59e975120e1f",
+      "size_bytes": 5484
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20160817.csv",
+      "sha256": "20ecb0b37230315d56cb1579c67a7cf79a111b325fbd82060f621a62452e1c41",
+      "size_bytes": 12260
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20161119.csv",
+      "sha256": "baf24ff8dbdd12926a3236327b0d5e334c23dee86cc38cbc3f98467ab92e8240",
+      "size_bytes": 5525
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20171015.csv",
+      "sha256": "b945271105213ee5404cbbdd4206e1532cedc4202ddaf164c3ad6ac609060a3e",
+      "size_bytes": 7149
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20171107.csv",
+      "sha256": "3877f491ea24d7a457d992d3f9646256130750514217bc4f4c1799c2051e1a2b",
+      "size_bytes": 5324
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20171115.csv",
+      "sha256": "80e5b001a2feeaaf0a8550a972c7a831a28e15c25a4937536711393d50a513d6",
+      "size_bytes": 5497
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20180105.csv",
+      "sha256": "ccca376ab4923bb1f4b9bcd4c696c82d10dc169f1a48b2b2c5160547d42f356c",
+      "size_bytes": 5440
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20191031.csv",
+      "sha256": "07bee8a9cb1d5f270a70840d7d923fe1bf5e63f708ec6f4952c5043539c53b05",
+      "size_bytes": 5431
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20230820.csv",
+      "sha256": "468d4bdfe0ef5084d57843312b981c80433805fdbf048055c18e689cf4688922",
+      "size_bytes": 5497
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20230822.csv",
+      "sha256": "2f0c5999650f84af9b96fd5085d8d7b866de36d044d695380eb5993d48ac9662",
+      "size_bytes": 6231
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20230824.csv",
+      "sha256": "65a7860ca395bbb0700137e8c2078460bf4d61d9ad9571e908c3978994df9907",
+      "size_bytes": 6200
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20230902.csv",
+      "sha256": "82f7125aef48f1139c7af7f7c21a6ada772581ca0b4ad6f572285ee7840bbcc4",
+      "size_bytes": 5446
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20230908.csv",
+      "sha256": "2b44a476e31dbfdfba83b060e566c93eb0119d9278a42885fecb534c6e78f5ee",
+      "size_bytes": 5752
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20230920.csv",
+      "sha256": "e2bc3f318ca9397f3ead87bac4fb40246d9b6546ec6937d78fa546e4b05ed3a0",
+      "size_bytes": 5427
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20231105.csv",
+      "sha256": "22fef2f6d9e5f1db615c5d5305a39b32e865935e3379b9e39448ace44ed1bb97",
+      "size_bytes": 5674
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20231108.csv",
+      "sha256": "b46e36e07038d4ac627d90051d0ddd7780ba583c614b5bb2eb88f82def381446",
+      "size_bytes": 5913
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20240621.csv",
+      "sha256": "aaddc52dff564abca08ebd6b6e3f6a3fa924a73a0e36e6c4c592928eeccee141",
+      "size_bytes": 5863
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20240623.csv",
+      "sha256": "a8545385d25c5f6ab1fb09cf3068f6da88535fe1937de568caebc12ab9e0b6d4",
+      "size_bytes": 6880
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20240721.csv",
+      "sha256": "faec7ddcf6debc0a24227a19e5df77593cf0b0bf5fa9aa64421df6bc23bf9ac6",
+      "size_bytes": 7786
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20240906.csv",
+      "sha256": "cd86de64a2d43f8ce644800f8490e5a129017b5066d526de25df3c3b98fc5c7d",
+      "size_bytes": 7906
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20241016.csv",
+      "sha256": "f0da2ba2f333338dd8609607160d1a8bdc64ade9896bedcb05caba3a006c8d12",
+      "size_bytes": 6194
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20241030.csv",
+      "sha256": "0ffe60cb3b059d2d4e7a346acf6c35029d3da10acf385d86bcef9603d1c31113",
+      "size_bytes": 6922
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20250306.csv",
+      "sha256": "b27af725b34c5eb2e9d8e654996897003651471fde52c0ea40cd670efa35e1d7",
+      "size_bytes": 5222
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20250514.csv",
+      "sha256": "374a7d8f164ca66a5d2ac4283d1c5a9660fb6ec92f50ae51a25765e45bd9208a",
+      "size_bytes": 5541
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20250607.csv",
+      "sha256": "1c4bb838ad4f01ce24e25b9013e43d12bafb5ea18c98e262102a119191b7a64b",
+      "size_bytes": 6012
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20250613.csv",
+      "sha256": "96a25b53b6e4aea40e267d839025fca74b5c476d14b38e3b359345e303df1e0e",
+      "size_bytes": 8050
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20250622.csv",
+      "sha256": "011046849699709292d5ffad93302fceee14e37a9fee83c33b54061e4468f8de",
+      "size_bytes": 5751
+    },
+    {
+      "dataset": "lumped",
+      "path": "场次洪水数据/20250627.csv",
+      "sha256": "37d75e3f520723aeac86774b785ca5c1d89f8b081c6066fef3270ca05f54f6d5",
+      "size_bytes": 5885
+    },
+    {
+      "dataset": "lumped",
+      "path": "水文站经纬度.xls",
+      "sha256": "655fa91954e48450ef0e42e467c279adda7e16ba1eaff4c4c5eccfb0c1a47ad7",
+      "size_bytes": 26624
+    },
+    {
+      "dataset": "lumped",
+      "path": "蒸散发.txt",
+      "sha256": "3e1543357519f51cd8372b25b8068a17de864fbc0849ec106f38e4c2677ae9c1",
+      "size_bytes": 193
+    },
+    {
+      "dataset": "lumped",
+      "path": "雨量站经纬度.xls",
+      "sha256": "a0d288853168e5a5ddc9dd20e0f25c8c5dc0804826914982ff164cfd527c8ae3",
+      "size_bytes": 25600
+    },
+    {
+      "dataset": "semi",
+      "path": "ASTGTMV003_N18E108_dem.tif",
+      "sha256": "92dabbc8a53eabcb60fe59c1d3116d715b13325f1a4f2e1fccf50521300c0051",
+      "size_bytes": 4001901
+    },
+    {
+      "dataset": "semi",
+      "path": "ASTGTMV003_N18E109_dem.tif",
+      "sha256": "8e77d2cce945fb160b473c42364df9ce17d385d950396b2b37f8104597825eee",
+      "size_bytes": 17354320
+    },
+    {
+      "dataset": "semi",
+      "path": "ASTGTMV003_N19E108_dem.tif",
+      "sha256": "3053b23a7e83a1bd50ab17895852851475b9da651fa2bf44783050787bd821eb",
+      "size_bytes": 2878448
+    },
+    {
+      "dataset": "semi",
+      "path": "ASTGTMV003_N19E109_dem.tif",
+      "sha256": "9ba5fa90c7a8c46debfad52d5c81ea52318af8b4594ad76fc1f500dc28dda644",
+      "size_bytes": 18158091
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "size_bytes": 5
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.dbf",
+      "sha256": "722f71f6eefe9b1eab964deba74380feb7fd05d8283de9bd60e73339973a1469",
+      "size_bytes": 362
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.png",
+      "sha256": "b9cec90c75a4cc92421aaf594d5d680a659211d5e02da7c9591ed24c2218b6bc",
+      "size_bytes": 119781
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "size_bytes": 145
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.sbn",
+      "sha256": "5bb6deb54558b83c7abbd9f2d8941330f62b91fc05ef570200bc93fc7029fe41",
+      "size_bytes": 132
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.sbx",
+      "sha256": "1d6c9317347b2694c310141507b53b97607ae4ce59ff6e5121b5dd226f849778",
+      "size_bytes": 116
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.shp",
+      "sha256": "0a1f72fd6824f338eb35138e2f27f22626d940b6df7b21d15ebf206ed689132a",
+      "size_bytes": 56520
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.shp.xml",
+      "sha256": "998360cdd25e9cf7932e31aae66dbbe07c4ab3ab7f880d4c8905020f697f2575",
+      "size_bytes": 5764
+    },
+    {
+      "dataset": "semi",
+      "path": "boundary.shx",
+      "sha256": "fec6d883b548963a0310df8f5e785ac9874da486e1e5bd93c3072cc4e4bfae19",
+      "size_bytes": 108
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "size_bytes": 5
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations.dbf",
+      "sha256": "07e91210eee00535303c4c86f9252873523115c0e782bf8b4a2298fa12f2ae3c",
+      "size_bytes": 1528
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "size_bytes": 145
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations.shp",
+      "sha256": "cf79c1d51669137af0ab5da91275510b4af39e2baa62556b9ea38a49b865fd70",
+      "size_bytes": 296
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations.shx",
+      "sha256": "1ec58540783251e8e064eb071961be35b995000d8d666696d5b48f91e55549e5",
+      "size_bytes": 156
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations_map.png",
+      "sha256": "5341afcadad564565e862b7d1a4cd01c71fe23aa55eebe31c25c3fa494dc3c19",
+      "size_bytes": 290524
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations_WGS84.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "size_bytes": 5
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations_WGS84.dbf",
+      "sha256": "88b7d928bb9716c83832d6958c23ce4a02f96bf20bcb62bcbf59fcb7cc3be4fa",
+      "size_bytes": 1033
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations_WGS84.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "size_bytes": 145
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations_WGS84.shp",
+      "sha256": "cf79c1d51669137af0ab5da91275510b4af39e2baa62556b9ea38a49b865fd70",
+      "size_bytes": 296
+    },
+    {
+      "dataset": "semi",
+      "path": "rainfall_stations_WGS84.shx",
+      "sha256": "1ec58540783251e8e064eb071961be35b995000d8d666696d5b48f91e55549e5",
+      "size_bytes": 156
+    },
+    {
+      "dataset": "semi",
+      "path": "水文站经纬度.xls",
+      "sha256": "655fa91954e48450ef0e42e467c279adda7e16ba1eaff4c4c5eccfb0c1a47ad7",
+      "size_bytes": 26624
+    },
+    {
+      "dataset": "semi",
+      "path": "蒸散发.txt",
+      "sha256": "3e1543357519f51cd8372b25b8068a17de864fbc0849ec106f38e4c2677ae9c1",
+      "size_bytes": 193
+    },
+    {
+      "dataset": "semi",
+      "path": "连续水文序列_GZ.xlsx",
+      "sha256": "e4ff1cbf24ba475da773860a892d4bcdc1182d1f6212b113cbe0fd7707ce2b75",
+      "size_bytes": 9809010
+    },
+    {
+      "dataset": "semi",
+      "path": "雨量站经纬度.xls",
+      "sha256": "a0d288853168e5a5ddc9dd20e0f25c8c5dc0804826914982ff164cfd527c8ae3",
+      "size_bytes": 25600
+    }
+  ],
+  "source_directories_read_only": true
+}

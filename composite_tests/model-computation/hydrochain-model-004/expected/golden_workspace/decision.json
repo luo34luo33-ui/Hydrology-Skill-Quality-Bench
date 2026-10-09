@@ -1,0 +1,25 @@
+{
+  "evidence": [
+    {
+      "path": "evap/result.json",
+      "sha256": "c4bb0728b748130ca1cb4c638f8a55fe09beea382a1a407803589849ccb64e53"
+    },
+    {
+      "path": "model/result.json",
+      "sha256": "8a659bf4c6ab281ed1792e679c75a85feee58805e1e87bfa70800caf96bd449d"
+    },
+    {
+      "path": "rain/result.json",
+      "sha256": "ad8fbedb9eca43730acda716a4cf3b3a76415df8e575d6f45e6726e4796123ae"
+    },
+    {
+      "path": "routed/result.json",
+      "sha256": "0836eeb71215e9a2e821c33df8dd986f62e1d21b3927195bc088527d6e743f58"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

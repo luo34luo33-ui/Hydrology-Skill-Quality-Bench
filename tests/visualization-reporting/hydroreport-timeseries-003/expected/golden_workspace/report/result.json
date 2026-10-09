@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "c9a4f2e7b7a073eb34840cfa0d922d0885a4a8e1d89b99e0c7a0304f9075a5b4"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "d49b698235dc3d0860d2b23c6ed1b8ce5e18aa124f71b64701afaa673e1e166e"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Artifact hash mismatch: series_metadata_json",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-timeseries-data-processing-report",
+  "status": "error",
+  "warnings": []
+}

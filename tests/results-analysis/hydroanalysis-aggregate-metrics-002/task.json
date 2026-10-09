@@ -98,6 +98,7 @@
   "id": "hydroanalysis-aggregate-metrics-002",
   "primary_skill": "evaluation-diagnostics/aggregate-event-metrics",
   "prompt": "Use event_metrics.csv exactly as supplied to run evaluation-diagnostics/aggregate-event-metrics. The table is confirmed to contain zero data rows; run the skill verbatim with value columns nse and volume_error_relative. The native behaviour is a warning with an empty aggregate result, not a failure: preserve it. Write the native outputs (aggregate_metrics.csv, result.json) under aggregate-metrics/. Do not treat the empty table as an error or fabricate metric values.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "aggregate-metrics/aggregate_metrics.csv",
     "aggregate-metrics/result.json"

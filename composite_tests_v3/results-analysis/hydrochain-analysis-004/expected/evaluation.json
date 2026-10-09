@@ -1,0 +1,195 @@
+{
+  "core_capabilities": [
+    "source_alignment",
+    "scored_split_audit",
+    "controlled_conclusion_review"
+  ],
+  "critical_rules": [
+    {
+      "code": "invalid_scored_sample_review",
+      "criterion": {
+        "check": "split_audit_recompute",
+        "target": "split_audit.json",
+        "targets": [
+          "calibration_scored.csv",
+          "validation_scored.csv"
+        ],
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "split_audit.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "split_audit.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "split_audit.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "approved_report.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "approved_report.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": "basin_outlet",
+        "field": "outlet_semantics",
+        "target": "resolved_information.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "resolved_information.json"
+      ]
+    }
+  ],
+  "dependencies": [],
+  "forbidden_outputs": [],
+  "gates": [
+    {
+      "criteria": [
+        {
+          "check": "protected_sources",
+          "reference": "expected/protected_sources.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "scenario.json"
+      ],
+      "id": "protected_sources"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/decision.json",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "decision_evidence",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "decision.json"
+      ],
+      "id": "decision"
+    },
+    {
+      "criteria": [
+        {
+          "check": "split_audit_recompute",
+          "target": "split_audit.json",
+          "targets": [
+            "calibration_scored.csv",
+            "validation_scored.csv"
+          ],
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "split_audit.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "split_audit.json"
+      ],
+      "id": "split_overlap"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_value",
+          "expected": true,
+          "field": "review_pass",
+          "target": "approved_report.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "json_value",
+          "expected": true,
+          "field": "validation_independent",
+          "target": "approved_report.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "approved_report.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "approved_report.json"
+      ],
+      "id": "review_delivery"
+    }
+  ],
+  "interaction_mode": "none",
+  "provided_settings": [
+    {
+      "bindings": [
+        {
+          "expected": "basin_outlet",
+          "field": "outlet_semantics",
+          "target": "resolved_information.json"
+        }
+      ],
+      "field": "outlet_semantics",
+      "key": "outlet_semantics",
+      "source": "scenario.json"
+    }
+  ],
+  "schema_version": "2.0",
+  "scientific_graph": {
+    "edges": [
+      {
+        "from": "source_alignment",
+        "to": "scored_split_audit"
+      },
+      {
+        "from": "scored_split_audit",
+        "to": "controlled_conclusion_review"
+      }
+    ],
+    "nodes": [
+      {
+        "artifact": "calibration_scored.csv",
+        "capability": "source_alignment",
+        "id": "source_alignment"
+      },
+      {
+        "artifact": "split_audit.json",
+        "capability": "scored_split_audit",
+        "id": "scored_split_audit"
+      },
+      {
+        "artifact": "decision.json",
+        "capability": "controlled_conclusion_review",
+        "id": "controlled_conclusion_review"
+      }
+    ],
+    "note": "Dependencies below bind actual files and hashes; transform tables are independently checked. Listed graph is developer metadata, never visible to candidates."
+  },
+  "severity_policy": "Missing evidence is unknown. Artifact tolerances 1e-6; a critical numerical error exceeds 1e-3 + 1% of reference magnitude. Critical categorical failures are explicitly enumerated.",
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5,
+  "scoring_version": "composite-scientific-v3",
+  "validation_status": "pending_reference_recomputation"
+}

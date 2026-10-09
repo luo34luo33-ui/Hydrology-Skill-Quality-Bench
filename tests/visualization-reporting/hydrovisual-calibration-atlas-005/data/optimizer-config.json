@@ -1,0 +1,14 @@
+{
+  "algorithm": "ga",
+  "crossover_probability": 0.8,
+  "elite_count": 1,
+  "gene_mutation_probability": 0.5,
+  "max_evaluations": 100,
+  "max_failed_evaluations": 3,
+  "max_generations": 4,
+  "mutation_probability": 0.4,
+  "population_size": 8,
+  "schema_version": "1.0",
+  "seed": 42,
+  "tournament_size": 3
+}

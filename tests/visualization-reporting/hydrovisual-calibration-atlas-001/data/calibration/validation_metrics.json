@@ -1,0 +1,9 @@
+{
+  "metrics": {
+    "rmse": 0.19133239820038633,
+    "score": 0.9633919133988889
+  },
+  "objective": 0.9633919133988889,
+  "schema_version": "1.0",
+  "split": "validation"
+}

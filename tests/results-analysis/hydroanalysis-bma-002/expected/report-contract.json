@@ -1,0 +1,70 @@
+{
+  "files": {
+    "fit/alignment_qc.json": {
+      "member_count": 2,
+      "mode": "event",
+      "rows": 234,
+      "selected_rows_per_member": {
+        "HBV": 240,
+        "Tank": 240
+      },
+      "warmup_union_rows": 6
+    },
+    "fit/bma_model.json": {
+      "distribution": "censored_gaussian",
+      "model_ids": [
+        "HBV",
+        "Tank"
+      ],
+      "outlet_id": "synthetic-outlet",
+      "random_state": 2026,
+      "schema_version": "1.0",
+      "series_mode": "event",
+      "timestep_hours": 1,
+      "timezone": "Asia/Shanghai",
+      "training_end": "2020-01-10T15:00:00+00:00",
+      "training_events": [
+        "flood-001",
+        "flood-002"
+      ],
+      "training_start": "2019-12-31T19:00:00+00:00",
+      "unit": "m3/s"
+    },
+    "fit/fit_diagnostics.json": {},
+    "fit/model_card.json": {
+      "distribution": "censored_gaussian",
+      "estimator": "generalized_EM_maximum_likelihood",
+      "interpretation": "conditional predictive uncertainty; no parameter posterior sampling or trajectory dependence",
+      "parameter_units": {
+        "theta_a": "normalized discharge",
+        "theta_b": "dimensionless",
+        "theta_sigma": "normalized discharge"
+      },
+      "row_weighting": "equal_per_timestep",
+      "training_rows": 234,
+      "warnings": []
+    },
+    "fit/result.json": {
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "success",
+      "warnings": []
+    },
+    "forecast/alignment_qc.json": {
+      "member_count": 2,
+      "mode": "event",
+      "rows": 117,
+      "selected_rows_per_member": {
+        "HBV": 120,
+        "Tank": 120
+      },
+      "warmup_union_rows": 3
+    },
+    "forecast/result.json": {
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "success",
+      "warnings": []
+    }
+  },
+  "kind": "bma",
+  "markdown": {}
+}

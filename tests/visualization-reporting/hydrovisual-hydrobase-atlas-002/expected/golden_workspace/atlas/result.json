@@ -1,0 +1,105 @@
+{
+  "artifacts": {
+    "hydrobase-morphometry_figure": {
+      "path": "hydrobase-morphometry.figure.json",
+      "sha256": "47604f305df4d7e506242362e09e5cb7fafbd24f27f1f8d999b79a4dbd4ab5b6"
+    },
+    "hydrobase-morphometry_png": {
+      "path": "hydrobase-morphometry.png",
+      "sha256": "428866906a8b7e300ad38ed02f96dce76491611ff5f6a2b485b74ba090502dde"
+    },
+    "hydrobase-morphometry_svg": {
+      "path": "hydrobase-morphometry.svg",
+      "sha256": "7b61441684a8765ffb878e3470caade195b4a02b4b451180edccafa16e7d2f6f"
+    },
+    "hydrobase-qc-dashboard_figure": {
+      "path": "hydrobase-qc-dashboard.figure.json",
+      "sha256": "be6b92bec68063e94161bf8ef01d070309ebef3e9c1bf5b05b630c34830450f7"
+    },
+    "hydrobase-qc-dashboard_png": {
+      "path": "hydrobase-qc-dashboard.png",
+      "sha256": "3187c5b1a88a4a36cf2400e8afc0ec5d5bc609bae874c1b71d433ed6bbf9ebaa"
+    },
+    "hydrobase-qc-dashboard_svg": {
+      "path": "hydrobase-qc-dashboard.svg",
+      "sha256": "6dcb11b676734ea42f04dd1d59107e85fb08dcd52aceee80cb84062cd1a017fb"
+    },
+    "hydrobase-topology_figure": {
+      "path": "HydroBase hydrological topology.figure.json",
+      "sha256": "21bc6222c11015c18dffc8c218b1332646a3b2608c9f8e58eaaaec76394990ec"
+    },
+    "hydrobase-topology_png": {
+      "path": "HydroBase hydrological topology.png",
+      "sha256": "5858496a06d7dbcc0eb42197e803532ab50cc5ba3d8a80bc2258d398dbda3e0a"
+    },
+    "hydrobase-topology_svg": {
+      "path": "HydroBase hydrological topology.svg",
+      "sha256": "e0e6aea1721c71afe19748de88fe946298ea45bab1183a52dc4aa687540bb479"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed build and validation artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "build_grid_alignment",
+      "details": "three clipped rasters share CRS, transform and shape",
+      "status": "PASS"
+    },
+    {
+      "check": "upstream_scientific_qc",
+      "details": "validation status=warning",
+      "status": "WARN"
+    }
+  ],
+  "inputs": {
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\validate\\result.json",
+      "sha256": "780836387ec5a2f49bbfc778abeb5f72dfe53ee5bd35c744ea6213c662b25643"
+    }
+  },
+  "message": "rendered 3 fixed atlas templates",
+  "parameters": {
+    "language": "en",
+    "pixel_sizes": {
+      "hydrobase-morphometry": {
+        "height": 884,
+        "width": 2400
+      },
+      "hydrobase-qc-dashboard": {
+        "height": 2366,
+        "width": 2400
+      },
+      "hydrobase-topology": {
+        "height": 2366,
+        "width": 2400
+      }
+    },
+    "templates": [
+      "hydrobase-topology",
+      "hydrobase-morphometry",
+      "hydrobase-qc-dashboard"
+    ]
+  },
+  "provenance": {
+    "font": "DejaVu Sans",
+    "geopandas": "1.1.4",
+    "matplotlib": "3.11.2",
+    "numpy": "2.3.5",
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "template_version": "hydrotune.spatial-atlas.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-hydrobase-atlas",
+  "status": "warning",
+  "warnings": [
+    "Synthetic upstream QC evidence"
+  ]
+}

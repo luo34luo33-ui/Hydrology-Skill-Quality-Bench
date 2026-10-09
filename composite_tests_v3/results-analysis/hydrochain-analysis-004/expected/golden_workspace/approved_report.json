@@ -1,0 +1,11 @@
+{
+  "evidence": [
+    {
+      "path": "split_audit.json",
+      "sha256": "bc232bf8ee0ceaac70adeb2e75f473778d7dbbb12ec8cc22d1f1a3a45d6bea44"
+    }
+  ],
+  "review_pass": true,
+  "scope": "scored sample independence only; does not establish model accuracy or causality",
+  "validation_independent": true
+}

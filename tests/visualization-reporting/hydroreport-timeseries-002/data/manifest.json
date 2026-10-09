@@ -1,0 +1,20 @@
+{
+  "required_sources": [
+    "flow",
+    "events"
+  ],
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "id": "flow",
+      "result": "flow/result.json",
+      "stage": "preprocessing"
+    },
+    {
+      "id": "events",
+      "result": "events/result.json",
+      "stage": "preprocessing"
+    }
+  ],
+  "title": "预分析"
+}

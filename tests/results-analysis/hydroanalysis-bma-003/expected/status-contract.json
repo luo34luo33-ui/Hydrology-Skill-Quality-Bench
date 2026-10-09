@@ -1,0 +1,12 @@
+{
+  "files": {
+    "fit/result.json": {
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "warning",
+      "warnings": [
+        "duplicate member predictions: individual weights are not identifiable"
+      ]
+    }
+  },
+  "kind": "status"
+}

@@ -114,6 +114,7 @@
   "id": "hydromodel-gr4j-002",
   "primary_skill": "hydrological-modeling/run-lumped-gr4j-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-gr4j-model. The confirmed parameter set uses X2=-5.0: a legal negative groundwater exchange that drives the routing store into the native numerical-clipping regime during the dry tail. Run it verbatim with --pet-column E0, area 640 km2, timestep 24 h, mode continuous, warm-up 12 steps, balance tolerance 0.2. Write the native outputs (lumped_gr4j_runoff.csv, result.json) under gr4j-run/. Numerical clipping must be reported natively in result.json, never hidden or corrected by altering parameters or forcing. Do not 'improve' the configuration to avoid the warning.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "gr4j-run/lumped_gr4j_runoff.csv",
     "gr4j-run/result.json"

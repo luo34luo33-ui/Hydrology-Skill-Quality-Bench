@@ -1,0 +1,11 @@
+{
+  "files": {
+    "fit/result.json": {
+      "error_reason_contains": "missing or hash-mismatched artifact:",
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

@@ -1,0 +1,70 @@
+{
+  "crs": "EPSG:32650",
+  "extent": [
+    499967.0,
+    500993.0,
+    4099007.0,
+    4100033.0
+  ],
+  "language": "zh",
+  "layers": [
+    {
+      "display_transform": "existing area_km2 mapped by sub_id; vmin=0.0009; vmax=0.027; display clipped to real boundary",
+      "id": "subbasin-area",
+      "palette": "viridis",
+      "source": "build_result.artifacts.subbasins_table"
+    },
+    {
+      "display_transform": "linear existing slope; 0 to P98=21.1111; over-range indicated by colorbar extension",
+      "id": "reach-slope",
+      "palette": "deep-blue-to-deep-red",
+      "source": "build_result.artifacts.reaches_table"
+    },
+    {
+      "display_transform": "discrete existing topo_level 1..4; not Strahler order",
+      "id": "topological-level",
+      "palette": "plasma",
+      "source": "build_result.artifacts.reaches_table"
+    },
+    {
+      "display_transform": "real boundary overlaid on all three maps; WGS84 graticules projected to map CRS; metric scale; north arrow",
+      "id": "basin-boundary",
+      "palette": "black",
+      "source": "build_result.inputs.basin_boundary"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "hydrobase-morphometry.png",
+      "sha256": "f4bfc009cbbb7f775a1b9740647eee25196cee582cbe507606557e670c8988f2"
+    },
+    "svg": {
+      "path": "hydrobase-morphometry.svg",
+      "sha256": "f42cfb022516ddebf6923539fb7b046a5983d3dde01103ab2990e11ed14ff7b9"
+    }
+  },
+  "pixel_size": {
+    "height": 884,
+    "width": 2400
+  },
+  "publication_ready": true,
+  "schema_version": "1.0",
+  "source_results": {
+    "basin_boundary": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\prepare\\basin_normalized.gpkg",
+      "sha256": "d6bab5a8448645a0818b29cecd7b6fa375189706b1b3eb2a3c94c147ca9f0af6"
+    },
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_vmvv2vj\\validate\\result.json",
+      "sha256": "1506cb4d73c0f2c413e9256860a86bfb03a13d1926b091db05159dadb3aa62c7"
+    }
+  },
+  "template_id": "hydrobase-morphometry",
+  "template_version": "hydrotune.hydrobase-morphometry.v2",
+  "title": "HydroBase 形态属性",
+  "warnings": []
+}

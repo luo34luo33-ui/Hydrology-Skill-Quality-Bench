@@ -60,6 +60,7 @@
   "id": "hydrodata-topology-build-006",
   "primary_skill": "spatial-analysis/build-hydrological-topology",
   "prompt": "Build HydroBase from the supplied basin and six aligned hydrology rasters. Confirmed options: --cell-inclusion center. Write outputs under hydrobase/. Do not infer topology from clipped line contact or repair rejected inputs.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "hydrobase/result.json"
   ],

@@ -1,0 +1,78 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_gr4j_runoff.csv",
+      "sha256": "8f06e49cea69977215b9102b0f990bd2f13c6d7befd9400b9b796cd3ae56cbf2"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 24.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 2 步，模拟期 29 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "水库状态非负",
+      "name": "continuous:state_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "无数值截断",
+      "name": "continuous:numerical_clipping",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差 64.5367 mm，占降雨 16.711%，超过容差 5.000%；地下水交换与 percolation 分流使闭合为近似",
+      "name": "continuous:water_balance",
+      "status": "WARN"
+    }
+  ],
+  "inputs": {
+    "params": {
+      "path": "../params.json",
+      "sha256": "12c6c65e6ae0e27d2ad988df6d803cf910c200d6cce6d8e25d22d36868425e86"
+    }
+  },
+  "message": "集总式 GR4J 前向模拟完成：1 场（或段），31 行",
+  "parameters": {
+    "area_km2": 564.4784427125312,
+    "balance_tolerance_fraction": 0.05,
+    "carry_columns": [],
+    "initial_states": null,
+    "mode": "continuous",
+    "parameter_set": {
+      "X1": 350.0,
+      "X2": 0.0,
+      "X3": 90.0,
+      "X4": 1.7
+    },
+    "timestep_hours": 24.0,
+    "warmup_steps": 2
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-gr4j-model",
+  "status": "warning",
+  "warnings": [
+    "continuous 水量平衡残差占降雨 16.711%，含地下水交换项的近似闭合"
+  ]
+}

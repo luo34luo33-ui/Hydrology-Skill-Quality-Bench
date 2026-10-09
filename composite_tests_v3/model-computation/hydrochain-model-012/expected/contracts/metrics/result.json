@@ -1,0 +1,12 @@
+{
+  "parameters": {
+    "event_id_column": "event_id",
+    "observed_column": "observed_m3_s",
+    "scoring_policy": "exclude_unscored_and_warmup",
+    "simulated_column": "simulated_m3_s",
+    "thresholds": {},
+    "time_column": "time",
+    "timestep_hours": 1.0,
+    "volume_unit": "m3"
+  }
+}

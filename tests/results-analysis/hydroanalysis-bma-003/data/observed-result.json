@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "discharge_timeseries": {
+      "path": "observed.csv",
+      "sha256": "6f9cc62bfbf1f955729a4a418cdf9f5b6b44feb748aa0e3be24a9abcc1a38b4a"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_fixture",
+      "status": "PASS"
+    }
+  ],
+  "parameters": {
+    "timestep_hours": 1
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-discharge-timeseries",
+  "status": "success"
+}

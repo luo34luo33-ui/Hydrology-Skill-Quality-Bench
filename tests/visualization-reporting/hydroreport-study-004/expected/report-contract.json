@@ -1,0 +1,12 @@
+{
+  "files": {
+    "draft/result.json": {
+      "error_reason_contains": "calibration/validation periods overlap",
+      "skill": "visualization-reporting/generate-hydrological-study-report",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "report",
+  "markdown": {}
+}

@@ -1,0 +1,577 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "model-calibration/calibrate-model-ga",
+  "source_contract_sha256": "cc1fc5fad0c42eb117d9b407f31c07359d4e4d10d0468b2e4e74c1f3a3e4e0ec",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "calibration_problem",
+        "description": "含评估器、参数、目标、split 和变量语义的 JSON。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "optimizer_config",
+        "description": "含 seed、预算和完整 GA 参数的 JSON。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "calibrated_parameters",
+        "description": "最优参数及边界证据。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "calibration_evidence",
+        "description": "搜索轨迹、两 split 指标和标准序列。",
+        "required": true,
+        "format": "CSV and JSON"
+      },
+      {
+        "id": "run_result",
+        "description": "状态、哈希、QC 与 provenance。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "invariants": [
+      "validation 不得参与适应度或参数选择。",
+      "输出参数必须位于显式边界内。",
+      "相同 seed 和输入必须产生确定性搜索轨迹。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        },
+        "scipy": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "algorithm": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "best_parameters": {
+          "type": "computed; see field semantics"
+        },
+        "calibration_trace": {
+          "type": "computed; see field semantics"
+        },
+        "calibration_metrics": {
+          "type": "computed; see field semantics"
+        },
+        "validation_metrics": {
+          "type": "computed; see field semantics"
+        },
+        "calibration_series": {
+          "type": "computed; see field semantics"
+        },
+        "validation_series": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "algorithm": {
+          "type": "computed; see field semantics"
+        },
+        "data_shape": {
+          "type": "computed; see field semantics"
+        },
+        "objective": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "seed": {
+            "type": "computed; see field semantics"
+          },
+          "max_evaluations": {
+            "type": "computed; see field semantics"
+          },
+          "optimizer_config": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "inputs": {
+          "problem": {
+            "type": "computed; see field semantics"
+          },
+          "optimizer_config": {
+            "type": "computed; see field semantics"
+          },
+          "adapter": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "termination_reason": {
+          "type": "computed; see field semantics"
+        },
+        "evaluation_count": {
+          "type": "computed; see field semantics"
+        },
+        "failed_evaluation_count": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "evaluation": {
+          "type": "computed; see field semantics"
+        },
+        "stage": {
+          "type": "computed; see field semantics"
+        },
+        "objective": {
+          "type": "computed; see field semantics"
+        },
+        "loss": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "best_so_far": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "objective": {
+          "type": "computed; see field semantics"
+        },
+        "metrics": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "split": {
+          "type": "string"
+        }
+      },
+      {
+        "seed": {
+          "type": "computed; see field semantics"
+        },
+        "max_evaluations": {
+          "type": "computed; see field semantics"
+        },
+        "optimizer_config": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "problem": {
+          "type": "computed; see field semantics"
+        },
+        "optimizer_config": {
+          "type": "computed; see field semantics"
+        },
+        "adapter": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "value": {
+          "type": "computed; see field semantics"
+        },
+        "lower": {
+          "type": "computed; see field semantics"
+        },
+        "upper": {
+          "type": "computed; see field semantics"
+        },
+        "relative_position": {
+          "type": "computed; see field semantics"
+        },
+        "at_lower_bound": {
+          "type": "computed; see field semantics"
+        },
+        "at_upper_bound": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "algorithm": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "best_parameters.json",
+        "calibration_trace.csv",
+        "calibration_metrics.json",
+        "validation_metrics.json",
+        "calibration_series.csv",
+        "validation_series.csv",
+        "result.json"
+      ],
+      [
+        "seed",
+        "max_evaluations",
+        "max_failed_evaluations"
+      ],
+      [
+        "observed",
+        "simulated",
+        "scored"
+      ],
+      [
+        "observed",
+        "simulated"
+      ],
+      [
+        "path",
+        "sha256"
+      ],
+      [
+        "schema_version",
+        "adapter",
+        "inputs",
+        "parameters",
+        "objective",
+        "splits",
+        "data_shape",
+        "warmup",
+        "variables",
+        "objective_consistency_tolerance"
+      ],
+      [
+        "continuous",
+        "event_collection"
+      ],
+      [
+        "schema_version",
+        "algorithm",
+        "seed",
+        "max_evaluations",
+        "max_failed_evaluations"
+      ],
+      [
+        "success",
+        ""
+      ],
+      [
+        "calibration",
+        "validation"
+      ],
+      [
+        "minimize",
+        "maximize"
+      ],
+      [
+        "name",
+        "lower",
+        "upper"
+      ],
+      [
+        "time",
+        "step"
+      ],
+      [
+        "objective",
+        "metrics",
+        "series"
+      ],
+      [
+        "population_size",
+        "max_generations",
+        "tournament_size",
+        "elite_count",
+        "crossover_probability",
+        "mutation_probability",
+        "gene_mutation_probability"
+      ],
+      [
+        "crossover_probability",
+        "mutation_probability",
+        "gene_mutation_probability"
+      ],
+      [
+        "population_size",
+        "max_generations",
+        "tournament_size",
+        "elite_count"
+      ]
+    ],
+    "field_names": [
+      "",
+      "action",
+      "adapter",
+      "algorithm",
+      "artifacts",
+      "at_lower_bound",
+      "at_upper_bound",
+      "best_parameters",
+      "best_parameters.json",
+      "best_so_far",
+      "calibration",
+      "calibration_metrics",
+      "calibration_metrics.json",
+      "calibration_series",
+      "calibration_series.csv",
+      "calibration_trace",
+      "calibration_trace.csv",
+      "check",
+      "checks",
+      "continuous",
+      "crossover_probability",
+      "data_shape",
+      "description",
+      "details",
+      "direction",
+      "dtype",
+      "elite_count",
+      "encoding",
+      "ensure_ascii",
+      "errors",
+      "evaluation",
+      "evaluation_count",
+      "event_collection",
+      "event_id",
+      "exist_ok",
+      "failed_evaluation_count",
+      "fieldnames",
+      "file",
+      "gene_mutation_probability",
+      "indent",
+      "index",
+      "inputs",
+      "loss",
+      "lower",
+      "max_evaluations",
+      "max_failed_evaluations",
+      "max_generations",
+      "maximize",
+      "message",
+      "metric",
+      "metrics",
+      "minimize",
+      "mutation_probability",
+      "name",
+      "newline",
+      "numpy",
+      "objective",
+      "objective_consistency_tolerance",
+      "observed",
+      "optimizer_config",
+      "pandas",
+      "parameters",
+      "parents",
+      "path",
+      "population_size",
+      "problem",
+      "provenance",
+      "python",
+      "relative_position",
+      "replace",
+      "required",
+      "result.json",
+      "schema_version",
+      "scipy",
+      "scored",
+      "seed",
+      "series",
+      "sha256",
+      "simulated",
+      "skill",
+      "sort_keys",
+      "split",
+      "splits",
+      "stage",
+      "status",
+      "step",
+      "success",
+      "termination_reason",
+      "time",
+      "tournament_size",
+      "type",
+      "upper",
+      "validation",
+      "validation_metrics",
+      "validation_metrics.json",
+      "validation_series",
+      "validation_series.csv",
+      "value",
+      "variables",
+      "warmup",
+      "warnings"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "PASS",
+        "error"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^ga:.+$",
+      "^inputs\\[.+\\]$",
+      "^param:.+$",
+      "^parameters=.+$",
+      "^parameters\\[.+\\]$",
+      "^tolerance=.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "model-calibration/calibrate-model-ga"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}
+```

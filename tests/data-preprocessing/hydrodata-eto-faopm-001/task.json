@@ -1,0 +1,132 @@
+{
+  "data_description": "A deterministic FAO-56 daily meteorology fixture for two stations with a fully confirmed config.",
+  "data_files": [
+    "met.csv",
+    "stations.csv",
+    "config.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "eto-out/eto.csv": [
+          "time",
+          "source_id",
+          "ETo_mm"
+        ],
+        "eto-out/mapped_evap.csv": [
+          "time",
+          "source_id",
+          "variable",
+          "depth_mm"
+        ],
+        "eto-out/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "eto-out/eto.csv",
+        "eto-out/mapped_evap.csv",
+        "eto-out/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "eto_table",
+      "reference": "expected/golden_workspace/eto-out/eto.csv",
+      "rtol": 1e-09,
+      "target": "eto-out/eto.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "atol": 1e-09,
+      "name": "mapped_table",
+      "reference": "expected/golden_workspace/eto-out/mapped_evap.csv",
+      "rtol": 1e-09,
+      "target": "eto-out/mapped_evap.csv",
+      "type": "table_match",
+      "weight": 0.05
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "eto",
+        "mapped_evap"
+      ],
+      "target": "eto-out/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydrodata-eto-faopm-001",
+  "primary_skill": "data-processing/derive-potential-evapotranspiration",
+  "prompt": "Use met.csv, stations.csv, and config.json exactly as supplied to run data-processing/derive-potential-evapotranspiration. The meteorology table is daily for two stations in July 2020; all columns, units, timezone, and the PET mapping (factor 1.0, negative_policy floor_zero) are confirmed in the config. Write the native outputs (eto.csv, mapped_evap.csv, result.json) under eto-out/. Do not alter the config, fill missing values, or substitute another evapotranspiration formula.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "eto-out/eto.csv",
+    "eto-out/mapped_evap.csv",
+    "eto-out/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The config (columns, canonical units, timezone, mapping policy) is confirmed by the user and must not be altered.",
+    "Meteorology values are instantaneous daily aggregates; ETo follows FAO-56 Penman-Monteith.",
+    "Do not install software or implement a replacement formula."
+  ],
+  "timeout_seconds": 300,
+  "title": "Derive FAO-56 daily ETo for two stations and map it to PET"
+}

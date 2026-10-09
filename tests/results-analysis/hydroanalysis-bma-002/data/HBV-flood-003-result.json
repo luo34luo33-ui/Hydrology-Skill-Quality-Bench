@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "HBV-flood-003.csv",
+      "sha256": "98ac686afba0a2228058e3f4cb065e54c0cbd56e7a1d295d1b79e0706647b19d"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_fixture",
+      "status": "PASS"
+    }
+  ],
+  "parameters": {
+    "timestep_hours": 1
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-hbv-model",
+  "status": "success"
+}

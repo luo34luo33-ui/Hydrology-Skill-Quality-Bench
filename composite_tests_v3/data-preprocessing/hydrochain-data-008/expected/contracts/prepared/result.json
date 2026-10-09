@@ -1,0 +1,9 @@
+{
+  "parameters": {
+    "analysis_buffer_km": 3.0,
+    "mask_rule": "center",
+    "target_crs": "EPSG:32649",
+    "vertical_scale_to_m": 1.0,
+    "vertical_unit": "m"
+  }
+}

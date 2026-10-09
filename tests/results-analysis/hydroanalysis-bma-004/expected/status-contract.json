@@ -1,0 +1,16 @@
+{
+  "files": {
+    "fit/result.json": {
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "success",
+      "warnings": []
+    },
+    "forecast/result.json": {
+      "error_reason_contains": "application must be entirely later than training",
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

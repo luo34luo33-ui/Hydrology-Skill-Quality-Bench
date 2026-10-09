@@ -1,4 +1,4 @@
-schema_version: '1.0'
+schema_version: '1.2'
 peak_detection:
   peak_quantile: 0.1
   prominence_factor: 0.1
@@ -16,3 +16,14 @@ filters:
   min_event_volume_m3: 500000.0
 warmup:
   steps: 3
+rainfall_support:
+  lookback_hours: 6.0
+  min_observed_rainfall_mm: 1.0
+  no_rainfall_policy: keep
+  missing_rainfall_policy: keep
+shape_filter:
+  min_plateau_duration_hours: 24.0
+  min_plateau_fraction: 0.5
+  plateau_range_fraction: 0.005
+  min_jump_fraction: 0.1
+  jump_window_steps: 2

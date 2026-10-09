@@ -122,6 +122,7 @@
   "id": "hydromodel-sacsma-001",
   "primary_skill": "hydrological-modeling/run-lumped-sacsma-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-sacsma-model. The forcing table is daily; P and the potential evaporation column (pass --pet-column E0) are depths in mm per day on a gap-free axis. The 16-parameter set is confirmed; area is 640 km2, timestep is 24 h, mode is continuous, warm-up is 12 steps, and the user confirms a water-balance tolerance of 4.5 because the source Sacramento subtracts ET4 from the outflow instead of the stores. Write the native outputs (lumped_sacsma_runoff.csv, result.json) under sacsma-run/. Do not modify parameters, fill missing values, change the warm-up, or substitute another model implementation.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "sacsma-run/lumped_sacsma_runoff.csv",
     "sacsma-run/result.json"

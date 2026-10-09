@@ -72,6 +72,12 @@
 | `hydrodata-topology-validate-008` | 子流域表面积与裁切栅格计数不一致 | `error`，退出码 2 |
 | `hydrodata-topology-validate-009` | 裁切栅格 CRS/仿射网格不一致 | `error`，退出码 2 |
 | `hydrodata-topology-validate-010` | build artifact SHA-256 被篡改 | `error`，退出码 1 |
+| `hydrodata-terrain-topidx-001` | 哈希互链的 stream/build/QC 单出口漏斗 DEM（12×8 米制网格） | topographic_index.tif / classes / distance 三产物；slope_clipped_cells=1（仅出口） | `success` / 0 |
+| `hydrodata-terrain-topidx-002` | 确认平地（第 4–6 行）使 D8 落差为零 | slope_clipped_cells=25 被原生记录但 status 仍为 success；不得扰动平地 | `success` / 0（无原生 warning 通道） |
+| `hydrodata-terrain-topidx-003` | D8 指针使两个像元出盆 | 脚本必须拒绝（"exactly one exit cell"）；不产出任何地形成果 | `error` / 2 |
+| `hydrodata-forcing-aggregate-001` | 双站泰森聚合到 2 个已验证子流域（P/E0 双层，coverage=1） | subbasin_forcing.csv / weights.csv / coverage.csv；不重分配权重、不补值 | `success` / 0 |
+| `hydrodata-forcing-aggregate-002` | 确认 --target basin（P/PET 双层合并单元） | basin_forcing.csv（time,P,PET）；不得自行加权 | `success` / 0 |
+| `hydrodata-forcing-aggregate-003` | E0 源缺 station B 最后一个时步 | 脚本必须拒绝（"missing station at one or more steps"） | `error` / 2 |
 
 ## 新增测试模板
 

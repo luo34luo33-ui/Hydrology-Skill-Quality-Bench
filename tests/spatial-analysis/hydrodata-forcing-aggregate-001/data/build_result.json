@@ -1,0 +1,22 @@
+{
+  "artifacts": {
+    "subbasins_clipped": {
+      "path": "subbasins_clipped.tif",
+      "sha256": "d71da7ff67925a73906f1c84826b5e69a53638903160c06677bc55317cfc67b5"
+    },
+    "subbasins_table": {
+      "path": "subbasins_table.csv",
+      "sha256": "ef824a402c6c8357572c3c870eff7c2df826ec67aff4758773a59f072d0451a1"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_upstream",
+      "details": "deterministic benchmark fixture",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/build-hydrological-topology",
+  "status": "success"
+}

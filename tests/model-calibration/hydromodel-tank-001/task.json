@@ -115,6 +115,7 @@
   "id": "hydromodel-tank-001",
   "primary_skill": "hydrological-modeling/run-lumped-tank-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-tank-model. The forcing table is hourly; P and E0 are instantaneous rates in mm/h on a gap-free axis. The 16-parameter set is confirmed; area is 640 km2, timestep is 1 h, mode is continuous, and warm-up is 12 steps. Write the native outputs (lumped_tank_runoff.csv, result.json) under tank-run/. Do not modify parameters, fill missing values, change the warm-up, or substitute another model implementation.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "tank-run/lumped_tank_runoff.csv",
     "tank-run/result.json"

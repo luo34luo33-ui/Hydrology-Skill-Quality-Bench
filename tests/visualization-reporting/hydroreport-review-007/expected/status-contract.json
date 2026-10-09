@@ -1,0 +1,11 @@
+{
+  "files": {
+    "review-initial/result.json": {
+      "error_reason_contains": "Artifact hash mismatch: simulation_table_csv",
+      "skill": "visualization-reporting/review-hydrological-study-report",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

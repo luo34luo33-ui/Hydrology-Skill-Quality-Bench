@@ -1,0 +1,6 @@
+reach_id,sub_id,strahler_order,length_m,elev_up_m,elev_down_m,drop_m,slope_m_m,slope_percent,elevation_step_count,negative_elevation_step_count,upstream_count,upstream_reach_ids,downstream_reach_id,downstream_sub_id,topo_level,is_headwater,is_outlet
+1,1,1,3338.48,69.451,61.143,8.308,0.00248846,0.248846,28,0,0,,6,6,1,1,0
+2,2,1,4131.37,61.197,61.143,0.054,1.306e-05,0.001306,38,0,0,,6,6,1,1,0
+3,3,1,20082.34,119.95,48.065,71.885,0.00357953,0.357953,171,0,0,,5,5,1,1,0
+5,5,2,10187.63,48.065,17.608,30.332,0.00297732,0.297732,87,0,2,3;6,0,0,3,0,1
+6,6,2,8159.8,61.143,48.065,13.078,0.00160272,0.160272,70,0,2,1;2,5,5,2,0,0

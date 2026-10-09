@@ -1,0 +1,20 @@
+{
+  "parameters": {
+    "missing_rainfall_policy": "keep",
+    "no_rainfall_policy": "exclude",
+    "rainfall_support": {
+      "lookback_hours": 24,
+      "min_observed_rainfall_mm": 1,
+      "missing_rainfall_policy": "keep",
+      "no_rainfall_policy": "exclude"
+    },
+    "shape_filter": {
+      "jump_window_steps": 2,
+      "min_jump_fraction": 0.1,
+      "min_plateau_duration_hours": 24.0,
+      "min_plateau_fraction": 0.5,
+      "plateau_range_fraction": 0.005
+    },
+    "timestep_seconds": 3600.0
+  }
+}

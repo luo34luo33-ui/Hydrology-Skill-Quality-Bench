@@ -1,0 +1,81 @@
+{
+  "analysis": {
+    "event_processes": [
+      {
+        "evaluation_source": "eval",
+        "event_id": "e1",
+        "observed_column": "observed",
+        "path": "process.csv",
+        "precipitation_column": "rain",
+        "precipitation_unit": "mm/step",
+        "run_id": "run",
+        "scored_column": "scored",
+        "sha256": "ab4229cf3fec7159cbdcc28b3af343070846a919ddeb7232c488fdade80613eb",
+        "simulated_column": "simulated",
+        "time_column": "time",
+        "warmup_column": "is_warmup"
+      }
+    ],
+    "worst_event_count": 1
+  },
+  "language": "en",
+  "runs": [
+    {
+      "evaluations": [
+        "eval"
+      ],
+      "id": "run",
+      "kind": "baseline",
+      "name": "HBV",
+      "series": {
+        "path": "sim/simulation_table.csv",
+        "sha256": "86848fe512fb1827befc4584da37c806a456ed51879d64c66ebcdcbc123a381a",
+        "simulated_column": "Q",
+        "time_column": "time",
+        "unit": "m3/s"
+      },
+      "simulation": "sim"
+    }
+  ],
+  "schema_version": "2.0",
+  "sources": [
+    {
+      "id": "sim",
+      "result": "sim/result.json",
+      "stage": "simulation"
+    },
+    {
+      "context": {
+        "event_ids": [
+          "e0",
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5",
+          "e6"
+        ],
+        "mode": "event_collection",
+        "period": {
+          "end": "2020-01-01T02:00:00Z",
+          "start": "2020-01-01T00:00:00Z"
+        },
+        "split": "validation"
+      },
+      "id": "eval",
+      "result": "eval/result.json",
+      "stage": "evaluation"
+    }
+  ],
+  "split_periods": {
+    "calibration": {
+      "end": "2019-12-31T23:59:59Z",
+      "start": "2019-01-01T00:00:00Z"
+    },
+    "validation": {
+      "end": "2020-12-31T23:59:59Z",
+      "start": "2020-01-01T00:00:00Z"
+    }
+  },
+  "title": "Simulation"
+}

@@ -1,0 +1,113 @@
+{
+  "files": {
+    "review-final/result.json": {
+      "skill": "visualization-reporting/review-hydrological-study-report",
+      "status": "warning",
+      "warnings": []
+    },
+    "review-final/review.json": {
+      "findings": [
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+          "category": "markdown_sync",
+          "evidence_location": "report.md:13",
+          "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+          "needs_human_judgment": false,
+          "report_location": "report.md:13",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+          "category": "markdown_sync",
+          "evidence_location": "report.md:72",
+          "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+          "needs_human_judgment": false,
+          "report_location": "report.md:72",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+          "category": "markdown_sync",
+          "evidence_location": "report.md:86",
+          "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+          "needs_human_judgment": false,
+          "report_location": "report.md:86",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "Checked the synthetic source value, scope and stated limitations.",
+          "category": "semantic_support",
+          "evidence_location": "/paragraph/overview",
+          "expected": "Evidence supports wording, split, limitations and inference strength",
+          "needs_human_judgment": false,
+          "report_location": "/paragraph/overview",
+          "severity": "error"
+        }
+      ],
+      "status": "needs_revision"
+    },
+    "review-initial/result.json": {
+      "skill": "visualization-reporting/review-hydrological-study-report",
+      "status": "warning",
+      "warnings": []
+    },
+    "review-initial/review.json": {
+      "findings": [
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+          "category": "markdown_sync",
+          "evidence_location": "report.md:13",
+          "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+          "needs_human_judgment": false,
+          "report_location": "report.md:13",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+          "category": "markdown_sync",
+          "evidence_location": "report.md:72",
+          "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+          "needs_human_judgment": false,
+          "report_location": "report.md:72",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "This validation proves that routing parameters caused all errors and the model will perform perfectly in every future flood.",
+          "category": "markdown_sync",
+          "evidence_location": "report.md:86",
+          "expected": "Conclusions apply only to the declared validation samples; missing process evidence limits attribution.",
+          "needs_human_judgment": false,
+          "report_location": "report.md:86",
+          "severity": "error"
+        },
+        {
+          "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+          "actual": "not completed",
+          "category": "semantic_review",
+          "evidence_location": "/sections",
+          "expected": "Independent Agent evidence assessment",
+          "needs_human_judgment": true,
+          "report_location": "/sections",
+          "severity": "warning"
+        }
+      ],
+      "status": "needs_revision"
+    }
+  },
+  "kind": "report",
+  "markdown": {},
+  "semantic_verdicts": {
+    "diagnosis-e1": "supported",
+    "discussion": "supported",
+    "evaluation": "supported",
+    "limitations": "supported",
+    "overview": "unsupported"
+  }
+}

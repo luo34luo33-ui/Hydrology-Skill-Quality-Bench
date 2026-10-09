@@ -28,6 +28,9 @@
 | `hydroanalysis-ml-correct-001` | train_table + predict_table + ridge 配置（random_state=20260928，chronological） | train 后用模型卡预测新时段；残差恒等式 observed−base、corrected=base+predicted_residual；model_card 关键字段与 test_r2 容差校验 | 文件结构 10%；两段校正序列 30%；model_card 25%；状态与 artifact 哈希 35% |
 | `hydroanalysis-ml-correct-002` | 同 001 但 `--lag-spec Qt:1` | 滞后行丢弃必须保留原生 `lag_rows_dropped` warning；不得改用 fill 策略 | 文件结构 10%；校正序列 20%；model_card 30%；状态/warnings/checks 25%；artifact 哈希 15% |
 | `hydroanalysis-ml-correct-003` | 同 001 但不提供 random_state 且禁止自造 | train 必须拒绝执行（退出码 1）；不产出 corrected_series/model_card/model | 文件结构 15%；skill/status/错误原因 85%；禁止成果缺失 20% |
+| `hydroanalysis-align-discharge-001` | 哈希校验的观测表 + HBV 出口模拟（前 2 步预热） | aligned/evaluation/excluded_observations/qc 四产物；只按精确时间戳合并 | 文件结构 10%；aligned 20%；evaluation 15%；excluded 10%；qc 10%；result 语义 15%；哈希 15% |
+| `hydroanalysis-align-discharge-002` | 模拟含 2 步预热、观测多出 2 个时间戳 | 预热行剔除出评价表；未匹配观测进 excluded_observations（reason=simulation_missing） | 同上 |
+| `hydroanalysis-align-discharge-003` | 模拟源伪称集总式 XAJ（Qt 是河网入口） | 脚本必须原生态拒绝；不产出任何对齐成果 | 文件结构 15%；skill/status/错误原因 85%；禁止成果缺失 20% |
 
 ### `hydroanalysis-001` 具体检查内容
 
@@ -61,3 +64,16 @@ python scripts/verify_diagnostics_tasks.py --skills-root "E:\HydroTune-Skills（
 - 是否测试幅值偏差、总量偏差、峰时提前、峰时滞后或无明显病态。
 
 设计时应让合成数据具有清晰且唯一的主导问题，避免多个同等严重的异常使诊断类别产生歧义。
+
+## BMA 原子任务补齐
+
+| Task | 场景 | 原生状态 | 退出码序列 |
+|---|---|---|---|
+| `hydroanalysis-bma-001` | continuous train and predict | success → success | 0,0 |
+| `hydroanalysis-bma-002` | complete event train and predict | success → success | 0,0 |
+| `hydroanalysis-bma-003` | duplicate member warning | warning | 0 |
+| `hydroanalysis-bma-004` | overlapping prediction period | success → error | 0,2 |
+| `hydroanalysis-bma-005` | missing fixed member | success → error | 0,2 |
+| `hydroanalysis-bma-006` | member hash mismatch | error | 2 |
+| `hydroanalysis-bma-007` | constant observations | error | 2 |
+| `hydroanalysis-bma-008` | nonconvergence diagnostics | error | 2 |

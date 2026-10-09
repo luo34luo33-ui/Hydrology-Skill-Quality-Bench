@@ -1,0 +1,2 @@
+﻿source_id,severity,reason,section,action
+intake,error,calibration/validation periods overlap,all,Correct inputs and retry

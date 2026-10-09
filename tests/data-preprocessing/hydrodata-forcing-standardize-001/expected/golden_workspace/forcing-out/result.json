@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "forcing": {
+      "path": "prepared_forcing.csv",
+      "sha256": "549e9abf406c2ff5c7b6c1b2052a224a0190a985106d01b3153ca28d7fe150fa"
+    },
+    "metadata": {
+      "path": "series_metadata.json",
+      "sha256": "f4f1029ff5686187b76c6ed6951620aab5e585bf84064bc0c5eee7dd7f877072"
+    }
+  },
+  "checks": [
+    {
+      "check": "time_axis",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "units",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "missing_values",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "source_coverage",
+      "details": "validated",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "config": {
+      "path": "config.json",
+      "sha256": "bb720cc5372b936b02051524fbbfe9252fc16dc3b1a7adb49c9503e10fe0d7b6"
+    },
+    "source": {
+      "path": "rain.csv",
+      "sha256": "4e8162b15f519761e2a9e2845881043516fc5aa62ce399911fc20a0c05f34119"
+    }
+  },
+  "message": "Forcing series standardized",
+  "parameters": {
+    "columns": {
+      "source_id": "source_id",
+      "time": "time",
+      "value": "rain_mm"
+    },
+    "schema_version": "1.0",
+    "source_timezone_mode": "local_naive",
+    "timestamp_semantics": "interval_end",
+    "timestep_seconds": 3600,
+    "timezone": "Asia/Shanghai",
+    "unit": "mm/step",
+    "value_semantics": "step_depth",
+    "variable": "P"
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-model-forcing-timeseries",
+  "status": "success",
+  "warnings": []
+}

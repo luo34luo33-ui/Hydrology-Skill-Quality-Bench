@@ -2,15 +2,15 @@
   "artifacts": {
     "corrected_table": {
       "path": "corrected_series.csv",
-      "sha256": "963b4c94311615504ac27895fd8aef43691cbc170a810cfa10244053c5ffea44"
+      "sha256": "0decf2b9a992d54cc123335973012abfe6b58fd46a74cb0c430f9675d23bb6d7"
     },
     "model": {
       "path": "model.joblib",
-      "sha256": "5184be0170e2fd1616a1437c67a381fe40092f329241b54c47e12cb7d441eac5"
+      "sha256": "c2d14ae68b50100c13a1d0a7167729ce3f800c4947c300d32d1e68a7ce578ec2"
     },
     "model_card": {
       "path": "model_card.json",
-      "sha256": "384e9c14931a2d336ee85bd8143c0319c67efd7959f7104a57e1b406d0ad6318"
+      "sha256": "0c9f839a907e29595b7918b4a66dbf8381d7102ac46222b06e273ab43a5ee072"
     }
   },
   "checks": [
@@ -20,7 +20,12 @@
       "status": "PASS"
     },
     {
-      "message": "滞后步数均为非负整数，共 0 个滞后特征，不使用未来信息",
+      "message": "包含 residual(t-1) 至 residual(t-5)，不使用当前残差",
+      "name": "required_residual_lags",
+      "status": "PASS"
+    },
+    {
+      "message": "滞后步数均为非负整数，共 5 个滞后特征，不使用未来信息",
       "name": "lag_nonnegative",
       "status": "PASS"
     },
@@ -30,9 +35,9 @@
       "status": "PASS"
     },
     {
-      "message": "滞后特征完整",
+      "message": "丢弃 5 行不完整滞后特征",
       "name": "lag_rows_dropped",
-      "status": "PASS"
+      "status": "WARN"
     },
     {
       "message": "输入列无缺测",
@@ -40,7 +45,7 @@
       "status": "PASS"
     },
     {
-      "message": "训练样本 90 行",
+      "message": "训练样本 86 行",
       "name": "train_sample_count",
       "status": "PASS"
     },
@@ -66,7 +71,7 @@
       "sha256": "9e47004eacc7bc7d86b6ab3a8d500dae5a15380d77416828580bf03eab561717"
     }
   },
-  "message": "残差校正完成：train 模式，120 行，后端 ridge",
+  "message": "残差校正完成：train 模式，115 行，后端 ridge",
   "parameters": {
     "backend": "ridge",
     "base_column": "Q_total",
@@ -79,7 +84,18 @@
     },
     "lag_fill_value": null,
     "lag_policy": "drop",
-    "lag_spec": [],
+    "lag_spec": [
+      {
+        "column": "residual",
+        "steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ],
     "min_train_samples": 10,
     "missing_policy": "fail",
     "mode": "train",
@@ -94,6 +110,8 @@
   },
   "schema_version": "1.0",
   "skill": "post-processing/correct-residual-with-ml",
-  "status": "success",
-  "warnings": []
+  "status": "warning",
+  "warnings": [
+    "滞后特征不完整而丢弃 5 行；这些行位于序列开头，无法通过滞后构造获得完整特征"
+  ]
 }

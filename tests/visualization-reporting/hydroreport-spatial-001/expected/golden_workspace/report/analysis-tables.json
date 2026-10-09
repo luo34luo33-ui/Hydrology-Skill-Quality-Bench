@@ -1,0 +1,453 @@
+[
+  {
+    "rows": [
+      {
+        "item": "subbasin_count",
+        "unit": "count",
+        "value": 39
+      },
+      {
+        "item": "raster_subbasin_area_sum",
+        "unit": "km2",
+        "value": 0.8100000000000002
+      }
+    ],
+    "section": "subbasins",
+    "title": "子流域概况 / Subbasins"
+  },
+  {
+    "rows": [
+      {
+        "count": 39,
+        "max": 0.027,
+        "mean": 0.02076923076923077,
+        "median": 0.027,
+        "metric": "area_km2",
+        "min": 0.0009,
+        "p10": 0.0081,
+        "p90": 0.027,
+        "unit": "km2"
+      }
+    ],
+    "section": "subbasins",
+    "title": "面积分布 / Areas"
+  },
+  {
+    "rows": [
+      {
+        "item": "reach_count",
+        "unit": "count",
+        "value": 39
+      },
+      {
+        "item": "total_length",
+        "unit": "m",
+        "value": 23119.72
+      },
+      {
+        "item": "headwater_count",
+        "unit": "count",
+        "value": 35
+      },
+      {
+        "item": "outlet_count",
+        "unit": "count",
+        "value": 30
+      }
+    ],
+    "section": "reaches",
+    "title": "河网概况 / Network"
+  },
+  {
+    "rows": [
+      {
+        "count": 39,
+        "max": 795.0,
+        "mean": 592.8133333333334,
+        "median": 795.0,
+        "metric": "length_m",
+        "min": 42.43,
+        "p10": 180.0,
+        "p90": 795.0,
+        "unit": "m"
+      }
+    ],
+    "section": "reaches",
+    "title": "长度分布 / Lengths"
+  },
+  {
+    "rows": [
+      {
+        "count": 35,
+        "level": "1"
+      },
+      {
+        "count": 3,
+        "level": "2"
+      },
+      {
+        "count": 1,
+        "level": "3"
+      }
+    ],
+    "section": "reaches",
+    "title": "strahler_order"
+  },
+  {
+    "rows": [
+      {
+        "count": 35,
+        "level": "1"
+      },
+      {
+        "count": 2,
+        "level": "2"
+      },
+      {
+        "count": 1,
+        "level": "3"
+      },
+      {
+        "count": 1,
+        "level": "4"
+      }
+    ],
+    "section": "topology",
+    "title": "topo_level"
+  },
+  {
+    "rows": [
+      {
+        "item": "confluence_nodes",
+        "unit": "count",
+        "value": 4
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "2"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "3"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "4"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "5"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "6"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "7"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "8"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "9"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "10"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "11"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "12"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "13"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "20"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "21"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "22"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "23"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "24"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "25"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "26"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "27"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "28"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "29"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "30"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "31"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "33"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "34"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "35"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "36"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "37"
+      },
+      {
+        "item": "outlet_reach",
+        "unit": "identifier",
+        "value": "59"
+      }
+    ],
+    "section": "topology",
+    "title": "连接结构 / Connections"
+  },
+  {
+    "rows": [
+      {
+        "reach_count": 1,
+        "subbasin": "2"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "3"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "4"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "5"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "6"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "7"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "8"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "9"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "10"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "11"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "12"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "13"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "14"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "15"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "16"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "17"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "18"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "19"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "20"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "21"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "22"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "23"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "24"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "25"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "26"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "27"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "28"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "29"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "30"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "31"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "33"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "34"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "35"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "36"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "37"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "57"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "59"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "60"
+      },
+      {
+        "reach_count": 1,
+        "subbasin": "61"
+      }
+    ],
+    "section": "model-inputs",
+    "title": "单元连接概况 / Unit connections"
+  },
+  {
+    "rows": [
+      {
+        "item": "cell_area_m2",
+        "source": "topo",
+        "unit": "unspecified",
+        "value": 900.0
+      }
+    ],
+    "section": "overview",
+    "title": "空间基础 / Spatial foundation"
+  }
+]

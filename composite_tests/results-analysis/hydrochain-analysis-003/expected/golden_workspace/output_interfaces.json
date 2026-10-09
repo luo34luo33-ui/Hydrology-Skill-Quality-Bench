@@ -1,0 +1,629 @@
+{
+  "calibration_evidence": "Trace rows contain status, objective and param:NAME columns; at most 128 evaluations, objective independently replayable, best parameters locked before validation. No prescribed optimizer trajectory.",
+  "decision": {
+    "evidence": "nonempty list of {path, sha256}, relative to workspace root",
+    "limitations": "nonempty list including synthetic-data limitations and implementation choices",
+    "reason": "scientific_contracts_satisfied",
+    "status": "deliverable"
+  },
+  "interaction_mode": "none",
+  "numerical_tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "outputs": {
+    "aligned-dhf/aligned_discharge.csv": {
+      "columns": [
+        "time",
+        "simulated_m3_s",
+        "is_warmup",
+        "observed_m3_s",
+        "matched",
+        "excluded_reason"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aligned-dhf/evaluation_discharge.csv": {
+      "columns": [
+        "time",
+        "observed_m3_s",
+        "simulated_m3_s"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aligned-dhf/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "aligned": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "evaluation": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "excluded_observations": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "qc": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "observed_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "simulation_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "model": "string"
+        },
+        "provenance": {
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "aligned-semi/aligned_discharge.csv": {
+      "columns": [
+        "time",
+        "simulated_m3_s",
+        "is_warmup",
+        "observed_m3_s",
+        "matched",
+        "excluded_reason"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aligned-semi/evaluation_discharge.csv": {
+      "columns": [
+        "time",
+        "observed_m3_s",
+        "simulated_m3_s"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "aligned-semi/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "aligned": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "evaluation": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "excluded_observations": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "qc": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "observed_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "simulation_result": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "model": "string"
+        },
+        "provenance": {
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "conclusions.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "causality": "string",
+        "independent_prediction": "boolean",
+        "scoring": "string",
+        "units": "string"
+      }
+    },
+    "decision.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "evidence": [
+          {
+            "path": "string",
+            "sha256": "string"
+          }
+        ],
+        "limitations": [
+          "string"
+        ],
+        "reason": "string",
+        "status": "string"
+      }
+    },
+    "evaluation.csv": {
+      "columns": [
+        "time",
+        "simulated_m3_s",
+        "p05_m3_s",
+        "p50_m3_s",
+        "p95_m3_s",
+        "probability_zero",
+        "observed_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "fit/fit_diagnostics.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "settings": {
+          "initialization": {
+            "intercept_jitter_sd": "number",
+            "residual_sigma_floor": "number",
+            "slope_sigma_log_jitter_sd": "number",
+            "weight_dirichlet_alpha": "number"
+          },
+          "m_step": {
+            "ftol": "number",
+            "gtol": "number",
+            "maxiter": "number",
+            "method": "string"
+          },
+          "max_iter": "number",
+          "n_starts": "number",
+          "random_state": "number",
+          "tol": "number"
+        },
+        "sigma_floor_normalized": "number",
+        "starts": [
+          {
+            "converged": "boolean",
+            "history": [
+              "number"
+            ],
+            "iterations": "number",
+            "mean_loglik_normalized": "number",
+            "reason": "string",
+            "start": "number"
+          }
+        ]
+      }
+    },
+    "fit/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "members",
+        "simulation_0",
+        "simulation_1"
+      ],
+      "structure": {
+        "artifacts": {
+          "fit_diagnostics": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "model": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "model_card": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "qc": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": {
+              "member_count": "number",
+              "mode": "string",
+              "rows": "number",
+              "selected_rows_per_member": {
+                "dhf": "number",
+                "semi": "number"
+              },
+              "warmup_union_rows": "number"
+            },
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "observations": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "observed_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "table_0_continuous_simulation_table": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "table_1_continuous_outlet_flow": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "parameters": {
+          "distribution": "string",
+          "max_iter": "number",
+          "mode": "string",
+          "n_starts": "number",
+          "quantiles": [
+            "number"
+          ],
+          "random_state": "number",
+          "selection": {
+            "end": "string",
+            "events": "nullable",
+            "start": "string"
+          },
+          "tol": "number"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "scipy": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "flow/discharge_timeseries.csv": {
+      "columns": [
+        "time",
+        "discharge_m3_s",
+        "is_imputed",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_out",
+        "E0"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "flow/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "discharge_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "series_metadata": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "source_timeseries": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "duplicate_policy": "string",
+          "edge_missing": "string",
+          "flow_column": "string",
+          "flow_unit": "string",
+          "input_format": "string",
+          "max_interpolation_gap_hours": "nullable",
+          "missing_policy": "string",
+          "output_format": "string",
+          "overwrite": "boolean",
+          "sheet": "nullable",
+          "time_column": "string",
+          "timezone": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "forecast/component_predictions.csv": {
+      "columns": [
+        "time",
+        "model_id",
+        "simulated_m3_s",
+        "corrected_center_m3_s",
+        "sigma_m3_s",
+        "weight",
+        "probability_zero"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "forecast/ensemble_discharge.csv": {
+      "columns": [
+        "time",
+        "ensemble_mean_m3_s",
+        "p05_m3_s",
+        "p50_m3_s",
+        "p95_m3_s",
+        "probability_zero"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "forecast/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [
+        "members",
+        "simulation_0",
+        "simulation_1"
+      ],
+      "structure": {
+        "artifacts": {
+          "components": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "ensemble": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "qc": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "check": "string",
+            "details": {
+              "member_count": "number",
+              "mode": "string",
+              "rows": "number",
+              "selected_rows_per_member": {
+                "dhf": "number",
+                "semi": "number"
+              },
+              "warmup_union_rows": "number"
+            },
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "model": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "model_result": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "table_0_continuous_simulation_table": {
+            "path": "string",
+            "sha256": "string"
+          },
+          "table_1_continuous_outlet_flow": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "parameters": {
+          "distribution": "string",
+          "max_iter": "number",
+          "mode": "string",
+          "n_starts": "number",
+          "quantiles": [
+            "number"
+          ],
+          "random_state": "nullable",
+          "selection": {
+            "end": "string",
+            "events": "nullable",
+            "start": "string"
+          },
+          "tol": "number"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string",
+          "scipy": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "metrics/result.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "optional_input_roles": [],
+      "structure": {
+        "artifacts": {
+          "series_metrics": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "checks": [
+          {
+            "message": "string",
+            "name": "string",
+            "status": "string"
+          }
+        ],
+        "inputs": {
+          "series": {
+            "path": "string",
+            "sha256": "string"
+          }
+        },
+        "message": "string",
+        "parameters": {
+          "metrics": [
+            "string"
+          ],
+          "observed_column": "string",
+          "scoring_policy": "string",
+          "sheet": "nullable",
+          "simulated_column": "string",
+          "time_column": "string",
+          "timestep_hours": "number",
+          "volume_unit": "string"
+        },
+        "provenance": {
+          "numpy": "string",
+          "pandas": "string",
+          "python": "string"
+        },
+        "schema_version": "string",
+        "skill": "string",
+        "status": "string",
+        "warnings": []
+      }
+    },
+    "metrics/series_metrics.csv": {
+      "columns": [
+        "metric",
+        "value",
+        "unit",
+        "status"
+      ],
+      "format": "csv",
+      "ordering": "chronological within each event/unit; match scientific rows and units",
+      "timestamps": "All temporal fields require explicit timezone offsets; local naive inputs must first be localised to the supplied timezone."
+    },
+    "report.md": {
+      "format": "md",
+      "semantics": "scientific spatial/figure artifact; preserve declared grid, units and coordinate system"
+    },
+    "resolved_information.json": {
+      "format": "json",
+      "metadata_policy": "Field structure is the public interface; generated timestamps, messages, implementation names and input filenames are not reference-answer values. References must be relative and SHA-256 valid.",
+      "structure": {
+        "outlet_semantics": "string"
+      }
+    }
+  },
+  "provided_settings": [
+    {
+      "field": "outlet_semantics",
+      "key": "outlet_semantics",
+      "output_bindings": [
+        {
+          "field": "outlet_semantics",
+          "target": "resolved_information.json"
+        }
+      ],
+      "source": "scenario.json"
+    }
+  ],
+  "result_manifest": "Scientific inputs/artifacts: role -> {path, sha256}, relative to manifest parent. Optional config/adapter input roles may be omitted; equivalent implementations may use their own upstream filenames. Every reference that is declared must resolve and have a valid SHA-256.",
+  "task_version": "composite-unattended-v2"
+}

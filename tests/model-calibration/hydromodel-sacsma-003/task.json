@@ -72,6 +72,7 @@
   "id": "hydromodel-sacsma-003",
   "primary_skill": "hydrological-modeling/run-lumped-sacsma-model",
   "prompt": "Use forcing.csv and parameters.json exactly as supplied to run hydrological-modeling/run-lumped-sacsma-model. The forcing table is daily and contains at least one missing P value. Run the simulation verbatim with area 640 km2, timestep 24 h, mode continuous, warm-up 12 steps, balance tolerance 4.5, and only the native result.json under sacsma-run/. Do not fill, interpolate, or drop the missing precipitation value; do not rerun with repaired data; the script must reject the input itself. No lumped_sacsma_runoff.csv may remain in sacsma-run/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "sacsma-run/result.json"
   ],

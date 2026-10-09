@@ -1,0 +1,133 @@
+{
+  "artifacts": {
+    "model_config": {
+      "path": "model_config.json",
+      "sha256": "c165fdcf0aad69be0bfd4e7b12ce8be7326cf23e7de4adaf7fb82cb7ff5e5606"
+    },
+    "outlet_flow": {
+      "path": "outlet_flow.csv",
+      "sha256": "c31c239121adb7b196589bda634040b5471a48ece278975e978e5d9c80b696d1"
+    },
+    "reach_process": {
+      "path": "reach_process.csv",
+      "sha256": "9f5abd7342cd0d9f4269938480d885349695371b700aa7dd0c11e8de490e3cca"
+    },
+    "subbasin_process": {
+      "path": "subbasin_process.csv",
+      "sha256": "0eba98a8105032afd4dce13356643a294881e98afaf3945ec6a40ffe2dbad1eb"
+    }
+  },
+  "checks": [
+    {
+      "check": "hydrobase_qc",
+      "details": "independent validation and hashes checked",
+      "status": "PASS"
+    },
+    {
+      "check": "finite_outputs",
+      "details": "all simulated flows are finite",
+      "status": "PASS"
+    },
+    {
+      "check": "accounting_reported",
+      "details": {
+        "channel_in_minus_out_m3": 1575013.274976015,
+        "lag_tail_steps": 0,
+        "local_runoff_m3": 180518103.8797975,
+        "potential_evaporation_m3": 53574666.240000345,
+        "rainfall_m3": 281269065.1646066,
+        "soil_storage_change_m3": 47176308.33937524,
+        "source_split_residual_m3": 167296204.78872263
+      },
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "../aggregate/subbasin_forcing.csv",
+      "sha256": "ead880208a589a576194a891167f7214758155c745f508858f72ffc6ffdfdf77"
+    },
+    "params": {
+      "path": "../model_config.json",
+      "sha256": "c165fdcf0aad69be0bfd4e7b12ce8be7326cf23e7de4adaf7fb82cb7ff5e5606"
+    },
+    "topology_qc_result": {
+      "path": "../topology-qc/result.json",
+      "sha256": "713c7e15f2bb4a5ae20a2e47d1d4be16e22648f3bf1e7fd7b8b4eb58e221c222"
+    },
+    "topology_result": {
+      "path": "../hydrobase/result.json",
+      "sha256": "aade8e5a624df1700a5fd49b6d96388259482078041597e9fd5d08db5926e4cb"
+    }
+  },
+  "message": "Semi-distributed XAJ simulation completed",
+  "parameters": {
+    "initial": {
+      "fr": 0.4,
+      "qg_cs_m3s": 0.1,
+      "qg_m3s": 0.1,
+      "qi_cs_m3s": 0.05,
+      "qi_m3s": 0.05,
+      "qs_cs_m3s": 0.0,
+      "s_mm": 5.0,
+      "soil_fraction": 0.3
+    },
+    "muskingum_coefficients": [
+      0.11764705882352937,
+      0.47058823529411764,
+      0.411764705882353
+    ],
+    "output_detail": "full",
+    "routing": {
+      "dp_by_reach": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "6": 1
+      },
+      "lag_steps": 0
+    },
+    "simulation": {
+      "end": "2023-08-31T23:00:00+08:00",
+      "start": "2023-08-01T12:00:00+08:00"
+    },
+    "time": {
+      "step_seconds": 3600,
+      "timestamp_meaning": "interval_end",
+      "timezone": "Asia/Shanghai"
+    },
+    "warmup_steps": 12,
+    "xaj": {
+      "B": 0.3,
+      "C": 0.12,
+      "CG": 0.95,
+      "CI": 0.6,
+      "CS": 0.2,
+      "EX": 1.2,
+      "IMP": 0.02,
+      "KC": 0.8,
+      "KE": 1.5,
+      "KG": 0.35,
+      "KI": 0.3,
+      "SM": 25.0,
+      "WLM": 60.0,
+      "WM": 120.0,
+      "WUM": 20.0,
+      "XE": 0.2
+    }
+  },
+  "provenance": {
+    "PyYAML": "6.0.3",
+    "jsonschema": "4.26.0",
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "source": "model_hhu.py, read-only HHU equation reference",
+    "source_sha256": "c90504d13581cb1ee809ba713a6a34f262718caaf968d814e24eba822c667be1"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-semi-distributed-xaj-model",
+  "status": "success",
+  "warnings": []
+}

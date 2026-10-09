@@ -1,0 +1,438 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "data-processing/prepare-model-forcing-timeseries",
+  "source_contract_sha256": "3dc0961d984942367d3d0a0a8b270ccb2cf0a35f0b52a387a7ad67109f57a284",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "source",
+        "description": "带站点 ID、时间和值的本地 CSV、XLSX 或 Parquet。",
+        "required": true,
+        "format": "CSV, XLSX or Parquet"
+      },
+      {
+        "id": "config",
+        "description": "显式变量、列、单位、时间步长、时区、时间戳与原始值语义。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "forcing",
+        "description": "time,source_id,variable,depth_mm；区间末端且 mm/步。",
+        "required": true,
+        "format": "CSV"
+      },
+      {
+        "id": "metadata",
+        "description": "时间与变量语义。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "result",
+        "description": "输入产物哈希与 QC。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "invariants": [
+      "每站时序规则完整，站间时间轴一致。",
+      "不从 ETo 隐式转换 PET 或 E0。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "variable": {
+          "type": "computed; see field semantics"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "timestamp_semantics": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "computed; see field semantics"
+        },
+        "timestep_seconds": {
+          "type": "computed; see field semantics"
+        },
+        "source_count": {
+          "type": "computed; see field semantics"
+        },
+        "steps": {
+          "type": "computed; see field semantics"
+        },
+        "source_semantics": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "computed; see field semantics"
+        },
+        "inputs": {
+          "source": {
+            "type": "computed; see field semantics"
+          },
+          "config": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "artifacts": {
+          "forcing": {
+            "type": "computed; see field semantics"
+          },
+          "metadata": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "jsonschema": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "source_id": {
+          "type": "computed; see field semantics"
+        },
+        "value": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "source": {
+          "type": "computed; see field semantics"
+        },
+        "config": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "forcing": {
+          "type": "computed; see field semantics"
+        },
+        "metadata": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "jsonschema": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      },
+      {
+        "mm/step": {
+          "type": "number"
+        },
+        "m/step": {
+          "type": "number"
+        },
+        "mm/h": {
+          "type": "computed; see field semantics"
+        },
+        "mm/day": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "success",
+        "warning"
+      ],
+      [
+        "path",
+        "sha256"
+      ],
+      [
+        "prepared_forcing.csv",
+        "series_metadata.json",
+        "result.json"
+      ],
+      [
+        "source_id",
+        "time"
+      ],
+      [
+        "mm/step",
+        "m/step"
+      ],
+      [
+        "mm/h",
+        "mm/day"
+      ],
+      [
+        "time",
+        "source_id",
+        "variable",
+        "depth_mm"
+      ],
+      [
+        "time_axis",
+        "units",
+        "missing_values",
+        "source_coverage"
+      ]
+    ],
+    "field_names": [
+      "action",
+      "allow_nan",
+      "ambiguous",
+      "artifacts",
+      "check",
+      "checks",
+      "columns",
+      "config",
+      "depth_mm",
+      "description",
+      "details",
+      "dtype",
+      "encoding",
+      "ensure_ascii",
+      "errors",
+      "exist_ok",
+      "file",
+      "forcing",
+      "ignore_index",
+      "indent",
+      "index",
+      "inplace",
+      "inputs",
+      "jsonschema",
+      "kind",
+      "m/step",
+      "message",
+      "metadata",
+      "missing_values",
+      "mm/day",
+      "mm/h",
+      "mm/step",
+      "nonexistent",
+      "numpy",
+      "pandas",
+      "parameters",
+      "parents",
+      "path",
+      "prepared_forcing.csv",
+      "provenance",
+      "python",
+      "required",
+      "reset",
+      "result.json",
+      "schema_version",
+      "seconds",
+      "series_metadata.json",
+      "sha256",
+      "sheet_name",
+      "skill",
+      "sort",
+      "source",
+      "source_count",
+      "source_coverage",
+      "source_id",
+      "source_semantics",
+      "source_timezone_mode",
+      "status",
+      "steps",
+      "success",
+      "time",
+      "time_axis",
+      "timestamp_semantics",
+      "timestep_seconds",
+      "timezone",
+      "type",
+      "unit",
+      "units",
+      "value",
+      "value_semantics",
+      "variable",
+      "warning",
+      "warnings"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "FAIL",
+        "PASS",
+        "error",
+        "success"
+      ],
+      "unit": [
+        "mm/step"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "data-processing/prepare-model-forcing-timeseries"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}
+```

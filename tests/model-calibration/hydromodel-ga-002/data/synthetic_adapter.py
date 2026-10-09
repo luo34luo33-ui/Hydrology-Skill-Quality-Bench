@@ -41,7 +41,7 @@ class Evaluator:
         target = self.fixture.get(target_key, self.fixture["calibration_target"])
         shift = sum(float(parameters[name]) - float(target[name]) for name in parameters)
         series = pd.DataFrame({
-            "time": pd.date_range("2024-01-01" if split == "calibration" else "2025-01-01", periods=12, freq="D"),
+            "time": pd.date_range("2024-01-01" if split == "calibration" else "2025-01-01", periods=12, freq="D", tz="UTC"),
             "observed": observed,
             "simulated": observed + shift,
             "scored": [False, False] + [True] * 10,

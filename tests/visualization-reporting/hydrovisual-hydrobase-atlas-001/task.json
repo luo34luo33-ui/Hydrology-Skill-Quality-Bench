@@ -1,0 +1,106 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "basin.gpkg",
+    "build/reaches.csv",
+    "build/reaches_clipped.gpkg",
+    "build/result.json",
+    "build/stream_links_clipped.tif",
+    "build/stream_order_clipped.tif",
+    "build/subbasins.csv",
+    "build/subbasins_clipped.tif",
+    "build/topology.csv",
+    "dem.tif",
+    "extract/d8_pointer.tif",
+    "extract/dem_filled.tif",
+    "extract/flow_accumulation_cells.tif",
+    "extract/result.json",
+    "extract/strahler_order.tif",
+    "extract/stream_links.tif",
+    "extract/streams.gpkg",
+    "extract/streams.tif",
+    "extract/subbasins.tif",
+    "prepare/basin_normalized.gpkg",
+    "prepare/dem_analysis_buffer.tif",
+    "prepare/dem_metric.tif",
+    "prepare/result.json",
+    "validate/network_topology_check.png",
+    "validate/result.json",
+    "validate/topology_check_report.txt",
+    "validate/topology_checks.csv"
+  ],
+  "difficulty": "intermediate",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "atlas/HydroBase 水文拓扑.figure.json",
+        "atlas/HydroBase 水文拓扑.png",
+        "atlas/HydroBase 水文拓扑.svg",
+        "atlas/hydrobase-morphometry.figure.json",
+        "atlas/hydrobase-morphometry.png",
+        "atlas/hydrobase-morphometry.svg",
+        "atlas/hydrobase-qc-dashboard.figure.json",
+        "atlas/hydrobase-qc-dashboard.png",
+        "atlas/hydrobase-qc-dashboard.svg",
+        "atlas/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.25
+    },
+    {
+      "name": "atlas_artifact_integrity",
+      "required_keys": [
+        "hydrobase-morphometry_figure",
+        "hydrobase-morphometry_png",
+        "hydrobase-morphometry_svg",
+        "hydrobase-qc-dashboard_figure",
+        "hydrobase-qc-dashboard_png",
+        "hydrobase-qc-dashboard_svg",
+        "hydrobase-topology_figure",
+        "hydrobase-topology_png",
+        "hydrobase-topology_svg"
+      ],
+      "target": "atlas/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.25
+    },
+    {
+      "name": "rendered_figure_contract",
+      "reference": "expected/figure-contract.json",
+      "target": "atlas/result.json",
+      "type": "figure_contract_check",
+      "weight": 0.25
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "atlas/result.json",
+      "type": "report_contract_check",
+      "weight": 0.25
+    }
+  ],
+  "id": "hydrovisual-hydrobase-atlas-001",
+  "primary_skill": "visualization-reporting/visualize-hydrobase-atlas",
+  "prompt": "Use the visualization-reporting/visualize-hydrobase-atlas capability on the supplied synthetic artifacts. Scenario: three maps. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --build-result build/result.json --validation-result validate/result.json --language zh --output-dir atlas\n Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "atlas/HydroBase 水文拓扑.figure.json",
+    "atlas/HydroBase 水文拓扑.png",
+    "atlas/HydroBase 水文拓扑.svg",
+    "atlas/hydrobase-morphometry.figure.json",
+    "atlas/hydrobase-morphometry.png",
+    "atlas/hydrobase-morphometry.svg",
+    "atlas/hydrobase-qc-dashboard.figure.json",
+    "atlas/hydrobase-qc-dashboard.png",
+    "atlas/hydrobase-qc-dashboard.svg",
+    "atlas/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "three maps"
+}

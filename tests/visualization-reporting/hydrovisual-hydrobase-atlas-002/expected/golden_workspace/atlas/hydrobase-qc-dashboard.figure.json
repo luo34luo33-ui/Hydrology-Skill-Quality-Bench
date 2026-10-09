@@ -1,0 +1,66 @@
+{
+  "crs": "EPSG:32650",
+  "extent": [
+    499958.0,
+    501002.0,
+    4098998.0,
+    4100042.0
+  ],
+  "language": "en",
+  "layers": [
+    {
+      "display_transform": "existing topology context, real basin and pale-gray subbasin boundaries",
+      "id": "topology-context",
+      "palette": "subbasins-water",
+      "source": "build_result.artifacts.reaches_vector and subbasins_clipped"
+    },
+    {
+      "display_transform": "existing check counts PASS=14, WARN=1, FAIL=0; inset in map",
+      "id": "qc-summary",
+      "palette": "qc-status",
+      "source": "validation_result.checks"
+    },
+    {
+      "display_transform": "first six existing WARN/FAIL only; complete details retained upstream",
+      "id": "qc-evidence",
+      "palette": "qc-status",
+      "source": "validation_result.checks"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "hydrobase-qc-dashboard.png",
+      "sha256": "3187c5b1a88a4a36cf2400e8afc0ec5d5bc609bae874c1b71d433ed6bbf9ebaa"
+    },
+    "svg": {
+      "path": "hydrobase-qc-dashboard.svg",
+      "sha256": "6dcb11b676734ea42f04dd1d59107e85fb08dcd52aceee80cb84062cd1a017fb"
+    }
+  },
+  "pixel_size": {
+    "height": 2366,
+    "width": 2400
+  },
+  "publication_ready": false,
+  "schema_version": "1.0",
+  "source_results": {
+    "basin_boundary": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\prepare\\basin_normalized.gpkg",
+      "sha256": "d6bab5a8448645a0818b29cecd7b6fa375189706b1b3eb2a3c94c147ca9f0af6"
+    },
+    "build_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\build\\result.json",
+      "sha256": "99a1aca5f85863502d292cf91935adb73cc6b335b55ba89b79a105daad924313"
+    },
+    "validation_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-kcvyj38s\\validate\\result.json",
+      "sha256": "780836387ec5a2f49bbfc778abeb5f72dfe53ee5bd35c744ea6213c662b25643"
+    }
+  },
+  "template_id": "hydrobase-qc-dashboard",
+  "template_version": "hydrotune.hydrobase-qc-dashboard.v2",
+  "title": "HydroBase quality-control dashboard",
+  "warnings": [
+    "Synthetic upstream QC evidence"
+  ]
+}

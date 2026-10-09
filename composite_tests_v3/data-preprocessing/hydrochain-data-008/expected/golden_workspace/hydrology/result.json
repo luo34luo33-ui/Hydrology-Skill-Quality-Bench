@@ -1,0 +1,82 @@
+{
+  "artifacts": {
+    "d8_pointer": {
+      "path": "d8_pointer.tif",
+      "sha256": "d2dc4db02d03ab12d3fc8e796ab205a05278f203d6c417e667cca029d714f8c9"
+    },
+    "filled_dem": {
+      "path": "dem_filled.tif",
+      "sha256": "b1c88c7790789c031067310cc4c8df66678535b1ae8c55b9bb6c554553aed141"
+    },
+    "flow_accumulation": {
+      "path": "flow_accumulation_cells.tif",
+      "sha256": "94a5f736f77ad991163be542f347de1ae2a34286947a28bad5e95fc6997c8ee7"
+    },
+    "stream_links": {
+      "path": "stream_links.tif",
+      "sha256": "a701761866aeb2a7dd70582c31d60b33e4bbc8da88a9f2558839d0242390ffe2"
+    },
+    "stream_order": {
+      "path": "strahler_order.tif",
+      "sha256": "39f90cbe00f8cb90bc703bae4560f0de34451f2038920877d4a1f214386c76e4"
+    },
+    "streams": {
+      "path": "streams.tif",
+      "sha256": "932764f09dbbeea402ac12cabd4e7d137848228eae3cb9619a8653ec7730fa47"
+    },
+    "streams_vector": {
+      "path": "streams.gpkg",
+      "sha256": "4ef879c342af362d2540f951c295f2c946e4e1afea055adb05976bb848d847a0"
+    },
+    "subbasins": {
+      "path": "subbasins.tif",
+      "sha256": "77205b9fabbf5b7b5e2aa1d8700ca342139ea4681c148896b56731f4b384510f"
+    }
+  },
+  "checks": [
+    {
+      "check": "metric_grid",
+      "details": "cell_area_m2=10000",
+      "status": "PASS"
+    },
+    {
+      "check": "threshold_conversion",
+      "details": "threshold_cells=10000",
+      "status": "PASS"
+    },
+    {
+      "check": "same_grid",
+      "details": "all core rasters aligned",
+      "status": "PASS"
+    },
+    {
+      "check": "nonempty_stream_network",
+      "details": "stream_cells=447; reaches=5",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "analysis_dem": {
+      "path": "../prepared/dem_analysis_buffer.tif",
+      "sha256": "e31a6f896cd61e79f94ac5a5f3202c9f663193d3db41f1fb8f18f428bf17422e"
+    }
+  },
+  "message": "Unburned D8 stream network extracted",
+  "parameters": {
+    "cell_area_m2": 10000.0,
+    "d8_encoding": "whitebox-default-non-esri",
+    "stream_init_area_km2": 100.0,
+    "threshold_cells": 10000
+  },
+  "provenance": {
+    "geopandas": "1.1.4",
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "whitebox_python": "2.3.6",
+    "whitebox_tools": "WhiteboxTools v2.4.0 (c) Dr. John Lindsay 2017-2023"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/extract-dem-stream-network",
+  "status": "success",
+  "warnings": []
+}

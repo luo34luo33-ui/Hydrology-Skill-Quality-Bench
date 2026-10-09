@@ -7,8 +7,10 @@ import hashlib
 import math
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
+from harness.filesystem import filesystem_path
 
 import numpy as np
 import pandas as pd
@@ -44,13 +46,15 @@ def _linear_score(value: float, scoring: dict[str, Any] | None, default: float |
 
 
 def _workspace_path(workspace: Path, rel: str) -> Path:
-    path = (workspace / rel).resolve()
+    workspace=Path(filesystem_path(workspace))
+    path = Path(filesystem_path(workspace / rel)).resolve()
     path.relative_to(workspace.resolve())
     return path
 
 
 def _reference_path(test_dir: Path, rel: str) -> Path:
-    path = (test_dir / rel).resolve()
+    test_dir=Path(filesystem_path(test_dir))
+    path = Path(filesystem_path(test_dir / rel)).resolve()
     path.relative_to(test_dir.resolve())
     return path
 
@@ -209,6 +213,22 @@ def _grade_file_check(criterion: dict[str, Any], workspace: Path, _: Path) -> di
                 ok = actual_rows == int(row_count)
                 if not ok:
                     details.append(f"{rel}: expected {row_count} rows, found {actual_rows}")
+            except Exception as exc:
+                ok = False
+                details.append(f"{rel}: {exc}")
+        if ok:
+            try:
+                for field, expected in criterion.get("required_values", {}).get(rel, {}).items():
+                    if _extract_value(path, field) != expected:
+                        ok = False
+                        details.append(f"{rel}: invalid interface value for {field}")
+                keys = criterion.get("artifact_references", {}).get(rel)
+                if keys is not None:
+                    integrity = _grade_artifact_reference_check(
+                        {"target": rel, "required_keys": keys}, workspace, workspace)
+                    if integrity["score"] != 1.0:
+                        ok = False
+                        details.append(f"{rel}: {integrity['details']}")
             except Exception as exc:
                 ok = False
                 details.append(f"{rel}: {exc}")
@@ -628,7 +648,7 @@ def _grade_vector_match(criterion: dict[str, Any], workspace: Path, test_dir: Pa
     return {"raw_value": sum(checks), "score": sum(checks) / len(checks), "details": "; ".join(details) or "vector semantics match"}
 
 
-def _grade_artifact_reference_check(criterion: dict[str, Any], workspace: Path, _: Path) -> dict[str, Any]:
+def _grade_artifact_reference_check(criterion: dict[str, Any], workspace: Path, test_dir: Path) -> dict[str, Any]:
     result_path = _workspace_path(workspace, _target_name(criterion))
     document = json.loads(result_path.read_text(encoding="utf-8-sig"))
     artifacts = document.get(criterion.get("field", "artifacts"), {})
@@ -644,16 +664,11 @@ def _grade_artifact_reference_check(criterion: dict[str, Any], workspace: Path, 
         if not isinstance(reference, dict) or not isinstance(reference.get("path"), str):
             failures.append(f"{key}: missing reference")
             continue
-        raw = Path(reference["path"])
-        if raw.is_absolute() or ".." in raw.parts:
-            failures.append(f"{key}: unsafe path")
-            continue
-        path = (result_path.parent / raw).resolve()
+        from harness.source_references import verify_reference, SourceReferenceError
         try:
-            path.relative_to(workspace.resolve())
-        except ValueError:
-            failures.append(f"{key}: escapes workspace")
-            continue
+            path = verify_reference(workspace,result_path.parent,reference,test_dir)
+        except SourceReferenceError as exc:
+            raise SourceReferenceError(exc.code,f'{key}: {exc}') from exc
         if not path.is_file() or path.stat().st_size == 0:
             failures.append(f"{key}: missing or empty")
             continue
@@ -665,6 +680,177 @@ def _grade_artifact_reference_check(criterion: dict[str, Any], workspace: Path, 
     score = passed / checked if checked else 1.0
     return {"raw_value": passed, "score": score, "details": "; ".join(failures) or "artifact references valid"}
 
+
+def _contract_stable(value: Any) -> Any:
+    """Remove run-location/prose metadata while retaining scientific content."""
+    if isinstance(value, dict):
+        return {k: _contract_stable(v) for k, v in value.items()
+                if k not in {"provenance", "sha256", "package_fingerprint", "author", "reviewer", "rationale", "text", "message", "path", "result_path", "result", "source_results", "sources"} and not k.endswith("_path")}
+    if isinstance(value, list):
+        return [_contract_stable(v) for v in value]
+    if isinstance(value, str):
+        import re
+        if Path(value).is_absolute(): return Path(value).name
+        return re.sub(r"ev-[0-9a-f]{20}", "ev-location-id", value)
+    return value
+
+
+def _contract_equal(actual: Any, expected: Any) -> bool:
+    if isinstance(expected, dict):
+        return isinstance(actual, dict) and all(k in actual and _contract_equal(actual[k], v) for k, v in expected.items())
+    if isinstance(expected, list):
+        return isinstance(actual, list) and len(actual) == len(expected) and all(_contract_equal(a, b) for a, b in zip(actual, expected))
+    if isinstance(expected, (int, float)) and not isinstance(expected, bool):
+        try:
+            return math.isclose(float(actual), float(expected), rel_tol=1e-6, abs_tol=1e-6)
+        except (ValueError, TypeError):
+            return False
+    return actual == expected
+
+
+def _grade_figure_contract(criterion: dict[str, Any], workspace: Path, test_dir: Path) -> dict[str, Any]:
+    import xml.etree.ElementTree as ET
+    from PIL import Image
+    reference = json.loads(_reference_path(test_dir, criterion["reference"]).read_text(encoding="utf-8"))
+    checks: list[bool] = []
+    for fig in reference["figures"]:
+        try:
+            png = _workspace_path(workspace, fig["png"])
+            with Image.open(png) as img:
+                img.load()
+                checks += [list(img.size) == fig["size"], float(np.asarray(img.convert("RGB"), dtype=float).std()) > 5]
+            meta = json.loads(_workspace_path(workspace, fig["metadata"]).read_text(encoding="utf-8"))
+            checks.append(_contract_equal(_contract_stable(meta), fig["metadata_contract"]))
+            size = meta.get("pixel_size", {})
+            if size:
+                checks.append([size.get("width"), size.get("height")] == fig["size"])
+            svg = ET.parse(_workspace_path(workspace, fig["svg"])).getroot()
+            checks.append(svg.tag.endswith("svg"))
+            graphic_tags = {"path", "image", "polyline", "polygon", "circle", "rect"}
+            graphics = [e for e in svg.iter() if e.tag.rsplit("}", 1)[-1] in graphic_tags]
+            checks.append(len(graphics) >= fig.get("minimum_graphics", 10))
+            svg_text = _workspace_path(workspace, fig["svg"]).read_text(encoding="utf-8")
+            checks.append(all(token in svg_text for token in fig.get("svg_tokens", [])))
+            geometry = []
+            for element in svg.iter():
+                if element.tag.endswith("g") and element.get("id", "").startswith(("line2d_", "LineCollection_", "PathCollection_", "patch_")):
+                    geometry.extend(e.get("d") for e in element.iter() if e.tag.endswith("path") and e.get("d"))
+            for path_geometry in fig.get("geometry", []):
+                checks.append(path_geometry in geometry)
+        except (OSError, ValueError, KeyError, ET.ParseError):
+            checks.append(False)
+    score = sum(checks) / len(checks) if checks else 0.0
+    return {"raw_value": score, "score": score, "details": f"{sum(checks)}/{len(checks)} figure contract checks"}
+
+
+def _grade_report_contract(criterion: dict[str, Any], workspace: Path, test_dir: Path) -> dict[str, Any]:
+    reference = json.loads(_reference_path(test_dir, criterion["reference"]).read_text(encoding="utf-8"))
+    checks: list[bool] = []
+    for rel, expected in reference.get("files", {}).items():
+        try:
+            doc = json.loads(_workspace_path(workspace, rel).read_text(encoding="utf-8"))
+            actual = _contract_stable(doc)
+            if not isinstance(expected, dict):
+                checks.append(_contract_equal(actual, expected))
+                continue
+            if rel.endswith("report.json"):
+                actual["sections"] = [{k: v for k, v in s.items() if k != "paragraphs"} for s in actual.get("sections", [])]
+            for key, value in expected.items():
+                if key == "error_reason_contains":
+                    checks.append(value in str(doc.get("message", "")))
+                elif key == "narrative_required":
+                    if value:
+                        checks.append(doc.get("narrative_provenance", {}).get("completed") is True)
+                        evidence = {e["id"] for e in doc.get("evidence", [])}
+                        evidence_values = {e["id"]: e.get("value") for e in doc.get("evidence", [])}
+                        checks.append(len(evidence_values) == len(doc.get("evidence", [])))
+                        all_paragraphs = [p for s in doc["sections"] for p in s.get("paragraphs", [])]
+                        checks.append(len({p["id"] for p in all_paragraphs}) == len(all_paragraphs))
+                        for sid in ("overview", "evaluation", "discussion", "limitations"):
+                            section = next((s for s in doc["sections"] if s["id"] == sid), {})
+                            paragraphs = section.get("paragraphs", [])
+                            checks.append(bool(paragraphs))
+                            for paragraph in paragraphs:
+                                checks += [bool(paragraph.get("text", "").strip()), bool(paragraph.get("evidence_ids")), set(paragraph.get("evidence_ids", [])) <= evidence,
+                                           paragraph.get("kind") in {"fact", "inference", "recommendation", "pending"}]
+                                for binding in paragraph.get("numeric_bindings", []):
+                                    eid=binding.get("evidence_id"); rendered=str(binding.get("text", "")); original=evidence_values.get(eid)
+                                    allowed={str(original)}
+                                    try:
+                                        number=float(original)
+                                        allowed.update(f"{number:.{precision}f}" for precision in (0,1,3,6))
+                                    except (ValueError,TypeError): pass
+                                    checks.append(eid in paragraph.get("evidence_ids", []) and rendered in allowed and rendered in paragraph.get("text", ""))
+                        for diag in doc.get("analysis", {}).get("details", {}).get("diagnostics", []):
+                            if not diag.get("available"): continue
+                            paragraphs = [p for s in doc["sections"] for p in s.get("paragraphs", [])]
+                            matched = [p for p in paragraphs if p.get("diagnosis") == {k: diag[k] for k in ("run", "evaluation", "event_id")}]
+                            checks.append(bool(matched) and all(p.get("kind") == "inference" and p.get("hypotheses") and all(all(h.get(k) for k in ("candidate", "support", "limitations", "validation")) for h in p["hypotheses"]) for p in matched))
+                else:
+                    checks.append(key in actual and _contract_equal(actual[key], value))
+        except (OSError, ValueError, KeyError, TypeError):
+            checks.append(False)
+    if "semantic_verdicts" in reference:
+        try:
+            semantic = json.loads(_workspace_path(workspace, "semantic.json").read_text(encoding="utf-8"))
+            initial = json.loads(_workspace_path(workspace, "review-initial/review.json").read_text(encoding="utf-8"))
+            paragraphs = semantic["paragraphs"]
+            checks += [semantic["package_fingerprint"] == initial["package_fingerprint"], len({p["id"] for p in paragraphs}) == len(paragraphs),
+                       {p["id"]: p["verdict"] for p in paragraphs} == reference["semantic_verdicts"], all(bool(p.get("rationale", "").strip()) for p in paragraphs)]
+            report = json.loads(_workspace_path(workspace, "report/report.json").read_text(encoding="utf-8")) if (workspace/"report/report.json").exists() else None
+            # Review-task reports are visible staged inputs, so they are present
+            # in native verification workspaces and real Agent workspaces.
+            if report:
+                expected_ids = {p["id"]: p.get("evidence_ids", []) for s in report["sections"] for p in s["paragraphs"]}
+                checks.append(_contract_stable({p["id"]: p.get("evidence_ids", []) for p in paragraphs}) == _contract_stable(expected_ids))
+        except (OSError, ValueError, KeyError, TypeError): checks.append(False)
+    for rel, lines in reference.get("markdown", {}).items():
+        try:
+            actual_lines = _workspace_path(workspace, rel).read_text(encoding="utf-8").splitlines()
+            checks.extend(line in actual_lines for line in lines)
+        except OSError: checks.append(False)
+    if reference.get("kind") == "bma" and (workspace/"fit/bma_model.json").exists():
+        try:
+            model = json.loads((workspace/"fit/bma_model.json").read_text(encoding="utf-8"))
+            weights = np.asarray(model["weights"], dtype=float); theta = np.asarray(model["theta"], dtype=float)
+            checks += [np.isfinite(weights).all(), np.isfinite(theta).all(), bool((weights >= 0).all()), np.isclose(weights.sum(), 1), theta.shape == (len(weights), 3), bool((theta[:, 1] >= 0).all()), bool((theta[:, 2] > 0).all()), model["scale_m3_s"] > 0]
+        except (OSError, ValueError, KeyError, TypeError, IndexError): checks.append(False)
+    if reference.get("kind") == "bma" and (workspace/"forecast/ensemble_discharge.csv").exists():
+        try:
+            from scipy.stats import norm
+            components = pd.read_csv(workspace/"forecast/component_predictions.csv")
+            forecast = pd.read_csv(workspace/"forecast/ensemble_discharge.csv")
+            checks.append(bool(len(forecast)))
+            checks.append(bool(np.isfinite(forecast.select_dtypes(include="number")).all().all()))
+            checks.append(bool((forecast.filter(regex="p[0-9]+_m3_s").diff(axis=1).iloc[:, 1:] >= 0).all().all()))
+            # Column names follow the native BMA component contract.
+            mu = components["corrected_center_m3_s"].to_numpy(); sigma = components["sigma_m3_s"].to_numpy(); weights = components["weight"].to_numpy()
+            key = [k for k in ("event_id", "time") if k in forecast]
+            components = components.assign(_mean=weights*(sigma*norm.pdf(mu/sigma)+mu*norm.cdf(mu/sigma)), _zero=weights*norm.cdf(-mu/sigma))
+            summed = components.groupby(key, sort=False)[["_mean", "_zero", "weight"]].sum().reset_index()
+            joined = forecast.merge(summed, on=key, validate="one_to_one")
+            checks += [len(joined)==len(forecast), np.allclose(joined["ensemble_mean_m3_s"], joined["_mean"], rtol=1e-6), np.allclose(joined["probability_zero"],joined["_zero"],rtol=1e-6), np.allclose(joined["weight"],1), bool((sigma>0).all()), bool((weights>=0).all())]
+            model = json.loads((workspace/"fit/bma_model.json").read_text(encoding="utf-8"))
+            checks.append(bool((pd.to_datetime(forecast["time"], utc=True) > pd.Timestamp(model["training_end"])).all()))
+            if "event_id" in forecast:
+                checks.append(not (set(forecast.event_id) & set(model["training_events"])))
+            components_by_key = {k if isinstance(k, tuple) else (k,): v for k, v in components.groupby(key, sort=False)}
+            quantile_checks=[]
+            for _, row in forecast.iterrows():
+                component = components_by_key[tuple(row[k] for k in key)]
+                center=component.corrected_center_m3_s.to_numpy(); spread=component.sigma_m3_s.to_numpy(); w=component.weight.to_numpy()
+                for column in forecast.filter(regex="p[0-9]+_m3_s"):
+                    probability = float(column[1:column.index("_")]) / 100
+                    q = row[column]; cdf=float(np.sum(w*norm.cdf((q-center)/spread)))
+                    quantile_checks.append(q>=0 and (cdf>=probability-1e-6 if q==0 else abs(cdf-probability)<1e-6))
+            checks.append(all(quantile_checks))
+        except (OSError, ValueError, KeyError, TypeError): checks.append(False)
+    score = sum(checks) / len(checks) if checks else 0.0
+    return {"raw_value": score, "score": score, "details": f"{sum(checks)}/{len(checks)} evidence contract checks"}
+
+
+from harness.composite_grader import criterion as _grade_composite_contract
+from harness.scientific_checks import grade as _grade_scientific_invariant
 
 GRADERS = {
     "file_check": _grade_file_check,
@@ -685,37 +871,47 @@ GRADERS = {
     "raster_match": _grade_raster_match,
     "vector_match": _grade_vector_match,
     "artifact_reference_check": _grade_artifact_reference_check,
+    "figure_contract_check": _grade_figure_contract,
+    "report_contract_check": _grade_report_contract,
+    "composite_contract_check": _grade_composite_contract,
+    "scientific_invariant": _grade_scientific_invariant,
 }
 
 
 def grade_criterion(criterion: dict[str, Any], workspace: Path, test_dir: Path) -> dict[str, Any]:
     try:
+        workspace=Path(filesystem_path(workspace));test_dir=Path(filesystem_path(test_dir))
         result = GRADERS[criterion["type"]](criterion, workspace, test_dir)
         result["score"] = _clip(float(result.get("score", 0.0)))
         result["raw_value"] = _native(result.get("raw_value"))
         return result
     except Exception as exc:
+        from harness.source_references import SourceReferenceError
+        if isinstance(exc,SourceReferenceError):
+            return {"raw_value":None,"score":0.0,"details":f"source reference error: {exc}","diagnostic_type":exc.code}
+        if isinstance(exc,FileNotFoundError):
+            return {"raw_value":None,"score":0.0,"details":f"missing evidence: {exc}","diagnostic_type":"missing_evidence"}
         return {"raw_value": None, "score": 0.0, "details": f"grading error: {exc}"}
 
 
 def detect_attempted(task: dict[str, Any], workspace: str | Path) -> bool:
-    root = Path(workspace)
+    root = Path(filesystem_path(workspace))
     return any(
         (root / rel).is_file() and (root / rel).stat().st_size > 0
         for rel in task.get("required_outputs", [])
     )
 
 
-def grade_task(task: dict[str, Any], workspace: str | Path, test_dir: str | Path) -> dict[str, Any]:
-    workspace_path = Path(workspace)
-    test_path = Path(test_dir)
+def grade_task(task: dict[str, Any], workspace: str | Path, test_dir: str | Path, *, audit_events: list | None = None) -> dict[str, Any]:
+    workspace_path = Path(filesystem_path(workspace))
+    test_path = Path(filesystem_path(test_dir))
     criteria: dict[str, Any] = {}
     score = 0.0
     for criterion in task["grading"]:
         result = grade_criterion(criterion, workspace_path, test_path)
         criteria[criterion["name"]] = result
         score += float(criterion["weight"]) * result["score"]
-    return {
+    result = {
         "test_id": task["id"],
         "domain": task["domain"],
         "difficulty": task["difficulty"],
@@ -724,3 +920,7 @@ def grade_task(task: dict[str, Any], workspace: str | Path, test_dir: str | Path
         "score": _clip(score),
         "criteria": criteria,
     }
+    if task.get('task_kind') == 'composite':
+        from harness.composite_grader import evaluate
+        result.update(evaluate(task,workspace_path,test_path,audit_events))
+    return result

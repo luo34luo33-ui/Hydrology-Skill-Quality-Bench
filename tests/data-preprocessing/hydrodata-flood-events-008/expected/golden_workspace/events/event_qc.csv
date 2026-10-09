@@ -1,9 +1,11 @@
-check,status,details
+﻿check,status,details
 event_identity_and_order,PASS,events=0; stable chronological IDs
 event_boundaries,PASS,"boundaries, times and peaks are consistent"
 configured_filters,PASS,all retained events satisfy explicit filters
 volume_balance,PASS,total = baseflow + quickflow within tolerance
 table_consistency,PASS,"summary=0, process=0, series=48"
 warmup_exclusion,PASS,warm-up rows are flagged and excluded from event metrics
+rainfall_support,PASS,screened=0; retained=0; missing values are not zero rainfall
+shape_filter,PASS,long plateau and abrupt jump must both qualify; rainfall policies cannot override shape rejection
 per_event_file_count,PASS,expected=0; actual=0
 event_count,WARN,no flood events satisfied the explicit configuration

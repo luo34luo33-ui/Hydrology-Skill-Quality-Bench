@@ -1,0 +1,145 @@
+{
+  "data_description": "A deterministic semi-distributed Xinanjiang fixture over a hash-checked two-reach HydroBase network.",
+  "data_files": [
+    "build_result.json",
+    "topology_qc_result.json",
+    "forcing.csv",
+    "params.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "xaj-sd-run/model_config.json": [
+          "schema_version",
+          "time",
+          "xaj",
+          "routing",
+          "initial",
+          "warmup_steps",
+          "simulation"
+        ],
+        "xaj-sd-run/outlet_flow.csv": [
+          "time",
+          "outlet_reach_id",
+          "is_warmup",
+          "QS_m3s",
+          "QI_m3s",
+          "QG_m3s",
+          "Q_m3s"
+        ],
+        "xaj-sd-run/reach_process.csv": [
+          "time",
+          "reach_id"
+        ],
+        "xaj-sd-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ],
+        "xaj-sd-run/subbasin_process.csv": [
+          "time",
+          "sub_id"
+        ]
+      },
+      "targets": [
+        "xaj-sd-run/subbasin_process.csv",
+        "xaj-sd-run/reach_process.csv",
+        "xaj-sd-run/outlet_flow.csv",
+        "xaj-sd-run/model_config.json",
+        "xaj-sd-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "outlet_flow",
+      "reference": "expected/golden_workspace/xaj-sd-run/outlet_flow.csv",
+      "rtol": 1e-09,
+      "target": "xaj-sd-run/outlet_flow.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/xaj-sd-run/result.json",
+      "target": "xaj-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/xaj-sd-run/result.json",
+      "target": "xaj-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/xaj-sd-run/result.json",
+      "target": "xaj-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/xaj-sd-run/result.json",
+      "target": "xaj-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/xaj-sd-run/result.json",
+      "target": "xaj-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "subbasin_process",
+        "reach_process",
+        "outlet_flow",
+        "model_config"
+      ],
+      "target": "xaj-sd-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-xaj-sd-001",
+  "primary_skill": "hydrological-modeling/run-semi-distributed-xaj-model",
+  "prompt": "Use build_result.json, topology_qc_result.json, forcing.csv, and params.json exactly as supplied to run hydrological-modeling/run-semi-distributed-xaj-model. The HydroBase chain is a hash-checked two-subbasin, two-reach serial network; the forcing is hourly with columns time,sub_id,P_mm,E0_mm (+08:00). Write the native outputs (subbasin_process.csv, reach_process.csv, outlet_flow.csv, model_config.json, result.json) under xaj-sd-run/. Do not modify the topology, parameters, or forcing; validation must not participate in any state update.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "xaj-sd-run/subbasin_process.csv",
+    "xaj-sd-run/reach_process.csv",
+    "xaj-sd-run/outlet_flow.csv",
+    "xaj-sd-run/model_config.json",
+    "xaj-sd-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The HydroBase chain and the 16-parameter set are confirmed by the user and must not be altered.",
+    "Forcing timestamps carry explicit +08:00 offsets with interval_end semantics.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Run a semi-distributed Xinanjiang simulation over a two-reach network"
+}

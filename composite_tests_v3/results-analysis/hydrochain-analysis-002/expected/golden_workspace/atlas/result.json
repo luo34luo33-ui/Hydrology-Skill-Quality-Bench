@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "event-0001-hydrograph_figure": {
+      "path": "event-0001-hydrograph.figure.json",
+      "sha256": "68d4a2cb6bf44fbd4135d4d89252faea861a72fa748a1b6a50e875c1a31eb389"
+    },
+    "event-0001-hydrograph_png": {
+      "path": "event-0001-hydrograph.png",
+      "sha256": "c21b0b7b312c4ac9e4e95863337e4853e5a2f25e2eaa8605e4633f317702ffcc"
+    },
+    "event-0001-hydrograph_svg": {
+      "path": "event-0001-hydrograph.svg",
+      "sha256": "ec8d8fd0821872eca16a6c844e8101bfd4dc22091be231d9e9b8d0655816342e"
+    },
+    "event-0002-hydrograph_figure": {
+      "path": "event-0002-hydrograph.figure.json",
+      "sha256": "d82063f502a731df7f790c0460de43cfd0c1eb2b8d07c6bdd092610a6cb78c76"
+    },
+    "event-0002-hydrograph_png": {
+      "path": "event-0002-hydrograph.png",
+      "sha256": "ed421e3e51d0276abc2600f2e95ca4d45ceeb8bee2e4d2a50adf86671c941aca"
+    },
+    "event-0002-hydrograph_svg": {
+      "path": "event-0002-hydrograph.svg",
+      "sha256": "45f3174ea74ca31d3b814da30183682a19c1d047710b0bee8f1ff1103d17a94f"
+    },
+    "event-0003-hydrograph_figure": {
+      "path": "event-0003-hydrograph.figure.json",
+      "sha256": "b4a98618b1a502362930d59082953c8833b6cfeab041483586aca1992fdabd98"
+    },
+    "event-0003-hydrograph_png": {
+      "path": "event-0003-hydrograph.png",
+      "sha256": "7cc773d73f4ff3f3f8306ac50e7176d9776499afebb8018ca251929df02e6520"
+    },
+    "event-0003-hydrograph_svg": {
+      "path": "event-0003-hydrograph.svg",
+      "sha256": "7822a1039c7a73d93b311051ee7867bb16941269ad3b33c8a4d416afdd1a1c9f"
+    },
+    "event-0004-hydrograph_figure": {
+      "path": "event-0004-hydrograph.figure.json",
+      "sha256": "d51e6b9de999726c1dc0002c509a8114253ce6001d4672971bb327c12f297fb3"
+    },
+    "event-0004-hydrograph_png": {
+      "path": "event-0004-hydrograph.png",
+      "sha256": "08de515563fa21e207f4c811f7f0d63a8a69e4aa1524ce5c6a26e57836b8796a"
+    },
+    "event-0004-hydrograph_svg": {
+      "path": "event-0004-hydrograph.svg",
+      "sha256": "447cf31c4517aef7bf37fefa5c2546f0d6611646162e5ccd5e5be62a62ec3504"
+    },
+    "flood-event-overview_figure": {
+      "path": "flood-event-overview.figure.json",
+      "sha256": "cc3d9c700a54c051764620adf69315a37bb8f60041b25a753c32454b89bb9d99"
+    },
+    "flood-event-overview_png": {
+      "path": "flood-event-overview.png",
+      "sha256": "e6790bec17cf1c34d6402b01905c5f380415f532357346080485101d4ebcbb51"
+    },
+    "flood-event-overview_svg": {
+      "path": "flood-event-overview.svg",
+      "sha256": "7c6e3ca50720aab45f10f9610691963adf7cc9ee9314a1afddff6e0e9f9dfda3"
+    }
+  },
+  "checks": [
+    {
+      "check": "input_hashes",
+      "details": "all consumed event artifacts verified",
+      "status": "PASS"
+    },
+    {
+      "check": "event_table_consistency",
+      "details": "events=4",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "extract_result": {
+      "path": "../observation/events/result.json",
+      "sha256": "d50cd217c25755625501e894d3fc1a6264015caf415b16676e4d2b820c2b287c"
+    },
+    "rainfall": {
+      "path": "../observation/basin_rain.csv",
+      "sha256": "cbe116616df85e5d1301694bef41406b793a9eaad648850156d3bb9a9eb3cd07"
+    },
+    "rainfall_metadata": {
+      "path": "../observation/rain_metadata.json",
+      "sha256": "21912cf4b99921a6e6d5d09533a8fa25973dd685b55d7b9234281d430aedd10f"
+    }
+  },
+  "message": "rendered overview and 4 event hydrographs",
+  "parameters": {
+    "language": "zh",
+    "max_events": null,
+    "pixel_size": [
+      2400,
+      1200
+    ],
+    "rainfall_available": true,
+    "rainfall_step_seconds": 3600.0,
+    "rendered_event_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "selection": "all",
+    "total_volume_display_unit": "10^8 m3"
+  },
+  "provenance": {
+    "font": "Times New Roman, SimSun",
+    "matplotlib": "3.11.2",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "template_version": "hydrotune.flood-event-atlas.v2"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-flood-event-atlas",
+  "status": "success",
+  "warnings": []
+}

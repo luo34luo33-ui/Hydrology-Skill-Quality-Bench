@@ -1,0 +1,6 @@
+{
+  "parameters": {
+    "alpha": 0.95,
+    "bfi_max": 0.5
+  }
+}

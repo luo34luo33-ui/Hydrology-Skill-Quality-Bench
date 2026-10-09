@@ -1,0 +1,5 @@
+﻿duration_hours,end_time,event_id,n_local_peaks,peak_flow_m3_s,peak_flow_m3_s_class,peak_shape,shape_reason,significant_peak_count,source,start_time,total_volume_m3,total_volume_m3_class
+4,2020-01-01T04:00:00,0000,99,9,,unclassified,Parameters or process unavailable,,events,2020-01-01T00:00:00,100,
+4,2020-01-01T04:00:00,0001,99,10,,unclassified,Parameters or process unavailable,,events,2020-01-01T00:00:00,99,
+4,2020-01-01T04:00:00,0002,99,20,,unclassified,Parameters or process unavailable,,events,2020-01-01T00:00:00,200,
+4,2020-01-01T04:00:00,0003,99,30,,unclassified,Parameters or process unavailable,,events,2020-01-01T00:00:00,300,

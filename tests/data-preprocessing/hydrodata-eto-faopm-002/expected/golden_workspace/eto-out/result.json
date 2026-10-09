@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "eto": {
+      "path": "eto.csv",
+      "sha256": "ed9041a055a72c4293ed76d5f29f54363f1b99db3dd46490e4be05ccfef7ea8b"
+    },
+    "mapped_evap": {
+      "path": "mapped_evap.csv",
+      "sha256": "947797cb826ee9fb347adb8d72b01ec37c352f13bfb7d9facadb84ad5337097c"
+    }
+  },
+  "checks": [
+    {
+      "check": "meteorology_and_axis",
+      "details": "complete regular time axis and declared units",
+      "status": "PASS"
+    },
+    {
+      "check": "eto_finite",
+      "details": "rows=60",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "config": {
+      "path": "config.json",
+      "sha256": "d9b59fa8cfe3ab4e01cbedec8977de0610e698da9be316d413f10e4c6baf77b9"
+    },
+    "source": {
+      "path": "met.csv",
+      "sha256": "2059dd57274790c18fd9b6f3dfe06ced987c65a1548a449fb97e7c1e5eb26dee"
+    },
+    "stations": {
+      "path": "stations.csv",
+      "sha256": "1c338d05a62d6483401c2ec28f9c943e5925a83651375b5c9c947988fab83ff6"
+    }
+  },
+  "message": "FAO-56 ETo computed",
+  "parameters": {
+    "columns": {
+      "ea_kpa": "ea_kpa",
+      "rn_mj_m2_step": "rn_mj_m2_day",
+      "source_id": "source_id",
+      "t_c": "t_c",
+      "time": "time",
+      "tmax_c": "tmax_c",
+      "tmin_c": "tmin_c",
+      "u2_m_s": "u2_m_s"
+    },
+    "mapping": {
+      "factor": 1.0,
+      "negative_policy": "floor_zero",
+      "target": "PET"
+    },
+    "scale": "daily",
+    "source_timezone_mode": "local_naive",
+    "timestamp_semantics": "interval_end",
+    "timestep_seconds": 86400,
+    "timezone": "Asia/Shanghai",
+    "units": {
+      "ea_kpa": "kPa",
+      "rn_mj_m2_step": "MJ/m2/step",
+      "t_c": "degC",
+      "tmax_c": "degC",
+      "tmin_c": "degC",
+      "u2_m_s": "m/s"
+    }
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/derive-potential-evapotranspiration",
+  "status": "success",
+  "warnings": []
+}

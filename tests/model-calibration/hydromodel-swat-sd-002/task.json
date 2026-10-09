@@ -1,0 +1,149 @@
+{
+  "data_description": "A deterministic semi-distributed SWAT fixture over a hash-checked two-reach HydroBase network.",
+  "data_files": [
+    "build_result.json",
+    "topology_qc_result.json",
+    "hru_table.csv",
+    "forcing.csv",
+    "params.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "model-calibration",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "swat-sd-run/hru_process.csv": [
+          "time",
+          "hru_id"
+        ],
+        "swat-sd-run/model_config.json": [
+          "schema_version",
+          "time",
+          "swat",
+          "initial",
+          "reach_params_by_id",
+          "parameter_overrides",
+          "warmup_steps",
+          "simulation"
+        ],
+        "swat-sd-run/outlet_flow.csv": [
+          "time",
+          "outlet_reach_id",
+          "Q_m3s"
+        ],
+        "swat-sd-run/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ],
+        "swat-sd-run/water_balance.json": [
+          "tolerances",
+          "max_abs_residual",
+          "basin_fluxes_m3",
+          "checks"
+        ]
+      },
+      "targets": [
+        "swat-sd-run/hru_process.csv",
+        "swat-sd-run/outlet_flow.csv",
+        "swat-sd-run/water_balance.json",
+        "swat-sd-run/model_config.json",
+        "swat-sd-run/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "outlet_flow",
+      "reference": "expected/golden_workspace/swat-sd-run/outlet_flow.csv",
+      "rtol": 1e-09,
+      "target": "swat-sd-run/outlet_flow.csv",
+      "type": "table_match",
+      "weight": 0.3
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/swat-sd-run/result.json",
+      "target": "swat-sd-run/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "hru_process",
+        "subbasin_process",
+        "reach_process",
+        "outlet_flow",
+        "water_balance",
+        "model_config"
+      ],
+      "target": "swat-sd-run/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.3
+    }
+  ],
+  "id": "hydromodel-swat-sd-002",
+  "primary_skill": "hydrological-modeling/run-semi-distributed-swat-model",
+  "prompt": "Use build_result.json, topology_qc_result.json, hru_table.csv, forcing.csv, and params.json exactly as supplied to run hydrological-modeling/run-semi-distributed-swat-model. The confirmed configuration selects channel_profile=muskingum with musk_k_hr=10 on a daily step, which makes the Muskingum C3 coefficient negative; the skill must report the native muskingum_daily_stability warning while still writing every artifact. Write the native outputs (hru_process.csv, subbasin_process.csv, reach_process.csv, outlet_flow.csv, water_balance.json, model_config.json, result.json) under swat-sd-run/. Do not switch to linear_storage, raise musk_k_hr, or suppress the warning.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "swat-sd-run/hru_process.csv",
+    "swat-sd-run/subbasin_process.csv",
+    "swat-sd-run/reach_process.csv",
+    "swat-sd-run/outlet_flow.csv",
+    "swat-sd-run/water_balance.json",
+    "swat-sd-run/model_config.json",
+    "swat-sd-run/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The HydroBase chain, HRU table, and SWAT configuration are confirmed by the user and must not be altered.",
+    "The SWAT core is an LGPL-2.1-derived simplification; provenance in result.json records NOT VERIFIED by design.",
+    "Do not install software or implement a replacement model."
+  ],
+  "timeout_seconds": 300,
+  "title": "Preserve the native Muskingum stability warning on the daily channel"
+}

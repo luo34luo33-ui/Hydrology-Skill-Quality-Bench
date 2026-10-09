@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "review-checklist.csv": {
+      "path": "review-checklist.csv",
+      "sha256": "3121a0f69d3e01c18da96de183a7f3707dff36c286f36d6cf49119cb4c90209e"
+    },
+    "review.json": {
+      "path": "review.json",
+      "sha256": "816385b40949afd52dd40a8783f885ec2125656fae749569f581c42203dcb3b3"
+    },
+    "review.md": {
+      "path": "review.md",
+      "sha256": "e49837218ae54f9a655918b5caf0e6c8bb5e3c05325e380b161273b25fd9e4c6"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "needs_revision",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/review-hydrological-study-report",
+  "status": "warning",
+  "warnings": []
+}

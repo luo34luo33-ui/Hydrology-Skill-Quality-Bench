@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "lumped_xaj_runoff.csv",
+      "sha256": "7eff0a4cc3e5f541c477fcdafe3884bc17f2e59f445944ba031b6e23bf05c25a"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "continuous:time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "forcing 无缺测",
+      "name": "continuous:no_missing_forcing",
+      "status": "PASS"
+    },
+    {
+      "message": "预热 12 步，模拟期 84 步",
+      "name": "continuous:warmup_coverage",
+      "status": "PASS"
+    },
+    {
+      "message": "状态与通量均为有限值",
+      "name": "continuous:finite_states",
+      "status": "PASS"
+    },
+    {
+      "message": "分层土壤含水量在容量范围内",
+      "name": "continuous:soil_moisture_bounds",
+      "status": "PASS"
+    },
+    {
+      "message": "水量平衡残差 4.26e-14 mm，占可渗透区降雨 0.000%",
+      "name": "continuous:water_balance",
+      "status": "PASS"
+    },
+    {
+      "message": "数值裁剪 21 次",
+      "name": "continuous:numerical_clipping",
+      "status": "WARN"
+    },
+    {
+      "message": "不透水面积比例 IM=0.02，不透水区产流直接进入 QS",
+      "name": "continuous:impervious_fraction",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "../forcing.csv",
+      "sha256": "0828f786d6f52ea5774d71d352b768f2f0e1dc04afc23ef7c906830a0911cf0f"
+    },
+    "params": {
+      "path": "../params.json",
+      "sha256": "ffa3565b6cbd756767e3ecc744f2446ac6a48623875605a7439350afb941a44a"
+    }
+  },
+  "message": "集总式新安江前向模拟完成：1 场（或段），96 行",
+  "parameters": {
+    "area_km2": 564.4784427125312,
+    "balance_tolerance_fraction": 0.001,
+    "carry_columns": [],
+    "mode": "continuous",
+    "parameter_set": {
+      "B": 0.3,
+      "C": 0.12,
+      "CG": 0.95,
+      "CI": 0.6,
+      "CS": 0.2,
+      "EX": 1.2,
+      "FR1": 0.4,
+      "IM": 0.02,
+      "K": 0.5,
+      "KG": 0.35,
+      "KI": 0.3,
+      "L": 2,
+      "Q": 15.0,
+      "S1": 5.0,
+      "SM": 4.0,
+      "WDM_init": 30.0,
+      "WLM": 60.0,
+      "WLM_init": 45.0,
+      "WM": 120.0,
+      "WUM": 20.0,
+      "WUM_init": 15.0
+    },
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-xaj-model",
+  "status": "warning",
+  "warnings": [
+    "continuous 发生 21 次数值裁剪（比率钳制或地面径流钳制），说明参数或 forcing 使公式越过定义域，请检查 WM/SM 与降雨量级"
+  ]
+}

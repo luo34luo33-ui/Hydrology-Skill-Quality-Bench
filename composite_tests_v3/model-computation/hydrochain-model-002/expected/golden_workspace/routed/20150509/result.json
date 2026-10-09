@@ -1,0 +1,93 @@
+{
+  "artifacts": {
+    "route_coefficients": {
+      "path": "route_coefficients.json",
+      "sha256": "73364441cf263d8e7728a57da0004addc107d1a71f25fe507e96bc86601dc01a"
+    },
+    "routed_table": {
+      "path": "routed_flow.csv",
+      "sha256": "6941739790ff81162187da0ddd935e949e1ac1595e7a18eb180d5d9e8655552e"
+    }
+  },
+  "checks": [
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "time_axis_regular",
+      "status": "PASS"
+    },
+    {
+      "message": "入流列无缺测",
+      "name": "no_missing_inflow",
+      "status": "PASS"
+    },
+    {
+      "message": "C0+C1+C2 等于 1",
+      "name": "local:coefficient_sum",
+      "status": "PASS"
+    },
+    {
+      "message": "X 等价取值 0.2 落在 [0, 0.5]",
+      "name": "local:stability_range",
+      "status": "PASS"
+    },
+    {
+      "message": "演进结果无负值",
+      "name": "local:negative_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "演进结果均为有限值",
+      "name": "local:finite_outflow",
+      "status": "PASS"
+    },
+    {
+      "message": "演进前后体积相对差 2.931% 超过容差 2.000%",
+      "name": "local:volume_difference",
+      "status": "WARN"
+    },
+    {
+      "message": "单条路由，输出列等于该路由结果",
+      "name": "multi_source_combination",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "inflow": {
+      "path": "../../routing_inputs/20150509.csv",
+      "sha256": "8ae30c2ad1691ec71750e9ed59a69213c50561d4b1c8e24de0dec981422cc6e8"
+    },
+    "route_spec": {
+      "path": "../../routes.json",
+      "sha256": "1c9c4607e8f27111006a6a5d5f335353a81906d88a776a2b989c6a5d179de949"
+    }
+  },
+  "message": "马斯京根演进完成：1 条路由，94 行",
+  "parameters": {
+    "combine": "sum",
+    "output_column": "Q_total",
+    "routes": [
+      {
+        "column": "Qt",
+        "id": "local",
+        "k": 1.0,
+        "layout": "single",
+        "output_level": "final",
+        "reaches": 1,
+        "x": 0.2
+      }
+    ],
+    "timestep_hours": 1.0,
+    "volume_tolerance": 0.02
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/route-muskingum-channel",
+  "status": "warning",
+  "warnings": [
+    "local 演进前后体积相对差 2.931% 超过容差；马斯京根存在河槽蓄量变化，请确认初值与末值蓄量是否需要单独说明"
+  ]
+}

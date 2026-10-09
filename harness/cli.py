@@ -14,7 +14,7 @@ def _print_json(payload: object) -> None:
 
 
 def cmd_validate(args: argparse.Namespace) -> int:
-    errors = runner.validate_tests(args.tests_root, args.domain, args.test_id, args.skill)
+    errors = runner.validate_tests(args.tests_root, args.domain, args.test_id, args.skill, args.suite)
     if not errors:
         print("Validation passed")
         return 0
@@ -38,6 +38,11 @@ def cmd_run(args: argparse.Namespace) -> int:
             timeout=args.timeout,
             workspace_root=args.workspace_root,
             output=args.output,
+            suite=args.suite,
+            runtime_lock=args.runtime_lock,
+            composite_cli=args.composite_cli,
+            condition=args.condition, programs_path=args.programs_path,
+            runtime=args.runtime, atomic_cli=args.cli,
         )
     except Exception as exc:
         print(f"run failed: {exc}", file=sys.stderr)
@@ -76,6 +81,7 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("--domain")
     validate.add_argument("--test-id")
     validate.add_argument("--skill")
+    validate.add_argument('--suite',choices=['atomic','composite','all'],default='atomic')
     validate.set_defaults(func=cmd_validate)
 
     run = subparsers.add_parser("run", help="run matching tasks once")
@@ -83,7 +89,14 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--domain")
     run.add_argument("--test-id")
     run.add_argument("--skill")
-    run.add_argument("--agent-cmd", required=True)
+    run.add_argument("--agent-cmd")
+    run.add_argument('--condition', choices=['no-skills', 'programs-only', 'with-skills'])
+    run.add_argument('--programs-path')
+    run.add_argument('--runtime', choices=['local', 'isolated'], default='local')
+    run.add_argument('--cli', choices=['codex', 'opencode', 'qwen', 'codebuddy'])
+    run.add_argument('--suite',choices=['atomic','composite','all'],default='atomic')
+    run.add_argument('--runtime-lock')
+    run.add_argument('--composite-cli',choices=['codex','opencode','qwen'])
     run.add_argument("--model")
     run.add_argument("--effort")
     run.add_argument("--skills-path")

@@ -1,0 +1,1101 @@
+{
+  "core_capabilities": [
+    "forcing_standardization",
+    "dhf",
+    "outlet_alignment",
+    "event_metrics"
+  ],
+  "critical_rules": [
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "simulated_m3_s",
+          "observed_m3_s"
+        ],
+        "reference": "expected/golden_workspace/aligned/aligned_discharge.csv",
+        "rtol": 0.01,
+        "target": "aligned/aligned_discharge.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned/aligned_discharge.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "observed_m3_s",
+          "simulated_m3_s"
+        ],
+        "reference": "expected/golden_workspace/aligned/evaluation_discharge.csv",
+        "rtol": 0.01,
+        "target": "aligned/evaluation_discharge.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned/evaluation_discharge.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "observed_m3_s",
+          "simulated_m3_s"
+        ],
+        "reference": "expected/golden_workspace/evaluation_events.csv",
+        "rtol": 0.01,
+        "target": "evaluation_events.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evaluation_events.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/evap/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "evap/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "PET",
+        "field": "parameters.variable",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "discharge_m3_s",
+          "GB_rain",
+          "DF_rain",
+          "QC_rain",
+          "BJ_rain",
+          "GA_rain",
+          "WL_rain",
+          "GZ_rain",
+          "avg_rain",
+          "GB_out",
+          "GZ_out",
+          "E0"
+        ],
+        "reference": "expected/golden_workspace/flow/discharge_timeseries.csv",
+        "rtol": 0.01,
+        "target": "flow/discharge_timeseries.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "flow/discharge_timeseries.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P",
+          "PET"
+        ],
+        "reference": "expected/golden_workspace/forcing.csv",
+        "rtol": 0.01,
+        "target": "forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "forcing.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "rows",
+          "observed_volume",
+          "simulated_volume",
+          "volume_error_relative",
+          "observed_peak",
+          "simulated_peak",
+          "peak_error_relative",
+          "peak_time_error_hours",
+          "peak_tie_count",
+          "nse",
+          "r2",
+          "rmse",
+          "mae"
+        ],
+        "reference": "expected/golden_workspace/metrics/event_metrics.csv",
+        "rtol": 0.01,
+        "target": "metrics/event_metrics.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "metrics/event_metrics.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 1.0,
+        "field": "parameters.timestep_hours",
+        "target": "metrics/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "metrics/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "P",
+          "PET",
+          "E",
+          "PE",
+          "PC",
+          "Y0",
+          "EU",
+          "EL",
+          "RR",
+          "Y",
+          "YU",
+          "YL",
+          "RUNOFF",
+          "QS",
+          "QL",
+          "Q",
+          "SA",
+          "UA",
+          "YA",
+          "EB"
+        ],
+        "reference": "expected/golden_workspace/model/lumped_dhf_runoff.csv",
+        "rtol": 0.01,
+        "target": "model/lumped_dhf_runoff.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "model/lumped_dhf_runoff.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "continuous",
+        "field": "parameters.mode",
+        "target": "model/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "model/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 1.0,
+        "field": "parameters.timestep_hours",
+        "target": "model/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "model/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 12,
+        "field": "parameters.warmup_steps",
+        "target": "model/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "model/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "depth_mm"
+        ],
+        "reference": "expected/golden_workspace/rain/prepared_forcing.csv",
+        "rtol": 0.01,
+        "target": "rain/prepared_forcing.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/prepared_forcing.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "interval_end",
+        "field": "parameters.timestamp_semantics",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 3600,
+        "field": "parameters.timestep_seconds",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "mm/step",
+        "field": "parameters.unit",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "P",
+        "field": "parameters.variable",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "aligned/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "aligned/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "evap/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evap/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "flow/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "flow/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "metrics/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "metrics/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "model/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "model/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": "Asia/Shanghai",
+        "field": "parameters.timezone",
+        "target": "rain/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "rain/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": {
+          "factor": 1.0,
+          "source": "E0",
+          "target": "PET"
+        },
+        "field": "mapping",
+        "target": "evaporation_mapping.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "evaporation_mapping.json"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "downstream": "aligned/result.json",
+      "field": "inputs.observed_result",
+      "id": "aligned/result.json:inputs.observed_result",
+      "upstream": "flow/result.json"
+    },
+    {
+      "downstream": "aligned/result.json",
+      "field": "inputs.simulation_result",
+      "id": "aligned/result.json:inputs.simulation_result",
+      "upstream": "model/result.json"
+    },
+    {
+      "downstream": "evap/result.json",
+      "field": "inputs.source",
+      "id": "evap/result.json:inputs.source",
+      "upstream": "evap_source.csv"
+    },
+    {
+      "downstream": "flow/result.json",
+      "field": "inputs.source_timeseries",
+      "id": "flow/result.json:inputs.source_timeseries",
+      "upstream": "raw.csv"
+    },
+    {
+      "downstream": "metrics/result.json",
+      "field": "inputs.events",
+      "id": "metrics/result.json:inputs.events",
+      "upstream": "evaluation_events.csv"
+    },
+    {
+      "downstream": "model/result.json",
+      "field": "inputs.forcing",
+      "id": "model/result.json:inputs.forcing",
+      "upstream": "forcing.csv"
+    },
+    {
+      "downstream": "rain/result.json",
+      "field": "inputs.source",
+      "id": "rain/result.json:inputs.source",
+      "upstream": "rain_source.csv"
+    }
+  ],
+  "forbidden_outputs": [],
+  "gates": [
+    {
+      "criteria": [
+        {
+          "check": "protected_sources",
+          "reference": "expected/protected_sources.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "scenario.json"
+      ],
+      "id": "protected_sources"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "simulated_m3_s",
+            "is_warmup",
+            "observed_m3_s",
+            "matched",
+            "excluded_reason"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/aligned/aligned_discharge.csv",
+          "rtol": 1e-06,
+          "target": "aligned/aligned_discharge.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aligned/aligned_discharge.csv"
+      ],
+      "id": "aligned/aligned_discharge.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "observed_m3_s",
+            "simulated_m3_s"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/aligned/evaluation_discharge.csv",
+          "rtol": 1e-06,
+          "target": "aligned/evaluation_discharge.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "aligned/evaluation_discharge.csv"
+      ],
+      "id": "aligned/evaluation_discharge.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/aligned/result.json",
+          "target": "aligned/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "aligned/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "aligned/result.json"
+      ],
+      "id": "aligned/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "observed_m3_s",
+            "simulated_m3_s",
+            "event_id"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/evaluation_events.csv",
+          "rtol": 1e-06,
+          "target": "evaluation_events.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "evaluation_events.csv"
+      ],
+      "id": "evaluation_events.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/evap/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "evap/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "evap/prepared_forcing.csv"
+      ],
+      "id": "evap/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/evap/result.json",
+          "target": "evap/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "evap/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "evap/result.json"
+      ],
+      "id": "evap/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "discharge_m3_s",
+            "is_imputed",
+            "year",
+            "month",
+            "day",
+            "hour",
+            "GB_rain",
+            "DF_rain",
+            "QC_rain",
+            "BJ_rain",
+            "GA_rain",
+            "WL_rain",
+            "GZ_rain",
+            "avg_rain",
+            "GB_out",
+            "GZ_out",
+            "E0"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/flow/discharge_timeseries.csv",
+          "rtol": 1e-06,
+          "target": "flow/discharge_timeseries.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "flow/discharge_timeseries.csv"
+      ],
+      "id": "flow/discharge_timeseries.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/flow/result.json",
+          "target": "flow/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "flow/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "flow/result.json"
+      ],
+      "id": "flow/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "P",
+            "PET"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/forcing.csv",
+          "rtol": 1e-06,
+          "target": "forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "forcing.csv"
+      ],
+      "id": "forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "event_id",
+            "rows",
+            "start",
+            "end",
+            "observed_volume",
+            "simulated_volume",
+            "volume_error_relative",
+            "observed_peak",
+            "simulated_peak",
+            "peak_error_relative",
+            "peak_time_error_hours",
+            "peak_tie_count",
+            "nse",
+            "r2",
+            "rmse",
+            "mae",
+            "qualified_volume",
+            "qualified_peak",
+            "qualified_peak_time"
+          ],
+          "datetime_columns": [
+            "start",
+            "end"
+          ],
+          "reference": "expected/golden_workspace/metrics/event_metrics.csv",
+          "rtol": 1e-06,
+          "target": "metrics/event_metrics.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "metrics/event_metrics.csv"
+      ],
+      "id": "metrics/event_metrics.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/metrics/result.json",
+          "target": "metrics/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "metrics/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "metrics/result.json"
+      ],
+      "id": "metrics/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "is_warmup",
+            "P",
+            "PET",
+            "E",
+            "PE",
+            "PC",
+            "Y0",
+            "EU",
+            "EL",
+            "RR",
+            "Y",
+            "YU",
+            "YL",
+            "RUNOFF",
+            "QS",
+            "QL",
+            "Q",
+            "SA",
+            "UA",
+            "YA",
+            "EB"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/model/lumped_dhf_runoff.csv",
+          "rtol": 1e-06,
+          "target": "model/lumped_dhf_runoff.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "model/lumped_dhf_runoff.csv"
+      ],
+      "id": "model/lumped_dhf_runoff.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/model/result.json",
+          "target": "model/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "model/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "model/result.json"
+      ],
+      "id": "model/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "time",
+            "source_id",
+            "variable",
+            "depth_mm"
+          ],
+          "datetime_columns": [
+            "time"
+          ],
+          "reference": "expected/golden_workspace/rain/prepared_forcing.csv",
+          "rtol": 1e-06,
+          "target": "rain/prepared_forcing.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "rain/prepared_forcing.csv"
+      ],
+      "id": "rain/prepared_forcing.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/rain/result.json",
+          "target": "rain/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "rain/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "rain/result.json"
+      ],
+      "id": "rain/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/decision.json",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "decision_evidence",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "decision.json"
+      ],
+      "id": "decision"
+    }
+  ],
+  "interaction_mode": "none",
+  "provided_settings": [
+    {
+      "bindings": [
+        {
+          "expected": "Asia/Shanghai",
+          "field": "parameters.timezone",
+          "target": "rain/result.json"
+        }
+      ],
+      "field": "timezone",
+      "key": "timezone",
+      "source": "scenario.json"
+    },
+    {
+      "bindings": [
+        {
+          "expected": {
+            "factor": 1.0,
+            "source": "E0",
+            "target": "PET"
+          },
+          "field": "mapping",
+          "target": "evaporation_mapping.json"
+        }
+      ],
+      "field": "evaporation_mapping",
+      "key": "evaporation_mapping",
+      "source": "scenario.json"
+    }
+  ],
+  "reference_execution": [
+    {
+      "arguments": [
+        "--source",
+        "rain_source.csv",
+        "--config",
+        "rain_config.json",
+        "--output-dir",
+        "rain"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--source",
+        "evap_source.csv",
+        "--config",
+        "evap_config.json",
+        "--output-dir",
+        "evap"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-model-forcing-timeseries",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--forcing",
+        "forcing.csv",
+        "--params",
+        "params.json",
+        "--area-km2",
+        "564.4784427125312",
+        "--timestep-hours",
+        "1",
+        "--mode",
+        "continuous",
+        "--warmup-steps",
+        "12",
+        "--output-dir",
+        "model",
+        "--river-length-km",
+        "40",
+        "--param-scale",
+        "original"
+      ],
+      "exit_code": 0,
+      "program": "hydrological-modeling/run-lumped-dhf-model",
+      "stderr": "",
+      "stdout": "warning: ����ʽ DHF ǰ��ģ����ɣ�1 ������Σ���744 ��\n"
+    },
+    {
+      "arguments": [
+        "--input",
+        "raw.csv",
+        "--time-column",
+        "time",
+        "--flow-column",
+        "GZ_in",
+        "--flow-unit",
+        "m3/s",
+        "--timezone",
+        "Asia/Shanghai",
+        "--output-dir",
+        "flow"
+      ],
+      "exit_code": 0,
+      "program": "data-processing/prepare-discharge-timeseries",
+      "stderr": "",
+      "stdout": "success: discharge time series prepared\n"
+    },
+    {
+      "arguments": [
+        "--observed-result",
+        "flow/result.json",
+        "--simulation-result",
+        "model/result.json",
+        "--output-dir",
+        "aligned"
+      ],
+      "exit_code": 0,
+      "program": "post-processing/align-observed-simulated-discharge",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "arguments": [
+        "--events",
+        "evaluation_events.csv",
+        "--observed-column",
+        "observed_m3_s",
+        "--simulated-column",
+        "simulated_m3_s",
+        "--timestep-hours",
+        "1",
+        "--volume-unit",
+        "m3",
+        "--output-dir",
+        "metrics"
+      ],
+      "exit_code": 0,
+      "program": "evaluation-diagnostics/compute-event-flood-metrics",
+      "stderr": "",
+      "stdout": "warning: ����ָ�������ɣ�1 ��\n"
+    }
+  ],
+  "schema_version": "2.0",
+  "scientific_graph": {
+    "edges": [
+      {
+        "from": "forcing_standardization",
+        "to": "dhf"
+      },
+      {
+        "from": "dhf",
+        "to": "outlet_alignment"
+      },
+      {
+        "from": "outlet_alignment",
+        "to": "event_metrics"
+      }
+    ],
+    "nodes": [
+      {
+        "artifact": "rain/result.json",
+        "capability": "forcing_standardization",
+        "id": "forcing_standardization"
+      },
+      {
+        "artifact": "model/result.json",
+        "capability": "dhf",
+        "id": "dhf"
+      },
+      {
+        "artifact": "aligned/result.json",
+        "capability": "outlet_alignment",
+        "id": "outlet_alignment"
+      },
+      {
+        "artifact": "metrics/result.json",
+        "capability": "event_metrics",
+        "id": "event_metrics"
+      }
+    ],
+    "note": "Dependencies below bind actual files and hashes; transform tables are independently checked. Listed graph is developer metadata, never visible to candidates."
+  },
+  "severity_policy": "Missing evidence is unknown. Artifact tolerances 1e-6; a critical numerical error exceeds 1e-3 + 1% of reference magnitude. Critical categorical failures are explicitly enumerated.",
+  "task_version": "composite-unattended-v2"
+}

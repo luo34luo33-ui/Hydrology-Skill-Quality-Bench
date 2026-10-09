@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "error",
+  "message": "no converged BMA initialization; see fit_diagnostics.json",
+  "parameters": {},
+  "inputs": {},
+  "artifacts": {
+    "fit_diagnostics": {
+      "path": "fit_diagnostics.json",
+      "sha256": "71e67857dcaa7c90e03d3d32f8a69690df2a7cb80e9ac9b0a0ca7e5164eacf10"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "d60c5555fdce81ea52437ee15ff97e80b7f5958a06c424f4923ba9109d6f8efd"
+    }
+  },
+  "checks": [
+    {
+      "check": "run",
+      "status": "FAIL",
+      "details": "no converged BMA initialization; see fit_diagnostics.json"
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "python": "3.11.16"
+  }
+}

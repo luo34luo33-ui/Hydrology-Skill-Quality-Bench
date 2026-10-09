@@ -1,0 +1,289 @@
+{
+  "files": [
+    {
+      "path": "basin.gpkg",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "ce18f00358543944242838ce7aa1058996dcdb1fe8a6f049fe4e98b81755ab62"
+    },
+    {
+      "path": "dem_100m.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "a6667546dcd551e44da21f08f213a5da3276c6869343c11fdb78014769f62a4f"
+    },
+    {
+      "path": "derivation.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "10429e947b09b296278cbf81734158471e26b8481c8940da86eca6e4572ef256"
+    },
+    {
+      "columns": [
+        "reach_id",
+        "sub_id",
+        "strahler_order",
+        "length_m",
+        "elev_up_m",
+        "elev_down_m",
+        "drop_m",
+        "slope_m_m",
+        "slope_percent",
+        "elevation_step_count",
+        "negative_elevation_step_count",
+        "upstream_count",
+        "upstream_reach_ids",
+        "downstream_reach_id",
+        "downstream_sub_id",
+        "topo_level",
+        "is_headwater",
+        "is_outlet"
+      ],
+      "path": "hydrobase/reaches.csv",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "63c5923bacbac573f37f1f8b48ef9a5972924e13a5023188d3bcc682874385a2"
+    },
+    {
+      "path": "hydrobase/reaches_clipped.gpkg",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "671d4f7ed574cc2100ff7b40d231d11134cbe78860660cdb367701b5417f29f4"
+    },
+    {
+      "path": "hydrobase/result.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "aade8e5a624df1700a5fd49b6d96388259482078041597e9fd5d08db5926e4cb"
+    },
+    {
+      "path": "hydrobase/stream_links_clipped.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "507c70179acab5feac476aab843a121bd26596715a99e70d6cd9a0a548b23d79"
+    },
+    {
+      "path": "hydrobase/stream_order_clipped.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "2facfeef64c109915b74033648afcc983ba0d0304918d70fa8c5fcfbe535898d"
+    },
+    {
+      "columns": [
+        "sub_id",
+        "area_km2",
+        "cell_count",
+        "reach_count",
+        "reach_ids",
+        "outlet_reach_ids"
+      ],
+      "path": "hydrobase/subbasins.csv",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "fecc3eec9f89f4d1d3b6639dd54955cb76fb56ca5c8dc06db718e7f5b7a93666"
+    },
+    {
+      "path": "hydrobase/subbasins_clipped.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "5d632e438d61c78cf3845e96763568728ec8a5932f6eaa44e248bf83683a1cd0"
+    },
+    {
+      "columns": [
+        "sub_id",
+        "reach_id",
+        "upstream_count",
+        "upstream_reach_ids",
+        "downstream_sub_id",
+        "downstream_reach_id",
+        "topo_level",
+        "is_headwater",
+        "is_outlet"
+      ],
+      "path": "hydrobase/topology.csv",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "6106312d9f480a90243c03717068506fe802894286e6b5e5fad6591d0ef93fcf"
+    },
+    {
+      "path": "hydrology/d8_pointer.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "d2dc4db02d03ab12d3fc8e796ab205a05278f203d6c417e667cca029d714f8c9"
+    },
+    {
+      "path": "hydrology/dem_filled.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "b1c88c7790789c031067310cc4c8df66678535b1ae8c55b9bb6c554553aed141"
+    },
+    {
+      "path": "hydrology/flow_accumulation_cells.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "94a5f736f77ad991163be542f347de1ae2a34286947a28bad5e95fc6997c8ee7"
+    },
+    {
+      "path": "hydrology/result.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "32a3d70f7c77f86238e694abeee2c6c412935ff0fc992aa145f02148eb183ebe"
+    },
+    {
+      "path": "hydrology/strahler_order.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "39f90cbe00f8cb90bc703bae4560f0de34451f2038920877d4a1f214386c76e4"
+    },
+    {
+      "path": "hydrology/stream_links.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "a701761866aeb2a7dd70582c31d60b33e4bbc8da88a9f2558839d0242390ffe2"
+    },
+    {
+      "path": "hydrology/streams.gpkg",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "e9812184bf13c56e3cb62e43790ba090fb9e7ed2e4fd43b7e0d6d7a5d3f5fe10"
+    },
+    {
+      "path": "hydrology/streams.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "932764f09dbbeea402ac12cabd4e7d137848228eae3cb9619a8653ec7730fa47"
+    },
+    {
+      "path": "hydrology/subbasins.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "77205b9fabbf5b7b5e2aa1d8700ca342139ea4681c148896b56731f4b384510f"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out"
+      ],
+      "path": "original.csv",
+      "role": "original observations; preserve all values and missing entries",
+      "sha256": "e0219610570b88e17b9396cab9be45c390f1321c883ed06cac5681ec44587a92"
+    },
+    {
+      "path": "prepared/basin_normalized.gpkg",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "8065875efa9ba77f6eaddc7e32ce0e7e67260d6c36615a8ef02c58cb787c477d"
+    },
+    {
+      "path": "prepared/dem_analysis_buffer.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "e31a6f896cd61e79f94ac5a5f3202c9f663193d3db41f1fb8f18f428bf17422e"
+    },
+    {
+      "path": "prepared/dem_metric.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "ac2c9c34fcc17920befe7012465b01c0ca9a7883760d0d12f7b3163b8ae3abc1"
+    },
+    {
+      "path": "prepared/result.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "32d6e17b9a4bc7c8f4e68ca9cfc5fae15d407f99142abc76f71b6a52d17c10bc"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out",
+        "E0"
+      ],
+      "path": "raw.csv",
+      "role": "authorised calculation input, with labelled synthetic supplements",
+      "sha256": "0bc26621671645baa33197367c80ba53c8d1b533ffb81ef287051e99fa0f229d"
+    },
+    {
+      "path": "scenario.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "fb106aee2500c72d1c66ad95f9205870a26e0dee424c2f4893840d97454fb79d"
+    },
+    {
+      "path": "source_manifest.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "196563eeae320263efd874f16c832f09e12a50b399af304f0c965d2562fee7ea"
+    },
+    {
+      "columns": [
+        "source_id",
+        "x",
+        "y"
+      ],
+      "path": "stations.csv",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "944cb3b2de8a93ed4e7e6885e311f13676e2fe2eb3974bfc6362b482b34916cd"
+    },
+    {
+      "columns": [
+        "time",
+        "column",
+        "value",
+        "basis"
+      ],
+      "path": "supplements.csv",
+      "role": "synthetic supplement provenance; not repaired observations",
+      "sha256": "f046b78399adcd58e69889cb57dca68fdcdc6ca7d378cc918fc07c10de245999"
+    },
+    {
+      "path": "topology-qc/network_topology_check.png",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "8cef1e3afdf7cbe317b9ccae92545e8127459f1dcde60e3c07c9a7c122c1439a"
+    },
+    {
+      "path": "topology-qc/result.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "713c7e15f2bb4a5ae20a2e47d1d4be16e22648f3bf1e7fd7b8b4eb58e221c222"
+    },
+    {
+      "path": "topology-qc/topology_check_report.txt",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "57a187a2e0d687825abf5ba8ca531f17fb4d43613aff7da37ea4d498c34457e5"
+    },
+    {
+      "columns": [
+        "check",
+        "status",
+        "count",
+        "details"
+      ],
+      "path": "topology-qc/topology_checks.csv",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "d08c6c25891e83cd4ab5c8b3f6102980556a9e3f18249c529d9ae062e62d2a46"
+    },
+    {
+      "path": "INPUT_GUIDE.md",
+      "role": "public input/output interface documentation",
+      "sha256": "598adba573f6905eba369a7d85a62daf7266562786af9562435f44d263b5ca94"
+    },
+    {
+      "path": "OUTPUT_INTERFACES.md",
+      "role": "public input/output interface documentation",
+      "sha256": "fcf7c23173affccf4cf6a28ddcfc3eb0ea1d44581998d3a1f82baefd8c182a9c"
+    },
+    {
+      "path": "output_interfaces.json",
+      "role": "public input/output interface documentation",
+      "sha256": "52f679db244227d2726535c94bf37990dee7c347444e9afb36db9a80b108e04c"
+    },
+    {
+      "path": "workflow_requirements.json",
+      "role": "public workflow consistency requirements",
+      "sha256": "21fa77ea0abd1f3cbeaa4d92d307a30e3ed191ebef6229da5acc2e38ab6ce64d"
+    }
+  ],
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5
+}

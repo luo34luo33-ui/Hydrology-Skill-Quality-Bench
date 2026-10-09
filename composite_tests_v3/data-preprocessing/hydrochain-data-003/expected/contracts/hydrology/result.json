@@ -1,0 +1,8 @@
+{
+  "parameters": {
+    "cell_area_m2": 10000.0,
+    "d8_encoding": "whitebox-default-non-esri",
+    "stream_init_area_km2": 100.0,
+    "threshold_cells": 10000
+  }
+}

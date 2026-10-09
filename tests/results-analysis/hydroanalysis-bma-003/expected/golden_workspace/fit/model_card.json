@@ -1,0 +1,81 @@
+{
+  "distribution": "censored_gaussian",
+  "estimator": "generalized_EM_maximum_likelihood",
+  "parameter_units": {
+    "theta_a": "normalized discharge",
+    "theta_b": "dimensionless",
+    "theta_sigma": "normalized discharge"
+  },
+  "training_rows": 237,
+  "row_weighting": "equal_per_timestep",
+  "model": {
+    "weights": [
+      0.33687704139029273,
+      0.663122958609706
+    ],
+    "theta": [
+      [
+        0.08731933112816574,
+        0.7348499728044647,
+        0.2230696702657296
+      ],
+      [
+        -0.1176634575897046,
+        0.8757539506980772,
+        0.08838934939054302
+      ]
+    ],
+    "scale_m3_s": 67.43049582531924,
+    "score": 0.20355396657963198,
+    "selected_start": 2,
+    "schema_version": "1.0",
+    "distribution": "censored_gaussian",
+    "model_ids": [
+      "HBV",
+      "Tank"
+    ],
+    "outlet_id": "synthetic-outlet",
+    "timestep_hours": 1,
+    "timezone": "Asia/Shanghai",
+    "unit": "m3/s",
+    "series_mode": "continuous",
+    "training_start": "2019-12-31T19:00:00+00:00",
+    "training_end": "2020-01-10T15:00:00+00:00",
+    "training_events": [],
+    "random_state": 2026
+  },
+  "inputs": {
+    "members": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-f9h3cg5g\\members.json",
+      "sha256": "a8932f26e6e28506292db1700de9db2977eed69069aa1783728e1e873035a23c"
+    },
+    "simulation_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-f9h3cg5g\\HBV-result.json",
+      "sha256": "52278e31f1523ac909f8b63c09b7c3af7f32732d881c5f1596732651e7a2d637"
+    },
+    "table_0_continuous_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-f9h3cg5g\\HBV.csv",
+      "sha256": "4c95eeb5b041d303ed0139e2ffc0af62eff8debab039439da188af0a862dd024"
+    },
+    "simulation_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-f9h3cg5g\\Tank-result.json",
+      "sha256": "da2efb83863a69acbd9c4669ab2b9ee639332f8022bd2c7965da5f2a0a66efde"
+    },
+    "table_1_continuous_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-f9h3cg5g\\Tank.csv",
+      "sha256": "4c95eeb5b041d303ed0139e2ffc0af62eff8debab039439da188af0a862dd024"
+    },
+    "observed_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-f9h3cg5g\\observed-result.json",
+      "sha256": "0b028ba07d4d3eea67457a751b7c00911d72d6d148ca1093dbd18a11168dd7a0"
+    },
+    "observations": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-f9h3cg5g\\observed.csv",
+      "sha256": "6f9cc62bfbf1f955729a4a418cdf9f5b6b44feb748aa0e3be24a9abcc1a38b4a"
+    }
+  },
+  "warnings": [
+    "duplicate member predictions: individual weights are not identifiable"
+  ],
+  "interpretation": "conditional predictive uncertainty; no parameter posterior sampling or trajectory dependence"
+}

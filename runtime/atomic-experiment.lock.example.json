@@ -1,0 +1,46 @@
+{
+  "experiment_version": "atomic-three-arm-v2",
+  "runtime_mode": "atomic-isolated-relay",
+  "status": "awaiting_certification",
+  "image_digest": "",
+  "tests_root": "tests",
+  "public_programs_dir": "runtime/atomic-public",
+  "skills_dir": "runtime/atomic-skills",
+  "common_config_dir": "runtime/atomic-provider-config",
+  "public_programs_sha256": "",
+  "skills_sha256": "",
+  "common_config_sha256": "",
+  "host_runtime_sha256": "",
+  "public_contract_hashes": {},
+  "atomic_budget": {
+    "agent_rounds": 60,
+    "tool_calls": 120
+  },
+  "clis": {
+    "codex": {
+      "model": null,
+      "version": null,
+      "effort": null,
+      "config_sha256": ""
+    },
+    "opencode": {
+      "model": null,
+      "version": null,
+      "effort": null,
+      "config_sha256": ""
+    },
+    "qwen": {
+      "model": null,
+      "version": null,
+      "effort": null,
+      "config_sha256": ""
+    },
+    "codebuddy": {
+      "model": null,
+      "version": null,
+      "effort": null,
+      "config_sha256": ""
+    }
+  },
+  "certifications": {}
+}

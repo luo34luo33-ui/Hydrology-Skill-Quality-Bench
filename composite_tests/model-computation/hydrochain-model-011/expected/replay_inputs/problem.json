@@ -1,0 +1,61 @@
+{
+  "adapter": {
+    "path": "physical_calibration.py",
+    "sha256": "deba16274cfb09328cd6baad0016aae7873afa83be02dc14596d738c4cf08e83"
+  },
+  "data_shape": "continuous",
+  "inputs": [
+    {
+      "id": "continuous",
+      "path": "calibration_inputs/continuous.csv",
+      "sha256": "a8844166179983a6f84a84cc0529cf6c1aca078b4425535d780495e6e3138637"
+    },
+    {
+      "id": "fixed",
+      "path": "fixed.json",
+      "sha256": "3b1a2209e421b6d39326620b87f4122626f13a4d7dc3a4426f63dfe39c283d2a"
+    }
+  ],
+  "objective": {
+    "direction": "minimize",
+    "metric": "rmse"
+  },
+  "objective_consistency_tolerance": 1e-08,
+  "parameters": [
+    {
+      "lower": 0.3,
+      "name": "K",
+      "upper": 0.9
+    },
+    {
+      "lower": 0.15,
+      "name": "B",
+      "upper": 0.45
+    }
+  ],
+  "schema_version": "1.0",
+  "splits": {
+    "calibration": {
+      "end": "2023-08-16T23:00:00+08:00",
+      "start": "2023-08-15T12:00:00+08:00"
+    },
+    "validation": {
+      "end": "2023-08-18T23:00:00+08:00",
+      "start": "2023-08-17T00:00:00+08:00"
+    }
+  },
+  "variables": {
+    "observed": {
+      "semantics": "outlet_discharge",
+      "unit": "m3/s"
+    },
+    "simulated": {
+      "semantics": "outlet_discharge",
+      "unit": "m3/s"
+    }
+  },
+  "warmup": {
+    "confirmed": true,
+    "semantics": "12 steps per independent event; continuous state propagated across scoring split"
+  }
+}

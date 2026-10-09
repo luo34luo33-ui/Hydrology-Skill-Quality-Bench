@@ -1,0 +1,18 @@
+{
+  "local": {
+    "c0": 0.23076923076923075,
+    "c1": 0.5384615384615384,
+    "c2": 0.23076923076923084,
+    "coefficients_clipped": false,
+    "column": "Qt",
+    "k": 1.0,
+    "layout": "single",
+    "negative_before_clip": 0,
+    "output_level": "final",
+    "q0": 15.0,
+    "q0_source": "first-inflow",
+    "reaches": 1,
+    "x": 0.2,
+    "x_used": 0.2
+  }
+}

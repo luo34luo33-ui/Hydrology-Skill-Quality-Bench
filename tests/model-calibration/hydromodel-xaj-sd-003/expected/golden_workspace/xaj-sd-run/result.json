@@ -1,0 +1,20 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "details": "incomplete forcing coverage at 2020-07-02 07:00:00+08:00",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "incomplete forcing coverage at 2020-07-02 07:00:00+08:00",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-semi-distributed-xaj-model",
+  "status": "error",
+  "warnings": []
+}

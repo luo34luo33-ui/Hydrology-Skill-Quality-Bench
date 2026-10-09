@@ -1,0 +1,48 @@
+{
+  "initial": {
+    "fr": 0.4,
+    "qg_cs_m3s": 0.1,
+    "qg_m3s": 0.1,
+    "qi_cs_m3s": 0.05,
+    "qi_m3s": 0.05,
+    "qs_cs_m3s": 0.0,
+    "s_mm": 5.0,
+    "soil_fraction": 0.3
+  },
+  "routing": {
+    "dp_by_reach": {
+      "1": 1,
+      "2": 1
+    },
+    "lag_steps": 0
+  },
+  "schema_version": "1.0",
+  "simulation": {
+    "end": "2020-07-03T00:00:00+08:00",
+    "start": "2020-07-01T13:00:00+08:00"
+  },
+  "time": {
+    "step_seconds": 3600,
+    "timestamp_meaning": "interval_end",
+    "timezone": "Asia/Shanghai"
+  },
+  "warmup_steps": 12,
+  "xaj": {
+    "B": 0.3,
+    "C": 0.12,
+    "CG": 0.95,
+    "CI": 0.6,
+    "CS": 0.2,
+    "EX": 1.2,
+    "IMP": 0.02,
+    "KC": 0.8,
+    "KE": 1.5,
+    "KG": 0.35,
+    "KI": 0.3,
+    "SM": 25.0,
+    "WLM": 60.0,
+    "WM": 120.0,
+    "WUM": 20.0,
+    "XE": 0.2
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "adapter": {
+    "path": "physical_calibration.py",
+    "sha256": "deba16274cfb09328cd6baad0016aae7873afa83be02dc14596d738c4cf08e83"
+  },
+  "data_shape": "event_collection",
+  "inputs": [
+    {
+      "id": "20150509",
+      "path": "calibration_inputs/20150509.csv",
+      "sha256": "4c0055efd009349947dfc08358a96cd8989b886918d338c3592c11496c2a193d"
+    },
+    {
+      "id": "20191031",
+      "path": "calibration_inputs/20191031.csv",
+      "sha256": "ded0de5103c5f33533a3bbb28608ae8111b5572b3b8b4220ec05f05a34d04096"
+    },
+    {
+      "id": "20241030",
+      "path": "calibration_inputs/20241030.csv",
+      "sha256": "c1b980d0c9336bcefb935e1ae276d875a1cdb0536396c33483734333c9155c1e"
+    },
+    {
+      "id": "20250627",
+      "path": "calibration_inputs/20250627.csv",
+      "sha256": "76fafc1b74d2ca065f022542ce27f1b7175e0daede274e76bae5977cb2c3aaf8"
+    },
+    {
+      "id": "fixed",
+      "path": "fixed.json",
+      "sha256": "3b1a2209e421b6d39326620b87f4122626f13a4d7dc3a4426f63dfe39c283d2a"
+    }
+  ],
+  "objective": {
+    "direction": "minimize",
+    "metric": "rmse"
+  },
+  "objective_consistency_tolerance": 1e-08,
+  "parameters": [
+    {
+      "lower": 0.3,
+      "name": "K",
+      "upper": 0.9
+    },
+    {
+      "lower": 0.15,
+      "name": "B",
+      "upper": 0.45
+    }
+  ],
+  "schema_version": "1.0",
+  "splits": {
+    "calibration": {
+      "events": [
+        "20150509",
+        "20191031"
+      ]
+    },
+    "validation": {
+      "events": [
+        "20241030",
+        "20250627"
+      ]
+    }
+  },
+  "variables": {
+    "observed": {
+      "semantics": "outlet_discharge",
+      "unit": "m3/s"
+    },
+    "simulated": {
+      "semantics": "outlet_discharge",
+      "unit": "m3/s"
+    }
+  },
+  "warmup": {
+    "confirmed": true,
+    "semantics": "12 steps per independent event; continuous state propagated across scoring split"
+  }
+}

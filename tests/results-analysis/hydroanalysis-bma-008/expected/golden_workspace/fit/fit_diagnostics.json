@@ -1,0 +1,78 @@
+{
+  "starts": [
+    {
+      "start": 0,
+      "converged": false,
+      "reason": "maximum_iterations",
+      "iterations": 1,
+      "mean_loglik_normalized": 0.3004966704023776,
+      "history": [
+        0.1512108016614071,
+        0.3004966704023776
+      ]
+    },
+    {
+      "start": 1,
+      "converged": false,
+      "reason": "maximum_iterations",
+      "iterations": 1,
+      "mean_loglik_normalized": 0.2162077341776108,
+      "history": [
+        0.029173449190850024,
+        0.2162077341776108
+      ]
+    },
+    {
+      "start": 2,
+      "converged": false,
+      "reason": "maximum_iterations",
+      "iterations": 1,
+      "mean_loglik_normalized": 0.29274846716182845,
+      "history": [
+        0.09617003880022043,
+        0.29274846716182845
+      ]
+    },
+    {
+      "start": 3,
+      "converged": false,
+      "reason": "maximum_iterations",
+      "iterations": 1,
+      "mean_loglik_normalized": 0.2579907253678499,
+      "history": [
+        0.15069164155618558,
+        0.2579907253678499
+      ]
+    },
+    {
+      "start": 4,
+      "converged": false,
+      "reason": "maximum_iterations",
+      "iterations": 1,
+      "mean_loglik_normalized": 0.319874893700208,
+      "history": [
+        0.06347591878336191,
+        0.319874893700208
+      ]
+    }
+  ],
+  "sigma_floor_normalized": 1e-06,
+  "settings": {
+    "random_state": 2026,
+    "n_starts": 5,
+    "max_iter": 1,
+    "tol": 1e-15,
+    "m_step": {
+      "method": "L-BFGS-B",
+      "maxiter": 500,
+      "ftol": 1e-12,
+      "gtol": 1e-08
+    },
+    "initialization": {
+      "residual_sigma_floor": 0.01,
+      "intercept_jitter_sd": 0.05,
+      "slope_sigma_log_jitter_sd": 0.2,
+      "weight_dirichlet_alpha": 1
+    }
+  }
+}

@@ -129,6 +129,7 @@
   "id": "hydrodata-timeseries-004",
   "primary_skill": "data-processing/prepare-discharge-timeseries",
   "prompt": "Prepare q from edge_missing.csv. time_recorded is the confirmed instantaneous time column, q is confirmed in m3/s, and timezone is UTC. Explicitly trim leading and trailing missing discharge; do not extrapolate. Interior missing and duplicates must error. Preserve sensor_state without interpreting it. Write CSV outputs under prepared/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "prepared/discharge_timeseries.csv",
     "prepared/series_metadata.json",

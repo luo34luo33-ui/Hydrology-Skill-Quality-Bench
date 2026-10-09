@@ -47,6 +47,7 @@ def test_every_registered_grader_has_deterministic_behavior(tmp_path: Path) -> N
     (data / "ranges.json").write_text(json.dumps({"parameters": {"k": {"min": 0.0, "max": 1.0}}}))
     (workspace / "balance.csv").write_text("precipitation,discharge,evapotranspiration\n10,6,4\n")
     (workspace / "script.py").write_text("raise SystemExit(0)\n")
+    (expected / 'composite.json').write_text(json.dumps({'gates':[{'criteria':[{'type':'file_check','target':'series.csv'}]}]}),encoding='utf-8')
 
     base_series = {
         "target": "series.csv",
@@ -79,9 +80,11 @@ def test_every_registered_grader_has_deterministic_behavior(tmp_path: Path) -> N
         {"type": "volume_check", "scoring": {"zero_at": 0.4, "one_at": 0.0}, **base_series},
         {"type": "water_balance_check", "target": "balance.csv", "scoring": {"zero_at": 0.2, "one_at": 0.0}},
         {"type": "parameter_range", "target": "value.json", "field": "parameters", "ranges_file": "data/ranges.json"},
+        {'type':'scientific_invariant','check':'nonnegative_finite','target':'balance.csv','columns':['precipitation','discharge','evapotranspiration']},
+        {'type':'composite_contract_check','reference':'expected/composite.json'},
     ]
     assert {criterion["type"] for criterion in criteria} | {
-        "raster_match", "vector_match", "artifact_reference_check"
+        "raster_match", "vector_match", "artifact_reference_check", "figure_contract_check", "report_contract_check"
     } == set(grader.GRADERS)
     for criterion in criteria:
         result = grader.grade_criterion(criterion, workspace, test_dir)
@@ -241,6 +244,8 @@ def test_example_tasks_golden_outputs_score_full(tmp_path: Path) -> None:
         "hydrodata-timeseries-*": 12,
         "hydrodata-baseflow-*": 8,
         "hydrodata-flood-events-*": 10,
+        "hydrodata-eto-faopm-*": 3,
+        "hydrodata-forcing-standardize-*": 3,
     }
     for pattern, expected_count in task_groups.items():
         task_dirs = sorted(data_root.glob(pattern))
@@ -257,6 +262,8 @@ def test_example_tasks_golden_outputs_score_full(tmp_path: Path) -> None:
         "hydrodata-stream-network-*": 8,
         "hydrodata-topology-build-*": 9,
         "hydrodata-topology-validate-*": 10,
+        "hydrodata-terrain-topidx-*": 3,
+        "hydrodata-forcing-aggregate-*": 3,
     }
     for pattern, expected_count in spatial_groups.items():
         task_dirs = sorted(spatial_root.glob(pattern))
@@ -289,8 +296,8 @@ def test_example_tasks_golden_outputs_score_full(tmp_path: Path) -> None:
         )
         assert actual == expected_counts
 
-    analysis_task_dir = root / "tests/results-analysis/hydroanalysis-001"
-    analysis_task = schemas.load_json(analysis_task_dir / "task.json")
+    analysis_task_dir = root / "examples/tasks/hydroanalysis-legacy-template"
+    analysis_task = schemas.load_json(analysis_task_dir / "task.example.json")
     analysis_ws = tmp_path / "analysis"
     analysis_ws.mkdir()
     shutil.copy2(analysis_task_dir / "expected/metrics_expected.json", analysis_ws / "metrics.json")
@@ -301,7 +308,7 @@ def test_example_tasks_golden_outputs_score_full(tmp_path: Path) -> None:
 def test_atomic_calibration_golden_outputs_score_full(tmp_path: Path) -> None:
     root = Path.cwd()
     task_dirs = sorted((root / "tests/model-calibration").glob("hydromodel-*-???"))
-    assert len(task_dirs) == 39
+    assert len(task_dirs) == 48
     for task_dir in task_dirs:
         task = schemas.load_json(task_dir / "task.json")
         workspace = tmp_path / task["id"]
@@ -318,8 +325,11 @@ def test_modeling_golden_outputs_score_full(tmp_path: Path) -> None:
         "hydromodel-lohmann-*": 3,
         "hydromodel-muskingum-*": 3,
         "hydromodel-sacsma-*": 3,
+        "hydromodel-swat-sd-*": 3,
         "hydromodel-tank-*": 3,
-        "hydromodel-xaj-*": 3,
+        "hydromodel-topmodel-*": 3,
+        "hydromodel-xaj-0*": 3,
+        "hydromodel-xaj-sd-*": 3,
     }
     for pattern, expected_count in modeling_groups.items():
         task_dirs = sorted((root / "tests/model-calibration").glob(pattern))
@@ -338,6 +348,7 @@ def test_diagnostics_golden_outputs_score_full(tmp_path: Path) -> None:
         "hydroanalysis-series-metrics-*": 3,
         "hydroanalysis-aggregate-metrics-*": 3,
         "hydroanalysis-ml-correct-*": 3,
+        "hydroanalysis-align-discharge-*": 3,
     }
     for pattern, expected_count in diagnostics_groups.items():
         task_dirs = sorted((root / "tests/results-analysis").glob(pattern))

@@ -1,0 +1,14 @@
+{
+  "alpha": 0.95,
+  "alpha_decision": "user-provided",
+  "bfi_max": 0.8,
+  "flow_unit": "m3/s",
+  "method": "Eckhardt digital filter",
+  "recession_pair_count": 0,
+  "row_count": 240,
+  "schema_version": "1.0",
+  "upstream_series_metadata": {
+    "path": "../prepare/series_metadata.json",
+    "sha256": "51461435b7735b570d9f920dc397e7323bbef631905051aab059532c4ff316b4"
+  }
+}

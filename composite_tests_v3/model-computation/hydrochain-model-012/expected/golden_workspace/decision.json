@@ -1,0 +1,53 @@
+{
+  "evidence": [
+    {
+      "path": "calibration/result.json",
+      "sha256": "67ca349199c5dc5977fbcccb662c7013f7321d1f5a0ad7c4770b15e3f3779933"
+    },
+    {
+      "path": "e0/evap/result.json",
+      "sha256": "608ac338022c0ab8431d99a2416294bcecf6ce820cdc4da43ef3f8dc4cc5794a"
+    },
+    {
+      "path": "e0/rain/result.json",
+      "sha256": "e469e52ae55619015be7e0262aaf1eba964f9678793036c8494095535be2ef85"
+    },
+    {
+      "path": "e1/evap/result.json",
+      "sha256": "55666590efcdc051d1208018707ee1ab54650b99dd481ffd7e93bb6187b8ae29"
+    },
+    {
+      "path": "e1/rain/result.json",
+      "sha256": "627cac153f24165f88cde4d6bf7bc36d641cf4fec800366c56548b9298d3c7c6"
+    },
+    {
+      "path": "e2/evap/result.json",
+      "sha256": "16f790de85be60d72f19df9741439463b9adabd3ecc3226555879d0347f393c5"
+    },
+    {
+      "path": "e2/rain/result.json",
+      "sha256": "0f067cd2d342046b581dcb89a1cf60233e9ab687c4151642dd930cfc8ac36dbc"
+    },
+    {
+      "path": "e3/evap/result.json",
+      "sha256": "c4bb0728b748130ca1cb4c638f8a55fe09beea382a1a407803589849ccb64e53"
+    },
+    {
+      "path": "e3/rain/result.json",
+      "sha256": "ad8fbedb9eca43730acda716a4cf3b3a76415df8e575d6f45e6726e4796123ae"
+    },
+    {
+      "path": "metrics/result.json",
+      "sha256": "3165b2110a31899afedf959b0e1aa29b25cbd11940db71d06e664a0a2f1e14e5"
+    },
+    {
+      "path": "summary/result.json",
+      "sha256": "764489b308849819de926fc76ce3e269b83f202e79a7c9d532fb4155a0c05357"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

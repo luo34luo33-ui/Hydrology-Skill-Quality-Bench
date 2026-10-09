@@ -1,0 +1,154 @@
+{
+  "data_description": "A deterministic discharge-alignment fixture with hash-verified synthetic upstream results.",
+  "data_files": [
+    "observed.csv",
+    "observed_result.json",
+    "simulated.csv",
+    "simulation_result.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "results-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "align-out/aligned_discharge.csv": [
+          "time",
+          "simulated_m3_s",
+          "observed_m3_s",
+          "matched",
+          "excluded_reason"
+        ],
+        "align-out/alignment_qc.json": [
+          "model",
+          "simulation_rows",
+          "matched_rows",
+          "warmup_excluded",
+          "evaluation_rows"
+        ],
+        "align-out/evaluation_discharge.csv": [
+          "time",
+          "observed_m3_s",
+          "simulated_m3_s"
+        ],
+        "align-out/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ]
+      },
+      "targets": [
+        "align-out/aligned_discharge.csv",
+        "align-out/evaluation_discharge.csv",
+        "align-out/alignment_qc.json",
+        "align-out/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-09,
+      "name": "aligned_table",
+      "reference": "expected/golden_workspace/align-out/aligned_discharge.csv",
+      "rtol": 1e-09,
+      "target": "align-out/aligned_discharge.csv",
+      "type": "table_match",
+      "weight": 0.2
+    },
+    {
+      "atol": 1e-09,
+      "name": "evaluation_table",
+      "reference": "expected/golden_workspace/align-out/evaluation_discharge.csv",
+      "rtol": 1e-09,
+      "target": "align-out/evaluation_discharge.csv",
+      "type": "table_match",
+      "weight": 0.15
+    },
+    {
+      "atol": 1e-09,
+      "name": "excluded_observations",
+      "reference": "expected/golden_workspace/align-out/excluded_observations.csv",
+      "rtol": 1e-09,
+      "target": "align-out/excluded_observations.csv",
+      "type": "table_match",
+      "weight": 0.1
+    },
+    {
+      "name": "alignment_qc",
+      "reference": "expected/golden_workspace/align-out/alignment_qc.json",
+      "target": "align-out/alignment_qc.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/align-out/result.json",
+      "target": "align-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/align-out/result.json",
+      "target": "align-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/align-out/result.json",
+      "target": "align-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/align-out/result.json",
+      "target": "align-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "aligned",
+        "evaluation",
+        "excluded_observations",
+        "qc"
+      ],
+      "target": "align-out/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.15
+    }
+  ],
+  "id": "hydroanalysis-align-discharge-002",
+  "primary_skill": "post-processing/align-observed-simulated-discharge",
+  "prompt": "Use observed_result.json and simulation_result.json exactly as supplied to run post-processing/align-observed-simulated-discharge. The simulation flags its first two steps as warm-up, and the observations deliberately cover two extra timestamps beyond the simulation window; the native alignment must exclude warm-up rows from the evaluation table and record the unmatched observations in excluded_observations.csv. Write the native outputs (aligned_discharge.csv, evaluation_discharge.csv, excluded_observations.csv, alignment_qc.json, result.json) under align-out/. Do not trim the inputs yourself or force the extra timestamps into the evaluation table.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "align-out/aligned_discharge.csv",
+    "align-out/evaluation_discharge.csv",
+    "align-out/excluded_observations.csv",
+    "align-out/alignment_qc.json",
+    "align-out/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The upstream results are consumed by their native adapters and hash checks; they must not be altered.",
+    "Timestamps carry explicit +08:00 offsets on a complete hourly axis.",
+    "Do not install software or implement a replacement alignment."
+  ],
+  "timeout_seconds": 300,
+  "title": "Exclude warm-up steps and unmatched observations during alignment"
+}

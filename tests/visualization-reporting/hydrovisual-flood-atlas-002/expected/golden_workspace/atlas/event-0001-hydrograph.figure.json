@@ -1,0 +1,72 @@
+{
+  "event_id": 1,
+  "language": "en",
+  "layers": [
+    {
+      "display_transform": "existing is_warmup; light gray warmup, white event background",
+      "id": "warmup",
+      "palette": "warmup-gray",
+      "source": "extract_result.artifacts.event_process"
+    },
+    {
+      "display_transform": "no value transform; black solid total flow, dark gray dashed baseflow",
+      "id": "discharge-baseflow",
+      "palette": "black-darkgray",
+      "source": "extract_result.artifacts.event_process"
+    },
+    {
+      "display_transform": "existing peak_time and peak_flow_m3_s",
+      "id": "event-peaks",
+      "palette": "red",
+      "source": "extract_result.artifacts.event_summary"
+    },
+    {
+      "display_transform": "peak_flow_m3_s=173.48519306085268; total_volume_m3=13109473.83951515; duration_hours=62.0; volume display=raw m3/100000000, rounded 2 decimals; other displays rounded 1 decimal; no recomputation",
+      "id": "event-metrics",
+      "palette": "black",
+      "source": "extract_result.artifacts.event_summary"
+    },
+    {
+      "display_transform": "basin mean depth mm/step; interval_end; step_seconds=3600.0; display bars sum observed values in 1 consecutive steps (last bin may be shorter); missing_steps=71; missing bars/bins omitted; partial bins show observed subtotal; no zero filling or interpolation",
+      "id": "basin-rainfall",
+      "palette": "light-blue",
+      "source": "rainfall"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "event-0001-hydrograph.png",
+      "sha256": "4cd76a32997a5271bf006eee99363a6888368481dc1e421fd831aeb28aff41fd"
+    },
+    "svg": {
+      "path": "event-0001-hydrograph.svg",
+      "sha256": "52c2894941e90f9490bca2527f95f8919fe2bc0f86b6d5ad34e1b419081a0c7b"
+    }
+  },
+  "pixel_size": {
+    "height": 1200,
+    "width": 2400
+  },
+  "publication_ready": false,
+  "schema_version": "1.0",
+  "source_results": {
+    "extract_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\events\\result.json",
+      "sha256": "24c5cb2ac3d53ac669b964897d3980aee4f936da4fd865773514e432b7967b70"
+    },
+    "rainfall": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\流域 雨量.csv",
+      "sha256": "96e296d5ef677dad81c9bf790ba0cf30dfc0d6dc72bbf84704b9a28f290d08f6"
+    },
+    "rainfall_metadata": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-i7z2cxwy\\雨量 元数据.json",
+      "sha256": "44e05b3510b1e8f7e81094fdd0085cadea634e0cfdc65f09d4d07672ec1db0f0"
+    }
+  },
+  "template_id": "event-0001-hydrograph",
+  "template_version": "hydrotune.flood-event-atlas.v2",
+  "title": "Flood event 0001",
+  "warnings": [
+    "Rainfall missing at 236 display steps; only observed rainfall is plotted, without zero filling or interpolation"
+  ]
+}

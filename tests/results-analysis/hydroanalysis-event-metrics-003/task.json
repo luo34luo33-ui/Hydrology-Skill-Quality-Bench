@@ -87,6 +87,7 @@
   "id": "hydroanalysis-event-metrics-003",
   "primary_skill": "evaluation-diagnostics/compute-event-flood-metrics",
   "prompt": "Use the two event tables under events/ exactly as supplied to run evaluation-diagnostics/compute-event-flood-metrics. Event 02 contains missing Q_obs values; run the skill verbatim with --timestep-hours 1 and thresholds.json. The native contract scores the healthy event, records the QC failure for the broken one, and reports an error result.json alongside the partial event_metrics.csv under event-metrics/. Do not fill, interpolate, or drop the missing values; do not repair event 02; do not suppress the QC failure. Keep the native partial outputs exactly as the script produces them.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "event-metrics/event_metrics.csv",
     "event-metrics/result.json"

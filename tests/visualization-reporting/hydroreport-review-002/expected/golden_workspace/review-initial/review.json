@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "original_sources",
+    "report_values_units_context",
+    "markdown",
+    "tables",
+    "figures",
+    "narrative_bindings"
+  ],
+  "findings": [
+    {
+      "action": "Inspect evidence and revise; finalize again without changing upstream data.",
+      "actual": "not completed",
+      "category": "semantic_review",
+      "evidence_location": "/sections",
+      "expected": "Independent Agent evidence assessment",
+      "needs_human_judgment": true,
+      "report_location": "/sections",
+      "severity": "warning"
+    }
+  ],
+  "package_fingerprint": "0af476743016bfed3985275d6f7fc75ffffbcc7c29458621611aede2918d7556",
+  "schema_version": "1.0",
+  "semantic_review_completed": false,
+  "status": "needs_human_review"
+}

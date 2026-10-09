@@ -1,0 +1,40 @@
+{
+  "initial": {
+    "soil_fraction": 0.4
+  },
+  "parameter_overrides": {},
+  "reach_params_by_id": {
+    "1": {
+      "evap_m3_day": 0.0,
+      "musk_k_hr": 10.0,
+      "musk_x": 0.2,
+      "scoef": 1.0,
+      "trans_loss_m3_day": 0.0,
+      "ttime_hr": 4.0
+    },
+    "2": {
+      "evap_m3_day": 0.0,
+      "musk_k_hr": 10.0,
+      "musk_x": 0.2,
+      "scoef": 1.0,
+      "trans_loss_m3_day": 0.0,
+      "ttime_hr": 4.0
+    }
+  },
+  "schema_version": "1.0",
+  "simulation": {
+    "end": "2020-07-30T00:00:00+08:00",
+    "start": "2020-07-06T00:00:00+08:00"
+  },
+  "swat": {
+    "channel_profile": "muskingum",
+    "cn_mode": "static",
+    "profile": "simplified"
+  },
+  "time": {
+    "step_seconds": 86400,
+    "timestamp_meaning": "interval_end",
+    "timezone": "Asia/Shanghai"
+  },
+  "warmup_steps": 5
+}

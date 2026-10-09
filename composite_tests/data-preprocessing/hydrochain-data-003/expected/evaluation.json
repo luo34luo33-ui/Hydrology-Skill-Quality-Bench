@@ -1,0 +1,879 @@
+{
+  "core_capabilities": [
+    "dem_grid",
+    "d8_network",
+    "hydrobase",
+    "independent_topology_qc"
+  ],
+  "critical_rules": [
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "strahler_order",
+          "length_m",
+          "elev_up_m",
+          "elev_down_m",
+          "drop_m",
+          "slope_m_m",
+          "slope_percent",
+          "elevation_step_count",
+          "negative_elevation_step_count",
+          "upstream_count",
+          "downstream_reach_id",
+          "downstream_sub_id",
+          "topo_level",
+          "is_headwater",
+          "is_outlet"
+        ],
+        "reference": "expected/golden_workspace/hydrobase/reaches.csv",
+        "rtol": 0.01,
+        "target": "hydrobase/reaches.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "hydrobase/reaches.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "area_km2",
+          "cell_count",
+          "reach_count",
+          "reach_ids",
+          "outlet_reach_ids"
+        ],
+        "reference": "expected/golden_workspace/hydrobase/subbasins.csv",
+        "rtol": 0.01,
+        "target": "hydrobase/subbasins.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "hydrobase/subbasins.csv"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "upstream_count",
+          "downstream_sub_id",
+          "downstream_reach_id",
+          "topo_level",
+          "is_headwater",
+          "is_outlet"
+        ],
+        "reference": "expected/golden_workspace/hydrobase/topology.csv",
+        "rtol": 0.01,
+        "target": "hydrobase/topology.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "hydrobase/topology.csv"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "EPSG:32649",
+        "field": "parameters.target_crs",
+        "target": "prepared/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "prepared/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": "m",
+        "field": "parameters.vertical_unit",
+        "target": "prepared/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "prepared/result.json"
+      ]
+    },
+    {
+      "code": "wrong_units_or_scientific_organization",
+      "criterion": {
+        "check": "json_value",
+        "expected": 1,
+        "field": "parameters.expected_outlets",
+        "target": "topology-qc/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "topology-qc/result.json"
+      ]
+    },
+    {
+      "code": "material_scientific_numeric_error",
+      "criterion": {
+        "atol": 0.001,
+        "check": "material_numeric_error",
+        "columns": [
+          "count"
+        ],
+        "reference": "expected/golden_workspace/topology-qc/topology_checks.csv",
+        "rtol": 0.01,
+        "target": "topology-qc/topology_checks.csv",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "topology-qc/topology_checks.csv"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "hydrobase/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "hydrobase/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "hydrology/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "hydrology/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "prepared/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "prepared/result.json"
+      ]
+    },
+    {
+      "code": "false_or_stale_evidence",
+      "criterion": {
+        "check": "manifest_integrity",
+        "target": "topology-qc/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "topology-qc/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": "m",
+        "field": "parameters.vertical_unit",
+        "target": "prepared/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "prepared/result.json"
+      ]
+    },
+    {
+      "code": "wrong_provided_scientific_setting",
+      "criterion": {
+        "check": "json_value",
+        "expected": 1,
+        "field": "parameters.expected_outlets",
+        "target": "topology-qc/result.json",
+        "type": "scientific_invariant"
+      },
+      "requires": [
+        "topology-qc/result.json"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.basin_boundary",
+      "id": "hydrobase/result.json:inputs.basin_boundary",
+      "upstream": "prepared/basin_normalized.gpkg"
+    },
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.d8_pointer",
+      "id": "hydrobase/result.json:inputs.d8_pointer",
+      "upstream": "hydrology/d8_pointer.tif"
+    },
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.filled_dem",
+      "id": "hydrobase/result.json:inputs.filled_dem",
+      "upstream": "hydrology/dem_filled.tif"
+    },
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.flow_accumulation",
+      "id": "hydrobase/result.json:inputs.flow_accumulation",
+      "upstream": "hydrology/flow_accumulation_cells.tif"
+    },
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.stream_links",
+      "id": "hydrobase/result.json:inputs.stream_links",
+      "upstream": "hydrology/stream_links.tif"
+    },
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.stream_order",
+      "id": "hydrobase/result.json:inputs.stream_order",
+      "upstream": "hydrology/strahler_order.tif"
+    },
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.subbasins",
+      "id": "hydrobase/result.json:inputs.subbasins",
+      "upstream": "hydrology/subbasins.tif"
+    },
+    {
+      "downstream": "hydrobase/result.json",
+      "field": "inputs.upstream_result_1",
+      "id": "hydrobase/result.json:inputs.upstream_result_1",
+      "upstream": "prepared/result.json"
+    },
+    {
+      "downstream": "hydrology/result.json",
+      "field": "inputs.analysis_dem",
+      "id": "hydrology/result.json:inputs.analysis_dem",
+      "upstream": "prepared/dem_analysis_buffer.tif"
+    },
+    {
+      "downstream": "prepared/result.json",
+      "field": "inputs.basin_boundary",
+      "id": "prepared/result.json:inputs.basin_boundary",
+      "upstream": "basin.gpkg"
+    },
+    {
+      "downstream": "prepared/result.json",
+      "field": "inputs.source_dem",
+      "id": "prepared/result.json:inputs.source_dem",
+      "upstream": "dem_100m.tif"
+    },
+    {
+      "downstream": "topology-qc/result.json",
+      "field": "inputs.build_result",
+      "id": "topology-qc/result.json:inputs.build_result",
+      "upstream": "hydrobase/result.json"
+    }
+  ],
+  "forbidden_outputs": [],
+  "gates": [
+    {
+      "criteria": [
+        {
+          "check": "protected_sources",
+          "reference": "expected/protected_sources.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "scenario.json"
+      ],
+      "id": "protected_sources"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "reach_id",
+            "sub_id",
+            "strahler_order",
+            "length_m",
+            "elev_up_m",
+            "elev_down_m",
+            "drop_m",
+            "slope_m_m",
+            "slope_percent",
+            "elevation_step_count",
+            "negative_elevation_step_count",
+            "upstream_count",
+            "upstream_reach_ids",
+            "downstream_reach_id",
+            "downstream_sub_id",
+            "topo_level",
+            "is_headwater",
+            "is_outlet"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/hydrobase/reaches.csv",
+          "rtol": 1e-06,
+          "target": "hydrobase/reaches.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "hydrobase/reaches.csv"
+      ],
+      "id": "hydrobase/reaches.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "reference": "expected/golden_workspace/hydrobase/reaches_clipped.gpkg",
+          "rtol": 1e-06,
+          "target": "hydrobase/reaches_clipped.gpkg",
+          "type": "vector_match",
+          "geometry_tolerance": 1e-06
+        }
+      ],
+      "evidence": [
+        "hydrobase/reaches_clipped.gpkg"
+      ],
+      "id": "hydrobase/reaches_clipped.gpkg"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/hydrobase/result.json",
+          "target": "hydrobase/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "hydrobase/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "hydrobase/result.json"
+      ],
+      "id": "hydrobase/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrobase/stream_links_clipped.tif",
+          "rtol": 1e-06,
+          "target": "hydrobase/stream_links_clipped.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrobase/stream_links_clipped.tif"
+      ],
+      "id": "hydrobase/stream_links_clipped.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrobase/stream_order_clipped.tif",
+          "rtol": 1e-06,
+          "target": "hydrobase/stream_order_clipped.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrobase/stream_order_clipped.tif"
+      ],
+      "id": "hydrobase/stream_order_clipped.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "sub_id",
+            "area_km2",
+            "cell_count",
+            "reach_count",
+            "reach_ids",
+            "outlet_reach_ids"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/hydrobase/subbasins.csv",
+          "rtol": 1e-06,
+          "target": "hydrobase/subbasins.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "hydrobase/subbasins.csv"
+      ],
+      "id": "hydrobase/subbasins.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrobase/subbasins_clipped.tif",
+          "rtol": 1e-06,
+          "target": "hydrobase/subbasins_clipped.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrobase/subbasins_clipped.tif"
+      ],
+      "id": "hydrobase/subbasins_clipped.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "sub_id",
+            "reach_id",
+            "upstream_count",
+            "upstream_reach_ids",
+            "downstream_sub_id",
+            "downstream_reach_id",
+            "topo_level",
+            "is_headwater",
+            "is_outlet"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/hydrobase/topology.csv",
+          "rtol": 1e-06,
+          "target": "hydrobase/topology.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "hydrobase/topology.csv"
+      ],
+      "id": "hydrobase/topology.csv"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrology/d8_pointer.tif",
+          "rtol": 1e-06,
+          "target": "hydrology/d8_pointer.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrology/d8_pointer.tif"
+      ],
+      "id": "hydrology/d8_pointer.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrology/dem_filled.tif",
+          "rtol": 1e-06,
+          "target": "hydrology/dem_filled.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrology/dem_filled.tif"
+      ],
+      "id": "hydrology/dem_filled.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrology/flow_accumulation_cells.tif",
+          "rtol": 1e-06,
+          "target": "hydrology/flow_accumulation_cells.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrology/flow_accumulation_cells.tif"
+      ],
+      "id": "hydrology/flow_accumulation_cells.tif"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/hydrology/result.json",
+          "target": "hydrology/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "hydrology/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "hydrology/result.json"
+      ],
+      "id": "hydrology/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrology/strahler_order.tif",
+          "rtol": 1e-06,
+          "target": "hydrology/strahler_order.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrology/strahler_order.tif"
+      ],
+      "id": "hydrology/strahler_order.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrology/stream_links.tif",
+          "rtol": 1e-06,
+          "target": "hydrology/stream_links.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrology/stream_links.tif"
+      ],
+      "id": "hydrology/stream_links.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "reference": "expected/golden_workspace/hydrology/streams.gpkg",
+          "rtol": 1e-06,
+          "target": "hydrology/streams.gpkg",
+          "type": "vector_match",
+          "geometry_tolerance": 1e-06
+        }
+      ],
+      "evidence": [
+        "hydrology/streams.gpkg"
+      ],
+      "id": "hydrology/streams.gpkg"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrology/streams.tif",
+          "rtol": 1e-06,
+          "target": "hydrology/streams.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrology/streams.tif"
+      ],
+      "id": "hydrology/streams.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/hydrology/subbasins.tif",
+          "rtol": 1e-06,
+          "target": "hydrology/subbasins.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "hydrology/subbasins.tif"
+      ],
+      "id": "hydrology/subbasins.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "reference": "expected/golden_workspace/prepared/basin_normalized.gpkg",
+          "rtol": 1e-06,
+          "target": "prepared/basin_normalized.gpkg",
+          "type": "vector_match",
+          "geometry_tolerance": 1e-06
+        }
+      ],
+      "evidence": [
+        "prepared/basin_normalized.gpkg"
+      ],
+      "id": "prepared/basin_normalized.gpkg"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/prepared/dem_analysis_buffer.tif",
+          "rtol": 1e-06,
+          "target": "prepared/dem_analysis_buffer.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "prepared/dem_analysis_buffer.tif"
+      ],
+      "id": "prepared/dem_analysis_buffer.tif"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-05,
+          "reference": "expected/golden_workspace/prepared/dem_metric.tif",
+          "rtol": 1e-06,
+          "target": "prepared/dem_metric.tif",
+          "type": "raster_match"
+        }
+      ],
+      "evidence": [
+        "prepared/dem_metric.tif"
+      ],
+      "id": "prepared/dem_metric.tif"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/prepared/result.json",
+          "target": "prepared/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "prepared/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "prepared/result.json"
+      ],
+      "id": "prepared/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/contracts/topology-qc/result.json",
+          "target": "topology-qc/result.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "manifest_integrity",
+          "target": "topology-qc/result.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "topology-qc/result.json"
+      ],
+      "id": "topology-qc/result.json"
+    },
+    {
+      "criteria": [
+        {
+          "atol": 1e-06,
+          "columns": [
+            "check",
+            "status",
+            "count",
+            "details"
+          ],
+          "datetime_columns": [],
+          "reference": "expected/golden_workspace/topology-qc/topology_checks.csv",
+          "rtol": 1e-06,
+          "target": "topology-qc/topology_checks.csv",
+          "type": "table_match"
+        }
+      ],
+      "evidence": [
+        "topology-qc/topology_checks.csv"
+      ],
+      "id": "topology-qc/topology_checks.csv"
+    },
+    {
+      "criteria": [
+        {
+          "check": "json_contract",
+          "reference": "expected/decision.json",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        },
+        {
+          "check": "decision_evidence",
+          "target": "decision.json",
+          "type": "scientific_invariant"
+        }
+      ],
+      "evidence": [
+        "decision.json"
+      ],
+      "id": "decision"
+    }
+  ],
+  "interaction_mode": "none",
+  "provided_settings": [
+    {
+      "bindings": [
+        {
+          "expected": "m",
+          "field": "parameters.vertical_unit",
+          "target": "prepared/result.json"
+        }
+      ],
+      "field": "vertical_unit",
+      "key": "vertical_unit",
+      "source": "scenario.json"
+    },
+    {
+      "bindings": [
+        {
+          "expected": 1,
+          "field": "parameters.expected_outlets",
+          "target": "topology-qc/result.json"
+        }
+      ],
+      "field": "expected_outlets",
+      "key": "expected_outlets",
+      "source": "scenario.json"
+    }
+  ],
+  "reference_execution": [
+    {
+      "arguments": [
+        "--dem",
+        "dem_100m.tif",
+        "--basin",
+        "basin.gpkg",
+        "--analysis-buffer-km",
+        "3",
+        "--vertical-unit",
+        "m",
+        "--output-dir",
+        "prepared"
+      ],
+      "exit_code": 0,
+      "program": "spatial-analysis/prepare-dem-analysis-grid",
+      "stderr": "",
+      "stdout": "success: DEM analysis grid prepared\n"
+    },
+    {
+      "arguments": [
+        "--analysis-dem",
+        "prepared/dem_analysis_buffer.tif",
+        "--stream-init-area-km2",
+        "100",
+        "--whitebox-dir",
+        "E:\\Hydrology-Skill-Quality-Bench\\.cache\\whitebox\\extracted\\WhiteboxTools_win_amd64\\WBT",
+        "--output-dir",
+        "hydrology"
+      ],
+      "exit_code": 0,
+      "program": "spatial-analysis/extract-dem-stream-network",
+      "stderr": "",
+      "stdout": ".\\whitebox_tools.exe --run=\"FillDepressions\" --dem='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\prepared\\dem_analysis_buffer.tif' --output='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\dem_filled.tif' --fix_flats -v --compress_rasters=True\n\n******************************\n* Welcome to FillDepressions *\n* Powered by WhiteboxTools   *\n* www.whiteboxgeo.com        *\n******************************\nReading data...\nFinding pit cells: 100%\nFilling depressions: 0%\nFilling depressions: 1%\nFilling depressions: 2%\nFilling depressions: 3%\nFilling depressions: 4%\nFilling depressions: 5%\nFilling depressions: 6%\nFilling depressions: 7%\nFilling depressions: 8%\nFilling depressions: 9%\nFilling depressions: 10%\nFilling depressions: 11%\nFilling depressions: 12%\nFilling depressions: 13%\nFilling depressions: 14%\nFilling depressions: 15%\nFilling depressions: 16%\nFilling depressions: 17%\nFilling depressions: 18%\nFilling depressions: 19%\nFilling depressions: 20%\nFilling depressions: 21%\nFilling depressions: 22%\nFilling depressions: 23%\nFilling depressions: 24%\nFilling depressions: 25%\nFilling depressions: 26%\nFilling depressions: 27%\nFilling depressions: 28%\nFilling depressions: 29%\nFilling depressions: 30%\nFilling depressions: 31%\nFilling depressions: 32%\nFilling depressions: 33%\nFilling depressions: 34%\nFilling depressions: 35%\nFilling depressions: 36%\nFilling depressions: 37%\nFilling depressions: 38%\nFilling depressions: 39%\nFilling depressions: 40%\nFilling depressions: 41%\nFilling depressions: 42%\nFilling depressions: 43%\nFilling depressions: 44%\nFilling depressions: 45%\nFilling depressions: 46%\nFilling depressions: 47%\nFilling depressions: 48%\nFilling depressions: 49%\nFilling depressions: 50%\nFilling depressions: 51%\nFilling depressions: 52%\nFilling depressions: 53%\nFilling depressions: 54%\nFilling depressions: 55%\nFilling depressions: 56%\nFilling depressions: 57%\nFilling depressions: 58%\nFilling depressions: 59%\nFilling depressions: 60%\nFilling depressions: 61%\nFilling depressions: 62%\nFilling depressions: 63%\nFilling depressions: 64%\nFilling depressions: 65%\nFilling depressions: 66%\nFilling depressions: 67%\nFilling depressions: 68%\nFilling depressions: 69%\nFilling depressions: 70%\nFilling depressions: 71%\nFilling depressions: 72%\nFilling depressions: 73%\nFilling depressions: 74%\nFilling depressions: 75%\nFilling depressions: 76%\nFilling depressions: 77%\nFilling depressions: 78%\nFilling depressions: 79%\nFilling depressions: 80%\nFilling depressions: 81%\nFilling depressions: 82%\nFilling depressions: 83%\nFilling depressions: 84%\nFilling depressions: 85%\nFilling depressions: 86%\nFilling depressions: 87%\nFilling depressions: 88%\nFilling depressions: 89%\nFilling depressions: 90%\nFilling depressions: 91%\nFilling depressions: 92%\nFilling depressions: 93%\nFilling depressions: 94%\nFilling depressions: 95%\nFilling depressions: 96%\nFilling depressions: 97%\nFilling depressions: 98%\nFilling depressions: 99%\nFilling depressions: 100%\nFixing flow on flats...\nFlats increment value: 0.00142\nFixing flats: 0%\nFixing flats: 1%\nFixing flats: 2%\nFixing flats: 3%\nFixing flats: 4%\nFixing flats: 5%\nFixing flats: 6%\nFixing flats: 7%\nFixing flats: 8%\nFixing flats: 9%\nFixing flats: 10%\nFixing flats: 11%\nFixing flats: 12%\nFixing flats: 13%\nFixing flats: 14%\nFixing flats: 15%\nFixing flats: 16%\nFixing flats: 17%\nFixing flats: 18%\nFixing flats: 19%\nFixing flats: 20%\nFixing flats: 21%\nFixing flats: 22%\nFixing flats: 23%\nFixing flats: 24%\nFixing flats: 25%\nFixing flats: 26%\nFixing flats: 27%\nFixing flats: 28%\nFixing flats: 29%\nFixing flats: 30%\nFixing flats: 31%\nFixing flats: 32%\nFixing flats: 33%\nFixing flats: 34%\nFixing flats: 35%\nFixing flats: 36%\nFixing flats: 37%\nFixing flats: 38%\nFixing flats: 39%\nFixing flats: 40%\nFixing flats: 41%\nFixing flats: 42%\nFixing flats: 43%\nFixing flats: 44%\nFixing flats: 45%\nFixing flats: 46%\nFixing flats: 47%\nFixing flats: 48%\nFixing flats: 49%\nFixing flats: 50%\nFixing flats: 51%\nFixing flats: 52%\nFixing flats: 53%\nFixing flats: 54%\nFixing flats: 55%\nFixing flats: 56%\nFixing flats: 57%\nFixing flats: 58%\nFixing flats: 59%\nFixing flats: 60%\nFixing flats: 61%\nFixing flats: 62%\nFixing flats: 63%\nFixing flats: 64%\nFixing flats: 65%\nFixing flats: 66%\nFixing flats: 67%\nFixing flats: 68%\nFixing flats: 69%\nFixing flats: 70%\nFixing flats: 71%\nFixing flats: 72%\nFixing flats: 73%\nFixing flats: 74%\nFixing flats: 75%\nFixing flats: 76%\nFixing flats: 77%\nFixing flats: 78%\nFixing flats: 79%\nFixing flats: 80%\nFixing flats: 81%\nFixing flats: 82%\nFixing flats: 83%\nFixing flats: 84%\nFixing flats: 85%\nFixing flats: 86%\nFixing flats: 87%\nFixing flats: 88%\nFixing flats: 89%\nFixing flats: 90%\nFixing flats: 91%\nFixing flats: 92%\nFixing flats: 93%\nFixing flats: 94%\nFixing flats: 95%\nFixing flats: 96%\nFixing flats: 97%\nFixing flats: 98%\nFixing flats: 99%\nFixing flats: 100%\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.5s\n.\\whitebox_tools.exe --run=\"D8Pointer\" --dem='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\dem_filled.tif' --output='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\d8_pointer.tif' -v --compress_rasters=True\n\n****************************\n* Welcome to D8Pointer     *\n* Powered by WhiteboxTools *\n* www.whiteboxgeo.com      *\n****************************\nReading data...\nProgress: 0%\nProgress: 1%\nProgress: 2%\nProgress: 3%\nProgress: 4%\nProgress: 5%\nProgress: 6%\nProgress: 7%\nProgress: 8%\nProgress: 9%\nProgress: 10%\nProgress: 11%\nProgress: 12%\nProgress: 13%\nProgress: 14%\nProgress: 15%\nProgress: 16%\nProgress: 17%\nProgress: 18%\nProgress: 19%\nProgress: 20%\nProgress: 21%\nProgress: 22%\nProgress: 23%\nProgress: 24%\nProgress: 25%\nProgress: 26%\nProgress: 27%\nProgress: 28%\nProgress: 29%\nProgress: 30%\nProgress: 31%\nProgress: 32%\nProgress: 33%\nProgress: 34%\nProgress: 35%\nProgress: 36%\nProgress: 37%\nProgress: 38%\nProgress: 39%\nProgress: 40%\nProgress: 41%\nProgress: 42%\nProgress: 43%\nProgress: 44%\nProgress: 45%\nProgress: 46%\nProgress: 47%\nProgress: 48%\nProgress: 49%\nProgress: 50%\nProgress: 51%\nProgress: 52%\nProgress: 53%\nProgress: 54%\nProgress: 55%\nProgress: 56%\nProgress: 57%\nProgress: 58%\nProgress: 59%\nProgress: 60%\nProgress: 61%\nProgress: 62%\nProgress: 63%\nProgress: 64%\nProgress: 65%\nProgress: 66%\nProgress: 67%\nProgress: 68%\nProgress: 69%\nProgress: 70%\nProgress: 71%\nProgress: 72%\nProgress: 73%\nProgress: 74%\nProgress: 75%\nProgress: 76%\nProgress: 77%\nProgress: 78%\nProgress: 79%\nProgress: 80%\nProgress: 81%\nProgress: 82%\nProgress: 83%\nProgress: 84%\nProgress: 85%\nProgress: 86%\nProgress: 87%\nProgress: 88%\nProgress: 89%\nProgress: 90%\nProgress: 91%\nProgress: 92%\nProgress: 93%\nProgress: 94%\nProgress: 95%\nProgress: 96%\nProgress: 97%\nProgress: 98%\nProgress: 99%\nProgress: 100%\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.4s\n.\\whitebox_tools.exe --run=\"D8FlowAccumulation\" --input='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\d8_pointer.tif' --output='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\flow_accumulation_cells.tif' --out_type=cells --pntr -v --compress_rasters=True\n\n*********************************\n* Welcome to D8FlowAccumulation *\n* Powered by WhiteboxTools      *\n* www.whiteboxgeo.com           *\n*********************************\nReading data...\nFlow directions: 0%\nFlow directions: 1%\nFlow directions: 2%\nFlow directions: 3%\nFlow directions: 4%\nFlow directions: 5%\nFlow directions: 6%\nFlow directions: 7%\nFlow directions: 8%\nFlow directions: 9%\nFlow directions: 10%\nFlow directions: 11%\nFlow directions: 12%\nFlow directions: 13%\nFlow directions: 14%\nFlow directions: 15%\nFlow directions: 16%\nFlow directions: 17%\nFlow directions: 18%\nFlow directions: 19%\nFlow directions: 20%\nFlow directions: 21%\nFlow directions: 22%\nFlow directions: 23%\nFlow directions: 24%\nFlow directions: 25%\nFlow directions: 26%\nFlow directions: 27%\nFlow directions: 28%\nFlow directions: 29%\nFlow directions: 30%\nFlow directions: 31%\nFlow directions: 32%\nFlow directions: 33%\nFlow directions: 34%\nFlow directions: 35%\nFlow directions: 36%\nFlow directions: 37%\nFlow directions: 38%\nFlow directions: 39%\nFlow directions: 40%\nFlow directions: 41%\nFlow directions: 42%\nFlow directions: 43%\nFlow directions: 44%\nFlow directions: 45%\nFlow directions: 46%\nFlow directions: 47%\nFlow directions: 48%\nFlow directions: 49%\nFlow directions: 50%\nFlow directions: 51%\nFlow directions: 52%\nFlow directions: 53%\nFlow directions: 54%\nFlow directions: 55%\nFlow directions: 56%\nFlow directions: 57%\nFlow directions: 58%\nFlow directions: 59%\nFlow directions: 60%\nFlow directions: 61%\nFlow directions: 62%\nFlow directions: 63%\nFlow directions: 64%\nFlow directions: 65%\nFlow directions: 66%\nFlow directions: 67%\nFlow directions: 68%\nFlow directions: 69%\nFlow directions: 70%\nFlow directions: 71%\nFlow directions: 72%\nFlow directions: 73%\nFlow directions: 74%\nFlow directions: 75%\nFlow directions: 76%\nFlow directions: 77%\nFlow directions: 78%\nFlow directions: 79%\nFlow directions: 80%\nFlow directions: 81%\nFlow directions: 82%\nFlow directions: 83%\nFlow directions: 84%\nFlow directions: 85%\nFlow directions: 86%\nFlow directions: 87%\nFlow directions: 88%\nFlow directions: 89%\nFlow directions: 90%\nFlow directions: 91%\nFlow directions: 92%\nFlow directions: 93%\nFlow directions: 94%\nFlow directions: 95%\nFlow directions: 96%\nFlow directions: 97%\nFlow directions: 98%\nFlow directions: 99%\nFlow directions: 100%\nNum. inflowing neighbours: 0%\nNum. inflowing neighbours: 1%\nNum. inflowing neighbours: 2%\nNum. inflowing neighbours: 3%\nNum. inflowing neighbours: 4%\nNum. inflowing neighbours: 5%\nNum. inflowing neighbours: 6%\nNum. inflowing neighbours: 7%\nNum. inflowing neighbours: 8%\nNum. inflowing neighbours: 9%\nNum. inflowing neighbours: 10%\nNum. inflowing neighbours: 11%\nNum. inflowing neighbours: 12%\nNum. inflowing neighbours: 13%\nNum. inflowing neighbours: 14%\nNum. inflowing neighbours: 15%\nNum. inflowing neighbours: 16%\nNum. inflowing neighbours: 17%\nNum. inflowing neighbours: 18%\nNum. inflowing neighbours: 19%\nNum. inflowing neighbours: 20%\nNum. inflowing neighbours: 21%\nNum. inflowing neighbours: 22%\nNum. inflowing neighbours: 23%\nNum. inflowing neighbours: 24%\nNum. inflowing neighbours: 25%\nNum. inflowing neighbours: 26%\nNum. inflowing neighbours: 27%\nNum. inflowing neighbours: 28%\nNum. inflowing neighbours: 29%\nNum. inflowing neighbours: 30%\nNum. inflowing neighbours: 31%\nNum. inflowing neighbours: 32%\nNum. inflowing neighbours: 33%\nNum. inflowing neighbours: 34%\nNum. inflowing neighbours: 35%\nNum. inflowing neighbours: 36%\nNum. inflowing neighbours: 37%\nNum. inflowing neighbours: 38%\nNum. inflowing neighbours: 39%\nNum. inflowing neighbours: 40%\nNum. inflowing neighbours: 41%\nNum. inflowing neighbours: 42%\nNum. inflowing neighbours: 43%\nNum. inflowing neighbours: 44%\nNum. inflowing neighbours: 45%\nNum. inflowing neighbours: 46%\nNum. inflowing neighbours: 47%\nNum. inflowing neighbours: 48%\nNum. inflowing neighbours: 49%\nNum. inflowing neighbours: 50%\nNum. inflowing neighbours: 51%\nNum. inflowing neighbours: 52%\nNum. inflowing neighbours: 53%\nNum. inflowing neighbours: 54%\nNum. inflowing neighbours: 55%\nNum. inflowing neighbours: 56%\nNum. inflowing neighbours: 57%\nNum. inflowing neighbours: 58%\nNum. inflowing neighbours: 59%\nNum. inflowing neighbours: 60%\nNum. inflowing neighbours: 61%\nNum. inflowing neighbours: 62%\nNum. inflowing neighbours: 63%\nNum. inflowing neighbours: 64%\nNum. inflowing neighbours: 65%\nNum. inflowing neighbours: 66%\nNum. inflowing neighbours: 67%\nNum. inflowing neighbours: 68%\nNum. inflowing neighbours: 69%\nNum. inflowing neighbours: 70%\nNum. inflowing neighbours: 71%\nNum. inflowing neighbours: 72%\nNum. inflowing neighbours: 73%\nNum. inflowing neighbours: 74%\nNum. inflowing neighbours: 75%\nNum. inflowing neighbours: 76%\nNum. inflowing neighbours: 77%\nNum. inflowing neighbours: 78%\nNum. inflowing neighbours: 79%\nNum. inflowing neighbours: 80%\nNum. inflowing neighbours: 81%\nNum. inflowing neighbours: 82%\nNum. inflowing neighbours: 83%\nNum. inflowing neighbours: 84%\nNum. inflowing neighbours: 85%\nNum. inflowing neighbours: 86%\nNum. inflowing neighbours: 87%\nNum. inflowing neighbours: 88%\nNum. inflowing neighbours: 89%\nNum. inflowing neighbours: 90%\nNum. inflowing neighbours: 91%\nNum. inflowing neighbours: 92%\nNum. inflowing neighbours: 93%\nNum. inflowing neighbours: 94%\nNum. inflowing neighbours: 95%\nNum. inflowing neighbours: 96%\nNum. inflowing neighbours: 97%\nNum. inflowing neighbours: 98%\nNum. inflowing neighbours: 99%\nNum. inflowing neighbours: 100%\nFlow accumulation: 44%\nFlow accumulation: 45%\nFlow accumulation: 46%\nFlow accumulation: 47%\nFlow accumulation: 48%\nFlow accumulation: 49%\nFlow accumulation: 50%\nFlow accumulation: 51%\nFlow accumulation: 52%\nFlow accumulation: 53%\nFlow accumulation: 54%\nFlow accumulation: 55%\nFlow accumulation: 56%\nFlow accumulation: 57%\nFlow accumulation: 58%\nFlow accumulation: 59%\nFlow accumulation: 60%\nFlow accumulation: 61%\nFlow accumulation: 62%\nFlow accumulation: 63%\nFlow accumulation: 64%\nFlow accumulation: 65%\nFlow accumulation: 66%\nFlow accumulation: 67%\nFlow accumulation: 68%\nFlow accumulation: 69%\nFlow accumulation: 70%\nFlow accumulation: 71%\nFlow accumulation: 72%\nFlow accumulation: 73%\nFlow accumulation: 74%\nFlow accumulation: 75%\nFlow accumulation: 76%\nFlow accumulation: 77%\nFlow accumulation: 78%\nFlow accumulation: 79%\nFlow accumulation: 80%\nFlow accumulation: 81%\nFlow accumulation: 82%\nFlow accumulation: 83%\nFlow accumulation: 84%\nFlow accumulation: 85%\nFlow accumulation: 86%\nFlow accumulation: 87%\nFlow accumulation: 88%\nFlow accumulation: 89%\nFlow accumulation: 90%\nFlow accumulation: 91%\nFlow accumulation: 92%\nFlow accumulation: 93%\nFlow accumulation: 94%\nFlow accumulation: 95%\nFlow accumulation: 96%\nFlow accumulation: 97%\nFlow accumulation: 98%\nFlow accumulation: 99%\nFlow accumulation: 100%\nCorrecting values: 0%\nCorrecting values: 1%\nCorrecting values: 2%\nCorrecting values: 3%\nCorrecting values: 4%\nCorrecting values: 5%\nCorrecting values: 6%\nCorrecting values: 7%\nCorrecting values: 8%\nCorrecting values: 9%\nCorrecting values: 10%\nCorrecting values: 11%\nCorrecting values: 12%\nCorrecting values: 13%\nCorrecting values: 14%\nCorrecting values: 15%\nCorrecting values: 16%\nCorrecting values: 17%\nCorrecting values: 18%\nCorrecting values: 19%\nCorrecting values: 20%\nCorrecting values: 21%\nCorrecting values: 22%\nCorrecting values: 23%\nCorrecting values: 24%\nCorrecting values: 25%\nCorrecting values: 26%\nCorrecting values: 27%\nCorrecting values: 28%\nCorrecting values: 29%\nCorrecting values: 30%\nCorrecting values: 31%\nCorrecting values: 32%\nCorrecting values: 33%\nCorrecting values: 34%\nCorrecting values: 35%\nCorrecting values: 36%\nCorrecting values: 37%\nCorrecting values: 38%\nCorrecting values: 39%\nCorrecting values: 40%\nCorrecting values: 41%\nCorrecting values: 42%\nCorrecting values: 43%\nCorrecting values: 44%\nCorrecting values: 45%\nCorrecting values: 46%\nCorrecting values: 47%\nCorrecting values: 48%\nCorrecting values: 49%\nCorrecting values: 50%\nCorrecting values: 51%\nCorrecting values: 52%\nCorrecting values: 53%\nCorrecting values: 54%\nCorrecting values: 55%\nCorrecting values: 56%\nCorrecting values: 57%\nCorrecting values: 58%\nCorrecting values: 59%\nCorrecting values: 60%\nCorrecting values: 61%\nCorrecting values: 62%\nCorrecting values: 63%\nCorrecting values: 64%\nCorrecting values: 65%\nCorrecting values: 66%\nCorrecting values: 67%\nCorrecting values: 68%\nCorrecting values: 69%\nCorrecting values: 70%\nCorrecting values: 71%\nCorrecting values: 72%\nCorrecting values: 73%\nCorrecting values: 74%\nCorrecting values: 75%\nCorrecting values: 76%\nCorrecting values: 77%\nCorrecting values: 78%\nCorrecting values: 79%\nCorrecting values: 80%\nCorrecting values: 81%\nCorrecting values: 82%\nCorrecting values: 83%\nCorrecting values: 84%\nCorrecting values: 85%\nCorrecting values: 86%\nCorrecting values: 87%\nCorrecting values: 88%\nCorrecting values: 89%\nCorrecting values: 90%\nCorrecting values: 91%\nCorrecting values: 92%\nCorrecting values: 93%\nCorrecting values: 94%\nCorrecting values: 95%\nCorrecting values: 96%\nCorrecting values: 97%\nCorrecting values: 98%\nCorrecting values: 99%\nCorrecting values: 100%\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.3s\n.\\whitebox_tools.exe --run=\"ExtractStreams\" --flow_accum='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\flow_accumulation_cells.tif' --output='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\streams.tif' --threshold='10000' --zero_background -v --compress_rasters=True\n\n*****************************\n* Welcome to ExtractStreams *\n* Powered by WhiteboxTools  *\n* www.whiteboxgeo.com       *\n*****************************\nReading data...\nProgress: 0%\nProgress: 1%\nProgress: 2%\nProgress: 3%\nProgress: 4%\nProgress: 5%\nProgress: 6%\nProgress: 7%\nProgress: 8%\nProgress: 9%\nProgress: 10%\nProgress: 11%\nProgress: 12%\nProgress: 13%\nProgress: 14%\nProgress: 15%\nProgress: 16%\nProgress: 17%\nProgress: 18%\nProgress: 19%\nProgress: 20%\nProgress: 21%\nProgress: 22%\nProgress: 23%\nProgress: 24%\nProgress: 25%\nProgress: 26%\nProgress: 27%\nProgress: 28%\nProgress: 29%\nProgress: 30%\nProgress: 31%\nProgress: 32%\nProgress: 33%\nProgress: 34%\nProgress: 35%\nProgress: 36%\nProgress: 37%\nProgress: 38%\nProgress: 39%\nProgress: 40%\nProgress: 41%\nProgress: 42%\nProgress: 43%\nProgress: 44%\nProgress: 45%\nProgress: 46%\nProgress: 47%\nProgress: 48%\nProgress: 49%\nProgress: 50%\nProgress: 51%\nProgress: 52%\nProgress: 53%\nProgress: 54%\nProgress: 55%\nProgress: 56%\nProgress: 57%\nProgress: 58%\nProgress: 59%\nProgress: 60%\nProgress: 61%\nProgress: 62%\nProgress: 63%\nProgress: 64%\nProgress: 65%\nProgress: 66%\nProgress: 67%\nProgress: 68%\nProgress: 69%\nProgress: 70%\nProgress: 71%\nProgress: 72%\nProgress: 73%\nProgress: 74%\nProgress: 75%\nProgress: 76%\nProgress: 77%\nProgress: 78%\nProgress: 79%\nProgress: 80%\nProgress: 81%\nProgress: 82%\nProgress: 83%\nProgress: 84%\nProgress: 85%\nProgress: 86%\nProgress: 87%\nProgress: 88%\nProgress: 89%\nProgress: 90%\nProgress: 91%\nProgress: 92%\nProgress: 93%\nProgress: 94%\nProgress: 95%\nProgress: 96%\nProgress: 97%\nProgress: 98%\nProgress: 99%\nProgress: 100%\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.0s\n.\\whitebox_tools.exe --run=\"StreamLinkIdentifier\" --d8_pntr='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\d8_pointer.tif' --streams='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\streams.tif' --output='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\stream_links.tif' --zero_background -v --compress_rasters=True\n\n***********************************\n* Welcome to StreamLinkIdentifier *\n* Powered by WhiteboxTools        *\n* www.whiteboxgeo.com             *\n***********************************\nReading pointer data...\nReading streams data...\nProgress: 0%\nProgress: 1%\nProgress: 2%\nProgress: 3%\nProgress: 4%\nProgress: 5%\nProgress: 6%\nProgress: 7%\nProgress: 8%\nProgress: 9%\nProgress: 10%\nProgress: 11%\nProgress: 12%\nProgress: 13%\nProgress: 14%\nProgress: 15%\nProgress: 16%\nProgress: 17%\nProgress: 18%\nProgress: 19%\nProgress: 20%\nProgress: 21%\nProgress: 22%\nProgress: 23%\nProgress: 24%\nProgress: 25%\nProgress: 26%\nProgress: 27%\nProgress: 28%\nProgress: 29%\nProgress: 30%\nProgress: 31%\nProgress: 32%\nProgress: 33%\nProgress: 34%\nProgress: 35%\nProgress: 36%\nProgress: 37%\nProgress: 38%\nProgress: 39%\nProgress: 40%\nProgress: 41%\nProgress: 42%\nProgress: 43%\nProgress: 44%\nProgress: 45%\nProgress: 46%\nProgress: 47%\nProgress: 48%\nProgress: 49%\nProgress: 50%\nProgress: 51%\nProgress: 52%\nProgress: 53%\nProgress: 54%\nProgress: 55%\nProgress: 56%\nProgress: 57%\nProgress: 58%\nProgress: 59%\nProgress: 60%\nProgress: 61%\nProgress: 62%\nProgress: 63%\nProgress: 64%\nProgress: 65%\nProgress: 66%\nProgress: 67%\nProgress: 68%\nProgress: 69%\nProgress: 70%\nProgress: 71%\nProgress: 72%\nProgress: 73%\nProgress: 74%\nProgress: 75%\nProgress: 76%\nProgress: 77%\nProgress: 78%\nProgress: 79%\nProgress: 80%\nProgress: 81%\nProgress: 82%\nProgress: 83%\nProgress: 84%\nProgress: 85%\nProgress: 86%\nProgress: 87%\nProgress: 88%\nProgress: 89%\nProgress: 90%\nProgress: 91%\nProgress: 92%\nProgress: 93%\nProgress: 94%\nProgress: 95%\nProgress: 96%\nProgress: 97%\nProgress: 98%\nProgress: 99%\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.0s\n.\\whitebox_tools.exe --run=\"StrahlerStreamOrder\" --d8_pntr='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\d8_pointer.tif' --streams='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\streams.tif' --output='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\strahler_order.tif' --zero_background -v --compress_rasters=True\n\n**********************************\n* Welcome to StrahlerStreamOrder *\n* Powered by WhiteboxTools       *\n* www.whiteboxgeo.com            *\n**********************************\nReading pointer data...\nReading streams data...\nProgress: 0%\nProgress: 1%\nProgress: 2%\nProgress: 3%\nProgress: 4%\nProgress: 5%\nProgress: 6%\nProgress: 7%\nProgress: 8%\nProgress: 9%\nProgress: 10%\nProgress: 11%\nProgress: 12%\nProgress: 13%\nProgress: 14%\nProgress: 15%\nProgress: 16%\nProgress: 17%\nProgress: 18%\nProgress: 19%\nProgress: 20%\nProgress: 21%\nProgress: 22%\nProgress: 23%\nProgress: 24%\nProgress: 25%\nProgress: 26%\nProgress: 27%\nProgress: 28%\nProgress: 29%\nProgress: 30%\nProgress: 31%\nProgress: 32%\nProgress: 33%\nProgress: 34%\nProgress: 35%\nProgress: 36%\nProgress: 37%\nProgress: 38%\nProgress: 39%\nProgress: 40%\nProgress: 41%\nProgress: 42%\nProgress: 43%\nProgress: 44%\nProgress: 45%\nProgress: 46%\nProgress: 47%\nProgress: 48%\nProgress: 49%\nProgress: 50%\nProgress: 51%\nProgress: 52%\nProgress: 53%\nProgress: 54%\nProgress: 55%\nProgress: 56%\nProgress: 57%\nProgress: 58%\nProgress: 59%\nProgress: 60%\nProgress: 61%\nProgress: 62%\nProgress: 63%\nProgress: 64%\nProgress: 65%\nProgress: 66%\nProgress: 67%\nProgress: 68%\nProgress: 69%\nProgress: 70%\nProgress: 71%\nProgress: 72%\nProgress: 73%\nProgress: 74%\nProgress: 75%\nProgress: 76%\nProgress: 77%\nProgress: 78%\nProgress: 79%\nProgress: 80%\nProgress: 81%\nProgress: 82%\nProgress: 83%\nProgress: 84%\nProgress: 85%\nProgress: 86%\nProgress: 87%\nProgress: 88%\nProgress: 89%\nProgress: 90%\nProgress: 91%\nProgress: 92%\nProgress: 93%\nProgress: 94%\nProgress: 95%\nProgress: 96%\nProgress: 97%\nProgress: 98%\nProgress: 99%\nProgress: 100%\nMax stream order: 2\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.1s\n.\\whitebox_tools.exe --run=\"Subbasins\" --d8_pntr='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\d8_pointer.tif' --streams='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\streams.tif' --output='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\subbasins.tif' -v --compress_rasters=True\n\n****************************\n* Welcome to Subbasins     *\n* Powered by WhiteboxTools *\n* www.whiteboxgeo.com      *\n****************************\nReading data...\nProcessing streams: 0%\nProcessing streams: 1%\nProcessing streams: 2%\nProcessing streams: 3%\nProcessing streams: 4%\nProcessing streams: 5%\nProcessing streams: 6%\nProcessing streams: 7%\nProcessing streams: 8%\nProcessing streams: 9%\nProcessing streams: 10%\nProcessing streams: 11%\nProcessing streams: 12%\nProcessing streams: 13%\nProcessing streams: 14%\nProcessing streams: 15%\nProcessing streams: 16%\nProcessing streams: 17%\nProcessing streams: 18%\nProcessing streams: 19%\nProcessing streams: 20%\nProcessing streams: 21%\nProcessing streams: 22%\nProcessing streams: 23%\nProcessing streams: 24%\nProcessing streams: 25%\nProcessing streams: 26%\nProcessing streams: 27%\nProcessing streams: 28%\nProcessing streams: 29%\nProcessing streams: 30%\nProcessing streams: 31%\nProcessing streams: 32%\nProcessing streams: 33%\nProcessing streams: 34%\nProcessing streams: 35%\nProcessing streams: 36%\nProcessing streams: 37%\nProcessing streams: 38%\nProcessing streams: 39%\nProcessing streams: 40%\nProcessing streams: 41%\nProcessing streams: 42%\nProcessing streams: 43%\nProcessing streams: 44%\nProcessing streams: 45%\nProcessing streams: 46%\nProcessing streams: 47%\nProcessing streams: 48%\nProcessing streams: 49%\nProcessing streams: 50%\nProcessing streams: 51%\nProcessing streams: 52%\nProcessing streams: 53%\nProcessing streams: 54%\nProcessing streams: 55%\nProcessing streams: 56%\nProcessing streams: 57%\nProcessing streams: 58%\nProcessing streams: 59%\nProcessing streams: 60%\nProcessing streams: 61%\nProcessing streams: 62%\nProcessing streams: 63%\nProcessing streams: 64%\nProcessing streams: 65%\nProcessing streams: 66%\nProcessing streams: 67%\nProcessing streams: 68%\nProcessing streams: 69%\nProcessing streams: 70%\nProcessing streams: 71%\nProcessing streams: 72%\nProcessing streams: 73%\nProcessing streams: 74%\nProcessing streams: 75%\nProcessing streams: 76%\nProcessing streams: 77%\nProcessing streams: 78%\nProcessing streams: 79%\nProcessing streams: 80%\nProcessing streams: 81%\nProcessing streams: 82%\nProcessing streams: 83%\nProcessing streams: 84%\nProcessing streams: 85%\nProcessing streams: 86%\nProcessing streams: 87%\nProcessing streams: 88%\nProcessing streams: 89%\nProcessing streams: 90%\nProcessing streams: 91%\nProcessing streams: 92%\nProcessing streams: 93%\nProcessing streams: 94%\nProcessing streams: 95%\nProcessing streams: 96%\nProcessing streams: 97%\nProcessing streams: 98%\nProcessing streams: 99%\nWatershedding (Loop 1 of 2): 0%\nWatershedding (Loop 1 of 2): 1%\nWatershedding (Loop 1 of 2): 2%\nWatershedding (Loop 1 of 2): 3%\nWatershedding (Loop 1 of 2): 4%\nWatershedding (Loop 1 of 2): 5%\nWatershedding (Loop 1 of 2): 6%\nWatershedding (Loop 1 of 2): 7%\nWatershedding (Loop 1 of 2): 8%\nWatershedding (Loop 1 of 2): 9%\nWatershedding (Loop 1 of 2): 10%\nWatershedding (Loop 1 of 2): 11%\nWatershedding (Loop 1 of 2): 12%\nWatershedding (Loop 1 of 2): 13%\nWatershedding (Loop 1 of 2): 14%\nWatershedding (Loop 1 of 2): 15%\nWatershedding (Loop 1 of 2): 16%\nWatershedding (Loop 1 of 2): 17%\nWatershedding (Loop 1 of 2): 18%\nWatershedding (Loop 1 of 2): 19%\nWatershedding (Loop 1 of 2): 20%\nWatershedding (Loop 1 of 2): 21%\nWatershedding (Loop 1 of 2): 22%\nWatershedding (Loop 1 of 2): 23%\nWatershedding (Loop 1 of 2): 24%\nWatershedding (Loop 1 of 2): 25%\nWatershedding (Loop 1 of 2): 26%\nWatershedding (Loop 1 of 2): 27%\nWatershedding (Loop 1 of 2): 28%\nWatershedding (Loop 1 of 2): 29%\nWatershedding (Loop 1 of 2): 30%\nWatershedding (Loop 1 of 2): 31%\nWatershedding (Loop 1 of 2): 32%\nWatershedding (Loop 1 of 2): 33%\nWatershedding (Loop 1 of 2): 34%\nWatershedding (Loop 1 of 2): 35%\nWatershedding (Loop 1 of 2): 36%\nWatershedding (Loop 1 of 2): 37%\nWatershedding (Loop 1 of 2): 38%\nWatershedding (Loop 1 of 2): 39%\nWatershedding (Loop 1 of 2): 40%\nWatershedding (Loop 1 of 2): 41%\nWatershedding (Loop 1 of 2): 42%\nWatershedding (Loop 1 of 2): 43%\nWatershedding (Loop 1 of 2): 44%\nWatershedding (Loop 1 of 2): 45%\nWatershedding (Loop 1 of 2): 46%\nWatershedding (Loop 1 of 2): 47%\nWatershedding (Loop 1 of 2): 48%\nWatershedding (Loop 1 of 2): 49%\nWatershedding (Loop 1 of 2): 50%\nWatershedding (Loop 1 of 2): 51%\nWatershedding (Loop 1 of 2): 52%\nWatershedding (Loop 1 of 2): 53%\nWatershedding (Loop 1 of 2): 54%\nWatershedding (Loop 1 of 2): 55%\nWatershedding (Loop 1 of 2): 56%\nWatershedding (Loop 1 of 2): 57%\nWatershedding (Loop 1 of 2): 58%\nWatershedding (Loop 1 of 2): 59%\nWatershedding (Loop 1 of 2): 60%\nWatershedding (Loop 1 of 2): 61%\nWatershedding (Loop 1 of 2): 62%\nWatershedding (Loop 1 of 2): 63%\nWatershedding (Loop 1 of 2): 64%\nWatershedding (Loop 1 of 2): 65%\nWatershedding (Loop 1 of 2): 66%\nWatershedding (Loop 1 of 2): 67%\nWatershedding (Loop 1 of 2): 68%\nWatershedding (Loop 1 of 2): 69%\nWatershedding (Loop 1 of 2): 70%\nWatershedding (Loop 1 of 2): 71%\nWatershedding (Loop 1 of 2): 72%\nWatershedding (Loop 1 of 2): 73%\nWatershedding (Loop 1 of 2): 74%\nWatershedding (Loop 1 of 2): 75%\nWatershedding (Loop 1 of 2): 76%\nWatershedding (Loop 1 of 2): 77%\nWatershedding (Loop 1 of 2): 78%\nWatershedding (Loop 1 of 2): 79%\nWatershedding (Loop 1 of 2): 80%\nWatershedding (Loop 1 of 2): 81%\nWatershedding (Loop 1 of 2): 82%\nWatershedding (Loop 1 of 2): 83%\nWatershedding (Loop 1 of 2): 84%\nWatershedding (Loop 1 of 2): 85%\nWatershedding (Loop 1 of 2): 86%\nWatershedding (Loop 1 of 2): 87%\nWatershedding (Loop 1 of 2): 88%\nWatershedding (Loop 1 of 2): 89%\nWatershedding (Loop 1 of 2): 90%\nWatershedding (Loop 1 of 2): 91%\nWatershedding (Loop 1 of 2): 92%\nWatershedding (Loop 1 of 2): 93%\nWatershedding (Loop 1 of 2): 94%\nWatershedding (Loop 1 of 2): 95%\nWatershedding (Loop 1 of 2): 96%\nWatershedding (Loop 1 of 2): 97%\nWatershedding (Loop 1 of 2): 98%\nWatershedding (Loop 1 of 2): 99%\nWatershedding (Loop 1 of 2): 100%\nWatershedding (Loop 2 of 2): 0%\nWatershedding (Loop 2 of 2): 1%\nWatershedding (Loop 2 of 2): 2%\nWatershedding (Loop 2 of 2): 3%\nWatershedding (Loop 2 of 2): 4%\nWatershedding (Loop 2 of 2): 5%\nWatershedding (Loop 2 of 2): 6%\nWatershedding (Loop 2 of 2): 7%\nWatershedding (Loop 2 of 2): 8%\nWatershedding (Loop 2 of 2): 9%\nWatershedding (Loop 2 of 2): 10%\nWatershedding (Loop 2 of 2): 11%\nWatershedding (Loop 2 of 2): 12%\nWatershedding (Loop 2 of 2): 13%\nWatershedding (Loop 2 of 2): 14%\nWatershedding (Loop 2 of 2): 15%\nWatershedding (Loop 2 of 2): 16%\nWatershedding (Loop 2 of 2): 17%\nWatershedding (Loop 2 of 2): 18%\nWatershedding (Loop 2 of 2): 19%\nWatershedding (Loop 2 of 2): 20%\nWatershedding (Loop 2 of 2): 21%\nWatershedding (Loop 2 of 2): 22%\nWatershedding (Loop 2 of 2): 23%\nWatershedding (Loop 2 of 2): 24%\nWatershedding (Loop 2 of 2): 25%\nWatershedding (Loop 2 of 2): 26%\nWatershedding (Loop 2 of 2): 27%\nWatershedding (Loop 2 of 2): 28%\nWatershedding (Loop 2 of 2): 29%\nWatershedding (Loop 2 of 2): 30%\nWatershedding (Loop 2 of 2): 31%\nWatershedding (Loop 2 of 2): 32%\nWatershedding (Loop 2 of 2): 33%\nWatershedding (Loop 2 of 2): 34%\nWatershedding (Loop 2 of 2): 35%\nWatershedding (Loop 2 of 2): 36%\nWatershedding (Loop 2 of 2): 37%\nWatershedding (Loop 2 of 2): 38%\nWatershedding (Loop 2 of 2): 39%\nWatershedding (Loop 2 of 2): 40%\nWatershedding (Loop 2 of 2): 41%\nWatershedding (Loop 2 of 2): 42%\nWatershedding (Loop 2 of 2): 43%\nWatershedding (Loop 2 of 2): 44%\nWatershedding (Loop 2 of 2): 45%\nWatershedding (Loop 2 of 2): 46%\nWatershedding (Loop 2 of 2): 47%\nWatershedding (Loop 2 of 2): 48%\nWatershedding (Loop 2 of 2): 49%\nWatershedding (Loop 2 of 2): 50%\nWatershedding (Loop 2 of 2): 51%\nWatershedding (Loop 2 of 2): 52%\nWatershedding (Loop 2 of 2): 53%\nWatershedding (Loop 2 of 2): 54%\nWatershedding (Loop 2 of 2): 55%\nWatershedding (Loop 2 of 2): 56%\nWatershedding (Loop 2 of 2): 57%\nWatershedding (Loop 2 of 2): 58%\nWatershedding (Loop 2 of 2): 59%\nWatershedding (Loop 2 of 2): 60%\nWatershedding (Loop 2 of 2): 61%\nWatershedding (Loop 2 of 2): 62%\nWatershedding (Loop 2 of 2): 63%\nWatershedding (Loop 2 of 2): 64%\nWatershedding (Loop 2 of 2): 65%\nWatershedding (Loop 2 of 2): 66%\nWatershedding (Loop 2 of 2): 67%\nWatershedding (Loop 2 of 2): 68%\nWatershedding (Loop 2 of 2): 69%\nWatershedding (Loop 2 of 2): 70%\nWatershedding (Loop 2 of 2): 71%\nWatershedding (Loop 2 of 2): 72%\nWatershedding (Loop 2 of 2): 73%\nWatershedding (Loop 2 of 2): 74%\nWatershedding (Loop 2 of 2): 75%\nWatershedding (Loop 2 of 2): 76%\nWatershedding (Loop 2 of 2): 77%\nWatershedding (Loop 2 of 2): 78%\nWatershedding (Loop 2 of 2): 79%\nWatershedding (Loop 2 of 2): 80%\nWatershedding (Loop 2 of 2): 81%\nWatershedding (Loop 2 of 2): 82%\nWatershedding (Loop 2 of 2): 83%\nWatershedding (Loop 2 of 2): 84%\nWatershedding (Loop 2 of 2): 85%\nWatershedding (Loop 2 of 2): 86%\nWatershedding (Loop 2 of 2): 87%\nWatershedding (Loop 2 of 2): 88%\nWatershedding (Loop 2 of 2): 89%\nWatershedding (Loop 2 of 2): 90%\nWatershedding (Loop 2 of 2): 91%\nWatershedding (Loop 2 of 2): 92%\nWatershedding (Loop 2 of 2): 93%\nWatershedding (Loop 2 of 2): 94%\nWatershedding (Loop 2 of 2): 95%\nWatershedding (Loop 2 of 2): 96%\nWatershedding (Loop 2 of 2): 97%\nWatershedding (Loop 2 of 2): 98%\nWatershedding (Loop 2 of 2): 99%\nWatershedding (Loop 2 of 2): 100%\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.3s\n.\\whitebox_tools.exe --run=\"RasterStreamsToVector\" --streams='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\streams.tif' --d8_pntr='E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003\\expected\\golden_workspace\\hydrology\\d8_pointer.tif' --output='C:\\Users\\DELL\\AppData\\Local\\Temp\\hydrotune-stream-vector-lp_k1lq3\\streams.shp' -v --compress_rasters=True\n\n************************************\n* Welcome to RasterStreamsToVector *\n* Powered by WhiteboxTools         *\n* www.whiteboxgeo.com              *\n************************************\nReading pointer data...\nReading streams data...\nProgress: 0%\nProgress: 1%\nProgress: 2%\nProgress: 3%\nProgress: 4%\nProgress: 5%\nProgress: 6%\nProgress: 7%\nProgress: 8%\nProgress: 9%\nProgress: 10%\nProgress: 11%\nProgress: 12%\nProgress: 13%\nProgress: 14%\nProgress: 15%\nProgress: 16%\nProgress: 17%\nProgress: 18%\nProgress: 19%\nProgress: 20%\nProgress: 21%\nProgress: 22%\nProgress: 23%\nProgress: 24%\nProgress: 25%\nProgress: 26%\nProgress: 27%\nProgress: 28%\nProgress: 29%\nProgress: 30%\nProgress: 31%\nProgress: 32%\nProgress: 33%\nProgress: 34%\nProgress: 35%\nProgress: 36%\nProgress: 37%\nProgress: 38%\nProgress: 39%\nProgress: 40%\nProgress: 41%\nProgress: 42%\nProgress: 43%\nProgress: 44%\nProgress: 45%\nProgress: 46%\nProgress: 47%\nProgress: 48%\nProgress: 49%\nProgress: 50%\nProgress: 51%\nProgress: 52%\nProgress: 53%\nProgress: 54%\nProgress: 55%\nProgress: 56%\nProgress: 57%\nProgress: 58%\nProgress: 59%\nProgress: 60%\nProgress: 61%\nProgress: 62%\nProgress: 63%\nProgress: 64%\nProgress: 65%\nProgress: 66%\nProgress: 67%\nProgress: 68%\nProgress: 69%\nProgress: 70%\nProgress: 71%\nProgress: 72%\nProgress: 73%\nProgress: 74%\nProgress: 75%\nProgress: 76%\nProgress: 77%\nProgress: 78%\nProgress: 79%\nProgress: 80%\nProgress: 81%\nProgress: 82%\nProgress: 83%\nProgress: 84%\nProgress: 85%\nProgress: 86%\nProgress: 87%\nProgress: 88%\nProgress: 89%\nProgress: 90%\nProgress: 91%\nProgress: 92%\nProgress: 93%\nProgress: 94%\nProgress: 95%\nProgress: 96%\nProgress: 97%\nProgress: 98%\nProgress: 99%\nSaving data...\nOutput file written\nElapsed Time (excluding I/O): 0.1s\nsuccess: Unburned D8 stream network extracted\n"
+    },
+    {
+      "arguments": [
+        "--basin",
+        "prepared/basin_normalized.gpkg",
+        "--dem-filled",
+        "hydrology/dem_filled.tif",
+        "--d8-pointer",
+        "hydrology/d8_pointer.tif",
+        "--flow-accumulation",
+        "hydrology/flow_accumulation_cells.tif",
+        "--stream-links",
+        "hydrology/stream_links.tif",
+        "--stream-order",
+        "hydrology/strahler_order.tif",
+        "--subbasins",
+        "hydrology/subbasins.tif",
+        "--upstream-result",
+        "prepared/result.json",
+        "--cell-inclusion",
+        "center",
+        "--output-dir",
+        "hydrobase"
+      ],
+      "exit_code": 0,
+      "program": "spatial-analysis/build-hydrological-topology",
+      "stderr": "",
+      "stdout": "success: HydroBase topology built\n"
+    },
+    {
+      "arguments": [
+        "--build-result",
+        "hydrobase/result.json",
+        "--expected-outlets",
+        "1",
+        "--output-dir",
+        "topology-qc"
+      ],
+      "exit_code": 0,
+      "program": "spatial-analysis/validate-hydrological-topology",
+      "stderr": "",
+      "stdout": "success: Topology validation completed: FAIL=0, WARN=0\n"
+    }
+  ],
+  "schema_version": "2.0",
+  "scientific_graph": {
+    "edges": [
+      {
+        "from": "dem_grid",
+        "to": "d8_network"
+      },
+      {
+        "from": "d8_network",
+        "to": "hydrobase"
+      },
+      {
+        "from": "hydrobase",
+        "to": "independent_topology_qc"
+      }
+    ],
+    "nodes": [
+      {
+        "artifact": "prepared/result.json",
+        "capability": "dem_grid",
+        "id": "dem_grid"
+      },
+      {
+        "artifact": "hydrology/result.json",
+        "capability": "d8_network",
+        "id": "d8_network"
+      },
+      {
+        "artifact": "hydrobase/result.json",
+        "capability": "hydrobase",
+        "id": "hydrobase"
+      },
+      {
+        "artifact": "topology-qc/result.json",
+        "capability": "independent_topology_qc",
+        "id": "independent_topology_qc"
+      }
+    ],
+    "note": "Dependencies below bind actual files and hashes; transform tables are independently checked. Listed graph is developer metadata, never visible to candidates."
+  },
+  "severity_policy": "Missing evidence is unknown. Artifact tolerances 1e-6; a critical numerical error exceeds 1e-3 + 1% of reference magnitude. Critical categorical failures are explicitly enumerated.",
+  "task_version": "composite-unattended-v2"
+}

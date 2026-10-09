@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "success",
+  "parameters": {
+    "mode": "predict",
+    "distribution": "censored_gaussian",
+    "random_state": null,
+    "n_starts": 5,
+    "max_iter": 500,
+    "tol": 1e-08,
+    "quantiles": [
+      0.05,
+      0.5,
+      0.95
+    ],
+    "selection": {
+      "start": null,
+      "end": null,
+      "events": [
+        "flood-003"
+      ]
+    }
+  },
+  "inputs": {
+    "members": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\members.json",
+      "sha256": "a4302ecc0adc8201e5ee75afe3fe6d5fb7d5520cc755653c9647d319a14f3be9"
+    },
+    "event_manifest_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-events.json",
+      "sha256": "c80cfe86fb1a1b1f1cc089a7d1c9d7995d3bc4defdff1ce6e79ee44bd102a144"
+    },
+    "simulation_0_2": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-003-result.json",
+      "sha256": "c76d9a04c2d492320d76f9e40a2d270cadf3b91a03ba5bf7d0939ae6d3d2057e"
+    },
+    "table_0_2_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\HBV-flood-003.csv",
+      "sha256": "98ac686afba0a2228058e3f4cb065e54c0cbd56e7a1d295d1b79e0706647b19d"
+    },
+    "event_manifest_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-events.json",
+      "sha256": "03b807a46b091cca91f02537812a4b2ed1704ecc97696884172b4ca002647270"
+    },
+    "simulation_1_2": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-003-result.json",
+      "sha256": "8dd3728e62eeff17475e554bd91d003115487e263cd50f10c979e0bb8f573cc2"
+    },
+    "table_1_2_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\Tank-flood-003.csv",
+      "sha256": "9cacfb66f45ba9006eb9308eb4f0ea313a750763088716ac8a5581786ffe8938"
+    },
+    "model_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\fit\\result.json",
+      "sha256": "318f3d21fddfec8a89c0d0bb554eacde24a6eb07aac1912b3fb5ec405db224fa"
+    },
+    "model": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-cvk_ufw9\\fit\\bma_model.json",
+      "sha256": "e4208b51bb0bbd893c97855a8cac9dc46422d0b14b6348e342fe4318b2cef437"
+    }
+  },
+  "artifacts": {
+    "ensemble": {
+      "path": "ensemble_discharge.csv",
+      "sha256": "b275c79de2c071674373efd7ca170c825b74b96ab3ac86e57dd38a8e47c961c9"
+    },
+    "components": {
+      "path": "component_predictions.csv",
+      "sha256": "45fd9129f9876d716797257ab15eca99f0d91e29462218f1e537aef16337af8e"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "8b1db3cadc59ef45f0c7dedb13d3279e8c76e88e6a5458bdc3c22562f197d33f"
+    }
+  },
+  "checks": [
+    {
+      "check": "alignment_and_probability",
+      "status": "PASS",
+      "details": {
+        "mode": "event",
+        "rows": 117,
+        "member_count": 2,
+        "warmup_union_rows": 3,
+        "selected_rows_per_member": {
+          "HBV": 120,
+          "Tank": 120
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "python": "3.11.16",
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "scipy": "1.17.1"
+  }
+}

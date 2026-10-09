@@ -1,0 +1,299 @@
+{
+  "figures": [
+    {
+      "geometry": [
+        "M 0 864  L 855 864  L 855 0  L 0 0  z ",
+        "M 29.97 825.12  L 842.13 825.12  L 842.13 12.96  L 29.97 12.96  z ",
+        "M 0 0  L 0 -6  ",
+        "M 0 0  L 6 0  ",
+        "M 29.97 825.12  L 29.97 12.96  ",
+        "M 842.13 825.12  L 842.13 12.96  ",
+        "M 29.97 825.12  L 842.13 825.12  ",
+        "M 29.97 12.96  L 842.13 12.96  ",
+        "M 79.839474 775.250526  L 79.839474 62.829474  L 792.260526 62.829474  L 792.260526 775.250526  L 79.839474 775.250526  ",
+        "M 50.274 155.088  L 375.138 155.088  L 375.138 33.264  L 50.274 33.264  z ",
+        "M 89.25768 110.01312  L 336.15432 110.01312  L 336.15432 90.52128  L 89.25768 90.52128  z ",
+        "M 0 0  L 0 3.5  ",
+        "M 89.25768 110.01312  L 89.25768 100.2672  L 89.25768 90.52128  L 336.15432 90.52128  L 336.15432 100.2672  L 336.15432 110.01312  L 89.25768 110.01312  z ",
+        "M 654.466 804.816  L 819.621 804.816  Q 822.821 804.816 822.821 801.616  L 822.821 749.99725  Q 822.821 746.79725 819.621 746.79725  L 654.466 746.79725  Q 651.266 746.79725 651.266 749.99725  L 651.266 801.616  Q 651.266 804.816 654.466 804.816  z ",
+        "M 657.666 768.00225  L 696.066 768.00225  L 696.066 753.68225  L 657.666 753.68225  z ",
+        "M 657.666 788.642875  L 676.866 788.642875  L 696.066 788.642875  ",
+        "M 74.6388 780.4512  L 232.954589 780.4512  ",
+        "M 74.6388 786.94848  L 74.6388 773.95392  ",
+        "M 232.954589 786.94848  L 232.954589 773.95392  ",
+        "M 137.66982 766.79232  L 169.92357 766.79232  L 169.92357 753.962164  L 137.66982 753.962164  z "
+      ],
+      "metadata": "atlas/dem-basin-context.figure.json",
+      "metadata_contract": {
+        "crs": "EPSG:32650",
+        "extent": [
+          499967.0,
+          500993.0,
+          4099007.0,
+          4100033.0
+        ],
+        "language": "zh",
+        "layers": [
+          {
+            "display_transform": "2-98 percentile linear stretch; vmin=1061; vmax=1214; display clipped to true basin polygon",
+            "id": "metric-dem",
+            "palette": "terrain",
+            "source": "prepare_result.artifacts.metric_dem"
+          },
+          {
+            "display_transform": "boundary stroke; display clipped to true basin polygon",
+            "id": "basin-boundary",
+            "palette": "boundary",
+            "source": "prepare_result.artifacts.normalized_basin"
+          }
+        ],
+        "outputs": {
+          "png": {},
+          "svg": {}
+        },
+        "pixel_size": {
+          "height": 2400,
+          "width": 2375
+        },
+        "publication_ready": true,
+        "schema_version": "1.0",
+        "template_id": "dem-basin-context",
+        "template_version": "hydrotune.dem-hydrology-atlas.v2",
+        "title": "流域与 DEM 分析范围",
+        "warnings": []
+      },
+      "minimum_graphics": 28,
+      "png": "atlas/dem-basin-context.png",
+      "size": [
+        2375,
+        2400
+      ],
+      "svg": "atlas/dem-basin-context.svg"
+    },
+    {
+      "geometry": [
+        "M 0 864  L 855 864  L 855 0  L 0 0  z ",
+        "M 29.97 825.12  L 842.13 825.12  L 842.13 12.96  L 29.97 12.96  z ",
+        "M 0 0  L 0 -6  ",
+        "M 0 0  L 6 0  ",
+        "M 29.97 825.12  L 29.97 12.96  ",
+        "M 842.13 825.12  L 842.13 12.96  ",
+        "M 29.97 825.12  L 842.13 825.12  ",
+        "M 29.97 12.96  L 842.13 12.96  ",
+        "M 79.839474 775.250526  L 79.839474 62.829474  L 792.260526 62.829474  L 792.260526 775.250526  L 79.839474 775.250526  ",
+        "M 50.274 155.088  L 375.138 155.088  L 375.138 33.264  L 50.274 33.264  z ",
+        "M 89.25768 110.01312  L 336.15432 110.01312  L 336.15432 90.52128  L 89.25768 90.52128  z ",
+        "M 0 0  L 0 3.5  ",
+        "M 89.25768 110.01312  L 89.25768 100.2672  L 89.25768 90.52128  L 336.15432 90.52128  L 336.15432 100.2672  L 336.15432 110.01312  L 89.25768 110.01312  z ",
+        "M 359.73 804.816  L 513.33 804.816  Q 516.53 804.816 516.53 801.616  L 516.53 778.575375  Q 516.53 775.375375 513.33 775.375375  L 359.73 775.375375  Q 356.53 775.375375 356.53 778.575375  L 356.53 801.616  Q 356.53 804.816 359.73 804.816  z ",
+        "M 362.93 788.642875  L 382.13 788.642875  L 401.33 788.642875  ",
+        "M 74.6388 780.4512  L 232.954589 780.4512  ",
+        "M 74.6388 786.94848  L 74.6388 773.95392  ",
+        "M 232.954589 786.94848  L 232.954589 773.95392  ",
+        "M 137.66982 766.79232  L 169.92357 766.79232  L 169.92357 753.962164  L 137.66982 753.962164  z "
+      ],
+      "metadata": "atlas/dem-terrain.figure.json",
+      "metadata_contract": {
+        "crs": "EPSG:32650",
+        "extent": [
+          499967.0,
+          500993.0,
+          4099007.0,
+          4100033.0
+        ],
+        "language": "zh",
+        "layers": [
+          {
+            "display_transform": "2-98 percentile terrain tint plus fixed hillshade; vmin=1061; vmax=1214; display clipped to true basin polygon",
+            "id": "analysis-dem",
+            "palette": "terrain",
+            "source": "prepare_result.artifacts.analysis_dem"
+          },
+          {
+            "display_transform": "boundary stroke; display clipped to true basin polygon",
+            "id": "basin-boundary",
+            "palette": "boundary",
+            "source": "prepare_result.artifacts.normalized_basin"
+          }
+        ],
+        "outputs": {
+          "png": {},
+          "svg": {}
+        },
+        "pixel_size": {
+          "height": 2400,
+          "width": 2375
+        },
+        "publication_ready": true,
+        "schema_version": "1.0",
+        "template_id": "dem-terrain",
+        "template_version": "hydrotune.dem-hydrology-atlas.v2",
+        "title": "分析范围地形",
+        "warnings": []
+      },
+      "minimum_graphics": 29,
+      "png": "atlas/dem-terrain.png",
+      "size": [
+        2375,
+        2400
+      ],
+      "svg": "atlas/dem-terrain.svg"
+    },
+    {
+      "geometry": [
+        "M 0 864  L 855 864  L 855 0  L 0 0  z ",
+        "M 29.97 825.12  L 842.13 825.12  L 842.13 12.96  L 29.97 12.96  z ",
+        "M 0 0  L 0 -6  ",
+        "M 0 0  L 6 0  ",
+        "M 29.97 825.12  L 29.97 12.96  ",
+        "M 842.13 825.12  L 842.13 12.96  ",
+        "M 29.97 825.12  L 842.13 825.12  ",
+        "M 29.97 12.96  L 842.13 12.96  ",
+        "M 79.839474 775.250526  L 79.839474 62.829474  L 792.260526 62.829474  L 792.260526 775.250526  L 79.839474 775.250526  ",
+        "M 50.274 155.088  L 375.138 155.088  L 375.138 33.264  L 50.274 33.264  z ",
+        "M 89.25768 110.01312  L 336.15432 110.01312  L 336.15432 90.52128  L 89.25768 90.52128  z ",
+        "M 0 0  L 0 3.5  ",
+        "M 89.25768 110.01312  L 89.25768 100.2672  L 89.25768 90.52128  L 336.15432 90.52128  L 336.15432 100.2672  L 336.15432 110.01312  L 89.25768 110.01312  z ",
+        "M 665.986 804.816  L 819.586 804.816  Q 822.786 804.816 822.786 801.616  L 822.786 750.05975  Q 822.786 746.85975 819.586 746.85975  L 665.986 746.85975  Q 662.786 746.85975 662.786 750.05975  L 662.786 801.616  Q 662.786 804.816 665.986 804.816  z ",
+        "M 669.186 760.00225  L 688.386 760.00225  L 707.586 760.00225  ",
+        "M 669.186 788.642875  L 688.386 788.642875  L 707.586 788.642875  ",
+        "M 74.6388 780.4512  L 232.954589 780.4512  ",
+        "M 74.6388 786.94848  L 74.6388 773.95392  ",
+        "M 232.954589 786.94848  L 232.954589 773.95392  ",
+        "M 137.66982 766.79232  L 169.92357 766.79232  L 169.92357 753.962164  L 137.66982 753.962164  z "
+      ],
+      "metadata": "atlas/flow-accumulation-network.figure.json",
+      "metadata_contract": {
+        "crs": "EPSG:32650",
+        "extent": [
+          499967.0,
+          500993.0,
+          4099007.0,
+          4100033.0
+        ],
+        "language": "zh",
+        "layers": [
+          {
+            "display_transform": "fixed hillshade; display clipped to true basin polygon",
+            "id": "filled-dem-hillshade",
+            "palette": "grayscale",
+            "source": "extract_result.artifacts.filled_dem"
+          },
+          {
+            "display_transform": "log1p then 2-98 percentile stretch; vmin=1.09861; vmax=3.70274; display clipped to true basin polygon",
+            "id": "flow-accumulation",
+            "palette": "water",
+            "source": "extract_result.artifacts.flow_accumulation"
+          },
+          {
+            "display_transform": "positive-cell mask; display clipped to true basin polygon",
+            "id": "streams",
+            "palette": "deep-water",
+            "source": "extract_result.artifacts.streams"
+          },
+          {
+            "display_transform": "boundary stroke; display clipped to true basin polygon",
+            "id": "basin-boundary",
+            "palette": "boundary",
+            "source": "prepare_result.artifacts.normalized_basin"
+          }
+        ],
+        "outputs": {
+          "png": {},
+          "svg": {}
+        },
+        "pixel_size": {
+          "height": 2400,
+          "width": 2375
+        },
+        "publication_ready": true,
+        "schema_version": "1.0",
+        "template_id": "flow-accumulation-network",
+        "template_version": "hydrotune.dem-hydrology-atlas.v2",
+        "title": "汇流累积与提取河网",
+        "warnings": []
+      },
+      "minimum_graphics": 32,
+      "png": "atlas/flow-accumulation-network.png",
+      "size": [
+        2375,
+        2400
+      ],
+      "svg": "atlas/flow-accumulation-network.svg"
+    },
+    {
+      "geometry": [
+        "M 0 864  L 855 864  L 855 0  L 0 0  z ",
+        "M 29.97 825.12  L 842.13 825.12  L 842.13 12.96  L 29.97 12.96  z ",
+        "M 0 0  L 0 -6  ",
+        "M 0 0  L 6 0  ",
+        "M 29.97 825.12  L 29.97 12.96  ",
+        "M 842.13 825.12  L 842.13 12.96  ",
+        "M 29.97 825.12  L 842.13 825.12  ",
+        "M 29.97 12.96  L 842.13 12.96  ",
+        "M 79.839474 775.250526  L 79.839474 62.829474  L 792.260526 62.829474  L 792.260526 775.250526  L 79.839474 775.250526  ",
+        "M 53.474 147.7165  L 209.7215 147.7165  Q 212.9215 147.7165 212.9215 144.5165  L 212.9215 35.6165  Q 212.9215 32.4165 209.7215 32.4165  L 53.474 32.4165  Q 50.274 32.4165 50.274 35.6165  L 50.274 144.5165  Q 50.274 147.7165 53.474 147.7165  z ",
+        "M 56.674 53.6215  L 95.074 53.6215  L 95.074 39.3015  L 56.674 39.3015  z ",
+        "M 56.674 74.262125  L 75.874 74.262125  L 95.074 74.262125  ",
+        "M 56.674 102.90275  L 75.874 102.90275  L 95.074 102.90275  ",
+        "M 56.674 131.543375  L 75.874 131.543375  L 95.074 131.543375  ",
+        "M 74.6388 780.4512  L 232.954589 780.4512  ",
+        "M 74.6388 786.94848  L 74.6388 773.95392  ",
+        "M 232.954589 786.94848  L 232.954589 773.95392  ",
+        "M 137.66982 766.79232  L 169.92357 766.79232  L 169.92357 753.962164  L 137.66982 753.962164  z "
+      ],
+      "metadata": "atlas/stream-order-subbasins.figure.json",
+      "metadata_contract": {
+        "crs": "EPSG:32650",
+        "extent": [
+          499967.0,
+          500993.0,
+          4099007.0,
+          4100033.0
+        ],
+        "language": "zh",
+        "layers": [
+          {
+            "display_transform": "stable categorical IDs; display clipped to true basin polygon",
+            "id": "subbasins",
+            "palette": "subbasins",
+            "source": "extract_result.artifacts.subbasins"
+          },
+          {
+            "display_transform": "positive-cell categorical order; classes=1..3; display-only stroke expansion, width=0.7+order*0.9 pt; source values unchanged; display clipped to true basin polygon",
+            "id": "stream-order",
+            "palette": "water",
+            "source": "extract_result.artifacts.stream_order"
+          },
+          {
+            "display_transform": "boundary stroke; display clipped to true basin polygon",
+            "id": "basin-boundary",
+            "palette": "boundary",
+            "source": "prepare_result.artifacts.normalized_basin"
+          }
+        ],
+        "outputs": {
+          "png": {},
+          "svg": {}
+        },
+        "pixel_size": {
+          "height": 2400,
+          "width": 2375
+        },
+        "publication_ready": true,
+        "schema_version": "1.0",
+        "template_id": "stream-order-subbasins",
+        "template_version": "hydrotune.dem-hydrology-atlas.v2",
+        "title": "Strahler 河网等级与子流域",
+        "warnings": []
+      },
+      "minimum_graphics": 29,
+      "png": "atlas/stream-order-subbasins.png",
+      "size": [
+        2375,
+        2400
+      ],
+      "svg": "atlas/stream-order-subbasins.svg"
+    }
+  ]
+}

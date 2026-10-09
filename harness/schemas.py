@@ -8,7 +8,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 
-DOMAINS = {"data-preprocessing", "model-calibration", "results-analysis", "spatial-analysis"}
+DOMAINS = {"data-preprocessing", "model-calibration", "model-computation", "results-analysis", "spatial-analysis", "visualization-reporting"}
 DIFFICULTIES = {"basic", "intermediate", "advanced"}
 GRADER_TYPES = {
     "file_check",
@@ -29,6 +29,10 @@ GRADER_TYPES = {
     "raster_match",
     "vector_match",
     "artifact_reference_check",
+    "figure_contract_check",
+    "report_contract_check",
+    "composite_contract_check",
+    "scientific_invariant",
 }
 REQUIRED_FIELDS = {
     "id",
@@ -45,7 +49,8 @@ REQUIRED_FIELDS = {
 
 
 def load_json(path: str | Path) -> dict[str, Any]:
-    with Path(path).open(encoding="utf-8") as handle:
+    from harness.filesystem import filesystem_path
+    with Path(filesystem_path(path)).open(encoding="utf-8") as handle:
         value = json.load(handle)
     if not isinstance(value, dict):
         raise ValueError(f"JSON root must be an object: {path}")
@@ -81,7 +86,8 @@ def validate_task(task: dict[str, Any], task_dir: str | Path) -> list[str]:
     """Return all validation errors for one canonical task definition."""
 
     errors: list[str] = []
-    task_dir = Path(task_dir)
+    from harness.filesystem import filesystem_path
+    task_dir = Path(filesystem_path(task_dir))
     missing = sorted(REQUIRED_FIELDS - set(task))
     if missing:
         errors.append(f"missing required fields: {missing}")
@@ -101,8 +107,62 @@ def validate_task(task: dict[str, Any], task_dir: str | Path) -> list[str]:
     if not isinstance(task.get("primary_skill"), str) or not task["primary_skill"].strip():
         errors.append("primary_skill must be a non-empty string")
     secondary = task.get("secondary_skills", [])
+    contract = task.get('public_contract')
+    if contract is not None:
+        if not _safe_relative(contract) or not (task_dir / str(contract)).is_file():
+            errors.append('public_contract must be a safe existing relative file')
+        else:
+            try:
+                from harness.atomic_contracts import load_contract
+                load_contract(task, task_dir)
+            except (ValueError, KeyError, OSError):
+                errors.append('invalid public contract')
     if not isinstance(secondary, list) or not all(isinstance(item, str) and item for item in secondary):
         errors.append("secondary_skills must be a list of non-empty strings")
+    if task.get('task_kind', 'atomic') not in {'atomic','composite'}:
+        errors.append('invalid task_kind')
+    if task.get('task_kind') == 'composite':
+        if task.get('outcome_goal') not in {'deliverable','blocked'}: errors.append('invalid outcome_goal')
+        reference=task.get('evaluation_reference')
+        if not _safe_relative(reference) or not str(reference).startswith('expected/') or not (task_dir/str(reference)).is_file():
+            errors.append('evaluation_reference must exist under expected/')
+        core=task.get('core_capabilities',[])
+        if not isinstance(core,list) or not all(isinstance(c,str) and c for c in core) or len(set(core))<3: errors.append('composite requires at least three distinct scientific capabilities')
+        if _safe_relative(reference) and (task_dir/reference).is_file():
+            try:
+                hidden=load_json(task_dir/reference);graph=hidden['scientific_graph'];nodes=graph['nodes'];edges=graph['edges']
+                ids={n['id'] for n in nodes}
+                if len(ids)!=len(nodes) or {n['capability'] for n in nodes}!=set(core):errors.append('scientific graph must account for each distinct core capability')
+                if any(not _safe_relative(n['artifact']) for n in nodes):errors.append('unsafe graph artifact')
+                if any(e['from'] not in ids or e['to'] not in ids or e['from']==e['to'] for e in edges):errors.append('invalid scientific dependency edge')
+                remaining=set(ids)
+                while remaining:
+                    ready={n for n in remaining if not any(e['to']==n and e['from'] in remaining for e in edges)}
+                    if not ready:errors.append('scientific dependency graph contains a cycle');break
+                    remaining-=ready
+                for gate in hidden['gates']:
+                    if not gate.get('criteria'):errors.append('empty scientific gate')
+                    for c in gate['criteria']:
+                        if c.get('type') not in GRADER_TYPES:errors.append('unknown hidden grader')
+                        for _,rel in _reference_paths(c):
+                            if not _safe_relative(rel) or not str(rel).startswith('expected/') or not _contained(task_dir,task_dir/rel) or not (task_dir/rel).is_file():errors.append('unsafe or missing hidden grader reference')
+                if task.get('interaction_mode')=='none':
+                    from harness.composite_grader import get
+                    if task.get('task_version')!='composite-unattended-v2' or hidden.get('task_version')!=task['task_version'] or hidden.get('interaction_mode')!='none':errors.append('unattended task version mismatch')
+                    if task.get('outcome_goal')!='deliverable' or hidden.get('confirmations'):errors.append('unattended v2 must be deliverable without confirmations')
+                    scenario=load_json(task_dir/'data/scenario.json')
+                    interfaces=load_json(task_dir/'data/output_interfaces.json')
+                    if set(interfaces['outputs'])!=set(task['required_outputs']):errors.append('required outputs missing from public interfaces')
+                    for setting in hidden.get('provided_settings',[]):
+                        if setting['source'] not in task['data_files'] or not _safe_relative(setting['source']):errors.append('setting source is not visible')
+                        value=get(load_json(task_dir/'data'/setting['source']),setting['field'])
+                        if not setting.get('bindings') or any(value!=b['expected'] for b in setting['bindings']):errors.append('hidden setting differs from upfront source')
+                    for field in ['timezone','time','variables','task_science','organization_mode','evaporation_mapping','forcing_selection','repair_authorized','parameter_change_authorized','synthetic_supplements_authorized','alignment']:
+                        if field not in scenario:errors.append('incomplete upfront scenario: '+field)
+            except (OSError,ValueError,KeyError,TypeError):errors.append('invalid hidden composite contract')
+        budget=task.get('resource_budget',{})
+        for key in ('cpus','memory_mb','agent_rounds','tool_calls'):
+            if not isinstance(budget.get(key),int) or isinstance(budget.get(key),bool) or budget[key]<=0:errors.append('invalid resource_budget.'+key)
     if not isinstance(task.get("prompt"), str) or not task["prompt"].strip():
         errors.append("prompt must be a non-empty string")
     timeout = task.get("timeout_seconds")
@@ -154,6 +214,21 @@ def validate_task(task: dict[str, Any], task_dir: str | Path) -> list[str]:
         else:
             names.add(name)
         grader_type = criterion.get("type")
+        for option in ('required_values', 'artifact_references'):
+            mapping = criterion.get(option)
+            if mapping is not None:
+                if grader_type != 'file_check' or not isinstance(mapping, dict):
+                    errors.append(f"{prefix}.{option} requires file_check and an object")
+                else:
+                    declared_targets = criterion.get('targets') or [criterion.get('target')]
+                    for rel, fields in mapping.items():
+                        if not _safe_relative(rel) or rel not in declared_targets:
+                            errors.append(f"{prefix}.{option}: unsafe or undeclared target")
+                        if option == 'required_values' and (not isinstance(fields, dict) or not fields):
+                            errors.append(f"{prefix}.{option}: nonempty field map required")
+                        if option == 'artifact_references' and (not isinstance(fields, list) or not fields or
+                                any(not isinstance(f, str) or not f for f in fields) or len(fields) != len(set(fields))):
+                            errors.append(f"{prefix}.{option}: distinct artifact keys required")
         if grader_type not in GRADER_TYPES:
             errors.append(f"unknown grader type: {grader_type}")
         weight = criterion.get("weight")
@@ -202,5 +277,11 @@ def public_task(task: dict[str, Any]) -> dict[str, Any]:
         "required_outputs",
         "setup_notes",
         "timeout_seconds",
+        "task_kind",
+        "task_version",
+        "task_revision",
+        "interaction_mode",
+        "resource_budget",
+        "public_contract",
     )
     return {key: task[key] for key in keys if key in task}

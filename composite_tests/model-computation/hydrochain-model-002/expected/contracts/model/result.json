@@ -1,0 +1,33 @@
+{
+  "parameters": {
+    "area_km2": 564.4784427125312,
+    "balance_tolerance_fraction": 0.001,
+    "carry_columns": [],
+    "mode": "event",
+    "parameter_set": {
+      "B": 0.3,
+      "C": 0.12,
+      "CG": 0.95,
+      "CI": 0.6,
+      "CS": 0.2,
+      "EX": 1.2,
+      "FR1": 0.4,
+      "IM": 0.02,
+      "K": 0.5,
+      "KG": 0.35,
+      "KI": 0.3,
+      "L": 2,
+      "Q": 15.0,
+      "S1": 5.0,
+      "SM": 4.0,
+      "WDM_init": 30.0,
+      "WLM": 60.0,
+      "WLM_init": 45.0,
+      "WM": 120.0,
+      "WUM": 20.0,
+      "WUM_init": 15.0
+    },
+    "timestep_hours": 1.0,
+    "warmup_steps": 12
+  }
+}

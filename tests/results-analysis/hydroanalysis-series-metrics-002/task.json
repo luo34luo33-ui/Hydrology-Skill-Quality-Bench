@@ -97,6 +97,7 @@
   "id": "hydroanalysis-series-metrics-002",
   "primary_skill": "evaluation-diagnostics/compute-continuous-series-metrics",
   "prompt": "Use series.csv exactly as supplied to run evaluation-diagnostics/compute-continuous-series-metrics. The observed column is deliberately constant; run the skill verbatim with --timestep-hours 1 and keep the native handling of the degenerate variance (NSE recorded as unavailable, R2 at its boundary value, warning preserved). Write the native outputs (series_metrics.csv, result.json) under series-metrics/. Do not perturb the observed series or replace 'unavailable' with a numeric placeholder.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "series-metrics/series_metrics.csv",
     "series-metrics/result.json"

@@ -1,0 +1,9 @@
+[
+  {
+    "action": "Correct inputs and retry",
+    "reason": "Original facts differ: evidence",
+    "section": "all",
+    "severity": "error",
+    "source_id": "intake"
+  }
+]

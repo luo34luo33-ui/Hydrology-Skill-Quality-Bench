@@ -1,0 +1,10 @@
+{
+  "causality": "not_established",
+  "independent_prediction": false,
+  "ranking_rmse": [
+    "dhf",
+    "semi"
+  ],
+  "scoring": "same_samples_excluding_warmup",
+  "units": "m3/s"
+}

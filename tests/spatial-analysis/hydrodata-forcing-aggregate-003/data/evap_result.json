@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "mapped_evap": {
+      "path": "evap_forcing.csv",
+      "sha256": "30c9f7053937ad4c243325e1279ee3ab1abfb0773e9f8502f7786bb54578bfe5"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_upstream",
+      "details": "deterministic benchmark fixture",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "1.0",
+  "skill": "data-processing/derive-potential-evapotranspiration",
+  "status": "success"
+}

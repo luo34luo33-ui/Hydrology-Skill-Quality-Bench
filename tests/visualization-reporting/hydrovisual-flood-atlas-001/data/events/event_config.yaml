@@ -1,0 +1,29 @@
+schema_version: '1.2'
+peak_detection:
+  peak_quantile: 0.7
+  prominence_factor: 0.05
+  min_peak_distance_hours: 24
+boundaries:
+  boundary_fraction: 0.05
+  boundary_persistence_steps: 2
+  max_search_days: 4
+merging:
+  merge_gap_hours: 12
+  valley_ratio_threshold: 0.8
+filters:
+  min_event_duration_hours: 1
+  min_peak_flow_m3_s: null
+  min_event_volume_m3: null
+warmup:
+  steps: 12
+rainfall_support:
+  lookback_hours: 24
+  min_observed_rainfall_mm: 5
+  no_rainfall_policy: exclude
+  missing_rainfall_policy: exclude
+shape_filter:
+  min_plateau_duration_hours: 24.0
+  min_plateau_fraction: 0.5
+  plateau_range_fraction: 0.005
+  min_jump_fraction: 0.1
+  jump_window_steps: 2

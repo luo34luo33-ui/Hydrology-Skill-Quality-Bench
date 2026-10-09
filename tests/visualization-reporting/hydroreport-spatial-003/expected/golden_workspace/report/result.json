@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "63bc5c1905c27c259d0756371880be8cbf683f033704782db88d909edb5cca73"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "0311905802ea157c78d0b083d3d06794d5b2ea05f0a8d432f8911c0722a86452"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "Artifact hash mismatch: reaches_table",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-spatial-data-processing-report",
+  "status": "error",
+  "warnings": []
+}

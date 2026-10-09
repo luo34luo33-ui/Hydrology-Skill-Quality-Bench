@@ -1,0 +1,37 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "details": "D8 basin must have exactly one exit cell; found 2",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {
+    "stream_result": {
+      "path": "stream_result.json",
+      "sha256": "9ec956e87459ef10213a0dee9df0dc7679ee68606b4cf6e77b159779b960e381"
+    },
+    "topology_qc_result": {
+      "path": "topology_qc_result.json",
+      "sha256": "691d62608b53d8c1d21e22765c1786cabb2ade099656b865c164668b64ee2669"
+    },
+    "topology_result": {
+      "path": "build_result.json",
+      "sha256": "1402699d536137ebb85a4776e4a9d29302b68dec8dc029cbe9dce8bdb5e6211e"
+    }
+  },
+  "message": "D8 basin must have exactly one exit cell; found 2",
+  "parameters": {
+    "classes": 10,
+    "distance_bins": 10,
+    "minimum_slope": 0.0001
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/derive-topmodel-terrain-inputs",
+  "status": "error",
+  "warnings": []
+}

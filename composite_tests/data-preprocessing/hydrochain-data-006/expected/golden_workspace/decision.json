@@ -1,0 +1,69 @@
+{
+  "evidence": [
+    {
+      "path": "window-20230908/baseflow/result.json",
+      "sha256": "1f1e39c1d77bc3c612482597799a1d009401a9d8be367ef4e735f11de57cfcc6"
+    },
+    {
+      "path": "window-20230908/evap/result.json",
+      "sha256": "51cac74598ab4255003226eba04904cdd0fbe3b39f470c85b06039fe3a32215c"
+    },
+    {
+      "path": "window-20230908/events/result.json",
+      "sha256": "979e49fdd7d345e07fb37dec265aa76235db86dbc4070ec0df03a5aeb2dde8cc"
+    },
+    {
+      "path": "window-20230908/flow/result.json",
+      "sha256": "26fba94acc3f819dc633ac46cdf252123c851254e39b803fabc7e86293929e4e"
+    },
+    {
+      "path": "window-20230908/rain/result.json",
+      "sha256": "0c3e6c87698e436d7c12af920ef48a975c2cfdafc83c74d2aa020cd49adc0d0c"
+    },
+    {
+      "path": "window-20241030/baseflow/result.json",
+      "sha256": "945716a7e3f7d1f20a1fbce07c1c46ca34ce6bc60ed036f8d17e059cb79bdd0b"
+    },
+    {
+      "path": "window-20241030/evap/result.json",
+      "sha256": "16f790de85be60d72f19df9741439463b9adabd3ecc3226555879d0347f393c5"
+    },
+    {
+      "path": "window-20241030/events/result.json",
+      "sha256": "117ba30b72aa0d79c0fec9588193813b723898ebf8bd5ad301de13aa8b56b132"
+    },
+    {
+      "path": "window-20241030/flow/result.json",
+      "sha256": "822a3bd66888d2730edeaee605511b404e3a93eff72f6df9f6fc24851e4a011f"
+    },
+    {
+      "path": "window-20241030/rain/result.json",
+      "sha256": "0f067cd2d342046b581dcb89a1cf60233e9ab687c4151642dd930cfc8ac36dbc"
+    },
+    {
+      "path": "window-20250627/baseflow/result.json",
+      "sha256": "ae35b0b650f2d7637d90cc3fb7a01a229ad58dbef380c761511ea5b58b34576b"
+    },
+    {
+      "path": "window-20250627/evap/result.json",
+      "sha256": "c4bb0728b748130ca1cb4c638f8a55fe09beea382a1a407803589849ccb64e53"
+    },
+    {
+      "path": "window-20250627/events/result.json",
+      "sha256": "f4ee71df09176a19cec1c056562fe9fe18285fcf19521f491ef7be0343bee98c"
+    },
+    {
+      "path": "window-20250627/flow/result.json",
+      "sha256": "adc2f3f55c47cf4d0cb6d07e597b969d997280c5a3492554dc0bc12fc4e2de2e"
+    },
+    {
+      "path": "window-20250627/rain/result.json",
+      "sha256": "ad8fbedb9eca43730acda716a4cf3b3a76415df8e575d6f45e6726e4796123ae"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

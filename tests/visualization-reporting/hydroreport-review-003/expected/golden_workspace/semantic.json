@@ -1,0 +1,33 @@
+{
+  "package_fingerprint": "29c81c7450e5c337af29b7b776a7788923f4c8d8b5902cd98f444eb5f04a07a6",
+  "paragraphs": [
+    {
+      "evidence_ids": [
+        "analysis-251506b04cfaac6bb6d3",
+        "analysis-6db00c6359036ff0feab",
+        "analysis-39e0ad3ac6750fd2acfb"
+      ],
+      "id": "overview-spatial",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    },
+    {
+      "evidence_ids": [
+        "analysis-3b6367645c6e4ec3daa8"
+      ],
+      "id": "limitation-0",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    },
+    {
+      "evidence_ids": [
+        "analysis-bbdec5e4cbcb535d1750"
+      ],
+      "id": "limitation-1",
+      "rationale": "Checked the synthetic source value, scope and stated limitations.",
+      "verdict": "supported"
+    }
+  ],
+  "reviewer": "deterministic-fixture-reviewer",
+  "schema_version": "1.0"
+}

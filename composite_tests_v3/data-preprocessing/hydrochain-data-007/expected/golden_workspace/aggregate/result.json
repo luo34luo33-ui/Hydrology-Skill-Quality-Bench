@@ -1,0 +1,88 @@
+{
+  "artifacts": {
+    "coverage": {
+      "path": "coverage.csv",
+      "sha256": "70ceec7a4ef6836cbefd73a456d588ec8d3cf783ff3d4ab6664d015953dd121b"
+    },
+    "forcing": {
+      "path": "basin_forcing.csv",
+      "sha256": "6399f6270cddf74714e7640b9a70a3af75a9222eea10b9ba1de3489420df83ab"
+    },
+    "weights": {
+      "path": "weights.csv",
+      "sha256": "4bdf17e9d53cd405011b9cf5540e96eadd203af7353e60765ad5f57c4109f588"
+    }
+  },
+  "checks": [
+    {
+      "check": "topology_qc_and_hash",
+      "details": "single outlet QC and artifact hashes checked",
+      "status": "PASS"
+    },
+    {
+      "check": "coverage_and_time_axis",
+      "details": "rows=744",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "P_result": {
+      "path": "../rain/result.json",
+      "sha256": "7d3606cfaeada22d8c2cb7647460fbea30298adcd47beea150f923e3e1dee811"
+    },
+    "P_stations": {
+      "path": "../stations.csv",
+      "sha256": "944cb3b2de8a93ed4e7e6885e311f13676e2fe2eb3974bfc6362b482b34916cd"
+    },
+    "evap_result": {
+      "path": "../evap/result.json",
+      "sha256": "c9b217e47c492fc006997cac8132429ad68c06eabb2be86d6e02ddc0f64c32a3"
+    },
+    "evap_stations": {
+      "path": "../stations.csv",
+      "sha256": "944cb3b2de8a93ed4e7e6885e311f13676e2fe2eb3974bfc6362b482b34916cd"
+    },
+    "source_config": {
+      "path": "../source_config.json",
+      "sha256": "f9d4e93156db38d3a221dd45f97b90eec19ef843335c05744ce40175c6d8f174"
+    },
+    "topology_qc_result": {
+      "path": "../topology-qc/result.json",
+      "sha256": "713c7e15f2bb4a5ae20a2e47d1d4be16e22648f3bf1e7fd7b8b4eb58e221c222"
+    },
+    "topology_result": {
+      "path": "../hydrobase/result.json",
+      "sha256": "aade8e5a624df1700a5fd49b6d96388259482078041597e9fd5d08db5926e4cb"
+    }
+  },
+  "message": "Forcing aggregated to model units",
+  "parameters": {
+    "layers": {
+      "P": {
+        "kind": "station",
+        "result": "rain/result.json",
+        "station_crs": "EPSG:4326",
+        "stations": "stations.csv",
+        "variable": "P"
+      },
+      "evap": {
+        "kind": "station",
+        "result": "evap/result.json",
+        "station_crs": "EPSG:4326",
+        "stations": "stations.csv",
+        "variable": "PET"
+      }
+    },
+    "min_coverage_fraction": 1.0,
+    "target": "basin"
+  },
+  "provenance": {
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "shapely": "2.1.2"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/aggregate-forcing-to-model-units",
+  "status": "success",
+  "warnings": []
+}

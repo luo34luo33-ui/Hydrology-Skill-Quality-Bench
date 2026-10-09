@@ -1,0 +1,96 @@
+{
+  "algorithm": "de",
+  "artifacts": {
+    "best_parameters": {
+      "path": "best_parameters.json",
+      "sha256": "5e09542a7f952cc088aec954f0028477359aa457863a987f6c7eaca5c597a4a2"
+    },
+    "calibration_metrics": {
+      "path": "calibration_metrics.json",
+      "sha256": "395e61f5494b24e24ca7f96c429cf3c6f0edac1f828418cea1815459f198558c"
+    },
+    "calibration_series": {
+      "path": "calibration_series.csv",
+      "sha256": "538e9deb27112bb8a01eec0ed7b714ba4d87a7b75363452e36b07d93fe4276a1"
+    },
+    "calibration_trace": {
+      "path": "calibration_trace.csv",
+      "sha256": "88a46c8826f96eb935c90509839050fb582677d6d4b4db942744a50cb36cef0a"
+    },
+    "validation_metrics": {
+      "path": "validation_metrics.json",
+      "sha256": "293adfd094012506a83fd30e095ca6daac7755a051b0d16f3d42465310fb3936"
+    },
+    "validation_series": {
+      "path": "validation_series.csv",
+      "sha256": "2c38995008dce569d195c5b1cc84d602c85623bd773db156e98c09cbd67bac5a"
+    }
+  },
+  "checks": [
+    {
+      "check": "parameter_bounds",
+      "details": "parameters=2",
+      "status": "PASS"
+    },
+    {
+      "check": "split_isolation",
+      "details": "validation evaluated only after parameter lock",
+      "status": "PASS"
+    },
+    {
+      "check": "objective_consistency",
+      "details": "tolerance=1e-08",
+      "status": "PASS"
+    }
+  ],
+  "data_shape": "event_collection",
+  "evaluation_count": 24,
+  "failed_evaluation_count": 0,
+  "inputs": {
+    "adapter": {
+      "path": "../physical_calibration.py",
+      "sha256": "deba16274cfb09328cd6baad0016aae7873afa83be02dc14596d738c4cf08e83"
+    },
+    "optimizer_config": {
+      "path": "../optimizer.json",
+      "sha256": "f059cc575ae887afcb5b2276bc28822b4e2dcf66d73b93fcd8be7a8d2f3b8c9e"
+    },
+    "problem": {
+      "path": "../problem.json",
+      "sha256": "e97481f3925281f8f34c8a402bc55bea1c0a7af82c83669682a337eb4d0020b2"
+    }
+  },
+  "message": "de calibration completed",
+  "objective": {
+    "direction": "minimize",
+    "metric": "rmse"
+  },
+  "parameters": {
+    "max_evaluations": 128,
+    "optimizer_config": {
+      "algorithm": "de",
+      "crossover_probability": 0.7,
+      "max_evaluations": 128,
+      "max_failed_evaluations": 2,
+      "max_generations": 3,
+      "mutation_factor": 0.8,
+      "polish": false,
+      "population_multiplier": 3,
+      "schema_version": "1.0",
+      "seed": 20261004,
+      "tolerance": 1e-09
+    },
+    "seed": 20261004
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "scipy": "1.17.1"
+  },
+  "schema_version": "1.0",
+  "skill": "model-calibration/calibrate-model-de",
+  "status": "success",
+  "termination_reason": "optimizer_completed",
+  "warnings": []
+}

@@ -1,0 +1,146 @@
+{
+  "artifacts": {
+    "annotated_series": {
+      "path": "annotated_series.csv",
+      "sha256": "9607aae4d89f91707d6686ca942d5b725e364e2aff9445346e76496ab06e2540"
+    },
+    "event_config": {
+      "path": "event_config.yaml",
+      "sha256": "ef5883f3523e71d34efc9ecb89ea06fdef3a3d07a6242f1441d8398fc0848d27"
+    },
+    "event_manifest": {
+      "path": "event_manifest.json",
+      "sha256": "ae3f892abdba521029312bb07fdd9c29e3b9621ac5b3aaef7305f6c96184edc9"
+    },
+    "event_process": {
+      "path": "event_process.csv",
+      "sha256": "0cc6196dfd095b5acf22f25544810bff304ee7078e3c7ea15e1fea58b6e8aff2"
+    },
+    "event_qc": {
+      "path": "event_qc.csv",
+      "sha256": "1dfc5966d22e66d5b50c733a469ff157660545feba8006280405d07d5adfbe05"
+    },
+    "event_summary": {
+      "path": "event_summary.csv",
+      "sha256": "0e5b56915c365d024ccb8dbbbab8c218fd520019149c77042b237f8257e0a85c"
+    },
+    "rainfall_screening": {
+      "path": "rainfall_screening.csv",
+      "sha256": "4afbae6bd902161e302358d3504e19d69f05aef445569afae3c05b99f8596508"
+    }
+  },
+  "checks": [
+    {
+      "check": "event_identity_and_order",
+      "details": "events=4; stable chronological IDs",
+      "status": "PASS"
+    },
+    {
+      "check": "event_boundaries",
+      "details": "boundaries, times and peaks are consistent",
+      "status": "PASS"
+    },
+    {
+      "check": "configured_filters",
+      "details": "all retained events satisfy explicit filters",
+      "status": "PASS"
+    },
+    {
+      "check": "volume_balance",
+      "details": "total = baseflow + quickflow within tolerance",
+      "status": "PASS"
+    },
+    {
+      "check": "table_consistency",
+      "details": "summary=4, process=125, series=744",
+      "status": "PASS"
+    },
+    {
+      "check": "warmup_exclusion",
+      "details": "warm-up rows are flagged and excluded from event metrics",
+      "status": "PASS"
+    },
+    {
+      "check": "rainfall_support",
+      "details": "screened=4; retained=4; missing values are not zero rainfall",
+      "status": "PASS"
+    },
+    {
+      "check": "shape_filter",
+      "details": "long plateau and abrupt jump must both qualify; rainfall policies cannot override shape rejection",
+      "status": "PASS"
+    },
+    {
+      "check": "per_event_file_count",
+      "details": "expected=4; actual=4",
+      "status": "PASS"
+    },
+    {
+      "check": "event_count",
+      "details": "events=4",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "baseflow_result": {
+      "path": "../baseflow/result.json",
+      "sha256": "f3b44d038f50e1c083ec8d5bcecdd4cb65c0009adcaab539922f43de2d8ebf4f"
+    },
+    "event_config": {
+      "path": "../event_config.json",
+      "sha256": "2c60f5451efa5b8e0b3b0d7e52b7d1096144d78a776f8df66b4907e1a99b4ada"
+    },
+    "rainfall": {
+      "path": "../basin_rain.csv",
+      "sha256": "cbe116616df85e5d1301694bef41406b793a9eaad648850156d3bb9a9eb3cd07"
+    },
+    "rainfall_metadata": {
+      "path": "../rain_metadata.json",
+      "sha256": "21912cf4b99921a6e6d5d09533a8fa25973dd685b55d7b9234281d430aedd10f"
+    }
+  },
+  "message": "extracted 4 flood events",
+  "parameters": {
+    "candidate_peak_count": 16,
+    "event_config_schema_version": "1.2",
+    "event_filename_by": "event-id",
+    "final_event_count": 4,
+    "merged_event_count": 4,
+    "missing_rainfall_policy": "keep",
+    "no_rainfall_policy": "exclude",
+    "output_format": "csv",
+    "partial_rainfall_event_count": 0,
+    "per_event_format": "csv",
+    "policy_retained_event_count": 0,
+    "rainfall_rejected_event_count": 0,
+    "rainfall_support": {
+      "lookback_hours": 24,
+      "min_observed_rainfall_mm": 1,
+      "missing_rainfall_policy": "keep",
+      "no_rainfall_policy": "exclude"
+    },
+    "raw_event_count": 16,
+    "refined_event_count": 4,
+    "scale_filtered_event_count": 4,
+    "shape_filter": {
+      "jump_window_steps": 2,
+      "min_jump_fraction": 0.1,
+      "min_plateau_duration_hours": 24.0,
+      "min_plateau_fraction": 0.5,
+      "plateau_range_fraction": 0.005
+    },
+    "shape_rejected_event_count": 0,
+    "timestep_seconds": 3600.0
+  },
+  "provenance": {
+    "event_method": "quickflow-peaks/discharge-boundaries/valley-merge/quickflow-refine/shape-filter/rainfall-policy",
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16",
+    "scipy": "1.17.1"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/extract-flood-events",
+  "status": "success",
+  "warnings": []
+}

@@ -1,0 +1,10 @@
+{
+  "mode": "continuous",
+  "rows": 120,
+  "member_count": 2,
+  "warmup_union_rows": 0,
+  "selected_rows_per_member": {
+    "HBV": 120,
+    "Tank": 120
+  }
+}

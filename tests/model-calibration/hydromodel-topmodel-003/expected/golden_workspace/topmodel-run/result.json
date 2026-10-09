@@ -1,0 +1,32 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "details": "time axis has gaps or incorrect step",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "forcing.csv",
+      "sha256": "5781516d54d3a17df0b0958d37979dd83c0665a96ce773dd09f79553ce3b0441"
+    },
+    "params": {
+      "path": "params.json",
+      "sha256": "6a8817a4df7eb0af8597365df5f3065f30fc3d80c666f2e11271eb0fc5008f3f"
+    },
+    "terrain_result": {
+      "path": "terrain_result.json",
+      "sha256": "cf46ac12c6383e53a839a2bf8725f473b2e07f3892d7dcef931eb0ba367849f7"
+    }
+  },
+  "message": "time axis has gaps or incorrect step",
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-topmodel",
+  "status": "error",
+  "warnings": []
+}

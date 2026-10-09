@@ -1,0 +1,5 @@
+variable,unit_id,coverage_fraction,covered_area_m2,unit_area_m2
+P,1,0.9999999999999999,48.0,48.0
+P,2,1.0,48.0,48.0
+E0,1,0.9999999999999999,48.0,48.0
+E0,2,1.0,48.0,48.0

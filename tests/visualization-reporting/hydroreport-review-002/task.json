@@ -1,0 +1,119 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "events/event_process.csv",
+    "events/event_summary.csv",
+    "events/result.json",
+    "flow/result.json",
+    "flow/series_metadata.json",
+    "manifest.json",
+    "report/analysis-tables.json",
+    "report/data-gaps.csv",
+    "report/data-gaps.json",
+    "report/events.csv",
+    "report/evidence-index.csv",
+    "report/evidence-index.json",
+    "report/figures/distribution-2.svg",
+    "report/figures/distribution-3.svg",
+    "report/figures/distribution-4.svg",
+    "report/figures/distribution-7.svg",
+    "report/report.json",
+    "report/report.md",
+    "report/result.json",
+    "report/summary.csv"
+  ],
+  "difficulty": "advanced",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "review-final/result.json",
+        "review-final/review-checklist.csv",
+        "review-final/review.json",
+        "review-final/review.md",
+        "review-initial/result.json",
+        "review-initial/review-checklist.csv",
+        "review-initial/review.json",
+        "review-initial/review.md",
+        "semantic.json"
+      ],
+      "type": "file_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "review-initial_artifact_integrity",
+      "required_keys": [
+        "review-checklist.csv",
+        "review.json",
+        "review.md"
+      ],
+      "target": "review-initial/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "atol": 1e-05,
+      "columns": [
+        "category",
+        "actual",
+        "expected",
+        "severity",
+        "action",
+        "needs_human_judgment"
+      ],
+      "name": "review-initial_review-checklist",
+      "reference": "expected/golden_workspace/review-initial/review-checklist.csv",
+      "rtol": 1e-05,
+      "target": "review-initial/review-checklist.csv",
+      "type": "table_match",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "review-final_artifact_integrity",
+      "required_keys": [
+        "review-checklist.csv",
+        "review.json",
+        "review.md"
+      ],
+      "target": "review-final/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "evidence_and_scientific_contract",
+      "reference": "expected/report-contract.json",
+      "target": "review-final/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666666
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "review-final/result.json",
+      "type": "report_contract_check",
+      "weight": 0.16666666666666674
+    }
+  ],
+  "id": "hydroreport-review-002",
+  "primary_skill": "visualization-reporting/review-hydrological-study-report",
+  "prompt": "Use the visualization-reporting/review-hydrological-study-report capability on the supplied synthetic artifacts. Scenario: timeseries report passes. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --processing-manifest manifest.json --report-dir report --output-dir review-initial\nStage 2: --processing-manifest manifest.json --report-dir report --semantic-review semantic.json --output-dir review-final\n Before review, replace the administrative @WORKSPACE@ relocation marker in report JSON/CSV with the absolute current workspace path. For each ev-* evidence ID recompute ev- plus the first 20 hex characters of SHA256(source_id + \"|\" + artifact_absolute_path + \"|\" + locator), and replace its references throughout report JSON/CSV/Markdown. Refresh report/result.json artifact hashes. This restores native absolute evidence locators and administrative IDs; change no scientific value, paragraph text or upstream file. Independently read every report paragraph and its original evidence. After initial review, create semantic.json outside report and review folders using the current package_fingerprint, exactly one verdict per paragraph, all original evidence_ids and a substantive rationale. Determine supported/unsupported/uncertain from evidence, then rerun when requested. After relocation do not modify the supplied report or sources. Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "review-final/result.json",
+    "review-final/review-checklist.csv",
+    "review-final/review.json",
+    "review-final/review.md",
+    "review-initial/result.json",
+    "review-initial/review-checklist.csv",
+    "review-initial/review.json",
+    "review-initial/review.md",
+    "semantic.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "timeseries report passes"
+}

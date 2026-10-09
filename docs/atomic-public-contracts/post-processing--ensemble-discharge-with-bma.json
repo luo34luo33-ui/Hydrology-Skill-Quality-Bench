@@ -1,0 +1,1041 @@
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "post-processing/ensemble-discharge-with-bma",
+  "source_contract_sha256": "9a603a3757015cf437626e3851d8d74e53557d57315db1ec74883f398d384fd0",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "member_manifest",
+        "description": "JSON 成员清单，声明唯一模型 ID、相同流域出口、m3/s、步长、时区以及模型 result 或逐场次清单和路由出口声明。",
+        "required": true,
+        "format": "JSON",
+        "variables": [
+          {
+            "name": "simulated_m3_s",
+            "semantics": "已有水文模型或路由成果中的流域出口流量；至少两个固定成员。",
+            "units": "m3/s",
+            "time_step": "由 timestep_hours 声明，并与每成员时间轴验证一致。",
+            "timezone": "时间必须携带时区；声明时区保存在集合器中，计算与输出统一 UTC。",
+            "calendar": "proleptic Gregorian",
+            "spatial_unit": "明确且相同的流域出口 outlet_id，由调用方确认。",
+            "catchment_area": "继承上游；本 skill 不做面积换算。",
+            "coordinate_reference_system": "not_applicable",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺失、负值、非有限值、轴不一致时停止，不插值、填零或重分配权重。"
+          }
+        ]
+      },
+      {
+        "id": "observed_result",
+        "description": "train 必填的标准观测 result.json，核验 discharge_timeseries 的 SHA-256，完整覆盖训练有效时步。",
+        "required": false,
+        "format": "JSON and CSV/Parquet/XLSX",
+        "variables": [
+          {
+            "name": "discharge_m3_s",
+            "semantics": "历史流域出口观测，仅 train 读取；全零或恒定时停止。",
+            "units": "m3/s",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "所选训练时步缺测或非有限值停止。"
+          }
+        ]
+      },
+      {
+        "id": "trained_model_result",
+        "description": "predict 必填的本 skill 训练 result.json，含可核验哈希的 bma_model.json。",
+        "required": false,
+        "format": "JSON"
+      },
+      {
+        "id": "selection_and_fit_parameters",
+        "description": "连续模式显式带时区 start/end，场次模式显式完整 event ID 清单；train 显式随机种子，初始化/迭代/容差默认 5/500/1e-8。",
+        "required": true,
+        "format": "CLI arguments"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "model",
+        "description": "train 成功时的 bma_model.json，含固定成员、归一化偏差/尺度/权重、缩放、训练范围及出口步长时区语义。",
+        "required": false,
+        "format": "JSON"
+      },
+      {
+        "id": "model_card",
+        "description": "训练样本数、输入证据、参数量纲、科学假设和警告。",
+        "required": false,
+        "format": "JSON"
+      },
+      {
+        "id": "fit_diagnostics",
+        "description": "train 每次初始化的收敛原因、迭代数及归一化平均对数似然历史；未收敛仍保留。",
+        "required": false,
+        "format": "JSON"
+      },
+      {
+        "id": "ensemble",
+        "description": "predict 的 ensemble_discharge.csv，含 time、可选 event_id、集合均值、配置的分位数及零流量概率。",
+        "required": false,
+        "format": "CSV",
+        "variables": [
+          {
+            "name": "ensemble_mean_m3_s",
+            "semantics": "零点删失高斯混合分布的解析期望，而非原模拟加权平均。",
+            "units": "m3/s",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "概率计算失败不发布表，不写 NaN。"
+          },
+          {
+            "name": "p05_m3_s,p50_m3_s,p95_m3_s",
+            "semantics": "默认混合 CDF 分位数；5% 至 95% 为 90% 等尾预测区间，零点概率内的分位数等于零。",
+            "units": "m3/s",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "失败不发布表；自定义概率改变列名。"
+          },
+          {
+            "name": "probability_zero",
+            "semantics": "混合分布在零流量处的概率质量。",
+            "units": "fraction",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "失败不发布表。"
+          }
+        ]
+      },
+      {
+        "id": "components",
+        "description": "predict 的长表，按时间键及模型 ID 保存原始模拟、潜在中心、标准差、权重、零概率，可重建边际分布。",
+        "required": false,
+        "format": "CSV"
+      },
+      {
+        "id": "qc",
+        "description": "精确匹配、有效行数、预热并集、成员数及连续/场次模式。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "result",
+        "description": "运行状态、参数、输入和产物 SHA-256、QC、警告及 Python/NumPy/Pandas/SciPy 版本；失败只引用已有诊断。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "warmup_period": {
+      "required": true,
+      "semantics": "使用上游明确预热证据，剔除任一成员预热行并集；所选场次无有效行时停止。"
+    },
+    "simulation_period": {
+      "required": true,
+      "semantics": "连续期含 start/end 两端；场次使用完整场次。预测有效时步全部晚于训练结束，不复用训练 event ID。"
+    },
+    "invariants": [
+      "至少两个非负有限出口成员；单位 m3/s，出口、时间步长、时区、时序模式与训练一致。",
+      "精确时间键对齐，不重采样、取覆盖交集、移动洪峰或填补失败成员。",
+      "权重非负且和为一，斜率非负，归一化 sigma 不小于数值下限 1e-6。",
+      "零观测使用零点概率质量，正观测使用密度；predict 不读取观测或更新权重。",
+      "均值非负、分位数单调非负、概率在零至一之间；只定义逐时步边际分布。",
+      "无收敛初始化不发布集合器；任何失败不发布可用预测表。",
+      "源成果只读，输出限定在 output-dir，默认拒绝非空目录。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "start": {
+          "type": "computed; see field semantics"
+        },
+        "converged": {
+          "type": "computed; see field semantics"
+        },
+        "reason": {
+          "type": "computed; see field semantics"
+        },
+        "iterations": {
+          "type": "computed; see field semantics"
+        },
+        "mean_loglik_normalized": {
+          "type": "computed; see field semantics"
+        },
+        "history": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "starts": {
+          "type": "computed; see field semantics"
+        },
+        "sigma_floor_normalized": {
+          "type": "computed; see field semantics"
+        },
+        "settings": {
+          "random_state": {
+            "type": "computed; see field semantics"
+          },
+          "n_starts": {
+            "type": "computed; see field semantics"
+          },
+          "max_iter": {
+            "type": "computed; see field semantics"
+          },
+          "tol": {
+            "type": "computed; see field semantics"
+          },
+          "m_step": {
+            "method": {
+              "type": "string"
+            },
+            "maxiter": {
+              "type": "number"
+            },
+            "ftol": {
+              "type": "number"
+            },
+            "gtol": {
+              "type": "number"
+            }
+          },
+          "initialization": {
+            "residual_sigma_floor": {
+              "type": "number"
+            },
+            "intercept_jitter_sd": {
+              "type": "number"
+            },
+            "slope_sigma_log_jitter_sd": {
+              "type": "number"
+            },
+            "weight_dirichlet_alpha": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      {
+        "weights": {
+          "type": "computed; see field semantics"
+        },
+        "theta": {
+          "type": "computed; see field semantics"
+        },
+        "scale_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "score": {
+          "type": "computed; see field semantics"
+        },
+        "selected_start": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "random_state": {
+          "type": "computed; see field semantics"
+        },
+        "n_starts": {
+          "type": "computed; see field semantics"
+        },
+        "max_iter": {
+          "type": "computed; see field semantics"
+        },
+        "tol": {
+          "type": "computed; see field semantics"
+        },
+        "m_step": {
+          "method": {
+            "type": "string"
+          },
+          "maxiter": {
+            "type": "number"
+          },
+          "ftol": {
+            "type": "number"
+          },
+          "gtol": {
+            "type": "number"
+          }
+        },
+        "initialization": {
+          "residual_sigma_floor": {
+            "type": "number"
+          },
+          "intercept_jitter_sd": {
+            "type": "number"
+          },
+          "slope_sigma_log_jitter_sd": {
+            "type": "number"
+          },
+          "weight_dirichlet_alpha": {
+            "type": "number"
+          }
+        }
+      },
+      {
+        "method": {
+          "type": "string"
+        },
+        "maxiter": {
+          "type": "number"
+        },
+        "ftol": {
+          "type": "number"
+        },
+        "gtol": {
+          "type": "number"
+        }
+      },
+      {
+        "residual_sigma_floor": {
+          "type": "number"
+        },
+        "intercept_jitter_sd": {
+          "type": "number"
+        },
+        "slope_sigma_log_jitter_sd": {
+          "type": "number"
+        },
+        "weight_dirichlet_alpha": {
+          "type": "number"
+        }
+      },
+      {
+        "maxiter": {
+          "type": "number"
+        },
+        "ftol": {
+          "type": "number"
+        },
+        "gtol": {
+          "type": "number"
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "simulated_m3_s": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "mode": {
+          "type": "computed; see field semantics"
+        },
+        "rows": {
+          "type": "computed; see field semantics"
+        },
+        "member_count": {
+          "type": "computed; see field semantics"
+        },
+        "warmup_union_rows": {
+          "type": "computed; see field semantics"
+        },
+        "selected_rows_per_member": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "members": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "distribution": {
+          "type": "computed; see field semantics"
+        },
+        "estimator": {
+          "type": "string"
+        },
+        "parameter_units": {
+          "theta_a": {
+            "type": "string"
+          },
+          "theta_b": {
+            "type": "string"
+          },
+          "theta_sigma": {
+            "type": "string"
+          }
+        },
+        "training_rows": {
+          "type": "computed; see field semantics"
+        },
+        "row_weighting": {
+          "type": "string"
+        },
+        "model": {
+          "type": "computed; see field semantics"
+        },
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "interpretation": {
+          "type": "string"
+        }
+      },
+      {
+        "model": {
+          "type": "string"
+        },
+        "model_card": {
+          "type": "string"
+        },
+        "fit_diagnostics": {
+          "type": "string"
+        }
+      },
+      {
+        "ensemble": {
+          "type": "string"
+        },
+        "components": {
+          "type": "string"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "mode": {
+            "type": "computed; see field semantics"
+          },
+          "distribution": {
+            "type": "string"
+          },
+          "random_state": {
+            "type": "computed; see field semantics"
+          },
+          "n_starts": {
+            "type": "computed; see field semantics"
+          },
+          "max_iter": {
+            "type": "computed; see field semantics"
+          },
+          "tol": {
+            "type": "computed; see field semantics"
+          },
+          "quantiles": {
+            "type": "computed; see field semantics"
+          },
+          "selection": {
+            "start": {
+              "type": "computed; see field semantics"
+            },
+            "end": {
+              "type": "computed; see field semantics"
+            },
+            "events": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "distribution": {
+          "type": "string"
+        },
+        "model_ids": {
+          "type": "computed; see field semantics"
+        },
+        "outlet_id": {
+          "type": "computed; see field semantics"
+        },
+        "timestep_hours": {
+          "type": "computed; see field semantics"
+        },
+        "timezone": {
+          "type": "computed; see field semantics"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "series_mode": {
+          "type": "computed; see field semantics"
+        },
+        "training_start": {
+          "type": "computed; see field semantics"
+        },
+        "training_end": {
+          "type": "computed; see field semantics"
+        },
+        "training_events": {
+          "type": "computed; see field semantics"
+        },
+        "random_state": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "theta_a": {
+          "type": "string"
+        },
+        "theta_b": {
+          "type": "string"
+        },
+        "theta_sigma": {
+          "type": "string"
+        }
+      },
+      {
+        "mode": {
+          "type": "computed; see field semantics"
+        },
+        "distribution": {
+          "type": "string"
+        },
+        "random_state": {
+          "type": "computed; see field semantics"
+        },
+        "n_starts": {
+          "type": "computed; see field semantics"
+        },
+        "max_iter": {
+          "type": "computed; see field semantics"
+        },
+        "tol": {
+          "type": "computed; see field semantics"
+        },
+        "quantiles": {
+          "type": "computed; see field semantics"
+        },
+        "selection": {
+          "start": {
+            "type": "computed; see field semantics"
+          },
+          "end": {
+            "type": "computed; see field semantics"
+          },
+          "events": {
+            "type": "computed; see field semantics"
+          }
+        }
+      },
+      {
+        "ensemble_mean_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "probability_zero": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "start": {
+          "type": "computed; see field semantics"
+        },
+        "end": {
+          "type": "computed; see field semantics"
+        },
+        "events": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "model_id": {
+          "type": "computed; see field semantics"
+        },
+        "simulated_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "corrected_center_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "sigma_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "weight": {
+          "type": "computed; see field semantics"
+        },
+        "probability_zero": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "run-lumped-hbv-model",
+        "run-lumped-tank-model",
+        "run-lumped-dhf-model",
+        "run-lumped-gr4j-model",
+        "run-lumped-sacsma-model"
+      ],
+      [
+        "true",
+        "1"
+      ],
+      [
+        "simulation_table",
+        "Q",
+        "is_warmup"
+      ],
+      [
+        "hydrological-modeling/run-lumped-xaj-model",
+        "hydrological-modeling/run-lumped-topmodel",
+        "hydrological-modeling/run-semi-distributed-xaj-model",
+        "hydrological-modeling/route-muskingum-channel",
+        "hydrological-modeling/route-lohmann-channel"
+      ],
+      [
+        "process.csv",
+        "outlet_m3_s",
+        "warmup"
+      ],
+      [
+        "outlet_flow",
+        "Q_m3s",
+        "is_warmup"
+      ],
+      [
+        "true",
+        "false",
+        "0",
+        "1"
+      ],
+      [
+        "hydrological-modeling/run-lumped-xaj-model"
+      ],
+      [
+        "success",
+        "warning"
+      ],
+      [
+        "path",
+        "sha256"
+      ],
+      [
+        "bma_model.json",
+        "model_card.json",
+        "fit_diagnostics.json",
+        "alignment_qc.json",
+        "ensemble_discharge.csv",
+        "component_predictions.csv",
+        "result.json"
+      ],
+      [
+        "schema_version",
+        "outlet_id",
+        "unit",
+        "timestep_hours",
+        "timezone",
+        "members"
+      ],
+      [
+        "schema_version",
+        "distribution",
+        "model_ids",
+        "weights",
+        "theta",
+        "scale_m3_s",
+        "unit",
+        "outlet_id",
+        "timestep_hours",
+        "timezone",
+        "series_mode",
+        "training_end",
+        "training_events"
+      ],
+      [
+        "simulation_table",
+        "process.csv",
+        "outlet_flow",
+        "routed_table"
+      ],
+      [
+        "event_id",
+        "time"
+      ],
+      [
+        "time"
+      ],
+      [
+        "outlet_id",
+        "timestep_hours",
+        "timezone"
+      ],
+      [
+        "data-processing/prepare-discharge-timeseries"
+      ],
+      [
+        "train",
+        "predict"
+      ],
+      [
+        "time",
+        "discharge_m3_s"
+      ],
+      [
+        "bma_model.json",
+        "model_card.json",
+        "ensemble_discharge.csv",
+        "component_predictions.csv"
+      ],
+      [
+        "numpy",
+        "pandas",
+        "scipy"
+      ],
+      [
+        "fit_diagnostics",
+        "fit_diagnostics.json"
+      ],
+      [
+        "qc",
+        "alignment_qc.json"
+      ]
+    ],
+    "field_names": [
+      "0",
+      "1",
+      "Q",
+      "Q_m3s",
+      "_config_base",
+      "_warm",
+      "action",
+      "alignment_qc.json",
+      "allow_nan",
+      "args",
+      "artifacts",
+      "atol",
+      "axis",
+      "bma_model.json",
+      "bounds",
+      "check",
+      "checks",
+      "choices",
+      "columns",
+      "component_predictions.csv",
+      "components",
+      "converged",
+      "corrected_center_m3_s",
+      "data-processing/prepare-discharge-timeseries",
+      "ddof",
+      "default",
+      "description",
+      "details",
+      "discharge_m3_s",
+      "discharge_timeseries",
+      "distribution",
+      "drop",
+      "dtype",
+      "encoding",
+      "end",
+      "ensemble",
+      "ensemble_discharge.csv",
+      "ensemble_mean_m3_s",
+      "ensure_ascii",
+      "errors",
+      "estimator",
+      "event_id",
+      "event_manifest",
+      "events",
+      "exist_ok",
+      "false",
+      "file",
+      "fit_diagnostics",
+      "fit_diagnostics.json",
+      "ftol",
+      "gtol",
+      "history",
+      "how",
+      "hydrological-modeling/route-lohmann-channel",
+      "hydrological-modeling/route-muskingum-channel",
+      "hydrological-modeling/run-lumped-topmodel",
+      "hydrological-modeling/run-lumped-xaj-model",
+      "hydrological-modeling/run-semi-distributed-xaj-model",
+      "ignore_index",
+      "include",
+      "indent",
+      "index",
+      "initialization",
+      "inputs",
+      "intercept_jitter_sd",
+      "interpretation",
+      "is_warmup",
+      "iterations",
+      "jac",
+      "m_step",
+      "max_iter",
+      "maxiter",
+      "mean_loglik_normalized",
+      "member_count",
+      "members",
+      "message",
+      "method",
+      "missing_ok",
+      "mode",
+      "model",
+      "model_card",
+      "model_card.json",
+      "model_id",
+      "model_ids",
+      "model_result",
+      "n_starts",
+      "nargs",
+      "numpy",
+      "observations",
+      "observed_result",
+      "on",
+      "options",
+      "outlet_declaration",
+      "outlet_flow",
+      "outlet_id",
+      "outlet_m3_s",
+      "pandas",
+      "parameter_units",
+      "parameters",
+      "parents",
+      "path",
+      "predict",
+      "probability_zero",
+      "process.csv",
+      "provenance",
+      "python",
+      "qc",
+      "quantiles",
+      "random_state",
+      "reason",
+      "required",
+      "residual_sigma_floor",
+      "result.json",
+      "routed_table",
+      "row_weighting",
+      "rows",
+      "rtol",
+      "run-lumped-dhf-model",
+      "run-lumped-gr4j-model",
+      "run-lumped-hbv-model",
+      "run-lumped-sacsma-model",
+      "run-lumped-tank-model",
+      "scale_m3_s",
+      "schema_version",
+      "scipy",
+      "score",
+      "selected_rows_per_member",
+      "selected_start",
+      "selection",
+      "series_mode",
+      "settings",
+      "sha256",
+      "sigma_floor_normalized",
+      "sigma_m3_s",
+      "simulated_m3_s",
+      "simulation_result",
+      "simulation_table",
+      "skill",
+      "slope_sigma_log_jitter_sd",
+      "sort",
+      "start",
+      "starts",
+      "status",
+      "success",
+      "theta",
+      "theta_a",
+      "theta_b",
+      "theta_sigma",
+      "time",
+      "timestep_hours",
+      "timezone",
+      "tol",
+      "train",
+      "training_end",
+      "training_events",
+      "training_rows",
+      "training_start",
+      "true",
+      "type",
+      "tz",
+      "unit",
+      "upstream_xaj_result",
+      "utc",
+      "validate",
+      "warmup",
+      "warmup_union_rows",
+      "warning",
+      "warnings",
+      "weight",
+      "weight_dirichlet_alpha",
+      "weights",
+      "xtol"
+    ],
+    "literal_enum_values": {
+      "method": [
+        "L-BFGS-B"
+      ],
+      "mode": [
+        "continuous",
+        "event"
+      ],
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "FAIL",
+        "PASS",
+        "error",
+        "success",
+        "warning"
+      ],
+      "unit": [
+        "m3/s"
+      ]
+    },
+    "static_interface_values": {
+      "method": [
+        "L-BFGS-B"
+      ],
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^02g$",
+      "^declaration_.+$",
+      "^event_manifest_.+$",
+      "^p.+_m3_s$",
+      "^simulation_.+$",
+      "^simulation_.+_.+$",
+      "^table_.+_.+_.+$",
+      "^upstream_.+_.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "post-processing/ensemble-discharge-with-bma"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}

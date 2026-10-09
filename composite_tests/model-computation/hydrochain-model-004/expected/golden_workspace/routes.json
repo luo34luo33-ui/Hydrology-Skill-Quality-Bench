@@ -1,0 +1,19 @@
+{
+  "routes": [
+    {
+      "column": "Qt",
+      "id": "local",
+      "k": 1.0,
+      "layout": "single",
+      "x": 0.2
+    },
+    {
+      "column": "GB_out",
+      "id": "reservoir",
+      "k": 1.0,
+      "layout": "single",
+      "x": 0.2
+    }
+  ],
+  "schema_version": "1.0"
+}

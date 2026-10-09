@@ -1,5 +1,7 @@
 # 数据预处理测试说明
 
+> 中档题语义说明：`hydrodata-eto-faopm-002` 与 `hydrodata-forcing-standardize-002` 所测 Skill 无原生 warning 通道（warnings 恒空），中档题采用"确认非默认语义"设计（status=success、exit 0，测 floor_zero 裁剪与累计换算的告警邻近行为），不视为成功/警告分档冲突。
+
 本文档说明 `tests/data-preprocessing/` 中当前每个 benchmark task 主要在测试什么，便于审查覆盖面、定位失败原因和设计新题。实际执行和评分仍以各任务的 `task.json`、`data/` 与 `expected/` 为准；本文档不是评分配置。
 
 ## 目录约定
@@ -73,6 +75,12 @@
 | `hydrodata-flood-events-008` | 存在候选洪峰，但显式规模门槛筛除全部事件 | 区分“检测到候选但最终为零”与“没有 quickflow”两种路径 | `warning` |
 | `hydrodata-flood-events-009` | YAML 缺少一个必需科学参数 | 配置校验失败；禁止用默认值补齐；不生成事件成果 | `error` |
 | `hydrodata-flood-events-010` | 总流量、基流和 quickflow 的事件洪量不守恒 | 科学 QC 必须失败；保留原生错误结果；不交付事件成果 | `error`，原生脚本退出码 2 |
+| `hydrodata-eto-faopm-001` | 双站日尺度完整气象 + 确认 config（units 整字典、PET mapping floor_zero） | FAO-56 ETo 计算；eto.csv 与 mapped_evap.csv 逐行一致 | `success` / 0 |
+| `hydrodata-eto-faopm-002` | 站 A 含冷湿日块使 ETo 为负 | floor_zero 映射把 mapped PET 裁 0，eto.csv 保留原始负值；不得改策略或弃行 | `success` / 0（无原生 warning 通道，见顶部说明） |
+| `hydrodata-eto-faopm-003` | 气象表含 NaN | 脚本必须拒绝；不产出 eto.csv / mapped_evap.csv | `error` / 2 |
+| `hydrodata-forcing-standardize-001` | 双站逐时 step_depth（mm/step）+ 确认 config | prepared_forcing.csv 与 series_metadata.json；区间末端 mm/step | `success` / 0 |
+| `hydrodata-forcing-standardize-002` | running_cumulative + reset_flag（12/24/36 步复位） | 累计差分换算 step 深度；不得自行差分或改语义 | `success` / 0（无原生 warning 通道，见顶部说明） |
+| `hydrodata-forcing-standardize-003` | 累计序列漏标一处 reset（负差分） | 脚本必须拒绝；不产出标准化成果 | `error` / 2 |
 
 评分重点包括：summary、process 和 annotated series 的逐行内容，事件边界、主峰、稳定 ID、warm-up 排除、洪量守恒、manifest、逐场文件集合、配置回写、QC 状态，以及失败场景的成果缺失。
 

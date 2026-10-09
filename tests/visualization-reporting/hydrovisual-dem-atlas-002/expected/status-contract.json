@@ -1,0 +1,12 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "skill": "visualization-reporting/visualize-dem-hydrology-atlas",
+      "status": "warning",
+      "warnings": [
+        "No extract result supplied; network and subbasin templates were skipped"
+      ]
+    }
+  },
+  "kind": "status"
+}

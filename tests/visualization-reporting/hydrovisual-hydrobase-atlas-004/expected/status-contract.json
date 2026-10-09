@@ -1,0 +1,11 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "error_reason_contains": "validation input build_result SHA-256 不匹配:",
+      "skill": "visualization-reporting/visualize-hydrobase-atlas",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

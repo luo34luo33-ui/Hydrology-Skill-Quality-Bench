@@ -1,0 +1,52 @@
+{
+  "crs": "EPSG:32650",
+  "extent": [
+    499967.0,
+    500993.0,
+    4099007.0,
+    4100033.0
+  ],
+  "language": "en",
+  "layers": [
+    {
+      "display_transform": "2-98 percentile terrain tint plus fixed hillshade; vmin=1061; vmax=1214; display clipped to true basin polygon",
+      "id": "analysis-dem",
+      "palette": "terrain",
+      "source": "prepare_result.artifacts.analysis_dem"
+    },
+    {
+      "display_transform": "boundary stroke; display clipped to true basin polygon",
+      "id": "basin-boundary",
+      "palette": "boundary",
+      "source": "prepare_result.artifacts.normalized_basin"
+    }
+  ],
+  "outputs": {
+    "png": {
+      "path": "dem-terrain.png",
+      "sha256": "da9b4dfba070d6077bcb4856b2e3f5561a999557e4ae66938102f755a3cefe57"
+    },
+    "svg": {
+      "path": "dem-terrain.svg",
+      "sha256": "1c02032a2148465b63c173314d85e15647b3a12dfda7ad8ceae5ca2b0bc21001"
+    }
+  },
+  "pixel_size": {
+    "height": 2400,
+    "width": 2375
+  },
+  "publication_ready": false,
+  "schema_version": "1.0",
+  "source_results": {
+    "prepare_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-6v61nmp1\\prepare\\result.json",
+      "sha256": "fb4420d6a32c3c037a323bc2c566be936f795db6d04cd4db9d5b232d6f11933f"
+    }
+  },
+  "template_id": "dem-terrain",
+  "template_version": "hydrotune.dem-hydrology-atlas.v2",
+  "title": "Terrain within the analysis extent",
+  "warnings": [
+    "No extract result supplied; network and subbasin templates were skipped"
+  ]
+}

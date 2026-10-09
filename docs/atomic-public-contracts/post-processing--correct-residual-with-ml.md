@@ -1,0 +1,622 @@
+# Public input/output contract
+
+Identical in all three conditions. Describes interfaces, not expected results.
+
+Preserve double precision (17 significant digits for computed CSV numbers). Resolve manifest artifact paths relative to the manifest directory; bind files by SHA-256. Choose the applicable outcome branch from the evidence; no branch is preselected.
+
+```json
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "post-processing/correct-residual-with-ml",
+  "source_contract_sha256": "abd9b9441359012572554f65bb3809adc5b521ab30d9bd48fe9d337700277d9d",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "baseline_series",
+        "description": "含时间列、基准模拟列、观测列（train 必填）与候选特征列的表格，通常来自模型运行与观测对齐结果。",
+        "required": true,
+        "format": "CSV, Parquet or XLSX",
+        "variables": [
+          {
+            "name": "base",
+            "semantics": "基准模拟序列，列名由 --base-column 给出；必须是已确认单位的流量序列。",
+            "units": "m3/s as confirmed",
+            "time_step": "由上游契约声明，本 Skill 不换算",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺测默认停止；使用 drop-rows 时必须记录丢弃行数。"
+          },
+          {
+            "name": "observed",
+            "semantics": "同期观测序列，列名由 --observed-column 给出，用于构造残差 observed - base。",
+            "units": "m3/s as confirmed",
+            "time_step": "由上游契约声明，本 Skill 不换算",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺测默认停止；使用 drop-rows 时必须记录丢弃行数。"
+          },
+          {
+            "name": "residual",
+            "semantics": "有观测时由本 Skill 计算 observed - base；predict 无观测时必须提供由已可用历史观测与基准模拟得到的同定义历史残差列。仅其 t-1 至 t-5 等历史滞后可作为输入，当前残差是预测目标。",
+            "units": "m3/s",
+            "time_step": "与输入一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺少历史残差来源时停止，不自动以预测残差替代；不接受相反符号约定。"
+          }
+        ]
+      },
+      {
+        "id": "model_configuration",
+        "description": "后端名称、显式超参、随机种子、划分方式与滞后特征配置。",
+        "required": true,
+        "format": "CLI arguments and JSON",
+        "variables": [
+          {
+            "name": "feature_columns",
+            "semantics": "原始特征列清单，训练必须显式列出，预测沿用模型卡；与必需残差滞后特征一起输入模型，不得包含当前 residual。",
+            "units": "column names",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失列必须停止。"
+          },
+          {
+            "name": "lag_spec",
+            "semantics": "训练必须显式声明 residual:1,2,3,4,5，预测沿用并校验模型卡；生成 residual_lag_1 至 residual_lag_5。步数为输入序列时间步，其他变量步数非负；禁止 residual:0 和未来信息。",
+            "units": "steps",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺少任一必需残差滞后、使用当前残差或负步数必须停止；旧模型卡不满足要求时提示重新训练。"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "id": "corrected_series",
+        "description": "含基准列、观测列（若有）、残差、预测残差与校正列的逐时步表。",
+        "required": true,
+        "format": "CSV, Parquet or XLSX",
+        "variables": [
+          {
+            "name": "corrected",
+            "semantics": "校正后的序列，等于 base + predicted_residual；负值不裁剪并计数。",
+            "units": "m3/s",
+            "time_step": "与输入一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          },
+          {
+            "name": "predicted_residual",
+            "semantics": "模型预测的残差，符号与 observed - base 一致。",
+            "units": "m3/s",
+            "time_step": "与输入一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "出现非有限值即失败，退出码 2。"
+          }
+        ]
+      },
+      {
+        "id": "model_card",
+        "description": "模型卡，记录后端、超参、随机种子、划分方式、特征列、滞后配置、残差定义与训练/测试指标。",
+        "required": false,
+        "format": "JSON"
+      },
+      {
+        "id": "model_artifact",
+        "description": "序列化模型文件，与模型卡配对保存，predict 模式按模型卡校验特征与滞后配置。",
+        "required": false,
+        "format": "joblib"
+      },
+      {
+        "id": "run_result",
+        "description": "符合 HydroTune 运行结果约定的 result.json，含参数、输入与产物 SHA-256、QC 与 provenance。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "simulation_period": {
+      "required": true,
+      "semantics": "输入表覆盖的全部时步；滞后构造或缺测处理会减少可用行，减少数量必须写入 result.json。"
+    },
+    "invariants": [
+      "残差定义必须为 observed - base，回代必须为 base + predicted_residual。",
+      "输入特征必须包含 residual(t-1) 至 residual(t-5)，不得输入当前 residual 或 residual:0；其他合法特征可继续使用。",
+      "预测历史残差必须来自已可用的历史观测与基准模拟，缺少来源时停止，不自动用预测残差替代。",
+      "滞后步数必须为非负整数，禁止引入未来信息。",
+      "训练必须给出 random_state，否则拒绝执行。",
+      "输入缺测默认停止；滞后构造造成的不完整行只能丢弃或显式填充，不得静默填 0。",
+      "预测残差必须全部有限，出现非有限值即退出码 2。",
+      "输出只写入 --output-dir，模型文件必须位于输出目录内。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        },
+        "scikit-learn": {
+          "type": "computed; see field semantics"
+        },
+        "joblib": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "name": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "r2": {
+          "type": "computed; see field semantics"
+        },
+        "rmse": {
+          "type": "computed; see field semantics"
+        },
+        "mae": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "corrected_table": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "mode": {
+            "type": "computed; see field semantics"
+          },
+          "backend": {
+            "type": "computed; see field semantics"
+          },
+          "hyperparameters": {
+            "type": "computed; see field semantics"
+          },
+          "random_state": {
+            "type": "computed; see field semantics"
+          },
+          "split": {
+            "type": "computed; see field semantics"
+          },
+          "test_size": {
+            "type": "computed; see field semantics"
+          },
+          "min_train_samples": {
+            "type": "computed; see field semantics"
+          },
+          "missing_policy": {
+            "type": "computed; see field semantics"
+          },
+          "lag_policy": {
+            "type": "computed; see field semantics"
+          },
+          "lag_fill_value": {
+            "type": "computed; see field semantics"
+          },
+          "lag_spec": {
+            "type": "computed; see field semantics"
+          },
+          "feature_columns": {
+            "type": "computed; see field semantics"
+          },
+          "base_column": {
+            "type": "computed; see field semantics"
+          },
+          "observed_column": {
+            "type": "computed; see field semantics"
+          },
+          "output_column": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "inputs": {
+          "table": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "backend": {
+          "type": "computed; see field semantics"
+        },
+        "hyperparameters": {
+          "type": "computed; see field semantics"
+        },
+        "random_state": {
+          "type": "computed; see field semantics"
+        },
+        "split": {
+          "type": "computed; see field semantics"
+        },
+        "test_size": {
+          "type": "computed; see field semantics"
+        },
+        "base_column": {
+          "type": "computed; see field semantics"
+        },
+        "observed_column": {
+          "type": "computed; see field semantics"
+        },
+        "output_column": {
+          "type": "computed; see field semantics"
+        },
+        "feature_columns": {
+          "type": "computed; see field semantics"
+        },
+        "lag_spec": {
+          "type": "computed; see field semantics"
+        },
+        "residual_definition": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "predicted_residual": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "mode": {
+          "type": "computed; see field semantics"
+        },
+        "backend": {
+          "type": "computed; see field semantics"
+        },
+        "hyperparameters": {
+          "type": "computed; see field semantics"
+        },
+        "random_state": {
+          "type": "computed; see field semantics"
+        },
+        "split": {
+          "type": "computed; see field semantics"
+        },
+        "test_size": {
+          "type": "computed; see field semantics"
+        },
+        "min_train_samples": {
+          "type": "computed; see field semantics"
+        },
+        "missing_policy": {
+          "type": "computed; see field semantics"
+        },
+        "lag_policy": {
+          "type": "computed; see field semantics"
+        },
+        "lag_fill_value": {
+          "type": "computed; see field semantics"
+        },
+        "lag_spec": {
+          "type": "computed; see field semantics"
+        },
+        "feature_columns": {
+          "type": "computed; see field semantics"
+        },
+        "base_column": {
+          "type": "computed; see field semantics"
+        },
+        "observed_column": {
+          "type": "computed; see field semantics"
+        },
+        "output_column": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "table": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "column": {
+          "type": "computed; see field semantics"
+        },
+        "steps": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "gradient-boosting",
+        "random-forest",
+        "extra-trees",
+        "linear",
+        "ridge",
+        "xgboost"
+      ],
+      [
+        "csv",
+        "parquet",
+        "xlsx"
+      ],
+      [
+        "corrected_series.csv",
+        "corrected_series.parquet",
+        "corrected_series.xlsx",
+        "model_card.json",
+        "model.joblib",
+        "result.json"
+      ],
+      [
+        "train",
+        "predict"
+      ],
+      [
+        "drop",
+        "fill",
+        "fail"
+      ],
+      [
+        "random",
+        "chronological"
+      ],
+      [
+        "fail",
+        "drop-rows"
+      ]
+    ],
+    "field_names": [
+      "Q_obs",
+      "Q_total",
+      "action",
+      "artifacts",
+      "axis",
+      "backend",
+      "backend_version",
+      "base_column",
+      "checks",
+      "choices",
+      "chronological",
+      "column",
+      "corrected",
+      "corrected_series.csv",
+      "corrected_series.parquet",
+      "corrected_series.xlsx",
+      "corrected_table",
+      "csv",
+      "date_format",
+      "default",
+      "description",
+      "drop",
+      "drop-rows",
+      "dtype",
+      "encoding",
+      "engine",
+      "ensure_ascii",
+      "errors",
+      "exist_ok",
+      "extra-trees",
+      "fail",
+      "feature_columns",
+      "file",
+      "fill",
+      "from_model_card",
+      "gradient-boosting",
+      "help",
+      "hyperparameters",
+      "indent",
+      "index",
+      "inputs",
+      "joblib",
+      "lag_fill_value",
+      "lag_policy",
+      "lag_spec",
+      "linear",
+      "mae",
+      "message",
+      "min_train_samples",
+      "missing_policy",
+      "mode",
+      "model",
+      "model.joblib",
+      "model_card",
+      "model_card.json",
+      "model_used",
+      "name",
+      "numpy",
+      "observed_column",
+      "output_column",
+      "pandas",
+      "parameters",
+      "parents",
+      "parquet",
+      "path",
+      "predict",
+      "predicted_residual",
+      "provenance",
+      "python",
+      "r2",
+      "random",
+      "random-forest",
+      "random_state",
+      "required",
+      "residual",
+      "residual_definition",
+      "result.json",
+      "ridge",
+      "rmse",
+      "schema_version",
+      "scikit-learn",
+      "sha256",
+      "sheet_name",
+      "skill",
+      "sort_keys",
+      "split",
+      "status",
+      "steps",
+      "table",
+      "test_r2",
+      "test_rmse",
+      "test_rows",
+      "test_size",
+      "time",
+      "train",
+      "train_r2",
+      "train_rmse",
+      "train_rows",
+      "type",
+      "warnings",
+      "xgboost",
+      "xlsx"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "error"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^.+_lag_.+$",
+      "^corrected_series\\..+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "post-processing/correct-residual-with-ml"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}
+```

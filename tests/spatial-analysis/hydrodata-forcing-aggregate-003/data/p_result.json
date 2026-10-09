@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "forcing": {
+      "path": "p_forcing.csv",
+      "sha256": "d12458ae14501de583de2f9253515a1ca2b67526279a3d06dc6df7e9fe2db041"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_upstream",
+      "details": "deterministic benchmark fixture",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-model-forcing-timeseries",
+  "status": "success"
+}

@@ -115,6 +115,7 @@
   "id": "hydroanalysis-event-metrics-001",
   "primary_skill": "evaluation-diagnostics/compute-event-flood-metrics",
   "prompt": "Use the three event tables under events/ exactly as supplied to run evaluation-diagnostics/compute-event-flood-metrics. Every event has hourly time, Q_obs, and Q_total columns in m3/s; the timestep is 1 h. Use the confirmed thresholds.json (relative_volume_error=0.2, relative_peak_error=0.2, peak_time_error_hours=3.0) and keep the default error sign convention (observed minus simulated; simulated minus observed for peak time). Write the native outputs (event_metrics.csv, result.json) under event-metrics/. Do not invent thresholds, flip error signs, or fill missing values.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "event-metrics/event_metrics.csv",
     "event-metrics/result.json"

@@ -55,6 +55,7 @@
   "id": "hydrodata-stream-network-007",
   "primary_skill": "spatial-analysis/extract-dem-stream-network",
   "prompt": "Extract the network from analysis_dem.tif with the confirmed stream initiation area 0.0031 km2. Write outputs under hydrology/. Do not change the threshold or D8 encoding. If validation rejects the input, preserve result.json but remove partial declared artifacts.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "hydrology/result.json"
   ],

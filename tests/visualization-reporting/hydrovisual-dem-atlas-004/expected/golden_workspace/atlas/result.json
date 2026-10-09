@@ -1,0 +1,16 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "artifact analysis_dem SHA-256 不匹配: C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-_s2yrloz\\prepare\\dem_analysis_buffer.tif",
+  "parameters": {
+    "language": "en"
+  },
+  "provenance": {
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-dem-hydrology-atlas",
+  "status": "error",
+  "warnings": []
+}

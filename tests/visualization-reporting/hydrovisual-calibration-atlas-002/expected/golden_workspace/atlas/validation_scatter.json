@@ -1,0 +1,33 @@
+{
+  "display_transforms": [
+    "validation scored=true rows only; multiple explicitly aligned simulations; 1:1 display reference; no visible titles"
+  ],
+  "figure_type": "validation-scatter",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\result.json",
+      "sha256": "f1b59ef80d01093695410f1ba6587adb8c90b6cbf6f2021b34a7859c6a747125"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\validation_series.csv",
+      "sha256": "fb3330aed08d62c8f95cd07eaefc50850cc07c198899406291fd26f2b9307ad4"
+    }
+  },
+  "language": "en",
+  "outputs": {
+    "png": {
+      "path": "validation_scatter.png",
+      "sha256": "05ceab77b42619aa2c8a4e1b602395c764c95fcbc80d8131b258a72d6993a5f9"
+    },
+    "svg": {
+      "path": "validation_scatter.svg",
+      "sha256": "5dacf671c87aaa88a1a8b15ee060bd3715d4a1d65dc3d898921d6a12f5c16187"
+    }
+  },
+  "schema_version": "1.0",
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "Validation observed–simulated scatter",
+  "warnings": [],
+  "width_px": 2400
+}

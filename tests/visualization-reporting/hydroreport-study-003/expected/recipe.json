@@ -1,0 +1,32 @@
+{
+  "group": "hydroreport-study",
+  "outputs": [
+    "report"
+  ],
+  "steps": [
+    {
+      "action": null,
+      "args": [
+        "prepare",
+        "--study-manifest",
+        "manifest.json",
+        "--output-dir",
+        "draft"
+      ],
+      "code": 0
+    },
+    {
+      "action": "narrative:incomplete",
+      "args": [
+        "finalize",
+        "--study-manifest",
+        "manifest.json",
+        "--report-json",
+        "draft/report.json",
+        "--output-dir",
+        "report"
+      ],
+      "code": 1
+    }
+  ]
+}

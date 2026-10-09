@@ -1,0 +1,2 @@
+﻿category,report_location,evidence_location,actual,expected,severity,action,needs_human_judgment
+semantic_review,/sections,/sections,not completed,Independent Agent evidence assessment,warning,Inspect evidence and revise; finalize again without changing upstream data.,True

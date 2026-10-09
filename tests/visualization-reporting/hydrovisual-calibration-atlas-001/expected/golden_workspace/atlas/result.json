@@ -1,0 +1,77 @@
+{
+  "artifacts": {
+    "overview_metadata": {
+      "path": "calibration_overview.json",
+      "sha256": "f6b4559453299ff1fc691abf0edbbb340cc2eca9665b015f264b0a11d89b4b2f"
+    },
+    "overview_png": {
+      "path": "calibration_overview.png",
+      "sha256": "0276b4eb6ec55fcf3a3e073346542c6906031b1b31d865a79c4a5cfb1c5bda38"
+    },
+    "overview_svg": {
+      "path": "calibration_overview.svg",
+      "sha256": "97c879cb5310eb483adcb697134977a43340c835169713b9d55d4f2040adfd99"
+    },
+    "process_001_metadata": {
+      "path": "validation_process.json",
+      "sha256": "9606373fafc3f2c5d4073f27f8c71cf08d70a45756e6cd0c632634f6928142f5"
+    },
+    "process_001_png": {
+      "path": "validation_process.png",
+      "sha256": "d8ef84d2ab5dffe45b2056dde660a3aa59ee7ad9601e654fb662334d6a7d1d52"
+    },
+    "process_001_svg": {
+      "path": "validation_process.svg",
+      "sha256": "66cc1bb77cf93c10e5f5f7836bcfd637d1f2e2869cfe1707947a34b237120baa"
+    },
+    "scatter_metadata": {
+      "path": "validation_scatter.json",
+      "sha256": "7eac0cf22069f87da8befea2de63335cafb242c72bb467d2c938465923616c9e"
+    },
+    "scatter_png": {
+      "path": "validation_scatter.png",
+      "sha256": "0b494c5c01308e86295e0be6df4f5f54667b196f55e2b33151cb8a5bbbe3062d"
+    },
+    "scatter_svg": {
+      "path": "validation_scatter.svg",
+      "sha256": "46d10fce305cf6b7ac363df03e22d5f1cfe0626b0d1afad110a0a936216813fc"
+    }
+  },
+  "checks": [
+    {
+      "check": "source_hashes",
+      "details": "verified=5",
+      "status": "PASS"
+    },
+    {
+      "check": "fixed_canvas",
+      "details": "all PNG figures are 2400x1600",
+      "status": "PASS"
+    },
+    {
+      "check": "validation_only_scatter",
+      "details": "scatter used validation scored rows only",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-2853jaoh\\calibration\\result.json",
+      "sha256": "029c5f9d1904047aa3bc0580310228beb98632d13eba70f31f4dab443d6376c8"
+    }
+  },
+  "message": "model calibration atlas rendered",
+  "parameters": {
+    "language": "zh",
+    "max_events": null
+  },
+  "provenance": {
+    "matplotlib": "3.11.2",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/visualize-model-calibration",
+  "status": "success",
+  "warnings": []
+}

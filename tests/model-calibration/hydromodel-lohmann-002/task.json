@@ -118,6 +118,7 @@
   "id": "hydromodel-lohmann-002",
   "primary_skill": "hydrological-modeling/route-lohmann-channel",
   "prompt": "Use inflow.csv and route_params.json exactly as supplied to run hydrological-modeling/route-lohmann-channel. The series is deliberately short (60 daily steps) with sustained inflow to the end, and the confirmed routing parameters widen the Gamma unit hydrograph (K=10), so a measurable share of the inflow volume stays inside the unit-hydrograph registers; this is a confirmed user decision and documented native behaviour. Run verbatim with --direct-column direct, --base-column base, flow length 100000 m, timestep 24 h. Write the native outputs (routed_lohmann.csv, lohmann_unit_hydrographs.json, result.json) under lohmann-run/. The volume_difference warning must be preserved natively in result.json, never hidden by shortening or rescaling the series.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "lohmann-run/routed_lohmann.csv",
     "lohmann-run/lohmann_unit_hydrographs.json",

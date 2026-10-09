@@ -77,6 +77,7 @@
   "id": "hydrodata-topology-validate-006",
   "primary_skill": "spatial-analysis/validate-hydrological-topology",
   "prompt": "Independently validate hydrobase/result.json with the confirmed expected outlet count 1. Write all QC evidence under topology-qc/. Do not modify or repair the supplied HydroBase.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "topology-qc/topology_checks.csv",
     "topology-qc/topology_check_report.txt",

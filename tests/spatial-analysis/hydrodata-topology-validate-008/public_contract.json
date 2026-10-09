@@ -1,0 +1,557 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydrodata-topology-validate-008",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "spatial-analysis/validate-hydrological-topology",
+    "source_contract_sha256": "918633605e92e192e2f95c7d8459f48b28c3951d110d135588fe9036a28ee8fc",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "build_result",
+          "description": "build-hydrological-topology 产生或外部兼容的 result.json。",
+          "required": true,
+          "format": "JSON"
+        },
+        {
+          "id": "expected_outlets",
+          "description": "用户或确定性项目配置确认的正整数出口数量。",
+          "required": true,
+          "format": "integer parameter"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "topology_checks",
+          "description": "逐项 PASS、WARN、FAIL 结果及证据。",
+          "required": true,
+          "format": "UTF-8 CSV",
+          "variables": [
+            {
+              "name": "status",
+              "semantics": "单项拓扑质量检查状态。",
+              "units": "PASS, WARN or FAIL",
+              "spatial_unit": "check",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不允许缺失。"
+            }
+          ]
+        },
+        {
+          "id": "topology_report",
+          "description": "稳定文本格式的拓扑检查摘要。",
+          "required": true,
+          "format": "UTF-8 text"
+        },
+        {
+          "id": "topology_figure",
+          "description": "用于人工复核河段、子流域和出口的检查图。",
+          "required": true,
+          "format": "PNG"
+        },
+        {
+          "id": "run_result",
+          "description": "机器可读的最终 QC 状态、检查和输出哈希。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "invariants": [
+        "任一 FAIL 都必须使 result.json 状态为 error 且退出码为 2。",
+        "验证过程不得修改或修补 HydroBase 输入 artifacts。",
+        "预期出口数量必须来自用户确认或确定性项目配置。",
+        "上游 warning 必须保留在最终检查证据中。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "expected_outlets": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "inputs": {
+            "build_result": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "artifacts": {
+            "topology_checks": {
+              "type": "computed; see field semantics"
+            },
+            "topology_report": {
+              "type": "computed; see field semantics"
+            },
+            "topology_figure": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            },
+            "pandas": {
+              "type": "computed; see field semantics"
+            },
+            "rasterio": {
+              "type": "computed; see field semantics"
+            },
+            "geopandas": {
+              "type": "computed; see field semantics"
+            },
+            "matplotlib": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "check": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "expected_outlets": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "build_result": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "topology_checks": {
+            "type": "computed; see field semantics"
+          },
+          "topology_report": {
+            "type": "computed; see field semantics"
+          },
+          "topology_figure": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          },
+          "rasterio": {
+            "type": "computed; see field semantics"
+          },
+          "geopandas": {
+            "type": "computed; see field semantics"
+          },
+          "matplotlib": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "count": {
+            "type": "computed; see field semantics"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "type": "computed; see field semantics"
+          },
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "arrowstyle": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "lw": {
+            "type": "number"
+          }
+        },
+        {
+          "facecolor": {
+            "type": "string"
+          },
+          "edgecolor": {
+            "type": "string"
+          },
+          "alpha": {
+            "type": "number"
+          },
+          "pad": {
+            "type": "number"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "subbasins_table",
+          "reaches_table",
+          "topology_table",
+          "reaches_vector",
+          "stream_links_clipped",
+          "stream_order_clipped",
+          "subbasins_clipped"
+        ],
+        [
+          "topology_checks.csv",
+          "topology_check_report.txt",
+          "network_topology_check.png",
+          "result.json"
+        ],
+        [
+          "reach_id",
+          "sub_id",
+          "strahler_order",
+          "length_m",
+          "upstream_count",
+          "upstream_reach_ids",
+          "downstream_reach_id",
+          "topo_level",
+          "is_outlet",
+          "negative_elevation_step_count"
+        ],
+        [
+          "sub_id",
+          "reach_id",
+          "upstream_count",
+          "upstream_reach_ids",
+          "downstream_sub_id",
+          "downstream_reach_id",
+          "topo_level",
+          "is_headwater",
+          "is_outlet"
+        ],
+        [
+          "stream_links_clipped",
+          "stream_order_clipped",
+          "subbasins_clipped"
+        ],
+        [
+          "sub_id",
+          "area_km2",
+          "cell_count"
+        ]
+      ],
+      "field_names": [
+        "abs_tol",
+        "action",
+        "alpha",
+        "area_km2",
+        "arrowprops",
+        "arrowstyle",
+        "artifacts",
+        "ax",
+        "bbox",
+        "bbox_inches",
+        "build_result",
+        "cell_count",
+        "check",
+        "checks",
+        "cmap",
+        "color",
+        "column",
+        "count",
+        "description",
+        "details",
+        "downstream_reach_id",
+        "downstream_sub_id",
+        "dpi",
+        "edgecolor",
+        "encoding",
+        "ensure_ascii",
+        "exist_ok",
+        "expected_outlets",
+        "extent",
+        "facecolor",
+        "figsize",
+        "file",
+        "fontsize",
+        "geopandas",
+        "ha",
+        "handles",
+        "indent",
+        "index",
+        "inputs",
+        "interpolation",
+        "is_headwater",
+        "is_outlet",
+        "keep",
+        "key",
+        "label",
+        "layer",
+        "length_m",
+        "linewidth",
+        "loc",
+        "lower",
+        "lw",
+        "marker",
+        "markerfacecolor",
+        "markersize",
+        "matplotlib",
+        "message",
+        "negative_elevation_step_count",
+        "network_topology_check.png",
+        "normalized",
+        "origin",
+        "pad",
+        "pandas",
+        "parameters",
+        "parents",
+        "path",
+        "provenance",
+        "python",
+        "rasterio",
+        "reach_id",
+        "reaches_table",
+        "reaches_vector",
+        "required",
+        "result.json",
+        "s",
+        "schema_version",
+        "sha256",
+        "skill",
+        "sort_keys",
+        "start",
+        "status",
+        "strahler_order",
+        "stream_links_clipped",
+        "stream_order_clipped",
+        "sub_id",
+        "subbasins_clipped",
+        "subbasins_table",
+        "topo_level",
+        "topology_check_report.txt",
+        "topology_checks",
+        "topology_checks.csv",
+        "topology_figure",
+        "topology_report",
+        "topology_table",
+        "type",
+        "upstream_count",
+        "upstream_reach_ids",
+        "va",
+        "warnings",
+        "xy",
+        "xytext",
+        "zorder"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "error"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^count=.+$",
+        "^upstream_.+$",
+        "^upstream_warning_.+$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "spatial-analysis/validate-hydrological-topology"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "hydrobase/basin.gpkg",
+    "hydrobase/reaches.csv",
+    "hydrobase/reaches_clipped.gpkg",
+    "hydrobase/result.json",
+    "hydrobase/stream_links_clipped.tif",
+    "hydrobase/stream_order_clipped.tif",
+    "hydrobase/subbasins.csv",
+    "hydrobase/subbasins_clipped.tif",
+    "hydrobase/topology.csv"
+  ],
+  "outputs": [
+    "topology-qc/topology_checks.csv",
+    "topology-qc/topology_check_report.txt",
+    "topology-qc/network_topology_check.png",
+    "topology-qc/result.json"
+  ],
+  "input_field_names": [
+    "PASS",
+    "acf3cf1b2d4fc9237e0131157703fcecdff17cddefef898530d6d44df4ee205b",
+    "acyclic_topology",
+    "area_km2",
+    "artifacts",
+    "basin_boundary",
+    "cell_area_m2",
+    "cell_count",
+    "cell_inclusion",
+    "center",
+    "check",
+    "checks",
+    "d8_encoding",
+    "d8_pointer",
+    "da17e63ba4272703b90e638135e3108f1601564c161daa1b9eefcbaec7dd05d0",
+    "details",
+    "downstream_reach_id",
+    "downstream_sub_id",
+    "drop_m",
+    "e668de76c2ad4701875b7aea16b61e5733662b4c9611f020e494dd5394017287",
+    "elev_down_m",
+    "elev_up_m",
+    "elevation_step_count",
+    "filled_dem",
+    "flow_accumulation",
+    "geopandas",
+    "inputs",
+    "is_headwater",
+    "is_outlet",
+    "length_m",
+    "message",
+    "negative_elevation_step_count",
+    "negative_elevation_steps",
+    "numpy",
+    "outlet_reach_ids",
+    "pandas",
+    "parameters",
+    "path",
+    "provenance",
+    "python",
+    "rasterio",
+    "reach_count",
+    "reach_id",
+    "reach_ids",
+    "reaches_table",
+    "reaches_vector",
+    "same_grid",
+    "schema_version",
+    "sha256",
+    "shapely",
+    "skill",
+    "slope_m_m",
+    "slope_percent",
+    "status",
+    "strahler_order",
+    "stream_links",
+    "stream_links_clipped",
+    "stream_order",
+    "stream_order_clipped",
+    "sub_id",
+    "subbasin_mapping",
+    "subbasins",
+    "subbasins_clipped",
+    "subbasins_table",
+    "success",
+    "topo_level",
+    "topology_table",
+    "upstream_count",
+    "upstream_reach_ids",
+    "warnings"
+  ],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

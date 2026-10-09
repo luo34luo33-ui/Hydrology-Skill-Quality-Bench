@@ -78,7 +78,8 @@
   ],
   "id": "hydromodel-two-stage-003",
   "primary_skill": "model-calibration/calibrate-model-two-stage",
-  "prompt": "Use calibration-problem.json and optimizer-config.json exactly as supplied to run model-calibration/calibrate-model-two-stage. All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. Use calibration only for search and evaluate validation only after parameters are locked. Do not repair the optimizer config, alter its seed or budget, switch optimizers, or use validation for selection. Write the native outputs under calibration-two-stage/. Reject the invalid optimizer config, write only the native error result.json, and leave no normal calibration artifacts.",
+  "prompt": "Use calibration-problem.json and optimizer-config.json exactly as supplied to run model-calibration/calibrate-model-two-stage. All parameter bounds, objective direction, split labels, variable units, hashes, and warm-up semantics are confirmed in the problem file. The synthetic evaluator uses UTC timestamps (a declared test setting). Use calibration only for search and evaluate validation only after parameters are locked. Do not repair the optimizer config, alter its seed or budget, switch optimizers, or use validation for selection. Write the native outputs under calibration-two-stage/. Reject the invalid optimizer config, write only the native error result.json, and leave no normal calibration artifacts.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "calibration-two-stage/result.json"
   ],

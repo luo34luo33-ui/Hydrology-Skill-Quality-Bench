@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "final_state.json": {
+      "path": "final_state.json",
+      "sha256": "1db0ee34ac69c2f1d6032dbc8ed3ee74d86577a3d219cf6d7b4d9c441d3a0d28"
+    },
+    "model_config.json": {
+      "path": "model_config.json",
+      "sha256": "646dcce7fefee6854c1452ea5bb7525e75631c22792b60f40d5cd561cd8812f4"
+    },
+    "process.csv": {
+      "path": "process.csv",
+      "sha256": "79167c898b57bad0ed187cdc3dfd80a7e1312f8c198738d71e813e7b2d79f918"
+    }
+  },
+  "basin_area_m2": 96.0,
+  "checks": [
+    {
+      "check": "input_hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "continuous_time_axis",
+      "status": "PASS"
+    },
+    {
+      "check": "water_balance",
+      "max_abs_residual_m": 2.220446049250313e-16,
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "forcing": {
+      "path": "forcing.csv",
+      "sha256": "112949e55a383d0bc691a35516477b9634c211848c565877f5233cb9932c78cb"
+    },
+    "params": {
+      "path": "params.json",
+      "sha256": "6a8817a4df7eb0af8597365df5f3065f30fc3d80c666f2e11271eb0fc5008f3f"
+    },
+    "terrain_result": {
+      "path": "terrain_result.json",
+      "sha256": "cf46ac12c6383e53a839a2bf8725f473b2e07f3892d7dcef931eb0ba367849f7"
+    }
+  },
+  "message": "Lumped TOPMODEL continuous simulation completed",
+  "parameters": {
+    "forcing_unit": "mm/step",
+    "parameters": {
+      "Sr0": 0.05,
+      "Srmax": 0.2,
+      "infiltration_excess": false,
+      "lnTe": 2.0,
+      "m": 0.02,
+      "qs0": 0.05,
+      "td": 10.0,
+      "vch": 2000.0,
+      "vr": 5000.0
+    },
+    "schema_version": "1.0",
+    "simulation_end": "2020-08-08T00:00:00+08:00",
+    "simulation_start": "2020-08-03T00:00:00+08:00",
+    "timestamp_semantics": "interval_end",
+    "timestep_hours": 24,
+    "timezone": "Asia/Shanghai",
+    "warmup_steps": 2,
+    "water_balance_tolerance_m": 1e-06
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-topmodel",
+  "status": "success",
+  "warnings": []
+}

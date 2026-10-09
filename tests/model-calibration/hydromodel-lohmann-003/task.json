@@ -73,6 +73,7 @@
   "id": "hydromodel-lohmann-003",
   "primary_skill": "hydrological-modeling/route-lohmann-channel",
   "prompt": "Use inflow.csv and route_params.json exactly as supplied to run hydrological-modeling/route-lohmann-channel. The base component contains at least one missing value; run the routing verbatim with --direct-column direct, --base-column base, flow length 100000 m, timestep 24 h, and only the native result.json under lohmann-run/. Do not fill, interpolate, or drop the missing value; do not rerun with repaired data; the script must reject the input itself. No routed_lohmann.csv or lohmann_unit_hydrographs.json may remain in lohmann-run/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "lohmann-run/result.json"
   ],

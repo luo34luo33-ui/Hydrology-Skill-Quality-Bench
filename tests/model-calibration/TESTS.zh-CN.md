@@ -1,6 +1,6 @@
 # 模型率定测试说明
 
-本目录为十四个原子模型 Skill（五个率定器、马斯京根/Lohmann 河道演算、集总式新安江/DHF/HBV/Tank/GR4J/Sacramento 前向模拟）提供 39 道独立 benchmark task。评分对象均为 artifacts；validation 只允许在参数锁定后运行。
+本目录为十七个原子模型 Skill（五个率定器、马斯京根/Lohmann 河道演算、集总式新安江/DHF/HBV/Tank/GR4J/Sacramento/TOPMODEL 前向模拟、半分布式新安江/SWAT）提供 48 道独立 benchmark task。评分对象均为 artifacts；validation 只允许在参数锁定后运行。
 
 ## 公共输入与成果
 
@@ -42,6 +42,15 @@
 | `hydromodel-tank-001` | 湿润 forcing + 示例参数；四箱不触零地板、水量平衡 PASS | `success` / 0 |
 | `hydromodel-tank-002` | 旱段（P=0、E0=0.9）使净雨为负，触发四箱 floor 裁剪；必须原生报告，不得改参规避 | `warning` / 0，`continuous:numerical_clipping` |
 | `hydromodel-tank-003` | E0 含缺测；不得填充，脚本必须拒绝 | `error` / 2，`no_missing_forcing` FAIL，不产出模拟表 |
+| `hydromodel-topmodel-001` | 哈希校验的 terrain 产品（含 HydroBase 溯源）+ 日尺度 forcing（严格 time,P,PET） | process.csv / final_state.json / model_config.json；水量残差在确认容差 1e-6 内 | `success` / 0 |
+| `hydromodel-topmodel-002` | 确认开启 Green-Ampt 入渗超渗分支（K0/psi/dtheta） | 全产物照常输出；不得关闭分支或删除参数 | `success` / 0（无原生 warning 通道） |
+| `hydromodel-topmodel-003` | forcing 缺一个日步（时间轴缺口） | 脚本必须拒绝；不产出模拟成果 | `error` / 2 |
+| `hydromodel-xaj-sd-001` | 已验证双子流域/双河段串联网络 + 逐时 forcing（time,sub_id,P_mm,E0_mm） | subbasin/reach/outlet 三表 + model_config；记账指标只报告不 gate | `success` / 0 |
+| `hydromodel-xaj-sd-002` | 确认 routing.lag_steps=1 | 原生 "lag tail" warning 保留；全部产物照常输出 | `warning` / 0 |
+| `hydromodel-xaj-sd-003` | forcing 缺一行（某时步缺 sub_id） | 脚本必须拒绝（覆盖缺失）；不产出过程表 | `error` / 2 |
+| `hydromodel-swat-sd-001` | 日尺度 HRU 网络（每子流域 1 个 HRU，面积和=子流域面积）+ linear_storage | hru/subbasin/reach/outlet 四表 + water_balance.json（四级硬 gate） | `success` / 0 |
+| `hydromodel-swat-sd-002` | 确认 channel_profile=muskingum 且 musk_k_hr=10（C3<0） | 原生 muskingum_daily_stability WARN 保留；全部产物照常输出 | `warning` / 0 |
+| `hydromodel-swat-sd-003` | HRU 面积和 ≠ 子流域表面积（1.2 vs 1.0 km²） | 脚本必须拒绝；不产出任何过程表 | `error` / 2 |
 | `hydromodel-gr4j-001` | 日尺度湿润 forcing（尾段旱日排空 UH）+ 示例参数 X1=350/X2=0/X3=90/X4=1.7；--pet-column E0、平衡容差 0.2（地下水交换项近似闭合） | `success` / 0 |
 | `hydromodel-gr4j-002` | 确认 X2=-5（合法负交换）在旱段触发 routing_store/qd floor 裁剪；必须原生报告，不得改参规避 | `warning` / 0，`continuous:numerical_clipping` |
 | `hydromodel-gr4j-003` | PET 列（E0）含缺测；不得填充，脚本必须拒绝 | `error` / 2，`no_missing_forcing` FAIL，不产出模拟表 |

@@ -1,0 +1,505 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydroanalysis-series-metrics-002",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "evaluation-diagnostics/compute-continuous-series-metrics",
+    "source_contract_sha256": "6b89ddfb9a46cdaa91285a48b741f8ac5b592f61b9953bb44c736f143b531042",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "series",
+          "description": "一条连续的观测—模拟序列表。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX",
+          "variables": [
+            {
+              "name": "observed",
+              "semantics": "连续观测流量序列，列名由 --observed-column 给出。",
+              "units": "m3/s as confirmed",
+              "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "缺测必须停止；不得填 0 后计算指标。"
+            },
+            {
+              "name": "simulated",
+              "semantics": "连续模拟流量序列，列名由 --simulated-column 给出，单位必须与观测一致。",
+              "units": "m3/s as confirmed",
+              "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致",
+              "state_or_flux": "flux",
+              "accumulated_or_instantaneous": "instantaneous",
+              "missing_value_semantics": "缺测必须停止；不得填 0 后计算指标。"
+            },
+            {
+              "name": "time",
+              "semantics": "连续时间索引，严格递增且等间隔。",
+              "units": "datetime",
+              "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "空值或重复值必须停止。"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "id": "series_metrics",
+          "description": "长表形式的指标结果，每行一项指标。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX",
+          "variables": [
+            {
+              "name": "nse",
+              "semantics": "标准纳什效率系数；观测方差为 0 时记为 unavailable。",
+              "units": "dimensionless",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不适用时记为 unavailable，不写 NaN。"
+            },
+            {
+              "name": "volume_bias",
+              "semantics": "水量偏差，定义为 sum(模拟 - 观测) 乘以显式时间步长，单位 m3。",
+              "units": "m3",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "accumulated",
+              "missing_value_semantics": "不适用时记为 unavailable，不写 NaN。"
+            },
+            {
+              "name": "relative_volume_bias",
+              "semantics": "水量偏差除以观测总水量；观测总水量为 0 时记为 unavailable。",
+              "units": "dimensionless",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "不适用时记为 unavailable，不写 NaN。"
+            }
+          ]
+        },
+        {
+          "id": "run_result",
+          "description": "符合 HydroTune 运行结果约定的 result.json，含参数、输入与产物 SHA-256、QC 与 provenance。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "simulation_period": {
+        "required": true,
+        "semantics": "输入序列覆盖的全部时步；时间轴、缺测或长度检查失败即退出码 2。"
+      },
+      "invariants": [
+        "时间轴必须严格递增、等间隔，并与 --timestep-hours 一致。",
+        "观测与模拟长度必须一致，且不得含缺测或非有限值。",
+        "水量偏差必须使用显式 dt 换算，不得使用写死的换算系数。",
+        "指标不可计算时必须记为 unavailable，不得输出 NaN 或占位数值。",
+        "输出只写入 --output-dir；不修改输入，也不静默复用旧结果。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "name": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "nse": {
+            "type": "string"
+          },
+          "r2": {
+            "type": "string"
+          },
+          "rmse": {
+            "type": "string"
+          },
+          "mae": {
+            "type": "string"
+          },
+          "volume_bias": {
+            "type": "string"
+          },
+          "relative_volume_bias": {
+            "type": "string"
+          }
+        },
+        {
+          "nse": {
+            "type": "computed; see field semantics"
+          },
+          "r2": {
+            "type": "computed; see field semantics"
+          },
+          "rmse": {
+            "type": "computed; see field semantics"
+          },
+          "mae": {
+            "type": "computed; see field semantics"
+          },
+          "volume_bias": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "timestep_hours": {
+              "type": "computed; see field semantics"
+            },
+            "metrics": {
+              "type": "computed; see field semantics"
+            },
+            "observed_column": {
+              "type": "computed; see field semantics"
+            },
+            "simulated_column": {
+              "type": "computed; see field semantics"
+            },
+            "time_column": {
+              "type": "computed; see field semantics"
+            },
+            "sheet": {
+              "type": "computed; see field semantics"
+            },
+            "scoring_policy": {
+              "type": "string"
+            },
+            "volume_unit": {
+              "type": "string"
+            }
+          },
+          "inputs": {
+            "series": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "artifacts": {
+            "series_metrics": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "timestep_hours": {
+            "type": "computed; see field semantics"
+          },
+          "metrics": {
+            "type": "computed; see field semantics"
+          },
+          "observed_column": {
+            "type": "computed; see field semantics"
+          },
+          "simulated_column": {
+            "type": "computed; see field semantics"
+          },
+          "time_column": {
+            "type": "computed; see field semantics"
+          },
+          "sheet": {
+            "type": "computed; see field semantics"
+          },
+          "scoring_policy": {
+            "type": "string"
+          },
+          "volume_unit": {
+            "type": "string"
+          }
+        },
+        {
+          "series": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "series_metrics": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "metric": {
+            "type": "computed; see field semantics"
+          },
+          "value": {
+            "type": "computed; see field semantics"
+          },
+          "unit": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "parameters": {},
+          "inputs": {},
+          "artifacts": {},
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {},
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "scored",
+          "is_warmup"
+        ],
+        [
+          "true",
+          "1"
+        ],
+        [
+          "true",
+          "false",
+          "1",
+          "0"
+        ],
+        [
+          "csv",
+          "parquet",
+          "xlsx"
+        ],
+        [
+          "nse",
+          "rmse",
+          "mae",
+          "r2",
+          "volume_bias",
+          "relative_volume_bias"
+        ],
+        [
+          "series_metrics.csv",
+          "series_metrics.parquet",
+          "series_metrics.xlsx",
+          "result.json"
+        ]
+      ],
+      "field_names": [
+        "0",
+        "1",
+        "Q_obs",
+        "Q_total",
+        "action",
+        "artifacts",
+        "checks",
+        "choices",
+        "csv",
+        "date_format",
+        "default",
+        "description",
+        "dtype",
+        "encoding",
+        "engine",
+        "ensure_ascii",
+        "errors",
+        "exist_ok",
+        "false",
+        "file",
+        "indent",
+        "index",
+        "inputs",
+        "is_warmup",
+        "mae",
+        "message",
+        "metric",
+        "metrics",
+        "name",
+        "nse",
+        "numpy",
+        "observed_column",
+        "pandas",
+        "parameters",
+        "parents",
+        "parquet",
+        "path",
+        "provenance",
+        "python",
+        "r2",
+        "relative_volume_bias",
+        "required",
+        "result.json",
+        "rmse",
+        "schema_version",
+        "scored",
+        "scoring_policy",
+        "series",
+        "series_metrics",
+        "series_metrics.csv",
+        "series_metrics.parquet",
+        "series_metrics.xlsx",
+        "sha256",
+        "sheet",
+        "sheet_name",
+        "simulated_column",
+        "skill",
+        "sort_keys",
+        "status",
+        "time",
+        "time_column",
+        "timestep_hours",
+        "true",
+        "type",
+        "unit",
+        "value",
+        "volume_bias",
+        "volume_unit",
+        "warnings",
+        "xlsx"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "error",
+          "ok"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^series_metrics\\..+$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "evaluation-diagnostics/compute-continuous-series-metrics"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "series.csv"
+  ],
+  "outputs": [
+    "series-metrics/series_metrics.csv",
+    "series-metrics/result.json"
+  ],
+  "input_field_names": [
+    "Q_obs",
+    "Q_total",
+    "time"
+  ],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

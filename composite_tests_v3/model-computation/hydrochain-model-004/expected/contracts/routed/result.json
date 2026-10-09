@@ -1,0 +1,26 @@
+{
+  "parameters": {
+    "combine": "sum",
+    "output_column": "Q_total",
+    "routes": [
+      {
+        "column": "Qt",
+        "id": "local",
+        "k": 1.0,
+        "layout": "single",
+        "reaches": 1,
+        "x": 0.2
+      },
+      {
+        "column": "GB_out",
+        "id": "reservoir",
+        "k": 1.0,
+        "layout": "single",
+        "reaches": 1,
+        "x": 0.2
+      }
+    ],
+    "timestep_hours": 1.0,
+    "volume_tolerance": 0.02
+  }
+}

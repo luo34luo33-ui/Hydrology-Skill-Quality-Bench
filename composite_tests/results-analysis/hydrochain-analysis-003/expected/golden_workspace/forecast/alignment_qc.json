@@ -1,0 +1,10 @@
+{
+  "member_count": 2,
+  "mode": "continuous",
+  "rows": 264,
+  "selected_rows_per_member": {
+    "dhf": 264,
+    "semi": 264
+  },
+  "warmup_union_rows": 0
+}

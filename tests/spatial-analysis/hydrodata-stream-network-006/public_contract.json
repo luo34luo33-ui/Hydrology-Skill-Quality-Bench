@@ -1,0 +1,388 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydrodata-stream-network-006",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "spatial-analysis/extract-dem-stream-network",
+    "source_contract_sha256": "94d8967ca385c7ecf4d3a04c3d78d216ac6d6745b2daa26d6d0a31bcc9ad7cc9",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "analysis_dem",
+          "description": "米制投影、米制高程、正像元面积的 buffer 分析 DEM。",
+          "required": true,
+          "format": "GeoTIFF",
+          "variables": [
+            {
+              "name": "elevation",
+              "semantics": "用于填洼和 D8 流向计算的地表高程。",
+              "units": "m",
+              "coordinate_reference_system": "必须为米制投影 CRS",
+              "spatial_unit": "raster cell",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "NoData 不参与水文运算。"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "id": "filled_dem",
+          "description": "WhiteboxTools 填洼后的 DEM。",
+          "required": true,
+          "format": "GeoTIFF"
+        },
+        {
+          "id": "d8_pointer",
+          "description": "Whitebox 非 ESRI 编码的 D8 流向栅格。",
+          "required": true,
+          "format": "GeoTIFF"
+        },
+        {
+          "id": "flow_accumulation",
+          "description": "以汇入像元数表示的 D8 汇流累积。",
+          "required": true,
+          "format": "GeoTIFF"
+        },
+        {
+          "id": "stream_products",
+          "description": "河网、河段编号、Strahler、子流域栅格和河网矢量集合。",
+          "required": true,
+          "format": "GeoTIFF and GeoPackage"
+        },
+        {
+          "id": "run_result",
+          "description": "包含阈值换算、D8 编码、版本和哈希的运行结果。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "invariants": [
+        "所有核心栅格的 CRS、仿射变换、行列数和像元网格必须一致。",
+        "D8 编码必须为 Whitebox 默认非 ESRI 编码。",
+        "面积阈值必须大于零并记录对应的像元阈值。",
+        "至少必须提取一个正编号河段，阈值不得被自动修改。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "filled_dem": {
+            "type": "string"
+          },
+          "d8_pointer": {
+            "type": "string"
+          },
+          "flow_accumulation": {
+            "type": "string"
+          },
+          "streams": {
+            "type": "string"
+          },
+          "stream_links": {
+            "type": "string"
+          },
+          "stream_order": {
+            "type": "string"
+          },
+          "subbasins": {
+            "type": "string"
+          }
+        },
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "parameters": {
+            "stream_init_area_km2": {
+              "type": "computed; see field semantics"
+            },
+            "cell_area_m2": {
+              "type": "computed; see field semantics"
+            },
+            "threshold_cells": {
+              "type": "computed; see field semantics"
+            },
+            "d8_encoding": {
+              "type": "string"
+            }
+          },
+          "inputs": {
+            "analysis_dem": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "artifacts": {
+            "type": "computed; see field semantics"
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            },
+            "whitebox_python": {
+              "type": "computed; see field semantics"
+            },
+            "whitebox_tools": {
+              "type": "computed; see field semantics"
+            },
+            "rasterio": {
+              "type": "computed; see field semantics"
+            },
+            "geopandas": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        {
+          "stream_init_area_km2": {
+            "type": "computed; see field semantics"
+          },
+          "cell_area_m2": {
+            "type": "computed; see field semantics"
+          },
+          "threshold_cells": {
+            "type": "computed; see field semantics"
+          },
+          "d8_encoding": {
+            "type": "string"
+          }
+        },
+        {
+          "analysis_dem": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "whitebox_python": {
+            "type": "computed; see field semantics"
+          },
+          "whitebox_tools": {
+            "type": "computed; see field semantics"
+          },
+          "rasterio": {
+            "type": "computed; see field semantics"
+          },
+          "geopandas": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "type": "computed; see field semantics"
+          },
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "python": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "streams.gpkg",
+          "result.json"
+        ]
+      ],
+      "field_names": [
+        "abs_tol",
+        "action",
+        "analysis_dem",
+        "artifacts",
+        "cell_area_m2",
+        "check",
+        "checks",
+        "clip",
+        "d8_encoding",
+        "d8_pointer",
+        "description",
+        "details",
+        "driver",
+        "encoding",
+        "ensure_ascii",
+        "esri_pntr",
+        "exist_ok",
+        "file",
+        "filled_dem",
+        "fix_flats",
+        "flow_accumulation",
+        "geopandas",
+        "indent",
+        "inputs",
+        "layer",
+        "log",
+        "message",
+        "out_type",
+        "parameters",
+        "parents",
+        "path",
+        "pntr",
+        "prefix",
+        "provenance",
+        "python",
+        "rasterio",
+        "rel_tol",
+        "required",
+        "result.json",
+        "schema_version",
+        "sha256",
+        "skill",
+        "sort_keys",
+        "status",
+        "stream_init_area_km2",
+        "stream_links",
+        "stream_order",
+        "streams",
+        "streams.gpkg",
+        "streams_vector",
+        "subbasins",
+        "threshold",
+        "threshold_cells",
+        "type",
+        "warnings",
+        "whitebox_python",
+        "whitebox_tools",
+        "zero_background"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "PASS",
+          "error",
+          "success"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^\\.9g$",
+        "^cell_area_m2=.+$",
+        "^threshold_cells=.+$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "spatial-analysis/extract-dem-stream-network"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "analysis_dem.tif"
+  ],
+  "outputs": [
+    "hydrology/result.json"
+  ],
+  "input_field_names": [],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "simulation_table": {
+      "path": "Tank-flood-002.csv",
+      "sha256": "ce77ec3a3f32a53d0b4f8bf072d63928bd0832dad22fa474a42834a2e4131a65"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_fixture",
+      "status": "PASS"
+    }
+  ],
+  "parameters": {
+    "timestep_hours": 1
+  },
+  "schema_version": "1.0",
+  "skill": "hydrological-modeling/run-lumped-tank-model",
+  "status": "success"
+}

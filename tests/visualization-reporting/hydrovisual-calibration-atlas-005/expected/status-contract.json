@@ -1,0 +1,11 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "error_reason_contains": "comparison coverage does not exactly match validation events/time",
+      "skill": "visualization-reporting/visualize-model-calibration",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

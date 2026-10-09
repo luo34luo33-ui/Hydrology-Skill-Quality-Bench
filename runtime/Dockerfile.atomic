@@ -1,0 +1,10 @@
+# Derive from the frozen scientific image; add only atomic entrypoints and a pinned CLI.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+USER root
+ARG CODEBUDDY_VERSION
+RUN test -n "$CODEBUDDY_VERSION" && npm install -g @tencent-ai/codebuddy-code@${CODEBUDDY_VERSION}
+COPY atomic_entrypoint.py /opt/atomic_entrypoint.py
+COPY cli_events.py /opt/cli_events.py
+USER agent
+WORKDIR /work

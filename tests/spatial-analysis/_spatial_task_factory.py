@@ -46,6 +46,15 @@ def sha256(path: Path) -> str:
 
 
 def write_json(path: Path, value: Any) -> None:
+    # Retain the independently authored public interface when regenerating fixtures.
+    if path.name == "task.json" and isinstance(value, dict):
+        canonical = Path(__file__).resolve().parent / value["id"] / "public_contract.json"
+        if canonical.is_file():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            destination = path.parent / "public_contract.json"
+            if canonical.resolve() != destination.resolve():
+                destination.write_bytes(canonical.read_bytes())
+            value = dict(value, public_contract="public_contract.json")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -444,6 +453,13 @@ def build_topology(case: int, task_dir: Path) -> None:
     run_script("topology-build", command, exit_code)
     if status != "error":
         stabilize_output_artifacts(output, ["reaches_clipped.gpkg"])
+    if case == 3:
+        # v2 all-touched oracle uses portable references, not a temporary host path.
+        document = json.loads((output / "result.json").read_text(encoding="utf-8"))
+        for reference in document.get("inputs", {}).values():
+            if isinstance(reference, dict) and "path" in reference:
+                reference["path"] = "../" + Path(reference["path"]).name
+        write_json(output / "result.json", document)
     required, grading = topology_grading(status)
     prompt_args = " ".join(args)
     write_task(task_dir, "topology-build", f"Build hydrological topology case {case}",

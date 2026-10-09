@@ -69,6 +69,7 @@
   "id": "hydrodata-timeseries-007",
   "primary_skill": "data-processing/prepare-discharge-timeseries",
   "prompt": "Inspect overlong_gap.csv using timestamp as the confirmed instantaneous time column and flow as discharge confirmed in m3/s with timezone UTC. Interpolation is authorized only for internal gaps up to 2 hours; do not partially fill a longer gap. Write the native error result to prepared/result.json and do not create a standardized time series or metadata when the contract rejects the input.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "prepared/result.json"
   ],

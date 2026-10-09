@@ -1,0 +1,79 @@
+{
+  "distribution": "censored_gaussian",
+  "estimator": "generalized_EM_maximum_likelihood",
+  "inputs": {
+    "members": {
+      "path": "../members.json",
+      "sha256": "67b0ed7353452073e87167004bff7785b3d1e66240e30bfb0b31284adccdd491"
+    },
+    "observations": {
+      "path": "../flow/discharge_timeseries.csv",
+      "sha256": "1ab3f43d4bbfa218f071ab5822181cf59314b4fe1004966861befaa23f8be5b0"
+    },
+    "observed_result": {
+      "path": "../flow/result.json",
+      "sha256": "16e4b6fe69f6082bed4a1bcf70edc588bb3a5530cb2d6aec1178b81d174a1700"
+    },
+    "simulation_0": {
+      "path": "../aligned_members/dhf-result.json",
+      "sha256": "6a021fdd3454a29c72a2bf2d79ac25516448cb5a236c6452baf57c33772f7cc6"
+    },
+    "simulation_1": {
+      "path": "../aligned_members/semi-result.json",
+      "sha256": "579d18463a46c202b6c33faf6be445fbe2ab8655d95c59ce36c4362074722103"
+    },
+    "table_0_continuous_simulation_table": {
+      "path": "../aligned_members/dhf.csv",
+      "sha256": "d30b15b87406bd561604c073b6452d75c2bb8e2f3af43f166487812c5b8d9e63"
+    },
+    "table_1_continuous_outlet_flow": {
+      "path": "../aligned_members/semi.csv",
+      "sha256": "7233d4045cd6129f7a551d30a81296d3692eeee4a061d5152aa649735480233a"
+    }
+  },
+  "interpretation": "conditional predictive uncertainty; no parameter posterior sampling or trajectory dependence",
+  "model": {
+    "distribution": "censored_gaussian",
+    "model_ids": [
+      "dhf",
+      "semi"
+    ],
+    "outlet_id": "benchmark_outlet",
+    "random_state": 20261004,
+    "scale_m3_s": 426.487223135,
+    "schema_version": "1.0",
+    "score": 1.0468373836894935,
+    "selected_start": 1,
+    "series_mode": "continuous",
+    "theta": [
+      [
+        0.025516775042423608,
+        1.2697004702129053,
+        0.02083589111796733
+      ],
+      [
+        0.055950609479638834,
+        0.546074813003393,
+        0.13975563624636744
+      ]
+    ],
+    "timestep_hours": 1,
+    "timezone": "Asia/Shanghai",
+    "training_end": "2023-08-20T15:00:00+00:00",
+    "training_events": [],
+    "training_start": "2023-08-01T04:00:00+00:00",
+    "unit": "m3/s",
+    "weights": [
+      0.47074350851323493,
+      0.5292564914867652
+    ]
+  },
+  "parameter_units": {
+    "theta_a": "normalized discharge",
+    "theta_b": "dimensionless",
+    "theta_sigma": "normalized discharge"
+  },
+  "row_weighting": "equal_per_timestep",
+  "training_rows": 468,
+  "warnings": []
+}

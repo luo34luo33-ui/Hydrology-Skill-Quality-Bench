@@ -1,0 +1,22 @@
+{
+  "group": "hydrovisual-dem-atlas",
+  "outputs": [
+    "atlas"
+  ],
+  "steps": [
+    {
+      "action": null,
+      "args": [
+        "--prepare-result",
+        "prepare/result.json",
+        "--extract-result",
+        "extract/result.json",
+        "--language",
+        "zh",
+        "--output-dir",
+        "atlas"
+      ],
+      "code": 0
+    }
+  ]
+}

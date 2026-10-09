@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "skill": "post-processing/ensemble-discharge-with-bma",
+  "status": "success",
+  "parameters": {
+    "mode": "train",
+    "distribution": "censored_gaussian",
+    "random_state": 2026,
+    "n_starts": 5,
+    "max_iter": 500,
+    "tol": 1e-08,
+    "quantiles": [
+      0.05,
+      0.5,
+      0.95
+    ],
+    "selection": {
+      "start": "2020-01-01T00:00:00+08:00",
+      "end": "2020-01-10T23:00:00+08:00",
+      "events": null
+    }
+  },
+  "inputs": {
+    "members": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-q3witkk6\\members.json",
+      "sha256": "a8932f26e6e28506292db1700de9db2977eed69069aa1783728e1e873035a23c"
+    },
+    "simulation_0": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-q3witkk6\\HBV-result.json",
+      "sha256": "52278e31f1523ac909f8b63c09b7c3af7f32732d881c5f1596732651e7a2d637"
+    },
+    "table_0_continuous_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-q3witkk6\\HBV.csv",
+      "sha256": "4c95eeb5b041d303ed0139e2ffc0af62eff8debab039439da188af0a862dd024"
+    },
+    "simulation_1": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-q3witkk6\\Tank-result.json",
+      "sha256": "ba8404eb64cb7cf50e51944191d1162e4ddf01282e025d7e40cbc1fd868d8746"
+    },
+    "table_1_continuous_simulation_table": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-q3witkk6\\Tank.csv",
+      "sha256": "1c5c98dee93d528e033e143251db3c50add016b56eb423edff7d2f026b5217e1"
+    },
+    "observed_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-q3witkk6\\observed-result.json",
+      "sha256": "0b028ba07d4d3eea67457a751b7c00911d72d6d148ca1093dbd18a11168dd7a0"
+    },
+    "observations": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-q3witkk6\\observed.csv",
+      "sha256": "6f9cc62bfbf1f955729a4a418cdf9f5b6b44feb748aa0e3be24a9abcc1a38b4a"
+    }
+  },
+  "artifacts": {
+    "model": {
+      "path": "bma_model.json",
+      "sha256": "d86b7f7d3e012041bd778d100eb23c12a9521946e4f2512cbd883ef03b836952"
+    },
+    "model_card": {
+      "path": "model_card.json",
+      "sha256": "93c7fd906a515ab952d9fa641475e6f4aeaac0fd33710175bf4d73a8856fa4fd"
+    },
+    "fit_diagnostics": {
+      "path": "fit_diagnostics.json",
+      "sha256": "08d28c81d86ac1331944fb0e88d962fe537c76336b07f0bf737042a6910522be"
+    },
+    "qc": {
+      "path": "alignment_qc.json",
+      "sha256": "d60c5555fdce81ea52437ee15ff97e80b7f5958a06c424f4923ba9109d6f8efd"
+    }
+  },
+  "checks": [
+    {
+      "check": "alignment_and_probability",
+      "status": "PASS",
+      "details": {
+        "mode": "continuous",
+        "rows": 237,
+        "member_count": 2,
+        "warmup_union_rows": 3,
+        "selected_rows_per_member": {
+          "HBV": 240,
+          "Tank": 240
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "provenance": {
+    "python": "3.11.16",
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "scipy": "1.17.1"
+  }
+}

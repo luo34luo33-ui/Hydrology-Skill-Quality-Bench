@@ -1,0 +1,86 @@
+{
+  "artifacts": {
+    "coverage": {
+      "path": "coverage.csv",
+      "sha256": "95f040f3a9c0bf6357e14ec5ad5f1933a16afd861cc00495dce1b46234acdc97"
+    },
+    "forcing": {
+      "path": "basin_forcing.csv",
+      "sha256": "41e03a38e9d8ae5043c521c0b76e10f43640effe922c7e030207188e7d51113d"
+    },
+    "weights": {
+      "path": "weights.csv",
+      "sha256": "5e9eb6a49a2df7ace704058cadadc228e35beed3c19c2539bd2d89c63e54382f"
+    }
+  },
+  "checks": [
+    {
+      "check": "topology_qc_and_hash",
+      "details": "single outlet QC and artifact hashes checked",
+      "status": "PASS"
+    },
+    {
+      "check": "coverage_and_time_axis",
+      "details": "rows=12",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "P_result": {
+      "path": "p_result.json",
+      "sha256": "42cd0818b6696707b77bf858047f83016b05edacfe17c5da428f6ab70d792256"
+    },
+    "P_stations": {
+      "path": "stations.csv",
+      "sha256": "385449b0755439d121d96481bb3e9c7aed05777d0ec977489ec2cf604b3ca806"
+    },
+    "evap_result": {
+      "path": "evap_result.json",
+      "sha256": "f1b45d343dbe90254ee79ea714d2f151ad2fff893ad695c3574417fe77abf0a7"
+    },
+    "evap_stations": {
+      "path": "stations.csv",
+      "sha256": "385449b0755439d121d96481bb3e9c7aed05777d0ec977489ec2cf604b3ca806"
+    },
+    "source_config": {
+      "path": "source_config.json",
+      "sha256": "22722c91db53e5b3d7993277f9d33458f87ae69145982d454cae517d2115f215"
+    },
+    "topology_qc_result": {
+      "path": "topology_qc_result.json",
+      "sha256": "ebae6eda815e6acaae2a599515918332b8b68959b429659e83d8bbd94a0d6e8f"
+    },
+    "topology_result": {
+      "path": "build_result.json",
+      "sha256": "6c9acf2196161ae32850e0815bac6f07de7c8a7cc0216b19b7453e65384f187a"
+    }
+  },
+  "message": "Forcing aggregated to model units",
+  "parameters": {
+    "layers": {
+      "P": {
+        "kind": "station",
+        "result": "p_result.json",
+        "station_crs": "EPSG:32649",
+        "stations": "stations.csv",
+        "variable": "P"
+      },
+      "evap": {
+        "kind": "station",
+        "result": "evap_result.json",
+        "station_crs": "EPSG:32649",
+        "stations": "stations.csv",
+        "variable": "PET"
+      }
+    },
+    "min_coverage_fraction": 0.999999,
+    "target": "basin"
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/aggregate-forcing-to-model-units",
+  "status": "success",
+  "warnings": []
+}

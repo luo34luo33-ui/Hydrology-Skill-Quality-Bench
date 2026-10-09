@@ -1,0 +1,68 @@
+{
+  "artifacts": {
+    "forcing": {
+      "path": "prepared_forcing.csv",
+      "sha256": "8b26019ac119c4b0ff9a6c85f07f1bc5805acf46721401907a4a66557fc331e1"
+    },
+    "metadata": {
+      "path": "series_metadata.json",
+      "sha256": "9b2030c2b05330af99d16234a49416e0c985eb7cdfe1d53fe2f853c213feafe5"
+    }
+  },
+  "checks": [
+    {
+      "check": "time_axis",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "units",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "missing_values",
+      "details": "validated",
+      "status": "PASS"
+    },
+    {
+      "check": "source_coverage",
+      "details": "validated",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "config": {
+      "path": "config.json",
+      "sha256": "f5126c01df7d4e703c74945ee07c32d90f26b62602b63053dd052158e0ed451e"
+    },
+    "source": {
+      "path": "gauge.csv",
+      "sha256": "860b9a4d2056bc5116b862cd1f229cd5a4334bfac6d029765817b55e3b1b014f"
+    }
+  },
+  "message": "Forcing series standardized",
+  "parameters": {
+    "columns": {
+      "reset": "reset_flag",
+      "source_id": "source_id",
+      "time": "time",
+      "value": "cum_mm"
+    },
+    "schema_version": "1.0",
+    "source_timezone_mode": "local_naive",
+    "timestamp_semantics": "interval_end",
+    "timestep_seconds": 3600,
+    "timezone": "Asia/Shanghai",
+    "unit": "mm/step",
+    "value_semantics": "running_cumulative",
+    "variable": "P"
+  },
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "data-processing/prepare-model-forcing-timeseries",
+  "status": "success",
+  "warnings": []
+}

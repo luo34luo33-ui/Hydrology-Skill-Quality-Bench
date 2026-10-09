@@ -1,0 +1,9 @@
+{
+  "evaluation_rows": 29,
+  "matched_rows": 31,
+  "model": "run-lumped-gr4j-model",
+  "observation_missing": 0,
+  "simulation_missing": 0,
+  "simulation_rows": 31,
+  "warmup_excluded": 2
+}

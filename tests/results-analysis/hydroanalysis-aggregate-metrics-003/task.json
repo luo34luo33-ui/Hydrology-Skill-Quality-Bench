@@ -71,6 +71,7 @@
   "id": "hydroanalysis-aggregate-metrics-003",
   "primary_skill": "evaluation-diagnostics/aggregate-event-metrics",
   "prompt": "Use event_metrics.csv exactly as supplied to run evaluation-diagnostics/aggregate-event-metrics with --value-columns nse,volume_error_relative and --statistics mean,p25. p25 is not part of the supported statistic set; run the skill verbatim and only the native result.json under aggregate-metrics/. Do not map p25 to another statistic or add implementations; the script must reject the request itself. No aggregate_metrics.csv may remain in aggregate-metrics/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "aggregate-metrics/result.json"
   ],

@@ -1,0 +1,52 @@
+{
+  "display_transforms": [
+    "NSE = 1 - sum((sim-obs)^2)/sum((obs-mean(obs))^2), scored=true samples within this figure only; display diagnostic, upstream metrics unchanged",
+    "unscored samples shaded; explicit comparison keys; no visible titles"
+  ],
+  "figure_type": "validation-process",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\result.json",
+      "sha256": "f1b59ef80d01093695410f1ba6587adb8c90b6cbf6f2021b34a7859c6a747125"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-pkxti_hs\\calibration\\validation_series.csv",
+      "sha256": "fb3330aed08d62c8f95cd07eaefc50850cc07c198899406291fd26f2b9307ad4"
+    }
+  },
+  "language": "en",
+  "outputs": {
+    "png": {
+      "path": "validation_event_001.png",
+      "sha256": "43dceb0fed88f4a30cc2375ebed2890888f2350847831745177351d9ee1d024c"
+    },
+    "svg": {
+      "path": "validation_event_001.svg",
+      "sha256": "60d229cc538ebe38adca57aa9f3fe5439d05d0f0cb47cb2174bf2037af356516"
+    }
+  },
+  "schema_version": "1.0",
+  "scope": {
+    "event_ids": [
+      "E01"
+    ],
+    "scored_only": true,
+    "split": "validation"
+  },
+  "simulation_metrics": [
+    {
+      "color": "#0072B2",
+      "column": "simulated",
+      "label": "Simulated",
+      "nse": -0.037702794081223345,
+      "scored_samples": 4,
+      "unavailable_reason": null
+    }
+  ],
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "Validation observed–simulated process · E01",
+  "unit": "m3/s",
+  "warnings": [],
+  "width_px": 2400
+}

@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "original_sources",
+    "report_values_units_context",
+    "markdown",
+    "tables",
+    "figures",
+    "narrative_bindings"
+  ],
+  "findings": [],
+  "package_fingerprint": "9bf26805857bbb3cc4685f67eb9fb434bc4cd7a3890c5c19540671d8752a6016",
+  "schema_version": "1.0",
+  "semantic_review_completed": true,
+  "status": "pass"
+}

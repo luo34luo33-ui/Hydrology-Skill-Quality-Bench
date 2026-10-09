@@ -1,0 +1,151 @@
+{
+  "data_description": "A deterministic single-outlet HydroBase fixture with hash-linked stream, build, and QC results.",
+  "data_files": [
+    "filled_dem.tif",
+    "d8_pointer.tif",
+    "flow_accumulation_cells.tif",
+    "subbasins_clipped.tif",
+    "stream_result.json",
+    "build_result.json",
+    "topology_qc_result.json"
+  ],
+  "difficulty": "intermediate",
+  "domain": "spatial-analysis",
+  "grading": [
+    {
+      "name": "artifact_schema",
+      "required_columns": {
+        "terrain-out/distance_area.csv": [
+          "bin_id",
+          "distance_m",
+          "cumulative_cells",
+          "cumulative_area_m2",
+          "cumulative_fraction"
+        ],
+        "terrain-out/result.json": [
+          "schema_version",
+          "skill",
+          "status",
+          "message",
+          "parameters",
+          "inputs",
+          "artifacts",
+          "checks",
+          "warnings",
+          "provenance"
+        ],
+        "terrain-out/topographic_index_classes.csv": [
+          "class_id",
+          "ti_lower",
+          "ti_upper",
+          "ti_mean",
+          "cell_count",
+          "area_fraction"
+        ]
+      },
+      "targets": [
+        "terrain-out/topographic_index_classes.csv",
+        "terrain-out/distance_area.csv",
+        "terrain-out/result.json"
+      ],
+      "type": "file_check",
+      "weight": 0.1
+    },
+    {
+      "atol": 1e-06,
+      "name": "topographic_index_raster",
+      "reference": "expected/golden_workspace/terrain-out/topographic_index.tif",
+      "rtol": 1e-09,
+      "target": "terrain-out/topographic_index.tif",
+      "type": "raster_match",
+      "weight": 0.25
+    },
+    {
+      "atol": 1e-09,
+      "name": "classes_table",
+      "reference": "expected/golden_workspace/terrain-out/topographic_index_classes.csv",
+      "rtol": 1e-09,
+      "target": "terrain-out/topographic_index_classes.csv",
+      "type": "table_match",
+      "weight": 0.15
+    },
+    {
+      "atol": 1e-09,
+      "name": "distance_table",
+      "reference": "expected/golden_workspace/terrain-out/distance_area.csv",
+      "rtol": 1e-09,
+      "target": "terrain-out/distance_area.csv",
+      "type": "table_match",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/terrain-out/result.json",
+      "target": "terrain-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/terrain-out/result.json",
+      "target": "terrain-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "message",
+      "name": "result_message",
+      "reference": "expected/golden_workspace/terrain-out/result.json",
+      "target": "terrain-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "checks",
+      "name": "result_checks",
+      "reference": "expected/golden_workspace/terrain-out/result.json",
+      "target": "terrain-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "field": "warnings",
+      "name": "result_warnings",
+      "reference": "expected/golden_workspace/terrain-out/result.json",
+      "target": "terrain-out/result.json",
+      "type": "exact_match",
+      "weight": 0.05
+    },
+    {
+      "name": "artifact_references",
+      "required_keys": [
+        "topographic_index.tif",
+        "topographic_index_classes.csv",
+        "distance_area.csv"
+      ],
+      "target": "terrain-out/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.1
+    }
+  ],
+  "id": "hydrodata-terrain-topidx-001",
+  "primary_skill": "spatial-analysis/derive-topmodel-terrain-inputs",
+  "prompt": "Use stream_result.json, build_result.json, and topology_qc_result.json exactly as supplied to run spatial-analysis/derive-topmodel-terrain-inputs with --classes 10, --distance-bins 10, and --minimum-slope 1e-4. The three upstream results form a hash-checked single-outlet HydroBase chain on a 12x8 metre grid. Write the native outputs (topographic_index.tif, topographic_index_classes.csv, distance_area.csv, result.json) under terrain-out/. Do not modify the upstream artifacts or relax the hash checks.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "terrain-out/topographic_index.tif",
+    "terrain-out/topographic_index_classes.csv",
+    "terrain-out/distance_area.csv",
+    "terrain-out/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The upstream result chain is consumed by its native hash checks; it must not be altered.",
+    "The grid is EPSG:32649 with 1 m pixels and whitebox-default non-ESRI D8 encoding.",
+    "Do not install software or implement a replacement terrain analysis."
+  ],
+  "timeout_seconds": 300,
+  "title": "Derive TOPMODEL terrain inputs for a single-outlet funnel basin"
+}

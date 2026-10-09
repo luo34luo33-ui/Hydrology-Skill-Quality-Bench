@@ -1,0 +1,103 @@
+{
+  "data_description": "Deterministic synthetic evidence; upstream stages isolated by precomputed artifacts.",
+  "data_files": [
+    "calibration/best_parameters.json",
+    "calibration/calibration_metrics.json",
+    "calibration/calibration_series.csv",
+    "calibration/calibration_trace.csv",
+    "calibration/result.json",
+    "calibration/validation_metrics.json",
+    "calibration/validation_series.csv",
+    "calibration-problem.json",
+    "comparison.csv",
+    "comparisons.json",
+    "events.json",
+    "input.json",
+    "optimizer-config.json",
+    "synthetic_adapter.py",
+    "validation-events.csv"
+  ],
+  "difficulty": "intermediate",
+  "domain": "visualization-reporting",
+  "grading": [
+    {
+      "name": "required_native_outputs",
+      "targets": [
+        "atlas/calibration_overview.json",
+        "atlas/calibration_overview.png",
+        "atlas/calibration_overview.svg",
+        "atlas/result.json",
+        "atlas/validation_event_001.json",
+        "atlas/validation_event_001.png",
+        "atlas/validation_event_001.svg",
+        "atlas/validation_process.json",
+        "atlas/validation_process.png",
+        "atlas/validation_process.svg",
+        "atlas/validation_scatter.json",
+        "atlas/validation_scatter.png",
+        "atlas/validation_scatter.svg"
+      ],
+      "type": "file_check",
+      "weight": 0.25
+    },
+    {
+      "name": "atlas_artifact_integrity",
+      "required_keys": [
+        "overview_metadata",
+        "overview_png",
+        "overview_svg",
+        "process_001_metadata",
+        "process_001_png",
+        "process_001_svg",
+        "process_002_metadata",
+        "process_002_png",
+        "process_002_svg",
+        "scatter_metadata",
+        "scatter_png",
+        "scatter_svg"
+      ],
+      "target": "atlas/result.json",
+      "type": "artifact_reference_check",
+      "weight": 0.25
+    },
+    {
+      "name": "rendered_figure_contract",
+      "reference": "expected/figure-contract.json",
+      "target": "atlas/result.json",
+      "type": "figure_contract_check",
+      "weight": 0.25
+    },
+    {
+      "name": "native_status_contract",
+      "reference": "expected/status-contract.json",
+      "target": "atlas/result.json",
+      "type": "report_contract_check",
+      "weight": 0.25
+    }
+  ],
+  "id": "hydrovisual-calibration-atlas-003",
+  "primary_skill": "visualization-reporting/visualize-model-calibration",
+  "prompt": "Use the visualization-reporting/visualize-model-calibration capability on the supplied synthetic artifacts. Scenario: comparison and continuous event slices. Source outlet, units, timezone, splits and parameters in the explicit manifests are confirmed. Upstream inputs are read-only; do not rerun upstream models, infer missing settings, interpolate or repair failed evidence. Perform these stages using the native interface:\nStage 1: --calibration-result calibration/result.json --comparison-manifest comparisons.json --event-manifest events.json --language zh --output-dir atlas\n Preserve native result status, diagnostic evidence and artifact hashes. On rejection remove partial normal deliverables prohibited by the skill, preserving its failure result and allowed diagnostics. Produce all applicable native outputs. Runtime compatibility: load stdlib pyexpat before rasterio; if Matplotlib removed boxplot labels, map that deprecated keyword to tick_labels without changing the data or plot.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "atlas/calibration_overview.json",
+    "atlas/calibration_overview.png",
+    "atlas/calibration_overview.svg",
+    "atlas/result.json",
+    "atlas/validation_event_001.json",
+    "atlas/validation_event_001.png",
+    "atlas/validation_event_001.svg",
+    "atlas/validation_process.json",
+    "atlas/validation_process.png",
+    "atlas/validation_process.svg",
+    "atlas/validation_scatter.json",
+    "atlas/validation_scatter.png",
+    "atlas/validation_scatter.svg"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "No hidden expected files are staged. Parameters are explicitly confirmed for this synthetic task."
+  ],
+  "timeout_seconds": 600,
+  "title": "comparison and continuous event slices"
+}

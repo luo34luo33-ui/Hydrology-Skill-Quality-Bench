@@ -129,6 +129,7 @@
   "id": "hydrodata-timeseries-002",
   "primary_skill": "data-processing/prepare-discharge-timeseries",
   "prompt": "Prepare the observations sheet from serial_dates.xlsx. serial_date is the confirmed instantaneous time column using Excel serial dates, flow_l_s is confirmed in L/s, and timezone is explicitly naive. Preserve quality_code without assigning semantics. Use default error policies and write CSV outputs under prepared/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "prepared/discharge_timeseries.csv",
     "prepared/series_metadata.json",

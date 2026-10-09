@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "analysis_dem": {
+      "path": "dem_analysis_buffer.tif",
+      "sha256": "e31a6f896cd61e79f94ac5a5f3202c9f663193d3db41f1fb8f18f428bf17422e"
+    },
+    "metric_dem": {
+      "path": "dem_metric.tif",
+      "sha256": "ac2c9c34fcc17920befe7012465b01c0ca9a7883760d0d12f7b3163b8ae3abc1"
+    },
+    "normalized_basin": {
+      "path": "basin_normalized.gpkg",
+      "sha256": "1ac8bd31061eef3307d54e28fd7bc4a92b550da527e9762710ab52f895dbc779"
+    }
+  },
+  "checks": [
+    {
+      "check": "metric_projected_crs",
+      "details": "EPSG:32649",
+      "status": "PASS"
+    },
+    {
+      "check": "vertical_unit",
+      "details": "m -> m; scale=1.0",
+      "status": "PASS"
+    },
+    {
+      "check": "true_basin_coverage",
+      "details": "DEM covers basin",
+      "status": "PASS"
+    },
+    {
+      "check": "analysis_buffer_coverage",
+      "details": "DEM covers buffer",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "basin_boundary": {
+      "path": "../basin.gpkg",
+      "sha256": "ce18f00358543944242838ce7aa1058996dcdb1fe8a6f049fe4e98b81755ab62"
+    },
+    "source_dem": {
+      "path": "../dem_100m.tif",
+      "sha256": "a6667546dcd551e44da21f08f213a5da3276c6869343c11fdb78014769f62a4f"
+    }
+  },
+  "message": "DEM analysis grid prepared",
+  "parameters": {
+    "analysis_buffer_km": 3.0,
+    "crs_decision": "preserved-source",
+    "mask_rule": "center",
+    "target_crs": "EPSG:32649",
+    "vertical_scale_to_m": 1.0,
+    "vertical_unit": "m"
+  },
+  "provenance": {
+    "geopandas": "1.1.4",
+    "python": "3.11.16",
+    "rasterio": "1.4.4",
+    "shapely": "2.1.2"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/prepare-dem-analysis-grid",
+  "status": "success",
+  "warnings": []
+}

@@ -13,7 +13,11 @@ from harness import grader, runner
 
 
 DEFAULT_SKILLS = Path(r"E:\HydroTune-Skills（仿BioSkills版）")
-TASK_PREFIXES = ("hydromodel-muskingum-", "hydromodel-xaj-", "hydromodel-dhf-", "hydromodel-gr4j-", "hydromodel-hbv-", "hydromodel-lohmann-", "hydromodel-sacsma-", "hydromodel-tank-")
+TASK_PREFIXES = (
+    "hydromodel-muskingum-", "hydromodel-xaj-", "hydromodel-dhf-", "hydromodel-gr4j-",
+    "hydromodel-hbv-", "hydromodel-lohmann-", "hydromodel-sacsma-", "hydromodel-tank-",
+    "hydromodel-xaj-sd-", "hydromodel-swat-sd-",
+)
 
 
 def commands_for(task_id: str, workspace: Path, skills: Path) -> tuple[list[tuple[list[str], int]], list[str]]:
@@ -50,6 +54,26 @@ def commands_for(task_id: str, workspace: Path, skills: Path) -> tuple[list[tupl
         ]
         code = 2 if number == 3 else 0
         return [(command, code)], ["lohmann-run/routed_lohmann.csv", "lohmann-run/lohmann_unit_hydrographs.json"]
+    if task_id.startswith("hydromodel-xaj-sd-"):
+        script = skills / "hydrological-modeling/run-semi-distributed-xaj-model/examples/run_semi_distributed_xaj.py"
+        command = [
+            sys.executable, str(script),
+            "--topology-result", "build_result.json", "--topology-qc-result", "topology_qc_result.json",
+            "--forcing", "forcing.csv", "--params", "params.json",
+            "--output-dir", str(workspace / "xaj-sd-run"),
+        ]
+        code = 2 if number == 3 else 0
+        return [(command, code)], ["xaj-sd-run/subbasin_process.csv", "xaj-sd-run/reach_process.csv", "xaj-sd-run/outlet_flow.csv"]
+    if task_id.startswith("hydromodel-swat-sd-"):
+        script = skills / "hydrological-modeling/run-semi-distributed-swat-model/examples/run_semi_distributed_swat.py"
+        command = [
+            sys.executable, str(script),
+            "--topology-result", "build_result.json", "--topology-qc-result", "topology_qc_result.json",
+            "--hru-table", "hru_table.csv", "--forcing", "forcing.csv", "--params", "params.json",
+            "--output-dir", str(workspace / "swat-sd-run"),
+        ]
+        code = 2 if number == 3 else 0
+        return [(command, code)], ["swat-sd-run/hru_process.csv", "swat-sd-run/subbasin_process.csv", "swat-sd-run/reach_process.csv", "swat-sd-run/outlet_flow.csv"]
     if task_id.startswith("hydromodel-dhf-"):
         script = skills / "hydrological-modeling/run-lumped-dhf-model/examples/run_lumped_dhf.py"
         command = [

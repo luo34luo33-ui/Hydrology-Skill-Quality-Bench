@@ -1,0 +1,26 @@
+{
+  "event_count": 4,
+  "files": [
+    {
+      "event_id": 1,
+      "path": "event_files/event_0001.csv",
+      "sha256": "d5489c87d20aa8e7b3a676e4b1ec1655064378f6495b2537c7de77e364e78995"
+    },
+    {
+      "event_id": 2,
+      "path": "event_files/event_0002.csv",
+      "sha256": "5998d8ba3a4a1d3a0b28295a36c62b50724964deeb597a3424a6795dd6fb4e2b"
+    },
+    {
+      "event_id": 3,
+      "path": "event_files/event_0003.csv",
+      "sha256": "2d287d02cf1a3b8a837a5d06c5db24a7a1adc3ad71a107697ebc0519638e7407"
+    },
+    {
+      "event_id": 4,
+      "path": "event_files/event_0004.csv",
+      "sha256": "3e3a932d15f7ff22118dac6138f4ca1af8c293ca3adb2d04520093ed331d959a"
+    }
+  ],
+  "schema_version": "1.0"
+}

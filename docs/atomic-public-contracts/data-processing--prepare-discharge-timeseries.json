@@ -1,0 +1,422 @@
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "data-processing/prepare-discharge-timeseries",
+  "source_contract_sha256": "58006d46817bd97ba5f11327ccad989918d9d1654db182a8a4d88a5720d6d64a",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "source_timeseries",
+        "description": "包含已确认时间列和流量列的 XLSX、CSV 或 Parquet 文件。",
+        "required": true,
+        "format": "XLSX, CSV or Parquet",
+        "variables": [
+          {
+            "name": "source_discharge",
+            "semantics": "用户明确指定的连续流量观测列。",
+            "units": "m3/s, L/s or cfs as confirmed",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺测不得静默外推；修复行为必须显式选择并标记。"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "id": "discharge_timeseries",
+        "description": "包含 time、discharge_m3_s、is_imputed 和保留附加列的标准表。",
+        "required": true,
+        "format": "CSV, Parquet or XLSX"
+      },
+      {
+        "id": "series_metadata",
+        "description": "单位、时区、时间步长、列映射和处理证据。",
+        "required": true,
+        "format": "JSON"
+      },
+      {
+        "id": "run_result",
+        "description": "符合 data-processing-run-result schema 的运行结果。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "invariants": [
+      "标准流量单位必须为 m3/s，时间必须严格递增且规则。",
+      "首尾缺测不得外推，内部插值必须显式授权并标记。",
+      "未确认附加列不得根据名称赋予水文语义。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "m3/s": {
+          "type": "number"
+        },
+        "L/s": {
+          "type": "number"
+        },
+        "cfs": {
+          "type": "number"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "time_column": {
+          "type": "computed; see field semantics"
+        },
+        "flow_column": {
+          "type": "computed; see field semantics"
+        },
+        "source_format": {
+          "type": "computed; see field semantics"
+        },
+        "source_flow_unit": {
+          "type": "computed; see field semantics"
+        },
+        "standard_flow_unit": {
+          "type": "string"
+        },
+        "unit_scale": {
+          "type": "computed; see field semantics"
+        },
+        "timezone": {
+          "type": "computed; see field semantics"
+        },
+        "timestep_seconds": {
+          "type": "computed; see field semantics"
+        },
+        "time_regularity": {
+          "type": "computed; see field semantics"
+        },
+        "row_count": {
+          "type": "computed; see field semantics"
+        },
+        "start_time": {
+          "type": "computed; see field semantics"
+        },
+        "end_time": {
+          "type": "computed; see field semantics"
+        },
+        "additional_columns": {
+          "type": "computed; see field semantics"
+        },
+        "additional_column_semantics": {
+          "type": "string"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "type": "computed; see field semantics"
+        },
+        "inputs": {
+          "source_timeseries": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "artifacts": {
+          "discharge_timeseries": {
+            "type": "computed; see field semantics"
+          },
+          "series_metadata": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "discharge_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "is_imputed": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "source_timeseries": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "discharge_timeseries": {
+          "type": "computed; see field semantics"
+        },
+        "series_metadata": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "csv",
+        "parquet",
+        "xlsx"
+      ],
+      [
+        "discharge_timeseries.csv",
+        "discharge_timeseries.parquet",
+        "discharge_timeseries.xlsx",
+        "series_metadata.json",
+        "result.json"
+      ],
+      [
+        "time",
+        "discharge_m3_s",
+        "is_imputed"
+      ],
+      [
+        "error",
+        "interpolate"
+      ],
+      [
+        "error",
+        "trim"
+      ],
+      [
+        "error",
+        "first",
+        "last"
+      ],
+      [
+        "input",
+        "output_dir"
+      ]
+    ],
+    "field_names": [
+      "L/s",
+      "__flow",
+      "__time",
+      "action",
+      "additional_column_semantics",
+      "additional_columns",
+      "ambiguous",
+      "artifacts",
+      "cfs",
+      "check",
+      "checks",
+      "choices",
+      "csv",
+      "date_format",
+      "default",
+      "description",
+      "details",
+      "discharge_m3_s",
+      "discharge_timeseries",
+      "discharge_timeseries.csv",
+      "discharge_timeseries.parquet",
+      "discharge_timeseries.xlsx",
+      "drop",
+      "dtype",
+      "encoding",
+      "end_time",
+      "engine",
+      "ensure_ascii",
+      "error",
+      "errors",
+      "exist_ok",
+      "file",
+      "first",
+      "flow_column",
+      "indent",
+      "index",
+      "input",
+      "inputs",
+      "interpolate",
+      "is_imputed",
+      "keep",
+      "kind",
+      "last",
+      "limit_area",
+      "m3/s",
+      "message",
+      "method",
+      "nonexistent",
+      "numpy",
+      "origin",
+      "output_dir",
+      "pandas",
+      "parameters",
+      "parents",
+      "parquet",
+      "path",
+      "provenance",
+      "python",
+      "required",
+      "result.json",
+      "row_count",
+      "schema_version",
+      "series_metadata",
+      "series_metadata.json",
+      "sha256",
+      "sheet_name",
+      "skill",
+      "sort_keys",
+      "source_flow_unit",
+      "source_format",
+      "source_timeseries",
+      "standard_flow_unit",
+      "start_time",
+      "status",
+      "time",
+      "time_column",
+      "time_regularity",
+      "timestep_seconds",
+      "timezone",
+      "trim",
+      "type",
+      "unit",
+      "unit_scale",
+      "warnings",
+      "xlsx"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "PASS",
+        "WARN",
+        "error"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^discharge_timeseries\\..+$",
+      "^g$",
+      "^rows=.+$",
+      "^seconds=.+$",
+      "^时间序列不规则，规则度=.+$",
+      "^缺少时间或流量列；当前列=.+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "data-processing/prepare-discharge-timeseries"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}

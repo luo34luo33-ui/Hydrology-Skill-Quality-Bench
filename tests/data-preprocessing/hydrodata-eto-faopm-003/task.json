@@ -1,0 +1,89 @@
+{
+  "data_description": "A deterministic FAO-56 daily meteorology fixture for two stations with a fully confirmed config.",
+  "data_files": [
+    "met.csv",
+    "stations.csv",
+    "config.json"
+  ],
+  "difficulty": "basic",
+  "domain": "data-preprocessing",
+  "grading": [
+    {
+      "expected_rows": {
+        "eto-out/result.json": 1
+      },
+      "name": "result_schema",
+      "required_columns": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "target": "eto-out/result.json",
+      "type": "file_check",
+      "weight": 0.15
+    },
+    {
+      "field": "skill",
+      "name": "result_skill",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "field": "status",
+      "name": "result_status",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.2
+    },
+    {
+      "field": "message",
+      "name": "failure_reason",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.25
+    },
+    {
+      "field": "artifacts",
+      "name": "empty_artifacts",
+      "reference": "expected/golden_workspace/eto-out/result.json",
+      "target": "eto-out/result.json",
+      "type": "exact_match",
+      "weight": 0.1
+    },
+    {
+      "name": "no_standard_outputs",
+      "targets": [
+        "eto-out/eto.csv",
+        "eto-out/mapped_evap.csv"
+      ],
+      "type": "file_absence_check",
+      "weight": 0.2
+    }
+  ],
+  "id": "hydrodata-eto-faopm-003",
+  "primary_skill": "data-processing/derive-potential-evapotranspiration",
+  "prompt": "Use met.csv, stations.csv, and config.json exactly as supplied to run data-processing/derive-potential-evapotranspiration. The meteorology table contains at least one missing value; run the skill verbatim and only the native result.json under eto-out/. Do not fill, interpolate, or drop the missing value; do not rerun with repaired data; the script must reject the input itself. No eto.csv or mapped_evap.csv may remain in eto-out/.",
+  "public_contract": "public_contract.json",
+  "required_outputs": [
+    "eto-out/result.json"
+  ],
+  "secondary_skills": [],
+  "setup_notes": [
+    "The config (columns, canonical units, timezone, mapping policy) is confirmed by the user and must not be altered.",
+    "Meteorology values are instantaneous daily aggregates; ETo follows FAO-56 Penman-Monteith.",
+    "Do not install software or implement a replacement formula."
+  ],
+  "timeout_seconds": 300,
+  "title": "Reject ETo derivation when meteorology contains missing values"
+}

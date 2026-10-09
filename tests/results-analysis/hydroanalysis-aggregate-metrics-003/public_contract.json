@@ -1,0 +1,402 @@
+{
+  "version": "atomic-three-arm-v2",
+  "task_id": "hydroanalysis-aggregate-metrics-003",
+  "capability": {
+    "version": "atomic-three-arm-v2",
+    "interface_id": "evaluation-diagnostics/aggregate-event-metrics",
+    "source_contract_sha256": "cc2279c35b6355240c6618ce82362434220a3746398331a45c4acb5422729cd8",
+    "interface": {
+      "schema_version": "1.0",
+      "inputs": [
+        {
+          "id": "metrics_table",
+          "description": "逐场次指标表，通常由 compute-event-flood-metrics 产出，一场一行。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX",
+          "variables": [
+            {
+              "name": "value_column",
+              "semantics": "待聚合的数值指标列，由 --value-columns 显式列出。",
+              "units": "沿用上游指标单位",
+              "time_step": "not applicable",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "非数值单元不计入统计，但必须计数并记录。"
+            },
+            {
+              "name": "pass_column",
+              "semantics": "合格判定列，取值为「是」时计入合格，由 --pass-columns 显式列出。",
+              "units": "categorical",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "非「是」的值不计入合格，不静默替换。"
+            }
+          ]
+        },
+        {
+          "id": "pass_thresholds",
+          "description": "合格率计算所需的阈值，必须由使用者显式给出。",
+          "required": false,
+          "format": "CLI argument or JSON"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "aggregate_metrics",
+          "description": "分组汇总表，每组一行，含各数值列的统计量与各合格列的合格率。",
+          "required": true,
+          "format": "CSV, Parquet or XLSX",
+          "variables": [
+            {
+              "name": "mean",
+              "semantics": "等权算术平均，不提供加权口径。",
+              "units": "沿用上游指标单位",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "全部不可用或分组为空时记为 unavailable。"
+            },
+            {
+              "name": "qualified_rate",
+              "semantics": "合格率，等于判定为「是」的场次数除以该分组场次总数。",
+              "units": "fraction",
+              "state_or_flux": "not_applicable",
+              "accumulated_or_instantaneous": "not_applicable",
+              "missing_value_semantics": "未给出阈值时记为 unavailable。"
+            }
+          ]
+        },
+        {
+          "id": "run_result",
+          "description": "符合 HydroTune 运行结果约定的 result.json，含参数、输入与产物 SHA-256、QC 与 provenance。",
+          "required": true,
+          "format": "JSON"
+        }
+      ],
+      "invariants": [
+        "聚合必须等权，不得引入未声明的权重。",
+        "无法解析为数值的单元必须排除并计数，不得静默丢弃。",
+        "合格阈值必须显式给出；缺失时合格率记为 unavailable。",
+        "本 Skill 不得重新计算任何场次指标，只消费上游结果。",
+        "输出只写入 --output-dir；不修改输入指标表。"
+      ]
+    },
+    "serialization": {
+      "object_structures": [
+        {
+          "path": {
+            "type": "computed; see field semantics"
+          },
+          "sha256": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "name": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "computed; see field semantics"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {
+            "group_by": {
+              "type": "computed; see field semantics"
+            },
+            "value_columns": {
+              "type": "computed; see field semantics"
+            },
+            "pass_columns": {
+              "type": "computed; see field semantics"
+            },
+            "statistics": {
+              "type": "computed; see field semantics"
+            },
+            "pass_thresholds": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "inputs": {
+            "metrics_table": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "artifacts": {
+            "aggregate_metrics": {
+              "type": "computed; see field semantics"
+            }
+          },
+          "checks": {
+            "type": "computed; see field semantics"
+          },
+          "warnings": {
+            "type": "computed; see field semantics"
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "group": {
+            "type": "computed; see field semantics"
+          },
+          "events": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "group_by": {
+            "type": "computed; see field semantics"
+          },
+          "value_columns": {
+            "type": "computed; see field semantics"
+          },
+          "pass_columns": {
+            "type": "computed; see field semantics"
+          },
+          "statistics": {
+            "type": "computed; see field semantics"
+          },
+          "pass_thresholds": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "metrics_table": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "aggregate_metrics": {
+            "type": "computed; see field semantics"
+          }
+        },
+        {
+          "schema_version": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "computed; see field semantics"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "computed; see field semantics"
+          },
+          "parameters": {},
+          "inputs": {},
+          "artifacts": {},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "unknown"
+            }
+          },
+          "provenance": {
+            "type": "computed; see field semantics"
+          }
+        }
+      ],
+      "named_field_sets": [
+        [
+          "scored",
+          "is_warmup"
+        ],
+        [
+          "true",
+          "1"
+        ],
+        [
+          "true",
+          "false",
+          "1",
+          "0"
+        ],
+        [
+          "csv",
+          "parquet",
+          "xlsx"
+        ],
+        [
+          "mean",
+          "median",
+          "p10",
+          "p90",
+          "min",
+          "max",
+          "count"
+        ],
+        [
+          "aggregate_metrics.csv",
+          "aggregate_metrics.parquet",
+          "aggregate_metrics.xlsx",
+          "result.json"
+        ]
+      ],
+      "field_names": [
+        "0",
+        "1",
+        "action",
+        "aggregate_metrics",
+        "aggregate_metrics.csv",
+        "aggregate_metrics.parquet",
+        "aggregate_metrics.xlsx",
+        "artifacts",
+        "checks",
+        "choices",
+        "count",
+        "csv",
+        "date_format",
+        "default",
+        "description",
+        "dtype",
+        "encoding",
+        "engine",
+        "ensure_ascii",
+        "errors",
+        "events",
+        "exist_ok",
+        "false",
+        "file",
+        "group",
+        "group_by",
+        "help",
+        "indent",
+        "index",
+        "inputs",
+        "is_warmup",
+        "max",
+        "mean",
+        "median",
+        "message",
+        "metrics_table",
+        "min",
+        "name",
+        "numpy",
+        "p10",
+        "p90",
+        "pandas",
+        "parameters",
+        "parents",
+        "parquet",
+        "pass_columns",
+        "pass_thresholds",
+        "path",
+        "provenance",
+        "python",
+        "required",
+        "result.json",
+        "schema_version",
+        "scored",
+        "sha256",
+        "sheet_name",
+        "skill",
+        "sort",
+        "sort_keys",
+        "statistics",
+        "status",
+        "true",
+        "type",
+        "value_columns",
+        "warnings",
+        "xlsx"
+      ],
+      "literal_enum_values": {
+        "schema_version": [
+          "1.0"
+        ],
+        "status": [
+          "error"
+        ]
+      },
+      "static_interface_values": {
+        "schema_version": [
+          "1.0"
+        ]
+      },
+      "figure_layer_interfaces": [],
+      "dynamic_field_patterns": [
+        "^.+_(?:mean|median|p10|p90|min|max|count)$",
+        "^.+_count$",
+        "^.+_qualified_rate$",
+        "^aggregate_metrics\\..+$"
+      ],
+      "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+    },
+    "common_result": {
+      "fields": [
+        "schema_version",
+        "skill",
+        "status",
+        "message",
+        "parameters",
+        "inputs",
+        "artifacts",
+        "checks",
+        "warnings",
+        "provenance"
+      ],
+      "status_branches": [
+        "success",
+        "warning",
+        "error"
+      ],
+      "artifact_reference": {
+        "path": "relative to result directory",
+        "sha256": "SHA-256 of actual referenced file"
+      },
+      "skill": "evaluation-diagnostics/aggregate-event-metrics"
+    },
+    "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+  },
+  "inputs": [
+    "event_metrics.csv"
+  ],
+  "outputs": [
+    "aggregate-metrics/result.json"
+  ],
+  "input_field_names": [
+    "catchment",
+    "event_id",
+    "nse",
+    "peak_error_relative",
+    "qualified_peak",
+    "qualified_volume",
+    "volume_error_relative"
+  ],
+  "declared_settings": "Confirmed settings remain in the shared task prompt and input configurations; no invocation commands are duplicated in this contract.",
+  "branch_policy": "Determine applicable branch from inputs. This document does not preselect outcome or expected numerical results."
+}

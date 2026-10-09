@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "language": "zh",
+    "pixel_size": [
+      2400,
+      1200
+    ],
+    "rainfall_available": true,
+    "rainfall_step_seconds": 3600.0,
+    "selection": "all",
+    "total_volume_display_unit": "10^8 m3"
+  }
+}

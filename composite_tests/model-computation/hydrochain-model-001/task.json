@@ -1,0 +1,60 @@
+{
+  "core_capabilities": [
+    "forcing_standardization",
+    "xaj",
+    "muskingum"
+  ],
+  "data_description": "Readonly originals and explicitly authorised synthetic calculation supplements; complete upfront scientific settings and public output interfaces.",
+  "data_files": [
+    "INPUT_GUIDE.md",
+    "OUTPUT_INTERFACES.md",
+    "derivation.json",
+    "input_inventory.json",
+    "original.csv",
+    "output_interfaces.json",
+    "raw.csv",
+    "scenario.json",
+    "source_manifest.json",
+    "supplements.csv"
+  ],
+  "difficulty": "advanced",
+  "domain": "model-computation",
+  "evaluation_reference": "expected/evaluation.json",
+  "grading": [
+    {
+      "name": "scientific_artifact_progress",
+      "reference": "expected/evaluation.json",
+      "type": "composite_contract_check",
+      "weight": 1.0
+    }
+  ],
+  "id": "hydrochain-model-001",
+  "interaction_mode": "none",
+  "outcome_goal": "deliverable",
+  "primary_skill": "workflows/hydrological-modeling",
+  "prompt": "请完成“单场新安江模拟至下游断面”。启动前提供的 scenario.json 与 INPUT_GUIDE.md 构成本题完整科学设定；OUTPUT_INTERFACES.md 与 output_interfaces.json 定义公开成果接口。驱动选列、空间代表性、source_id 和 E0/PET 变量按 forcing_selection；输出时间字段必须带显式时区偏移。运行中没有用户答复或信息补充，不调用用户确认接口。自主检查资料、实现计算、排错及重试，可选择工具、代码、执行顺序和等价实现；遵守指定模型、科学参数、状态组织、评价目标和预算，不擅自修改原始观测或科学设定。允许使用已标注的合成补充计算资料，但不得称为实测修复。交付可复核的中间科学成果、相对文件引用及 SHA-256、最终成果与 decision.json；记录实现选择与限制。decision.json 包含 status、reason、limitations 和 evidence，正常交付使用 status=deliverable、reason=scientific_contracts_satisfied。若发现实际资料或环境异常，记录问题证据；本题预期完成正常计算交付，不以等待用户答复作为完成。",
+  "required_outputs": [
+    "decision.json",
+    "evap/prepared_forcing.csv",
+    "evap/result.json",
+    "forcing.csv",
+    "model/lumped_xaj_runoff.csv",
+    "model/result.json",
+    "rain/prepared_forcing.csv",
+    "rain/result.json",
+    "routed/result.json",
+    "routed/routed_flow.csv"
+  ],
+  "resource_budget": {
+    "agent_rounds": 60,
+    "cpus": 4,
+    "memory_mb": 8192,
+    "tool_calls": 120
+  },
+  "secondary_skills": [],
+  "task_kind": "composite",
+  "task_revision": 4,
+  "task_version": "composite-unattended-v2",
+  "timeout_seconds": 900,
+  "title": "单场新安江模拟至下游断面"
+}

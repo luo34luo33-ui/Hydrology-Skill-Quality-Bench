@@ -1,0 +1,317 @@
+{
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5,
+  "scoring_version": "composite-scientific-v3",
+  "validation_status": "pending_validation",
+  "reference_computation_performed": false,
+  "development_tasks": [
+    {
+      "task": "hydrochain-data-001",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-001",
+      "development": true,
+      "capabilities": [
+        "discharge_standardization",
+        "baseflow",
+        "event_identification",
+        "forcing_standardization"
+      ],
+      "added_axis_gates": 11,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-data-002",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-002",
+      "development": true,
+      "capabilities": [
+        "discharge_standardization",
+        "baseflow",
+        "event_identification",
+        "forcing_readiness"
+      ],
+      "added_axis_gates": 11,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-data-003",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-003",
+      "development": true,
+      "capabilities": [
+        "dem_grid",
+        "d8_network",
+        "hydrobase",
+        "independent_topology_qc"
+      ],
+      "added_axis_gates": 0,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-data-004",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-004",
+      "development": true,
+      "capabilities": [
+        "dem_grid",
+        "d8_network",
+        "hydrobase",
+        "independent_topology_qc",
+        "forcing_standardization",
+        "spatial_aggregation"
+      ],
+      "added_axis_gates": 3,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-data-005",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-005",
+      "development": true,
+      "capabilities": [
+        "independent_topology_qc",
+        "forcing_standardization",
+        "spatial_aggregation"
+      ],
+      "added_axis_gates": 3,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-data-006",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-006",
+      "development": true,
+      "capabilities": [
+        "discharge_standardization",
+        "baseflow",
+        "event_identification",
+        "forcing_standardization"
+      ],
+      "added_axis_gates": 26,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-data-007",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-007",
+      "development": true,
+      "capabilities": [
+        "independent_topology_qc",
+        "forcing_standardization",
+        "spatial_aggregation",
+        "discharge_standardization",
+        "baseflow",
+        "event_identification"
+      ],
+      "added_axis_gates": 12,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-data-008",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\data-preprocessing\\hydrochain-data-008",
+      "development": true,
+      "capabilities": [
+        "dem_grid",
+        "d8_network",
+        "hydrobase",
+        "independent_topology_qc"
+      ],
+      "added_axis_gates": 0,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-001",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-001",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "xaj",
+        "muskingum"
+      ],
+      "added_axis_gates": 5,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-002",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-002",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "xaj",
+        "muskingum"
+      ],
+      "added_axis_gates": 17,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-003",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-003",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "xaj",
+        "muskingum"
+      ],
+      "added_axis_gates": 5,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-004",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-004",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "xaj",
+        "muskingum"
+      ],
+      "added_axis_gates": 5,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-005",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-005",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "dhf",
+        "outlet_alignment",
+        "event_metrics"
+      ],
+      "added_axis_gates": 8,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-006",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-006",
+      "development": true,
+      "capabilities": [
+        "daily_forcing",
+        "gr4j",
+        "outlet_alignment",
+        "continuous_metrics"
+      ],
+      "added_axis_gates": 7,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-007",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-007",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "spatial_aggregation",
+        "semi_xaj"
+      ],
+      "added_axis_gates": 4,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-008",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-008",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "spatial_aggregation",
+        "semi_xaj"
+      ],
+      "added_axis_gates": 4,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-009",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-009",
+      "development": true,
+      "capabilities": [
+        "semi_xaj",
+        "outlet_alignment",
+        "continuous_metrics"
+      ],
+      "added_axis_gates": 10,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-010",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-010",
+      "development": true,
+      "capabilities": [
+        "forcing_standardization",
+        "spatial_aggregation",
+        "routing_stability"
+      ],
+      "added_axis_gates": 4,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-011",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-011",
+      "development": true,
+      "capabilities": [
+        "scoring_series",
+        "de_calibration",
+        "outlet_alignment",
+        "continuous_metrics"
+      ],
+      "added_axis_gates": 6,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-model-012",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-012",
+      "development": true,
+      "capabilities": [
+        "event_collection",
+        "de_calibration",
+        "event_metrics",
+        "event_aggregation"
+      ],
+      "added_axis_gates": 15,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-analysis-001",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\results-analysis\\hydrochain-analysis-001",
+      "development": true,
+      "capabilities": [
+        "outlet_alignment",
+        "continuous_metrics",
+        "event_metrics"
+      ],
+      "added_axis_gates": 17,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-analysis-002",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\results-analysis\\hydrochain-analysis-002",
+      "development": true,
+      "capabilities": [
+        "outlet_alignment",
+        "event_metrics",
+        "event_aggregation"
+      ],
+      "added_axis_gates": 15,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-analysis-003",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\results-analysis\\hydrochain-analysis-003",
+      "development": true,
+      "capabilities": [
+        "member_alignment",
+        "bma",
+        "continuous_metrics"
+      ],
+      "added_axis_gates": 8,
+      "reference_status": "pending_recomputation"
+    },
+    {
+      "task": "hydrochain-analysis-004",
+      "source": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\results-analysis\\hydrochain-analysis-004",
+      "development": true,
+      "capabilities": [
+        "source_alignment",
+        "scored_split_audit",
+        "controlled_conclusion_review"
+      ],
+      "added_axis_gates": 0,
+      "reference_status": "pending_recomputation"
+    }
+  ],
+  "blind_test": {
+    "status": "not_prepared",
+    "reason": "Existing source pool has been exposed during benchmark development. No independent source interval has been certified as unused.",
+    "allow_synthetic_observations_as_blind_truth": false
+  }
+}

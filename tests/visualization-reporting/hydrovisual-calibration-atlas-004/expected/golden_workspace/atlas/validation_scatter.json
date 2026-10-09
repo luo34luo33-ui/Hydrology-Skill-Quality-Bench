@@ -1,0 +1,35 @@
+{
+  "display_transforms": [
+    "validation scored=true rows only; multiple explicitly aligned simulations; 1:1 display reference; no visible titles"
+  ],
+  "figure_type": "validation-scatter",
+  "height_px": 1600,
+  "inputs": {
+    "calibration_result": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-tilq2wv8\\calibration\\result.json",
+      "sha256": "32a5477595c6a6126192455a46375c31561e97de2c9ce6d88487e32afa030c5e"
+    },
+    "source_0_validation_series": {
+      "path": "C:\\Users\\DELL\\AppData\\Local\\Temp\\hsqb-atomic-tilq2wv8\\calibration\\validation_series.csv",
+      "sha256": "27c81c3d2e6757d2db8be643ef5f992fc42e86d550e3b27b2fd1f4cd3e7e3cb9"
+    }
+  },
+  "language": "en",
+  "outputs": {
+    "png": {
+      "path": "validation_scatter.png",
+      "sha256": "05ceab77b42619aa2c8a4e1b602395c764c95fcbc80d8131b258a72d6993a5f9"
+    },
+    "svg": {
+      "path": "validation_scatter.svg",
+      "sha256": "8a2838a3df25b2d88dc68fddbbda66575eb1e10a27011c704e5553f68cdf19ba"
+    }
+  },
+  "schema_version": "1.0",
+  "template": "hydrotune.model-calibration-atlas.v2",
+  "title": "Validation observed–simulated scatter",
+  "warnings": [
+    "validation series 未提供 precipitation；过程图省略降水面板"
+  ],
+  "width_px": 2400
+}

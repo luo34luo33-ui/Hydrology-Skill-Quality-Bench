@@ -1,0 +1,10 @@
+{
+  "mode": "event",
+  "rows": 234,
+  "member_count": 2,
+  "warmup_union_rows": 6,
+  "selected_rows_per_member": {
+    "HBV": 240,
+    "Tank": 240
+  }
+}

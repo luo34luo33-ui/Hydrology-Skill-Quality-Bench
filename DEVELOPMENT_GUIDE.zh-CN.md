@@ -4,6 +4,12 @@
 
 本流程只用于**测试开发与本地验收**。开发过程中禁止运行任何真实 Agent。
 
+原子题遵循下文的单技能隔离规则。`composite_tests/` 的 `hydrochain-data`、
+`hydrochain-model`、`hydrochain-analysis` 家族遵循独立的
+[组合开发规则](composite_tests/DEVELOPMENT_RULES.md)：允许真实处理链，必要事实和权限
+在启动前提供，运行中不补充用户信息，要求至少三种核心科学能力和成果依赖，提示不得点名 Skill。组合题不改变
+原子覆盖口径，两类开发阶段都禁止运行真实 Agent。
+
 ## 1. 核心原则
 
 1. 一题只测试一个目标 Skill；上游链路通过预置、哈希有效的 artifacts 隔离。
@@ -89,6 +95,7 @@ data-preprocessing
 spatial-analysis
 model-calibration
 results-analysis
+visualization-reporting
 ```
 
 任务路径统一为：
@@ -105,6 +112,8 @@ tests/<domain>/<task-id>/
 | `hydromodel` | 模型构建、运行、率定和模型参数任务 | `hydromodel-NNN`；同域出现多个明确子能力时可用 `hydromodel-<capability>-NNN` | `hydromodel-de-001` |
 | `hydroanalysis` | 指标计算、结果诊断和模拟分析 | `hydroanalysis-NNN`；同域出现多个明确子能力时可用 `hydroanalysis-<capability>-NNN` | `hydroanalysis-001` |
 | 未来家族 | 无法归入现有家族的新任务 | 先确定稳定的 `hydro<family>` 前缀，再使用 `hydro<family>-NNN` 或 `hydro<family>-<capability>-NNN` | 尚无 |
+| `hydrovisual` | 固定图册和结果绘图 | `hydrovisual-<capability>-NNN` | `hydrovisual-dem-atlas-001` |
+| `hydroreport` | 结构化报告生成及独立审查 | `hydroreport-<capability>-NNN` | `hydroreport-review-001` |
 
 通用规则：
 
@@ -233,6 +242,8 @@ GeoPackage、GeoTIFF、PNG 和 XLSX 应尽量固定元数据，但评分优先�
 | GeoTIFF | `raster_match` |
 | GeoPackage/矢量 | `vector_match` |
 | artifact 路径与哈希 | `artifact_reference_check` |
+| 图件尺寸、元数据、SVG科学图层 | `figure_contract_check` |
+| 报告证据、受控结论、逐段审查绑定 | `report_contract_check` |
 
 正常题覆盖文件结构、核心科学内容、metadata/parameters/checks、status/warnings 和 artifact 完整性。错误题覆盖 `status=error`、原生原因、artifact map 和禁止成果缺失。
 
@@ -335,3 +346,13 @@ hydroSkillBench validate
 - 开发阶段实际 Agent 批次：未运行
 - 正式 Agent 评测兼容性：保留，可在开发验收后运行
 ```
+
+## 原子三组公共契约补充规则
+
+原子三组实验版本为 `atomic-three-arm-v1`，操作与当前验收结果见 `docs/ATOMIC_THREE_ARM.zh-CN.md`。
+公开合同只从冻结源数据合同、序列化接口和公开输入生成；不得从 hidden expected 或评分容差生成答案。
+所有原子生成器必须保留 `public_contract` 引用并将 canonical 契约复制到临时生成目录。
+`scripts/prepare_atomic_contracts.py` 不改输入、参考、评分或超时；`scripts/audit_atomic_contracts.py` 核对基线及字段遗漏。
+科学代码和运行资产若只存在于技能组，则不得发布：必须在公共程序组提供同哈希版本，或阻断实验。
+原程序、旧题及评分之间的冲突必须记录；不得补造缺测、选择预期分支或放宽 grader。
+本机联调不算容器隔离认证。开发验收只使用可信科学程序、假进程和无模型容器探针；不启动真实 Agent 批次。

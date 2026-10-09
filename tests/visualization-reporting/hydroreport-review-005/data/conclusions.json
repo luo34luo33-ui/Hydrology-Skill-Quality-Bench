@@ -1,0 +1,10 @@
+{
+  "causal_status": "unconfirmed",
+  "evaluation_scope": "validation",
+  "process_event_ids": [
+    "e1"
+  ],
+  "worst_event_ids": [
+    "e1"
+  ]
+}

@@ -129,6 +129,7 @@
   "id": "hydrodata-timeseries-001",
   "primary_skill": "data-processing/prepare-discharge-timeseries",
   "prompt": "Prepare flow_cfs from shuffled_flow.csv as a continuous discharge series. observed_at is the confirmed instantaneous time column, flow_cfs is confirmed in cfs, and the required timezone is Asia/Shanghai. Do not assign hydrologic meaning to source_id, but preserve it row by row. Missing and duplicate timestamps must use the default error policies. Write CSV outputs under prepared/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "prepared/discharge_timeseries.csv",
     "prepared/series_metadata.json",

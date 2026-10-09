@@ -1,0 +1,119 @@
+{
+  "files": [
+    {
+      "path": "basin.gpkg",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "ce18f00358543944242838ce7aa1058996dcdb1fe8a6f049fe4e98b81755ab62"
+    },
+    {
+      "path": "dem_100m.tif",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "a6667546dcd551e44da21f08f213a5da3276c6869343c11fdb78014769f62a4f"
+    },
+    {
+      "path": "derivation.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "10429e947b09b296278cbf81734158471e26b8481c8940da86eca6e4572ef256"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out"
+      ],
+      "path": "original.csv",
+      "role": "original observations; preserve all values and missing entries",
+      "sha256": "e0219610570b88e17b9396cab9be45c390f1321c883ed06cac5681ec44587a92"
+    },
+    {
+      "columns": [
+        "time",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "GB_rain",
+        "DF_rain",
+        "QC_rain",
+        "BJ_rain",
+        "GA_rain",
+        "WL_rain",
+        "GZ_rain",
+        "avg_rain",
+        "GB_out",
+        "GZ_in",
+        "GZ_out",
+        "E0"
+      ],
+      "path": "raw.csv",
+      "role": "authorised calculation input, with labelled synthetic supplements",
+      "sha256": "0bc26621671645baa33197367c80ba53c8d1b533ffb81ef287051e99fa0f229d"
+    },
+    {
+      "path": "scenario.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "2f841bcaaf78a9a2d8a7c3c12b91816576e2a0d97194a3986778d048fc8d7ee4"
+    },
+    {
+      "path": "source_manifest.json",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "196563eeae320263efd874f16c832f09e12a50b399af304f0c965d2562fee7ea"
+    },
+    {
+      "columns": [
+        "source_id",
+        "x",
+        "y"
+      ],
+      "path": "stations.csv",
+      "role": "upfront scenario, source evidence or spatial/scoring input",
+      "sha256": "944cb3b2de8a93ed4e7e6885e311f13676e2fe2eb3974bfc6362b482b34916cd"
+    },
+    {
+      "columns": [
+        "time",
+        "column",
+        "value",
+        "basis"
+      ],
+      "path": "supplements.csv",
+      "role": "synthetic supplement provenance; not repaired observations",
+      "sha256": "f046b78399adcd58e69889cb57dca68fdcdc6ca7d378cc918fc07c10de245999"
+    },
+    {
+      "path": "INPUT_GUIDE.md",
+      "role": "public input/output interface documentation",
+      "sha256": "598adba573f6905eba369a7d85a62daf7266562786af9562435f44d263b5ca94"
+    },
+    {
+      "path": "OUTPUT_INTERFACES.md",
+      "role": "public input/output interface documentation",
+      "sha256": "fcf7c23173affccf4cf6a28ddcfc3eb0ea1d44581998d3a1f82baefd8c182a9c"
+    },
+    {
+      "path": "output_interfaces.json",
+      "role": "public input/output interface documentation",
+      "sha256": "70dddd16fc5f28dcc939e93ffde2f95213fae0d057d64d6bdf2b4b6117d96184"
+    },
+    {
+      "path": "workflow_requirements.json",
+      "role": "public workflow consistency requirements",
+      "sha256": "accc928f9872080fe03c3c621af95ab0d617cde715ac62c5bc48b74bbe54121a"
+    }
+  ],
+  "task_version": "composite-unattended-v2",
+  "task_revision": 5
+}

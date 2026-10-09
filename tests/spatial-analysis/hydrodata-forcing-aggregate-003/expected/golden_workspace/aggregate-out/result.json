@@ -1,0 +1,20 @@
+{
+  "artifacts": {},
+  "checks": [
+    {
+      "check": "run",
+      "details": "missing station at one or more steps",
+      "status": "FAIL"
+    }
+  ],
+  "inputs": {},
+  "message": "missing station at one or more steps",
+  "parameters": {},
+  "provenance": {
+    "generator": "HydroTune skill script; runtime versions normalized for the golden oracle"
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/aggregate-forcing-to-model-units",
+  "status": "error",
+  "warnings": []
+}

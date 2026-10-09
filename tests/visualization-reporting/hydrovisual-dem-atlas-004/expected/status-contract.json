@@ -1,0 +1,11 @@
+{
+  "files": {
+    "atlas/result.json": {
+      "error_reason_contains": "artifact analysis_dem SHA-256 不匹配:",
+      "skill": "visualization-reporting/visualize-dem-hydrology-atlas",
+      "status": "error",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

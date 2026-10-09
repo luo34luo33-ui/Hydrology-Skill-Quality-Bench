@@ -114,6 +114,7 @@
   "id": "hydromodel-muskingum-001",
   "primary_skill": "hydrological-modeling/route-muskingum-channel",
   "prompt": "Use inflow.csv and route_spec.json exactly as supplied to run hydrological-modeling/route-muskingum-channel. The inflow table is hourly, gap-free, and both columns are instantaneous discharge in m3/s. The route spec confirms K, X, layout, reaches, and output_level for each route; use --timestep-hours 1, --combine sum, and the default Q_total output column. Write the native outputs (routed_flow.csv, route_coefficients.json, result.json) under routed/. Do not modify the route parameters, clip or repair any computed value, or substitute another routing method.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "routed/routed_flow.csv",
     "routed/route_coefficients.json",

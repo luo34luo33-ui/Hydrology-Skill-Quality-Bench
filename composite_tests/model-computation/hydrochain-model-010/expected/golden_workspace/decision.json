@@ -1,0 +1,45 @@
+{
+  "evidence": [
+    {
+      "path": "aggregate/result.json",
+      "sha256": "37b7b69a5998d7cf9009953b85198afb7ba77bee4829fa8db870fa42af0af348"
+    },
+    {
+      "path": "evap/result.json",
+      "sha256": "18ea5a46858466b05af6ba95fffede4b5399fddf463efef715bb254ee299c890"
+    },
+    {
+      "path": "hydrobase/result.json",
+      "sha256": "aade8e5a624df1700a5fd49b6d96388259482078041597e9fd5d08db5926e4cb"
+    },
+    {
+      "path": "hydrology/result.json",
+      "sha256": "32a3d70f7c77f86238e694abeee2c6c412935ff0fc992aa145f02148eb183ebe"
+    },
+    {
+      "path": "model/result.json",
+      "sha256": "8fcef19bfed98a53453cb31859a0e7970153f016bfe495ad89cba5dd774d8679"
+    },
+    {
+      "path": "prepared/result.json",
+      "sha256": "32d6e17b9a4bc7c8f4e68ca9cfc5fae15d407f99142abc76f71b6a52d17c10bc"
+    },
+    {
+      "path": "rain/result.json",
+      "sha256": "7d3606cfaeada22d8c2cb7647460fbea30298adcd47beea150f923e3e1dee811"
+    },
+    {
+      "path": "topology-qc/result.json",
+      "sha256": "713c7e15f2bb4a5ae20a2e47d1d4be16e22648f3bf1e7fd7b8b4eb58e221c222"
+    },
+    {
+      "path": "routing_audit.json",
+      "sha256": "a4a290206a8034e142b71579f3b6a833eede54c87868f3fb65bb8edbf36df77a"
+    }
+  ],
+  "limitations": [
+    "Synthetic supplements are test data, not repaired observations."
+  ],
+  "reason": "scientific_contracts_satisfied",
+  "status": "deliverable"
+}

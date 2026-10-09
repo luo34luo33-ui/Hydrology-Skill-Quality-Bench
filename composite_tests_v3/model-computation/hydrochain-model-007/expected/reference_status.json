@@ -1,0 +1,5 @@
+{
+  "status": "inherited_unverified",
+  "source_task": "E:\\Hydrology-Skill-Quality-Bench\\composite_tests\\model-computation\\hydrochain-model-007",
+  "notice": "Existing numerical reference files are preserved as development fixtures, not a new acceptance run. Recompute before certification."
+}

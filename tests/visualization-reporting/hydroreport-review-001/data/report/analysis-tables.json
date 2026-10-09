@@ -1,0 +1,177 @@
+[
+  {
+    "rows": [
+      {
+        "end": "2020-01-01T02:00:00Z",
+        "evaluation": "eval",
+        "event_id": "e1",
+        "nse": "-2",
+        "peak_error_relative": "-0.1",
+        "peak_time_error_hours": "1",
+        "run": "run",
+        "run_name": "HBV",
+        "split": "validation",
+        "start": "2020-01-01T00:00:00Z",
+        "volume_error_relative": "0.2"
+      }
+    ],
+    "section": "worst",
+    "title": "run / validation / eval"
+  },
+  {
+    "rows": [
+      {
+        "count": 6,
+        "definition": "标准纳什效率系数；观测方差为 0 时记为 unavailable。",
+        "evaluation": "eval",
+        "max": 0.8,
+        "mean": -0.55,
+        "median": -0.2,
+        "metric": "nse",
+        "min": -2.0,
+        "mode": "event_collection",
+        "p10": -2.0,
+        "p90": 0.55,
+        "period": {
+          "end": "2020-01-01T02:00:00Z",
+          "start": "2020-01-01T00:00:00Z"
+        },
+        "run": "run",
+        "run_name": "HBV",
+        "split": "validation",
+        "total": 7,
+        "unavailable": 1,
+        "unit": "dimensionless"
+      },
+      {
+        "count": 7,
+        "definition": "",
+        "evaluation": "eval",
+        "max": -0.1,
+        "mean": -0.1,
+        "median": -0.1,
+        "metric": "peak_error_relative",
+        "min": -0.1,
+        "mode": "event_collection",
+        "p10": -0.1,
+        "p90": -0.1,
+        "period": {
+          "end": "2020-01-01T02:00:00Z",
+          "start": "2020-01-01T00:00:00Z"
+        },
+        "run": "run",
+        "run_name": "HBV",
+        "split": "validation",
+        "total": 7,
+        "unavailable": 0,
+        "unit": "unspecified"
+      },
+      {
+        "count": 7,
+        "definition": "峰现时间误差，定义为模拟峰时刻减观测峰时刻，正值为模拟峰现偏晚。",
+        "evaluation": "eval",
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "metric": "peak_time_error_hours",
+        "min": 1.0,
+        "mode": "event_collection",
+        "p10": 1.0,
+        "p90": 1.0,
+        "period": {
+          "end": "2020-01-01T02:00:00Z",
+          "start": "2020-01-01T00:00:00Z"
+        },
+        "run": "run",
+        "run_name": "HBV",
+        "split": "validation",
+        "total": 7,
+        "unavailable": 0,
+        "unit": "h"
+      },
+      {
+        "count": 7,
+        "definition": "洪量相对误差，定义为 (观测洪量 - 模拟洪量) / 观测洪量。",
+        "evaluation": "eval",
+        "max": 0.2,
+        "mean": 0.2,
+        "median": 0.2,
+        "metric": "volume_error_relative",
+        "min": 0.2,
+        "mode": "event_collection",
+        "p10": 0.2,
+        "p90": 0.2,
+        "period": {
+          "end": "2020-01-01T02:00:00Z",
+          "start": "2020-01-01T00:00:00Z"
+        },
+        "run": "run",
+        "run_name": "HBV",
+        "split": "validation",
+        "total": 7,
+        "unavailable": 0,
+        "unit": "dimensionless"
+      }
+    ],
+    "section": "evaluation",
+    "title": "总体指标 / Overall metrics"
+  },
+  {
+    "rows": [
+      {
+        "evaluation": "eval",
+        "mode": "event_collection",
+        "period": {
+          "end": "2020-01-01T02:00:00Z",
+          "start": "2020-01-01T00:00:00Z"
+        },
+        "run": "run",
+        "run_name": "HBV",
+        "split": "validation"
+      }
+    ],
+    "section": "calibration",
+    "title": "评价分组 / Evaluation groups"
+  },
+  {
+    "rows": [
+      {
+        "item": "mean_residual",
+        "unit": "m3/s",
+        "value": 0.6666666666666666
+      },
+      {
+        "item": "peak_residual",
+        "unit": "m3/s",
+        "value": -1.0
+      },
+      {
+        "item": "rising_mean_residual",
+        "unit": "m3/s",
+        "value": 0.0
+      },
+      {
+        "item": "recession_mean_residual",
+        "unit": "m3/s",
+        "value": 0.5
+      },
+      {
+        "item": "warmup_rows",
+        "unit": "count",
+        "value": 1
+      },
+      {
+        "item": "excluded_unscored_rows",
+        "unit": "count",
+        "value": 0
+      },
+      {
+        "item": "scored_rows",
+        "unit": "count",
+        "value": 3
+      }
+    ],
+    "section": "worst",
+    "title": "run / validation / e1"
+  }
+]

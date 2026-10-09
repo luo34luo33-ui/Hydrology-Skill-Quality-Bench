@@ -1,0 +1,9 @@
+{
+  "evaluation_rows": 732,
+  "matched_rows": 744,
+  "model": "run-semi-distributed-xaj-model",
+  "observation_missing": 0,
+  "simulation_missing": 0,
+  "simulation_rows": 744,
+  "warmup_excluded": 12
+}

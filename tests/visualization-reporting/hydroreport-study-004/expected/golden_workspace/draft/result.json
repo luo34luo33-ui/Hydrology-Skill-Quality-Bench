@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "a9d26d1ff1d7b8163b6de1a7b89abfebca57b9225f3b5d22940d705403ac2cde"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "0087607205cf35c5c199e9b4036bc8645e8d722c291355380968a1bc701533c5"
+    }
+  },
+  "checks": [],
+  "inputs": {},
+  "message": "calibration/validation periods overlap",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-hydrological-study-report",
+  "status": "error",
+  "warnings": []
+}

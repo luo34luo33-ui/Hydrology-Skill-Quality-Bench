@@ -1,0 +1,15 @@
+{
+  "artifacts": {},
+  "checks": [],
+  "inputs": {},
+  "message": "Artifact hash mismatch: simulation_table_csv",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/review-hydrological-study-report",
+  "status": "error",
+  "warnings": []
+}

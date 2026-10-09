@@ -1,0 +1,9 @@
+{
+  "metrics": {
+    "nse": -0.3503737150432973,
+    "rmse": 896.4520062714373
+  },
+  "objective": 896.4520062714373,
+  "schema_version": "1.0",
+  "split": "validation"
+}

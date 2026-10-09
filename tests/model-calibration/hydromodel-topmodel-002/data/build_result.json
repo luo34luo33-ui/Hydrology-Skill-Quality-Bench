@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "subbasins_clipped": {
+      "path": "subbasins_clipped.tif",
+      "sha256": "d71da7ff67925a73906f1c84826b5e69a53638903160c06677bc55317cfc67b5"
+    },
+    "subbasins_table": {
+      "path": "subbasins_table.csv",
+      "sha256": "06fe14ce4d717c99d4d2f5009563d0e1892b817898f692b4fd03c852653e1c7a"
+    }
+  },
+  "checks": [
+    {
+      "check": "synthetic_upstream",
+      "details": "deterministic benchmark fixture",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "d8_pointer": {
+      "path": "d8_pointer.tif",
+      "sha256": "0f730afded51b93b1cd6dc72d221dbb4272e1e3dfdcc7ae22a41549a84b15db2"
+    },
+    "filled_dem": {
+      "path": "filled_dem.tif",
+      "sha256": "d86b837933207b5db4677c08aa7a9ff7503f0cc657dc5482d98a0222d5bc984f"
+    },
+    "flow_accumulation": {
+      "path": "flow_accumulation_cells.tif",
+      "sha256": "7d98b48453a33e9c233a2c44b4cfa2aff4d7d060f8dc9178208158e7200e5940"
+    }
+  },
+  "schema_version": "1.0",
+  "skill": "spatial-analysis/build-hydrological-topology",
+  "status": "success"
+}

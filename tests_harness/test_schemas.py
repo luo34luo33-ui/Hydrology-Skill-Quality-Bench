@@ -75,9 +75,14 @@ def test_example_template_is_not_discovered_as_a_runnable_task() -> None:
     assert {f"hydrodata-topology-validate-{index:03d}" for index in range(1, 11)} <= ids
     assert {
         f"hydromodel-{algorithm}-{index:03d}"
-        for algorithm in ("de", "dhf", "ga", "gr4j", "hbv", "lohmann", "muskingum", "pso", "sacsma", "sce-ua", "tank", "two-stage", "xaj")
+        for algorithm in ("de", "dhf", "ga", "gr4j", "hbv", "lohmann", "muskingum", "pso", "sacsma", "sce-ua", "swat-sd", "tank", "topmodel", "two-stage", "xaj", "xaj-sd")
         for index in range(1, 4)
     } <= ids
+    assert {f"hydrodata-eto-faopm-{index:03d}" for index in range(1, 4)} <= ids
+    assert {f"hydrodata-forcing-standardize-{index:03d}" for index in range(1, 4)} <= ids
+    assert {f"hydrodata-terrain-topidx-{index:03d}" for index in range(1, 4)} <= ids
+    assert {f"hydrodata-forcing-aggregate-{index:03d}" for index in range(1, 4)} <= ids
+    assert {f"hydroanalysis-align-discharge-{index:03d}" for index in range(1, 4)} <= ids
     assert {f"hydroanalysis-event-metrics-{index:03d}" for index in range(1, 4)} <= ids
     assert {f"hydroanalysis-series-metrics-{index:03d}" for index in range(1, 4)} <= ids
     assert {f"hydroanalysis-aggregate-metrics-{index:03d}" for index in range(1, 4)} <= ids

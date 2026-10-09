@@ -1,0 +1,15 @@
+{
+  "files": {
+    "fit/result.json": {
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "success",
+      "warnings": []
+    },
+    "forecast/result.json": {
+      "skill": "post-processing/ensemble-discharge-with-bma",
+      "status": "success",
+      "warnings": []
+    }
+  },
+  "kind": "status"
+}

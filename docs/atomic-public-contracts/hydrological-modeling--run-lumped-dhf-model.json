@@ -1,0 +1,876 @@
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "hydrological-modeling/run-lumped-dhf-model",
+  "source_contract_sha256": "90c0d7d5444f5bc8b2a1ab045057e0e7f9e445d08e55066c909ed7dd99e9daed",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "forcing_table",
+        "description": "包含时间、面平均降雨与蒸发能力的 forcing 表；event 模式下可由一个目录或一个多 sheet 工作簿提供多场次。",
+        "required": true,
+        "format": "CSV, Parquet or XLSX",
+        "variables": [
+          {
+            "name": "P",
+            "semantics": "面平均降雨，每步长水深；由调用方确认为面平均值。",
+            "units": "mm per time step",
+            "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺测必须停止；不得静默填 0 或插值后继续。"
+          },
+          {
+            "name": "PET",
+            "semantics": "蒸发能力，每步长水深，乘以蒸系数 KC 后与降雨同量纲相减。",
+            "units": "mm per time step",
+            "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "缺测必须停止；来源与处理方法由调用方记录。"
+          },
+          {
+            "name": "time",
+            "semantics": "严格递增且等间隔的时间索引。",
+            "units": "datetime",
+            "time_step": "由 --timestep-hours 显式声明并与时间列推断值一致",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "空值或重复值必须停止。"
+          }
+        ]
+      },
+      {
+        "id": "parameter_set",
+        "description": "DHF 18 参数集，规范键名 S0/U0/D0/KC/KW/K2/KA/G/A/B/B0/K0/N/DD/CC/COE/DDL/CCL，兼容源脚本别名 K。",
+        "required": true,
+        "format": "JSON or YAML",
+        "variables": [
+          {
+            "name": "S0",
+            "semantics": "表层蓄水容量。",
+            "units": "mm",
+            "state_or_flux": "state",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失必须停止，不得使用经验默认值。"
+          },
+          {
+            "name": "U0",
+            "semantics": "下层蓄水容量。",
+            "units": "mm",
+            "state_or_flux": "state",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失必须停止，不得使用经验默认值。"
+          },
+          {
+            "name": "G",
+            "semantics": "不透水面积比例，取值落在 0 到 1 之间。",
+            "units": "fraction",
+            "state_or_flux": "not_applicable",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "缺失必须停止，不得使用经验默认值。"
+          }
+        ]
+      },
+      {
+        "id": "basin_properties",
+        "description": "流域属性，全部由 CLI 显式提供：--river-length-km（主河长）、--area-km2（流域面积）、--timestep-hours（时间步长）。",
+        "required": true,
+        "format": "CLI arguments"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "simulation_table",
+        "description": "逐时步状态与通量表，含出口流量 Q、产流分量与状态列；event 模式带场次标识列。",
+        "required": true,
+        "format": "CSV, Parquet or XLSX",
+        "variables": [
+          {
+            "name": "Q",
+            "semantics": "流域出口流量，地表与地下单位线卷积之和，负值已按源码行为截断为 0。",
+            "units": "m3/s",
+            "time_step": "与输入时间步长一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          },
+          {
+            "name": "RUNOFF",
+            "semantics": "产流总量，等于 Y 与 Y0 之和截负，是汇流卷积的输入。",
+            "units": "mm per time step",
+            "time_step": "与输入时间步长一致",
+            "state_or_flux": "flux",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          },
+          {
+            "name": "SA",
+            "semantics": "表层蓄水状态，必须落在 0 与 S0 之间。",
+            "units": "mm",
+            "time_step": "与输入时间步长一致",
+            "state_or_flux": "state",
+            "accumulated_or_instantaneous": "instantaneous",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          },
+          {
+            "name": "YA",
+            "semantics": "前期影响雨量，非负递推量，驱动单位线时程参数 TM。",
+            "units": "mm",
+            "time_step": "与输入时间步长一致",
+            "state_or_flux": "state",
+            "accumulated_or_instantaneous": "not_applicable",
+            "missing_value_semantics": "QC 失败时不产出；不写 NaN。"
+          }
+        ]
+      },
+      {
+        "id": "event_index",
+        "description": "event 模式下的场次清单，记录每场的行数、起止时间与预热步数。",
+        "required": false,
+        "format": "CSV"
+      },
+      {
+        "id": "run_result",
+        "description": "符合 HydroTune 运行结果约定的 result.json，含参数、输入与产物 SHA-256、QC 与 provenance。",
+        "required": true,
+        "format": "JSON"
+      }
+    ],
+    "warmup_period": {
+      "required": false,
+      "semantics": "由 --warmup-steps 显式声明；warmup 段从默认状态（SA=0、UA=0、YA=0.5）递推，终态作为模拟期初值并可被 --initial-state 覆盖；warmup 段输出标记 is_warmup 且不纳入模拟期统计。"
+    },
+    "simulation_period": {
+      "required": true,
+      "semantics": "扣除预热后的全部时步；模拟期为空即失败，退出码 2。"
+    },
+    "invariants": [
+      "时间轴必须严格递增、等间隔，并与 --timestep-hours 一致。",
+      "蓄水状态必须满足 0<=SA<=S0、0<=UA<=U0，且 YA>=0。",
+      "状态与通量必须全部有限，出现 NaN 或 Inf 即失败；源码行为中的 NaN 贡献被置零并计数。",
+      "水量平衡残差以 warning 报告，包含单位线卷积在序列末端的截断水量，不作失败判定。",
+      "输出只写入 --output-dir，forcing 缺测或参数越界即停止，不静默填充也不静默复用旧结果。",
+      "汇流经验单位线与产流状态 YA 耦合，本 Skill 自包含产汇流，不把汇流拆给其它 Skill。"
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "S0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "U0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "D0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "KC": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "KW": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "K2": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "KA": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "G": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "A": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "B": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "B0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "K0": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "N": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "DD": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "CC": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "COE": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "DDL": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "CCL": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      {
+        "sa0": {
+          "type": "number"
+        },
+        "ua0": {
+          "type": "number"
+        },
+        "ya0": {
+          "type": "number"
+        }
+      },
+      {
+        "P": {
+          "type": "computed; see field semantics"
+        },
+        "PET": {
+          "type": "computed; see field semantics"
+        },
+        "E": {
+          "type": "computed; see field semantics"
+        },
+        "PE": {
+          "type": "computed; see field semantics"
+        },
+        "PC": {
+          "type": "computed; see field semantics"
+        },
+        "Y0": {
+          "type": "computed; see field semantics"
+        },
+        "EU": {
+          "type": "computed; see field semantics"
+        },
+        "EL": {
+          "type": "computed; see field semantics"
+        },
+        "RR": {
+          "type": "computed; see field semantics"
+        },
+        "Y": {
+          "type": "computed; see field semantics"
+        },
+        "YU": {
+          "type": "computed; see field semantics"
+        },
+        "YL": {
+          "type": "computed; see field semantics"
+        },
+        "RUNOFF": {
+          "type": "computed; see field semantics"
+        },
+        "QS": {
+          "type": "computed; see field semantics"
+        },
+        "QL": {
+          "type": "computed; see field semantics"
+        },
+        "Q": {
+          "type": "computed; see field semantics"
+        },
+        "SA": {
+          "type": "computed; see field semantics"
+        },
+        "UA": {
+          "type": "computed; see field semantics"
+        },
+        "YA": {
+          "type": "computed; see field semantics"
+        },
+        "EB": {
+          "type": "computed; see field semantics"
+        },
+        "clip_count": {
+          "type": "computed; see field semantics"
+        },
+        "max_tm": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "name": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "rows": {
+          "type": "computed; see field semantics"
+        },
+        "warmup_steps": {
+          "type": "computed; see field semantics"
+        },
+        "simulation_steps": {
+          "type": "computed; see field semantics"
+        },
+        "precipitation_total_mm": {
+          "type": "computed; see field semantics"
+        },
+        "runoff_total_mm": {
+          "type": "computed; see field semantics"
+        },
+        "peak_q_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "clip_count": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "simulation_table": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "params": {
+          "type": "computed; see field semantics"
+        },
+        "param_scale": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "computed; see field semantics"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "mode": {
+            "type": "computed; see field semantics"
+          },
+          "area_km2": {
+            "type": "computed; see field semantics"
+          },
+          "river_length_km": {
+            "type": "computed; see field semantics"
+          },
+          "timestep_hours": {
+            "type": "computed; see field semantics"
+          },
+          "warmup_steps": {
+            "type": "computed; see field semantics"
+          },
+          "balance_tolerance_fraction": {
+            "type": "computed; see field semantics"
+          },
+          "carry_columns": {
+            "type": "computed; see field semantics"
+          },
+          "initial_states": {
+            "type": "computed; see field semantics"
+          },
+          "parameter_set": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "sa0": {
+          "type": "computed; see field semantics"
+        },
+        "ua0": {
+          "type": "computed; see field semantics"
+        },
+        "ya0": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "is_warmup": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "mode": {
+          "type": "computed; see field semantics"
+        },
+        "area_km2": {
+          "type": "computed; see field semantics"
+        },
+        "river_length_km": {
+          "type": "computed; see field semantics"
+        },
+        "timestep_hours": {
+          "type": "computed; see field semantics"
+        },
+        "warmup_steps": {
+          "type": "computed; see field semantics"
+        },
+        "balance_tolerance_fraction": {
+          "type": "computed; see field semantics"
+        },
+        "carry_columns": {
+          "type": "computed; see field semantics"
+        },
+        "initial_states": {
+          "type": "computed; see field semantics"
+        },
+        "parameter_set": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "checks": {
+          "type": "computed; see field semantics"
+        },
+        "warnings": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "rows": {
+          "type": "computed; see field semantics"
+        },
+        "start": {
+          "type": "computed; see field semantics"
+        },
+        "end": {
+          "type": "computed; see field semantics"
+        },
+        "warmup_steps": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {},
+        "inputs": {},
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "S0",
+        "U0",
+        "D0",
+        "KC",
+        "KW",
+        "K2",
+        "KA",
+        "G",
+        "A",
+        "B",
+        "B0",
+        "K0",
+        "N",
+        "DD",
+        "CC",
+        "COE",
+        "DDL",
+        "CCL"
+      ],
+      [
+        "sa0",
+        "ua0",
+        "ya0"
+      ],
+      [
+        "csv",
+        "parquet",
+        "xlsx"
+      ],
+      [
+        ".csv",
+        ".parquet",
+        ".xlsx"
+      ],
+      [
+        "lumped_dhf_runoff.csv",
+        "lumped_dhf_runoff.parquet",
+        "lumped_dhf_runoff.xlsx",
+        "event_index.csv",
+        "result.json"
+      ],
+      [
+        "P",
+        "PET",
+        "E",
+        "PE",
+        "PC",
+        "Y0",
+        "EU",
+        "EL",
+        "RR",
+        "Y",
+        "YU",
+        "YL",
+        "RUNOFF",
+        "QS",
+        "QL",
+        "Q",
+        "SA",
+        "UA",
+        "YA",
+        "EB"
+      ],
+      [
+        "SA",
+        "UA",
+        "YA",
+        "RUNOFF",
+        "Q",
+        "QS",
+        "QL"
+      ],
+      [
+        "original",
+        "normalized"
+      ],
+      [
+        "event",
+        "continuous"
+      ]
+    ],
+    "field_names": [
+      ".csv",
+      ".parquet",
+      ".xlsx",
+      "A",
+      "B",
+      "B0",
+      "CC",
+      "CCL",
+      "COE",
+      "D0",
+      "DD",
+      "DDL",
+      "E",
+      "EB",
+      "EL",
+      "EU",
+      "G",
+      "K",
+      "K0",
+      "K2",
+      "KA",
+      "KC",
+      "KW",
+      "N",
+      "P",
+      "PC",
+      "PE",
+      "PET",
+      "Q",
+      "QL",
+      "QS",
+      "RR",
+      "RUNOFF",
+      "S0",
+      "SA",
+      "U0",
+      "UA",
+      "Y",
+      "Y0",
+      "YA",
+      "YL",
+      "YU",
+      "a",
+      "action",
+      "area_km2",
+      "artifacts",
+      "b",
+      "b0",
+      "balance_tolerance_fraction",
+      "carry_columns",
+      "cc",
+      "ccl",
+      "checks",
+      "choices",
+      "clip_count",
+      "coe",
+      "continuous",
+      "csv",
+      "d0",
+      "date_format",
+      "dd",
+      "ddl",
+      "default",
+      "description",
+      "dtype",
+      "encoding",
+      "end",
+      "engine",
+      "ensure_ascii",
+      "errors",
+      "event",
+      "event_id",
+      "event_index",
+      "event_index.csv",
+      "events_dir",
+      "events_workbook",
+      "exist_ok",
+      "file",
+      "forcing",
+      "frozen",
+      "g",
+      "help",
+      "ignore_index",
+      "indent",
+      "index",
+      "initial_state",
+      "initial_states",
+      "inputs",
+      "invalid",
+      "is_warmup",
+      "k0",
+      "k2",
+      "ka",
+      "kc",
+      "kw",
+      "lumped_dhf_runoff.csv",
+      "lumped_dhf_runoff.parquet",
+      "lumped_dhf_runoff.xlsx",
+      "max_tm",
+      "message",
+      "mode",
+      "n",
+      "name",
+      "normalized",
+      "numpy",
+      "original",
+      "pandas",
+      "param_scale",
+      "parameter_set",
+      "parameters",
+      "params",
+      "parents",
+      "parquet",
+      "path",
+      "peak_q_m3_s",
+      "precipitation_total_mm",
+      "provenance",
+      "python",
+      "required",
+      "result.json",
+      "river_length_km",
+      "rows",
+      "runoff_total_mm",
+      "s0",
+      "sa0",
+      "schema_version",
+      "sha256",
+      "sheet_name",
+      "simulation_steps",
+      "simulation_table",
+      "skill",
+      "sort_keys",
+      "start",
+      "status",
+      "time",
+      "timestep_hours",
+      "type",
+      "u0",
+      "ua0",
+      "warmup_steps",
+      "warnings",
+      "xlsx",
+      "ya0"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "error"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^.+:finite_states$",
+      "^.+:no_missing_forcing$",
+      "^.+:numerical_clipping$",
+      "^.+:parameter_range$",
+      "^.+:state_bounds$",
+      "^.+:time_axis_regular$",
+      "^.+:warmup_coverage$",
+      "^.+:water_balance$",
+      "^\\.6g$",
+      "^lumped_dhf_runoff\\..+$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "hydrological-modeling/run-lumped-dhf-model"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}

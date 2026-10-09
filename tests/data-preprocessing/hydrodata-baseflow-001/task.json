@@ -9,6 +9,12 @@
   "domain": "data-preprocessing",
   "grading": [
     {
+      "artifact_references": {
+        "components/result.json": [
+          "baseflow_metadata",
+          "flow_components"
+        ]
+      },
       "expected_rows": {
         "components/baseflow_metadata.json": 1,
         "components/flow_components.csv": 20,
@@ -39,6 +45,12 @@
           "artifacts",
           "warnings"
         ]
+      },
+      "required_values": {
+        "components/baseflow_metadata.json": {
+          "flow_unit": "m3/s",
+          "method": "Eckhardt digital filter"
+        }
       },
       "targets": [
         "components/flow_components.csv",
@@ -128,6 +140,7 @@
   "id": "hydrodata-baseflow-001",
   "primary_skill": "data-processing/separate-baseflow-eckhardt",
   "prompt": "Use prepared/result.json as the verified upstream result. The confirmed Eckhardt parameters are alpha=0.95 and BFImax=0.80; do not estimate alpha. Write CSV outputs under components/.",
+  "public_contract": "public_contract.json",
   "required_outputs": [
     "components/flow_components.csv",
     "components/baseflow_metadata.json",

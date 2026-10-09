@@ -1,0 +1,161 @@
+{
+  "artifacts": {
+    "event_metrics": {
+      "path": "event_metrics.csv",
+      "sha256": "f0c1ba51c3bee5be7e234fac28ac312e4562eab502829da39bd6b062b719e681"
+    }
+  },
+  "checks": [
+    {
+      "message": "观测与模拟均为 19 行",
+      "name": "1:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "1:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "1:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "1:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "1:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为 23 行",
+      "name": "2:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "2:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "2:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "2:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "2:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为 15 行",
+      "name": "3:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "3:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "3:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "3:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "3:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为 20 行",
+      "name": "4:series_length_match",
+      "status": "PASS"
+    },
+    {
+      "message": "时间轴等间隔 1.0 小时",
+      "name": "4:timestep_consistency",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均无缺测",
+      "name": "4:no_missing_values",
+      "status": "PASS"
+    },
+    {
+      "message": "观测与模拟均为有限值",
+      "name": "4:finite_values",
+      "status": "PASS"
+    },
+    {
+      "message": "峰值唯一",
+      "name": "4:peak_tie",
+      "status": "PASS"
+    },
+    {
+      "message": "未提供合格阈值，不判定合格",
+      "name": "thresholds_provided",
+      "status": "WARN"
+    },
+    {
+      "message": "洪量单位为 m3",
+      "name": "volume_unit_recorded",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "event_file_0000": {
+      "path": "../scoring_events/1.csv",
+      "sha256": "5515403b2eea8e26730fcef4e53c47c91974d51f76516a4adf20d4cfe8d8dd15"
+    },
+    "event_file_0001": {
+      "path": "../scoring_events/2.csv",
+      "sha256": "c9c2584fea52916b36aec4d574d4bba71dbb2c8d7d79c66160a8add601bb82bd"
+    },
+    "event_file_0002": {
+      "path": "../scoring_events/3.csv",
+      "sha256": "1c33e6bebb20e9a30f2ca4cef839c75cc447e6ecd803e27a0f7e2562dd98ff31"
+    },
+    "event_file_0003": {
+      "path": "../scoring_events/4.csv",
+      "sha256": "6ef3526c04ee682912646de4ae7832be9dce84a67a5effc1ac2509647dc181bf"
+    },
+    "events_dir": "scoring_events"
+  },
+  "message": "场次指标计算完成：4 场",
+  "parameters": {
+    "event_id_column": "event_id",
+    "observed_column": "observed_m3_s",
+    "scoring_policy": "exclude_unscored_and_warmup",
+    "simulated_column": "simulated_m3_s",
+    "thresholds": {},
+    "time_column": "time",
+    "timestep_hours": 1.0,
+    "volume_unit": "m3"
+  },
+  "provenance": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "python": "3.11.16"
+  },
+  "schema_version": "1.0",
+  "skill": "evaluation-diagnostics/compute-event-flood-metrics",
+  "status": "warning",
+  "warnings": [
+    "未提供 --thresholds，合格判定列记为 unavailable；合格阈值必须由使用者显式给出"
+  ]
+}

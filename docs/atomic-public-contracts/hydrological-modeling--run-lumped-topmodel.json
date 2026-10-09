@@ -1,0 +1,544 @@
+{
+  "version": "atomic-three-arm-v2",
+  "interface_id": "hydrological-modeling/run-lumped-topmodel",
+  "source_contract_sha256": "3c1e93111e263a90d14cf5f5be1db8d52313cb080d45649fd84009e9b17506d3",
+  "interface": {
+    "schema_version": "1.0",
+    "inputs": [
+      {
+        "id": "terrain_result",
+        "required": true,
+        "format": "JSON",
+        "description": "Verified terrain result with hashed topographic index and distance area distributions."
+      },
+      {
+        "id": "forcing",
+        "required": true,
+        "format": "CSV",
+        "description": "Continuous time P PET table with timezone aware interval end and mm per step depths."
+      },
+      {
+        "id": "params",
+        "required": true,
+        "format": "JSON or YAML",
+        "description": "Explicit model configuration conforming to examples/model_config.schema.json."
+      }
+    ],
+    "outputs": [
+      {
+        "id": "process",
+        "required": true,
+        "format": "CSV",
+        "description": "Component depths outlet discharge states and water balance residual."
+      },
+      {
+        "id": "final_state",
+        "required": true,
+        "format": "JSON",
+        "description": "End of series states in metres including un-routed water."
+      },
+      {
+        "id": "model_config",
+        "required": true,
+        "format": "JSON",
+        "description": "Exact configuration snapshot."
+      },
+      {
+        "id": "run_result",
+        "required": true,
+        "format": "JSON",
+        "description": "Input and output hashes QC and provenance."
+      }
+    ],
+    "invariants": [
+      "Every forcing step is present exactly once; warmup and simulation bounds cover the entire series.",
+      "Outlet depth equals basin-area-normalized discharge using the explicit timestep.",
+      "Water balance includes the routing queue remaining at series end."
+    ]
+  },
+  "serialization": {
+    "object_structures": [
+      {
+        "mean_deficit_m": {
+          "type": "computed; see field semantics"
+        },
+        "root_deficit_m": {
+          "type": "computed; see field semantics"
+        },
+        "unsat_m": {
+          "type": "computed; see field semantics"
+        },
+        "ga_cumulative_m": {
+          "type": "number"
+        },
+        "routing_m": {
+          "type": "computed; see field semantics"
+        },
+        "lambda": {
+          "type": "computed; see field semantics"
+        },
+        "qss_step_m": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "saturation_excess_m": {
+          "type": "computed; see field semantics"
+        },
+        "infiltration_excess_m": {
+          "type": "computed; see field semantics"
+        },
+        "baseflow_m": {
+          "type": "computed; see field semantics"
+        },
+        "generated_m": {
+          "type": "computed; see field semantics"
+        },
+        "actual_et_m": {
+          "type": "computed; see field semantics"
+        },
+        "outlet_m": {
+          "type": "computed; see field semantics"
+        },
+        "root_deficit_m": {
+          "type": "computed; see field semantics"
+        },
+        "unsat_m": {
+          "type": "computed; see field semantics"
+        },
+        "mean_deficit_m": {
+          "type": "computed; see field semantics"
+        },
+        "routing_storage_m": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "path": {
+          "type": "computed; see field semantics"
+        },
+        "sha256": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "mean_deficit_m": {
+          "type": "computed; see field semantics"
+        },
+        "root_deficit_m": {
+          "type": "computed; see field semantics"
+        },
+        "unsat_m": {
+          "type": "computed; see field semantics"
+        },
+        "ga_cumulative_m": {
+          "type": "computed; see field semantics"
+        },
+        "routing_m": {
+          "type": "computed; see field semantics"
+        },
+        "routing_storage_m": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "basin_area_m2": {
+          "type": "computed; see field semantics"
+        },
+        "inputs": {
+          "terrain_result": {
+            "type": "computed; see field semantics"
+          },
+          "forcing": {
+            "type": "computed; see field semantics"
+          },
+          "params": {
+            "type": "computed; see field semantics"
+          }
+        },
+        "artifacts": {
+          "type": "computed; see field semantics"
+        },
+        "parameters": {
+          "type": "computed; see field semantics"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        },
+        "provenance": {
+          "python": {
+            "type": "computed; see field semantics"
+          },
+          "numpy": {
+            "type": "computed; see field semantics"
+          },
+          "pandas": {
+            "type": "computed; see field semantics"
+          },
+          "PyYAML": {
+            "type": "computed; see field semantics"
+          },
+          "jsonschema": {
+            "type": "computed; see field semantics"
+          },
+          "reference": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "terrain_result": {
+          "type": "computed; see field semantics"
+        },
+        "forcing": {
+          "type": "computed; see field semantics"
+        },
+        "params": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "python": {
+          "type": "computed; see field semantics"
+        },
+        "numpy": {
+          "type": "computed; see field semantics"
+        },
+        "pandas": {
+          "type": "computed; see field semantics"
+        },
+        "PyYAML": {
+          "type": "computed; see field semantics"
+        },
+        "jsonschema": {
+          "type": "computed; see field semantics"
+        },
+        "reference": {
+          "type": "string"
+        }
+      },
+      {
+        "time": {
+          "type": "computed; see field semantics"
+        },
+        "warmup": {
+          "type": "computed; see field semantics"
+        },
+        "P_mm": {
+          "type": "computed; see field semantics"
+        },
+        "PET_mm": {
+          "type": "computed; see field semantics"
+        },
+        "outlet_m3_s": {
+          "type": "computed; see field semantics"
+        },
+        "water_balance_residual_mm": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "max_abs_residual_m": {
+          "type": "computed; see field semantics"
+        }
+      },
+      {
+        "schema_version": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "computed; see field semantics"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "computed; see field semantics"
+        },
+        "inputs": {
+          "type": "computed; see field semantics"
+        },
+        "artifacts": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "check": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "details": {
+              "type": "computed; see field semantics"
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "unknown"
+          }
+        }
+      },
+      {
+        "check": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "computed; see field semantics"
+        }
+      }
+    ],
+    "named_field_sets": [
+      [
+        "process.csv",
+        "final_state.json",
+        "model_config.json",
+        "result.json"
+      ],
+      [
+        "terrain-result",
+        "forcing",
+        "params",
+        "output-dir"
+      ],
+      [
+        "K0",
+        "psi",
+        "dtheta"
+      ],
+      [
+        "time",
+        "P",
+        "PET"
+      ],
+      [
+        "success",
+        "warning"
+      ],
+      [
+        "stream_result",
+        "topology_result",
+        "topology_qc_result",
+        "filled_dem",
+        "d8_pointer",
+        "flow_accumulation",
+        "subbasins_clipped"
+      ],
+      [
+        "path",
+        "sha256"
+      ],
+      [
+        ".yaml",
+        ".yml"
+      ],
+      [
+        "ti_mean",
+        "area_fraction"
+      ],
+      [
+        "distance_m",
+        "cumulative_fraction"
+      ]
+    ],
+    "field_names": [
+      ".yaml",
+      ".yml",
+      "K0",
+      "P",
+      "PET",
+      "PET_mm",
+      "P_mm",
+      "PyYAML",
+      "Sr0",
+      "Srmax",
+      "action",
+      "actual_et_m",
+      "allow_nan",
+      "area_fraction",
+      "artifacts",
+      "baseflow_m",
+      "basin_area_m2",
+      "check",
+      "checks",
+      "cumulative_fraction",
+      "d8_pointer",
+      "description",
+      "details",
+      "distance_area.csv",
+      "distance_m",
+      "dtheta",
+      "dtype",
+      "encoding",
+      "ensure_ascii",
+      "errors",
+      "exist_ok",
+      "file",
+      "filled_dem",
+      "final_state.json",
+      "float_format",
+      "flow_accumulation",
+      "forcing",
+      "forcing_unit",
+      "ga_cumulative_m",
+      "generated_m",
+      "hours",
+      "indent",
+      "index",
+      "infiltration_excess",
+      "infiltration_excess_m",
+      "inputs",
+      "jsonschema",
+      "lambda",
+      "lnTe",
+      "m",
+      "max_abs_residual_m",
+      "mean_deficit_m",
+      "message",
+      "model_config.json",
+      "numpy",
+      "outlet_m",
+      "outlet_m3_s",
+      "output-dir",
+      "pandas",
+      "parameters",
+      "params",
+      "parents",
+      "path",
+      "process.csv",
+      "provenance",
+      "psi",
+      "python",
+      "qs0",
+      "qss_step_m",
+      "reference",
+      "required",
+      "result.json",
+      "root_deficit_m",
+      "routing_m",
+      "routing_storage_m",
+      "saturation_excess_m",
+      "schema_version",
+      "sha256",
+      "simulation_end",
+      "simulation_start",
+      "skill",
+      "status",
+      "stream_result",
+      "subbasins_clipped",
+      "success",
+      "td",
+      "terrain-result",
+      "terrain_result",
+      "ti_mean",
+      "time",
+      "timestamp_semantics",
+      "timestep_hours",
+      "timezone",
+      "topographic_index.tif",
+      "topographic_index_classes.csv",
+      "topology_qc_result",
+      "topology_result",
+      "type",
+      "unsat_m",
+      "vch",
+      "vr",
+      "warmup",
+      "warmup_steps",
+      "warning",
+      "warnings",
+      "water_balance_residual_mm",
+      "water_balance_tolerance_m"
+    ],
+    "literal_enum_values": {
+      "schema_version": [
+        "1.0"
+      ],
+      "status": [
+        "FAIL",
+        "PASS",
+        "error",
+        "success"
+      ]
+    },
+    "static_interface_values": {
+      "schema_version": [
+        "1.0"
+      ]
+    },
+    "figure_layer_interfaces": [],
+    "dynamic_field_patterns": [
+      "^\\.8g$"
+    ],
+    "passthrough_policy": "Preserve applicable input columns and configured identifiers. Dynamic output names follow the source interface patterns; tables can carry upstream fields."
+  },
+  "common_result": {
+    "fields": [
+      "schema_version",
+      "skill",
+      "status",
+      "message",
+      "parameters",
+      "inputs",
+      "artifacts",
+      "checks",
+      "warnings",
+      "provenance"
+    ],
+    "status_branches": [
+      "success",
+      "warning",
+      "error"
+    ],
+    "artifact_reference": {
+      "path": "relative to result directory",
+      "sha256": "SHA-256 of actual referenced file"
+    },
+    "skill": "hydrological-modeling/run-lumped-topmodel"
+  },
+  "precision": "Preserve IEEE-754 double precision; write computed CSV numbers with 17 significant digits; never round intermediate calculations."
+}

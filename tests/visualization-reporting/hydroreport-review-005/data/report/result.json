@@ -1,0 +1,89 @@
+{
+  "artifacts": {
+    "analysis-tables.json": {
+      "path": "analysis-tables.json",
+      "sha256": "75e42384224cec437d15b1e2cf3d326dbe0d711e12568fc2faa161aa35a113d7"
+    },
+    "data-gaps.csv": {
+      "path": "data-gaps.csv",
+      "sha256": "ca1c58e9f1026d2336803d1412055ea0db91c70620b30064f0fac0ae0359eca3"
+    },
+    "data-gaps.json": {
+      "path": "data-gaps.json",
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "evidence-index.csv": {
+      "path": "evidence-index.csv",
+      "sha256": "5da7c903824741a4375ad617462dd58fe2c1e450db437e280a0ce7e7abc02488"
+    },
+    "evidence-index.json": {
+      "path": "evidence-index.json",
+      "sha256": "48904f1bed44ddf8a8e479e801d0b01aed77fa43178fadc035b63699e5d8bd70"
+    },
+    "figures/event-0.svg": {
+      "path": "figures/event-0.svg",
+      "sha256": "7b903ee2e368bed715b1c1bcb3798dfbf018a19331536975314252cf3540a575"
+    },
+    "figures/nse-distributions.svg": {
+      "path": "figures/nse-distributions.svg",
+      "sha256": "68fe3d5d25e19ff7ba0fe6ab5b41342ef83a7d219e8c96f4a3429250faff2d97"
+    },
+    "report.json": {
+      "path": "report.json",
+      "sha256": "3924f10f52df7caafce9262001bc89f6ec78de305123de91b9de359d2f01c3af"
+    },
+    "report.md": {
+      "path": "report.md",
+      "sha256": "7000121f33759b52d3da9e77a22504965456d325453c8fb63f6780db6d893f39"
+    },
+    "summary.csv": {
+      "path": "summary.csv",
+      "sha256": "062bb619668190e9bd9a634b111cfdf3ac95a2cab90c8d433889e1025b5340b1"
+    },
+    "worst-events.csv": {
+      "path": "worst-events.csv",
+      "sha256": "9915f0a5b5e41183b4d5c6c414552ca15c408f842b5df26b764c208b3a570069"
+    }
+  },
+  "checks": [
+    {
+      "check": "source_integrity",
+      "details": "Original sources verified",
+      "status": "PASS"
+    },
+    {
+      "check": "evaluation_scope",
+      "details": "Timezone-aware scored periods and complete event scopes verified",
+      "status": "PASS"
+    },
+    {
+      "check": "run_series_identity",
+      "details": "Evaluation values bound to original run series; declared comparisons use identical samples",
+      "status": "PASS"
+    }
+  ],
+  "inputs": {
+    "eval": {
+      "path": "@WORKSPACE@\\eval\\result.json",
+      "sha256": "52eb100f91b9c53e60f7bd0aafa2ca3a0ba37f794ddb56ecaf3941d8dc73e780"
+    },
+    "sim": {
+      "path": "@WORKSPACE@\\sim\\result.json",
+      "sha256": "64dd2a5dfbd9788b660eacc80ef3d32fb15b4f7ccc89cc87b7e4f2124c7ef384"
+    },
+    "study_manifest": {
+      "path": "@WORKSPACE@\\manifest.json",
+      "sha256": "6c41fbf888c556c987603f5098b467e0b666add3a36ec802905bdaa37125f240"
+    }
+  },
+  "message": "Report rendered; independent semantic review required",
+  "parameters": {},
+  "provenance": {
+    "python": "3.11.16",
+    "runtime": "hydrotune.reporting.v1"
+  },
+  "schema_version": "1.0",
+  "skill": "visualization-reporting/generate-hydrological-study-report",
+  "status": "success",
+  "warnings": []
+}
